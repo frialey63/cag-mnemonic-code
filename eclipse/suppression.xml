@@ -3,48 +3,14 @@
 
 <suppressions>
 
-    <!-- Suppressions for functional testing code -->
-
-    <suppress checks="MagicNumber" files="[/\\]ftest[/\\]slite[/\\]" />
-    <suppress checks="JavadocPackage" files="[/\\]ftest[/\\]slite[/\\]" />
-    <suppress checks="JavadocMethod" files="[/\\]ftest[/\\]slite[/\\]" />
-    <suppress checks="JavadocVariable" files="[/\\]ftest[/\\]slite[/\\]" />
-    <suppress checks="JavadocType" files="[/\\]ftest[/\\]slite[/\\]" />
-    <suppress checks="IllegalThrows" files="[/\\]ftest[/\\]slite[/\\]" />
-    <suppress checks="ImportControl" files="[/\\]ftest[/\\]slite[/\\]" />
-
-    <suppress checks="MagicNumber" files="[/\\]ftest[/\\]parmis[/\\]" />
-    <suppress checks="JavadocPackage" files="[/\\]ftest[/\\]parmis[/\\]" />
-    <suppress checks="JavadocMethod" files="[/\\]ftest[/\\]parmis[/\\]" />
-    <suppress checks="JavadocVariable" files="[/\\]ftest[/\\]parmis[/\\]" />
-    <suppress checks="JavadocType" files="[/\\]ftest[/\\]parmis[/\\]" />
-    <suppress checks="IllegalThrows" files="[/\\]ftest[/\\]parmis[/\\]" />
-    <suppress checks="ImportControl" files="[/\\]ftest[/\\]parmis[/\\]" />
-
     <!-- Suppressions for unit testing code -->
 
-    <suppress checks="MagicNumber" files="[/\\]test[/\\]java[/\\]com[/\\]dxc[/\\]slite[/\\]" />
-    <suppress checks="JavadocPackage" files="[/\\]test[/\\]java[/\\]com[/\\]dxc[/\\]slite[/\\]" />
-    <suppress checks="JavadocMethod" files="[/\\]test[/\\]java[/\\]com[/\\]dxc[/\\]slite[/\\]" />
-    <suppress checks="JavadocVariable" files="[/\\]test[/\\]java[/\\]com[/\\]dxc[/\\]slite[/\\]" />
-    <suppress checks="JavadocType" files="[/\\]test[/\\]java[/\\]com[/\\]dxc[/\\]slite[/\\]" />
-    <suppress checks="IllegalThrows" files="[/\\]test[/\\]java[/\\]com[/\\]dxc[/\\]slite[/\\]" />
-    <suppress checks="ImportControl" files="[/\\]test[/\\]java[/\\]com[/\\]dxc[/\\]slite[/\\]" />
-
-    <suppress checks="MagicNumber" files="[/\\]test[/\\]java[/\\]com[/\\]dxc[/\\]parmis[/\\]" />
-    <suppress checks="JavadocPackage" files="[/\\]test[/\\]java[/\\]com[/\\]dxc[/\\]parmis[/\\]" />
-    <suppress checks="JavadocMethod" files="[/\\]test[/\\]java[/\\]com[/\\]dxc[/\\]parmis[/\\]" />
-    <suppress checks="JavadocVariable" files="[/\\]test[/\\]java[/\\]com[/\\]dxc[/\\]parmis[/\\]" />
-    <suppress checks="JavadocType" files="[/\\]test[/\\]java[/\\]com[/\\]dxc[/\\]parmis[/\\]" />
-    <suppress checks="IllegalThrows" files="[/\\]test[/\\]java[/\\]com[/\\]dxc[/\\]parmis[/\\]" />
-    <suppress checks="ImportControl" files="[/\\]test[/\\]java[/\\]com[/\\]dxc[/\\]parmis[/\\]" />
-
-    <!-- Suppressions for generated code -->
-
-    <suppress checks="[a-zA-Z0-9]*" files="[/\\]gensrc[/\\]com[/\\]dxc[/\\]slite[/\\]" />
-    <suppress checks="[a-zA-Z0-9]*" files="[/\\]gensrc[/\\]slite[/\\]" />
-
-    <suppress checks="[a-zA-Z0-9]*" files="[/\\]gensrc[/\\]com[/\\]dxc[/\\]parmis[/\\]" />
-    <suppress checks="[a-zA-Z0-9]*" files="[/\\]gensrc[/\\]parmis[/\\]" />
+    <suppress checks="MagicNumber" files="[/\\]test[/\\]java[/\\]org[/\\]pjp[/\\]cag[/\\]" />
+    <suppress checks="JavadocPackage" files="[/\\]test[/\\]java[/\\]org[/\\]pjp[/\\]cag[/\\]" />
+    <suppress checks="JavadocMethod" files="[/\\]test[/\\]java[/\\]org[/\\]pjp[/\\]cag[/\\]" />
+    <suppress checks="JavadocVariable" files="[/\\]test[/\\]java[/\\]org[/\\]pjp[/\\]cag[/\\]" />
+    <suppress checks="JavadocType" files="[/\\]test[/\\]java[/\\]org[/\\]pjp[/\\]cag[/\\]" />
+    <suppress checks="IllegalThrows" files="[/\\]test[/\\]java[/\\]org[/\\]pjp[/\\]cag[/\\]" />
+    <suppress checks="ImportControl" files="[/\\]test[/\\]java[/\\]org[/\\]pjp[/\\]cag[/\\]" />
 
 </suppressions>
