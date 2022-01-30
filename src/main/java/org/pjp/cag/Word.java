@@ -80,7 +80,7 @@ public final class Word {
             return character.toString();
         }
 
-        return null;
+        return "<empty>";
     }
 
 }
