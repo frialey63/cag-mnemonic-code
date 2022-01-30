@@ -2,8 +2,12 @@ package org.pjp.cag;
 
 import org.pjp.cag.exception.IllegalLocationException;
 import org.pjp.cag.exception.IllegalRegisterException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class Store {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Store.class);
 
     /**
      * The size of the store, i.e. number of words.
@@ -92,7 +96,7 @@ public final class Store {
 
     public void dump() {
         for (int i = 0; i < word.length; i++) {
-            System.out.printf("%3d %s \n", i, word[i]);
+            LOGGER.debug(String.format("%3d %s \n", i, word[i]));
         }
     }
 }

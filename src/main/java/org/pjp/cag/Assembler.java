@@ -17,12 +17,18 @@ import org.pjp.cag.directive.Directive;
 import org.pjp.cag.directive.TitleDirective;
 import org.pjp.cag.exception.ParseException;
 import org.pjp.cag.exception.StorageException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class Assembler {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Assembler.class);
 
     private static final int MODIFIER_GROUP = 5;
 
     private static final int ADDRESS_GROUP = 4;
+
+    private static final int THIRD_GROUP = 3;
 
     private static final Pattern DIRECTIVE = Pattern.compile("\\(([A-Z]+)( [0-9]+)?\\)");
 
@@ -44,7 +50,7 @@ public final class Assembler {
 
     public void assemble(Path program, Store store) throws IOException {
         Files.lines(program).forEach(l -> {
-            System.out.println(l);
+            LOGGER.debug(l);
 
             if (title) {
                 TitleDirective titleDirective = new TitleDirective(l);
@@ -67,7 +73,7 @@ public final class Assembler {
                         AddressDirective addressDirective = new AddressDirective(type, address);
                         directives.add(addressDirective);
 
-                        System.out.println("    " + addressDirective);
+                        LOGGER.debug("    " + addressDirective);
 
                         switch (addressDirective.getType()) {
                         case EXECUTE:
@@ -85,7 +91,8 @@ public final class Assembler {
                     matcher = ORDER.matcher(l);
 
                     if (matcher.matches()) {
-                        // System.out.println("    ORDER -> " + matcher.group(1) + " | " + matcher.group(2) + " | " + matcher.group(3) + " | " + matcher.group(4) + " | " + matcher.group(5));
+                        LOGGER.trace("ORDER -> " + matcher.group(1) + " | " + matcher.group(2) + " | " + matcher.group(THIRD_GROUP) + " | "
+                                + matcher.group(ADDRESS_GROUP) + " | " + matcher.group(MODIFIER_GROUP));
 
                         boolean query = "Q".equals(matcher.group(1));
                         String orderNumberStr = matcher.group(2);
@@ -98,7 +105,7 @@ public final class Assembler {
 
                         Order order = Order.create(query, orderNumberStr, addressStr, modifierStr);
 
-                        System.out.println("    " + order);
+                        LOGGER.debug("    " + order);
 
                         if (currentLocation != -1) {
                             store.setLocation(currentLocation, Word.create(order));

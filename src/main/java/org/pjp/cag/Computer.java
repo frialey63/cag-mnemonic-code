@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public final class Computer {
 
-    // TODO slf4j
+    private static final Logger LOGGER = LoggerFactory.getLogger(Computer.class);
 
     private static final String USAGE = "usage: org.pjp.cag.Computer <filename>";
 
@@ -17,21 +20,16 @@ public final class Computer {
             Store store = new Store();
 
             try {
-                Assembler assembler = new Assembler();
-                assembler.assemble(path, store);
+                new Assembler().assemble(path, store);
 
-                System.out.println("----------------------------------------");
+                if (LOGGER.isDebugEnabled()) {
+                    store.dump();
+                }
 
-                store.dump();
-
-                System.out.println("----------------------------------------");
-
-                Interpreter interpreter = new Interpreter();
-                interpreter.interpret(store);
+                new Interpreter().interpret(store);
 
             } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                LOGGER.error("Caught IOException while attempting assembly", e);
             }
         } else {
             System.err.println(USAGE);
