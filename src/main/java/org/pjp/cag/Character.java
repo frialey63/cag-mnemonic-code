@@ -1,5 +1,5 @@
 package org.pjp.cag;
 
-public enum Char {
+public enum Character {
 
 }

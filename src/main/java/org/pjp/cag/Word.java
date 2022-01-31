@@ -14,7 +14,7 @@ public final class Word {
         return new Word(number);
     }
 
-    public static Word create(Char character) {
+    public static Word create(Character character) {
         return new Word(character);
     }
 
@@ -22,7 +22,7 @@ public final class Word {
 
     private Float number;
 
-    private Char character;
+    private Character character;
 
     Word() {
         super();
@@ -40,7 +40,7 @@ public final class Word {
         character = null;
     }
 
-    private Word(Char character) {
+    private Word(Character character) {
         this.character = Preconditions.checkNotNull(character, "character cannot be null");
         order = null;
         number = null;
@@ -62,7 +62,7 @@ public final class Word {
         return number;
     }
 
-    public Char character() {
+    public Character character() {
         if (character == null) {
             throw new FaultyWordException("not a character");
         }
