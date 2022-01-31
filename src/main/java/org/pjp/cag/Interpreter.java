@@ -6,8 +6,12 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 import org.pjp.cag.instruction.Instruction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class Interpreter {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Interpreter.class);
 
     private static final int THREE = 3;
 
@@ -52,12 +56,10 @@ public final class Interpreter {
                     }
 
                 } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    LOGGER.error("Caught Exception while attempting to instantiate instruction", e);
                 }
             } catch (SecurityException | ClassNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                LOGGER.error("Caught exception while looking up instruction class", e);
             }
         }
     }

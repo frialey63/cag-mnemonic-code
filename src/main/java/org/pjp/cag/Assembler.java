@@ -85,7 +85,6 @@ public final class Assembler {
                         default:
                             throw new IllegalStateException();
                         }
-
                     }
                 } else {
                     matcher = ORDER.matcher(l);

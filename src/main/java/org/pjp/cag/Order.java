@@ -1,8 +1,13 @@
 package org.pjp.cag;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.common.base.Preconditions;
 
-public class Order {
+public final class Order {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Order.class);
 
     public static Order create(boolean query, String orderNumberStr, String addressStr, String modifierStr) {
 
@@ -12,19 +17,18 @@ public class Order {
             if (addressStr == null) {
                 return new Order(query, orderNumber);
             } else {
-                int address = Integer.parseInt(addressStr);
+                int address = Integer.parseInt(addressStr);          // will parse because matched to number in the regex
 
                 if (modifierStr == null) {
                     return new Order(query, orderNumber, address);
                 } else {
-                    int modifier = Integer.parseInt(modifierStr);
+                    int modifier = Integer.parseInt(modifierStr);   // will parse because matched to number in the regex
 
                     return new Order(query, orderNumber, address, modifier);
                 }
             }
         } catch (IllegalArgumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            LOGGER.error("Caught IllegalArgumentException while attempting to look-up the OrderNumber by value", e);
             throw e;
         }
     }
