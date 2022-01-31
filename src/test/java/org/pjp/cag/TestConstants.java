@@ -1,8 +1,8 @@
-package org.pjp.cag.instruction;
+package org.pjp.cag;
 
 public final class TestConstants {
 
-    static final float PRECISION = 0.0001f;
+    public static final float PRECISION = 0.0001f;
 
     private TestConstants() {
         // prevent instantiation

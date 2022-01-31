@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
+import org.pjp.cag.TestConstants;
 
 public class LDANTest {
 

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
+import org.pjp.cag.TestConstants;
 import org.pjp.cag.Word;
 
 public class LDATest {
