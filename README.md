@@ -11,9 +11,9 @@ Simulator for the City &amp; Guilds Mnemonic Code
 
 [Centre for Computing History](http://www.computinghistory.org.uk)
 
-[Memories of a Programmer – Helen Young](http://www.computinghistory.org.uk/articles/32.htm)
+[Memories of a Programmer - Helen Young](http://www.computinghistory.org.uk/articles/32.htm)
 
-[Computing in Schools - The Early Years](http://www.computinghistory.org.uk/userdata/files/computing_in_schools_-_the_early_years.pdf)
+[Computing in Schools - The Early Years (by Tony Goodhew)](http://www.computinghistory.org.uk/userdata/files/computing_in_schools_-_the_early_years.pdf)
 
 ## Elliott 900 Series Computers
 
