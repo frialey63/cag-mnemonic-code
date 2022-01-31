@@ -42,6 +42,10 @@ public final class Store {
         setRegister(ACCUMULATOR, number);
     }
 
+    public void clearAccumulator() {
+        clearRegister(ACCUMULATOR);
+    }
+
     public float getAccumulator() {
         return getRegister(ACCUMULATOR);
     }
@@ -68,6 +72,10 @@ public final class Store {
         }
 
         this.word[register] = Word.create(number);
+    }
+
+    public void clearRegister(int register) {
+        setRegister(register, ZERO);
     }
 
     public float getRegister(int register) {

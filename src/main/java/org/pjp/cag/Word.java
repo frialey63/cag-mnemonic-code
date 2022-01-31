@@ -6,15 +6,15 @@ import com.google.common.base.Preconditions;
 
 public final class Word {
 
-    static Word create(Order order) {
+    public static Word create(Order order) {
         return new Word(order);
     }
 
-    static Word create(float number) {
+    public static Word create(float number) {
         return new Word(number);
     }
 
-    static Word create(Char character) {
+    public static Word create(Char character) {
         return new Word(character);
     }
 
