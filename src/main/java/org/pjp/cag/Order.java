@@ -41,7 +41,7 @@ public class Order {
 
     // CHECKSTYLE:ON
 
-    public Order(boolean query, OrderNumber orderNumber, int address, int modifier) {
+    private Order(boolean query, OrderNumber orderNumber, int address, int modifier) {
         super();
         this.query = query;
         this.orderNumber = Preconditions.checkNotNull(orderNumber, "orderNumber cannot be null");
@@ -49,11 +49,11 @@ public class Order {
         this.modifier = modifier;
     }
 
-    public Order(boolean query, OrderNumber orderNumber, int address) {
+    private Order(boolean query, OrderNumber orderNumber, int address) {
         this(query, orderNumber, address, 0);
     }
 
-    public Order(boolean query, OrderNumber orderNumber) {
+    private Order(boolean query, OrderNumber orderNumber) {
         this(query, orderNumber, 0, 0);
     }
 
