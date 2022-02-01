@@ -66,4 +66,39 @@ public final class Order {
         return "Order [query=" + query + ", orderNumber=" + orderNumber + ", address=" + address + ", modifier=" + modifier + "]";
     }
 
+    // CHECKSTYLE:OFF auto-generated
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + address;
+        result = prime * result + modifier;
+        result = prime * result + ((orderNumber == null) ? 0 : orderNumber.hashCode());
+        result = prime * result + (query ? 1231 : 1237);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Order other = (Order) obj;
+        if (address != other.address)
+            return false;
+        if (modifier != other.modifier)
+            return false;
+        if (orderNumber != other.orderNumber)
+            return false;
+        if (query != other.query)
+            return false;
+        return true;
+    }
+
+    // CHECKSTYLE:ON
+
 }

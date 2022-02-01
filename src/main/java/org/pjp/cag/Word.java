@@ -93,4 +93,42 @@ public final class Word {
         return "<empty>";
     }
 
+    // CHECKSTYLE:OFF auto-generated
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((character == null) ? 0 : character.hashCode());
+        result = prime * result + ((number == null) ? 0 : number.hashCode());
+        result = prime * result + ((order == null) ? 0 : order.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Word other = (Word) obj;
+        if (character != other.character)
+            return false;
+        if (number == null) {
+            if (other.number != null)
+                return false;
+        } else if (!number.equals(other.number))
+            return false;
+        if (order == null) {
+            if (other.order != null)
+                return false;
+        } else if (!order.equals(other.order))
+            return false;
+        return true;
+    }
+
+    // CHECKSTYLE:ON
+
 }
