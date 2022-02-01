@@ -23,11 +23,11 @@ public final class Computer {
         }
     }
 
-    static void innerMain(Path path) {
+    static void innerMain(Path program) {
         Store store = new Store();
 
         try {
-            new Assembler().assemble(path, store);
+            new Assembler().assemble(program, store);
 
             if (LOGGER.isDebugEnabled()) {
                 store.dump();

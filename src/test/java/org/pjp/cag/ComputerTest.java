@@ -11,6 +11,8 @@ import org.junit.Test;
 
 public class ComputerTest {
 
+    private static final String PROGRAM = "data/pi.txt";
+
     @Test
     public void testInnerMain() throws IOException {
         PrintStream prevOut = System.out;
@@ -19,7 +21,7 @@ public class ComputerTest {
 
             System.setOut(printStream);
 
-            Computer.innerMain(Paths.get("data/program.txt"));
+            Computer.innerMain(Paths.get(PROGRAM));
 
             String printText = outputStream.toString();
 
