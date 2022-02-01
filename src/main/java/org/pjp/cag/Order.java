@@ -39,7 +39,7 @@ public final class Order {
 
     final OrderNumber orderNumber;
 
-    final int address;  // 0 - 999
+    final int address;  // 10 - 999
 
     final int modifier; // 0 - 9
 
