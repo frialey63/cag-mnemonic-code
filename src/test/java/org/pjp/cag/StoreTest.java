@@ -1,126 +1,184 @@
 package org.pjp.cag;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Ignore;
 import org.junit.Test;
+import org.pjp.cag.exception.IllegalLocationException;
+import org.pjp.cag.exception.IllegalRegisterException;
 
-@Ignore
 public class StoreTest {
 
     @Test
     public void testSetAccumulator() {
-        fail("Not yet implemented");
-    }
+        Store store = new Store();
 
-    @Test
-    public void testClearAccumulator() {
-        fail("Not yet implemented");
-    }
+        store.setAccumulator(321);
 
-    @Test
-    public void testGetAccumulator() {
-        fail("Not yet implemented");
+        assertEquals(321, store.getAccumulator(), TestConstants.PRECISION);
+
+        store.clearAccumulator();
+
+        assertEquals(0, store.getAccumulator(), TestConstants.PRECISION);
     }
 
     @Test
     public void testSetControlAddress() {
-        fail("Not yet implemented");
+        Store store = new Store();
+
+        store.setControlAddress(567);
+
+        assertEquals(567, store.getControlAddress());
+
+        store.incControlAddress();
+
+        assertEquals(568, store.getControlAddress());
+
+        int maxAddress = Store.SIZE - 1;
+
+        store.setControlAddress(maxAddress);
+
+        assertEquals(maxAddress, store.getControlAddress());
     }
 
     @Test
-    public void testGetControlAddress() {
-        fail("Not yet implemented");
-    }
+    public void testSetControlAddressMax() {
+        Store store = new Store();
+
+        int address = Store.SIZE - 1;
+
+        store.setControlAddress(address);
+   }
 
     @Test
-    public void testIncControlAddress() {
-        fail("Not yet implemented");
+    public void testSetControlAddressMin() {
+        Store store = new Store();
+
+        int address = Store.REGISTERS;
+
+        store.setControlAddress(address);
+    }
+
+    @Test(expected = IllegalLocationException.class)
+    public void testSetControlAddressIllegalMax() {
+        Store store = new Store();
+
+        store.setControlAddress(Store.SIZE);
+    }
+
+    @Test(expected = IllegalLocationException.class)
+    public void testSetControlAddressIllegalMin() {
+        Store store = new Store();
+
+        store.setControlAddress(Store.REGISTERS - 1);
     }
 
     @Test
     public void testSetRegister() {
-        fail("Not yet implemented");
+        Store store = new Store();
+
+        int register = 3;
+
+        store.setRegister(register, 248);
+
+        assertEquals(248, store.getRegister(register), TestConstants.PRECISION);
+
+        store.clearRegister(register);
+
+        assertEquals(0, store.getRegister(register), TestConstants.PRECISION);
     }
 
     @Test
-    public void testClearRegister() {
-        fail("Not yet implemented");
+    public void testSetRegisterMax() {
+        Store store = new Store();
+
+        int register = Store.REGISTERS - 1;
+
+        store.setRegister(register, 248);
+
+        store.getRegister(register);
     }
 
     @Test
-    public void testGetRegister() {
-        fail("Not yet implemented");
+    public void testSetRegisterMin() {
+        Store store = new Store();
+
+        int register = 1;
+
+        store.setRegister(register, 248);
+
+        store.getRegister(register);
+    }
+
+    @Test(expected = IllegalRegisterException.class)
+    public void testSetRegisterIllegalMax() {
+        Store store = new Store();
+
+        store.setRegister(Store.REGISTERS, 123);
+    }
+
+    @Test(expected = IllegalRegisterException.class)
+    public void testGetRegisterIllegalMax() {
+        Store store = new Store();
+
+        store.getRegister(Store.REGISTERS);
+    }
+
+    @Test(expected = IllegalRegisterException.class)
+    public void testSetRegisterIllegalMin() {
+        Store store = new Store();
+
+        store.setRegister(Store.ZERO, 123);
+    }
+
+    @Test(expected = IllegalRegisterException.class)
+    public void testGetRegisterIllegalMin() {
+        Store store = new Store();
+
+        store.getRegister(Store.ZERO);
     }
 
     @Test
     public void testSetLocation() {
-        fail("Not yet implemented");
+        Store store = new Store();
+
+        int address = 333;
+
+        store.setLocation(address, Word.create(3579));
+
+        assertEquals(3579, store.getLocation(address).number(), TestConstants.PRECISION);
+
+        store.clearLocation(address);
+
+        assertTrue(store.getLocation(address).isEmpty());
     }
 
-    @Test
-    public void testGetLocation() {
-        fail("Not yet implemented");
+    @Test(expected = IllegalLocationException.class)
+    public void testSetLocationIllegalMax() {
+        Store store = new Store();
+
+        store.setLocation(Store.SIZE, Word.create(3579));
     }
 
-    @Test
-    public void testObject() {
-        fail("Not yet implemented");
+    @Test(expected = IllegalLocationException.class)
+    public void testGetLocationIllegalMax() {
+        Store store = new Store();
+
+        store.getLocation(Store.SIZE);
     }
 
-    @Test
-    public void testGetClass() {
-        fail("Not yet implemented");
+    @Test(expected = IllegalLocationException.class)
+    public void testSetLocationIllegalMin() {
+        Store store = new Store();
+
+        store.setLocation(Store.REGISTERS - 1, Word.create(3579));
     }
 
-    @Test
-    public void testHashCode() {
-        fail("Not yet implemented");
-    }
+    @Test(expected = IllegalLocationException.class)
+    public void testGetLocationIllegalMin() {
+        Store store = new Store();
 
-    @Test
-    public void testEquals() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testClone() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testToString() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testNotify() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testNotifyAll() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testWaitLong() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testWaitLongInt() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testWait() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testFinalize() {
-        fail("Not yet implemented");
+        store.getLocation(Store.REGISTERS - 1);
     }
 
 }

@@ -34,7 +34,7 @@ public final class Store {
 
     {
         for (int i = 0; i < word.length; i++) {
-            word[i] = new Word();
+            word[i] = Word.empty();
         }
     }
 
@@ -80,7 +80,7 @@ public final class Store {
 
     public float getRegister(int register) {
         if (register < 1 || register >= REGISTERS) {
-            throw new IllegalLocationException("illegal register: " + register);
+            throw new IllegalRegisterException("illegal register: " + register);
         }
 
         return word[register].number();
@@ -92,6 +92,10 @@ public final class Store {
         }
 
         this.word[location] = word;
+    }
+
+    public void clearLocation(int location) {
+        setLocation(location, Word.empty());
     }
 
     public Word getLocation(int location) {

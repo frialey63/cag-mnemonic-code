@@ -18,13 +18,19 @@ public final class Word {
         return new Word(character);
     }
 
+    public static Word empty() {
+        return EMPTY;
+    }
+
+    private static final Word EMPTY = new Word();
+
     private Order order;
 
     private Float number;
 
     private Character character;
 
-    Word() {
+    private Word() {
         super();
     }
 
@@ -44,6 +50,10 @@ public final class Word {
         this.character = Preconditions.checkNotNull(character, "character cannot be null");
         order = null;
         number = null;
+    }
+
+    public boolean isEmpty() {
+        return (order == null) && (number == null) && (character == null);
     }
 
     public Order order() {

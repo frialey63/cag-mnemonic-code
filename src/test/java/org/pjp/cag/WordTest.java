@@ -1,6 +1,7 @@
 package org.pjp.cag;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Ignore;
@@ -61,6 +62,13 @@ public class WordTest {
     @Test
     public void testCreateChar() {
         fail("Not yet implemented");
+    }
+
+    @Test
+    public void testEmpty() {
+        Word word = Word.empty();
+
+        assertTrue(word.isEmpty());
     }
 
 }
