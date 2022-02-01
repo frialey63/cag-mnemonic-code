@@ -17,22 +17,26 @@ public final class Computer {
         if (args.length == 1) {
             Path path = Paths.get(args[0]);
 
-            Store store = new Store();
-
-            try {
-                new Assembler().assemble(path, store);
-
-                if (LOGGER.isDebugEnabled()) {
-                    store.dump();
-                }
-
-                new Interpreter().interpret(store);
-
-            } catch (IOException e) {
-                LOGGER.error("Caught IOException while attempting assembly", e);
-            }
+            innerMain(path);
         } else {
             System.err.println(USAGE);
+        }
+    }
+
+    static void innerMain(Path path) {
+        Store store = new Store();
+
+        try {
+            new Assembler().assemble(path, store);
+
+            if (LOGGER.isDebugEnabled()) {
+                store.dump();
+            }
+
+            new Interpreter().interpret(store);
+
+        } catch (IOException e) {
+            LOGGER.error("Caught IOException while attempting assembly", e);
         }
     }
 
