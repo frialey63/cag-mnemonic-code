@@ -6,6 +6,11 @@ import org.pjp.cag.Store;
 
 import com.google.common.base.Preconditions;
 
+/**
+ * This class represents a directive with an associated address.
+ * @author developer
+ *
+ */
 public final class AddressDirective extends Directive {
 
     /**
@@ -22,6 +27,10 @@ public final class AddressDirective extends Directive {
 
     private final int address;
 
+    /**
+     * @param type The type of the directive
+     * @param address The address
+     */
     public AddressDirective(String type, int address) {
         super(type);
         this.address = address;
@@ -30,6 +39,9 @@ public final class AddressDirective extends Directive {
         Preconditions.checkArgument((Store.REGISTERS <= address)  && (address < Store.SIZE), "illegal type");
     }
 
+    /**
+     * @return The address
+     */
     public int getAddress() {
         return address;
     }
