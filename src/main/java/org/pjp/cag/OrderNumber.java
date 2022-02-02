@@ -2,6 +2,11 @@ package org.pjp.cag;
 
 import org.pjp.cag.instruction.Instruction;
 
+/**
+ * This enum represents the mnemonic for the instruction corresponding to an Order.
+ * @author developer
+ *
+ */
 enum OrderNumber {
     LDA(0),
     LDAN(10),
@@ -18,15 +23,24 @@ enum OrderNumber {
 
     private final int numericFunction;
 
+    /**
+     * @param numericFunction The instruction opcode
+     */
     OrderNumber(int numericFunction) {
         this.numericFunction = numericFunction;
     }
 
-    public int numericFunction() {
+    /**
+     * @return The instruction opcode
+     */
+    int numericFunction() {
         return numericFunction;
     }
 
-    public String instructionClass() {
+    /**
+     * @return The class through which the instruction is instantiated at interpretation time
+     */
+    String instructionClass() {
         return Instruction.class.getPackage().getName() + "." + name();
     }
 }

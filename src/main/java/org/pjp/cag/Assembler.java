@@ -20,7 +20,13 @@ import org.pjp.cag.exception.StorageException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public final class Assembler {
+/**
+ * The assembler parses the program text and enters the Order, number or character into the computer store.
+ * TODO validate the arguments supplied for an Order
+ *
+ * @author developer
+ */
+final class Assembler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Assembler.class);
 
@@ -44,11 +50,19 @@ public final class Assembler {
 
     private int currentLocation = -1;
 
-    public List<Directive> getDirectives() {
+    /**
+     * @return The list of Directives
+     */
+    List<Directive> getDirectives() {
         return directives;
     }
 
-    public void assemble(Path program, Store store) throws IOException {
+    /**
+     * @param program The path for the program text
+     * @param store The computer store
+     * @throws IOException
+     */
+    void assemble(Path program, Store store) throws IOException {
         Files.lines(program).forEach(l -> {
             LOGGER.debug(l);
 

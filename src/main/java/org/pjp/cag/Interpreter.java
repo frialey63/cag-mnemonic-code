@@ -9,13 +9,21 @@ import org.pjp.cag.instruction.Instruction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public final class Interpreter {
+/**
+ * The interpreter reads the Orders from the store according to the control register and instantiates and executes the corresponding instruction.
+ * @author developer
+ *
+ */
+final class Interpreter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Interpreter.class);
 
     private static final int THREE = 3;
 
-    public void interpret(Store store) {
+    /**
+     * @param store The computer store
+     */
+    void interpret(Store store) {
 
         while (true) {
             int address = store.getControlAddress();

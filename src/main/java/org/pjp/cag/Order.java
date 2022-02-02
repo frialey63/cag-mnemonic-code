@@ -5,10 +5,22 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Preconditions;
 
+/**
+ * The Order comprises the mnemonic for an instruction together with its associated arguments.
+ * @author developer
+ *
+ */
 public final class Order {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Order.class);
 
+    /**
+     * @param query If true then provide trace output when executed
+     * @param orderNumberStr The mnemonic for the instruction
+     * @param addressStr The address
+     * @param modifierStr The modifier
+     * @return The order
+     */
     public static Order create(boolean query, String orderNumberStr, String addressStr, String modifierStr) {
 
         try {

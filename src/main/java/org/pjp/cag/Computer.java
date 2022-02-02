@@ -7,12 +7,20 @@ import java.nio.file.Paths;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The computer has a store and coordinates the assembly of the program by the Assembler and the execution of the program by the Interpreter.
+ * @author developer
+ *
+ */
 public final class Computer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Computer.class);
 
     private static final String USAGE = "usage: org.pjp.cag.Computer <filename>";
 
+    /**
+     * @param args The program arguments
+     */
     public static void main(String[] args) {
         if (args.length == 1) {
             Path path = Paths.get(args[0]);
@@ -23,6 +31,9 @@ public final class Computer {
         }
     }
 
+    /**
+     * @param program The path for the program text
+     */
     static void innerMain(Path program) {
         Store store = new Store();
 

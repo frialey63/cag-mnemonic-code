@@ -4,20 +4,40 @@ import org.pjp.cag.exception.FaultyWordException;
 
 import com.google.common.base.Preconditions;
 
+/**
+ * The Word represents the contents of a storage location as either an Order, number or character.
+ * @author developer
+ *
+ */
 public final class Word {
 
+    /**
+     * @param order The order from which the word is created
+     * @return The word
+     */
     public static Word create(Order order) {
         return new Word(order);
     }
 
+    /**
+     * @param number The number from which the word is created
+     * @return The word
+     */
     public static Word create(float number) {
         return new Word(number);
     }
 
+    /**
+     * @param character The character from which the word is created
+     * @return The word
+     */
     public static Word create(Character character) {
         return new Word(character);
     }
 
+    /**
+     * @return The empty word
+     */
     public static Word empty() {
         return EMPTY;
     }
@@ -52,10 +72,16 @@ public final class Word {
         number = null;
     }
 
+    /**
+     * @return True if the word is empty
+     */
     public boolean isEmpty() {
         return (order == null) && (number == null) && (character == null);
     }
 
+    /**
+     * @return The order contained in the word
+     */
     public Order order() {
         if (order == null) {
             throw new FaultyWordException("not an order");
@@ -64,6 +90,9 @@ public final class Word {
         return order;
     }
 
+    /**
+     * @return The number contained in the word
+     */
     public float number() {
         if (number == null) {
             throw new FaultyWordException("not a number");
@@ -72,6 +101,9 @@ public final class Word {
         return number;
     }
 
+    /**
+     * @return The character contained in the word
+     */
     public Character character() {
         if (character == null) {
             throw new FaultyWordException("not a character");
