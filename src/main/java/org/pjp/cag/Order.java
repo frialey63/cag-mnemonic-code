@@ -14,6 +14,8 @@ public final class Order {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Order.class);
 
+    static final int NULL = -1;
+
     /**
      * @param query If true then provide trace output when executed
      * @param orderNumberStr The mnemonic for the instruction
@@ -66,11 +68,25 @@ public final class Order {
     }
 
     private Order(boolean query, OrderNumber orderNumber, int address) {
-        this(query, orderNumber, address, 0);
+        this(query, orderNumber, address, NULL);
     }
 
     private Order(boolean query, OrderNumber orderNumber) {
-        this(query, orderNumber, 0, 0);
+        this(query, orderNumber, NULL, NULL);
+    }
+
+    /**
+     * @return True if the modifier is present
+     */
+    boolean hasModifier() {
+        return modifier != NULL;
+    }
+
+    /**
+     * @return True if the address is present
+     */
+    boolean hasAddress() {
+        return address != NULL;
     }
 
     @Override

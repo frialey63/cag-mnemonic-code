@@ -38,7 +38,7 @@ public final class Store {
     private Word[] word = new Word[SIZE];
 
     {
-        for (int i = REGISTERS; i < SIZE; i++) {
+        for (int i = 0; i < SIZE; i++) {
             word[i] = Word.empty();
         }
     }

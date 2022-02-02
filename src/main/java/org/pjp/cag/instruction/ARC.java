@@ -11,9 +11,10 @@ public final class ARC extends Instruction {
 
     /**
      * @param query The query flag
+     * @param address The address of the error handler
      */
-    public ARC(boolean query) {
-        super(query);
+    public ARC(boolean query, int address) {
+        super(query, address);
     }
 
     @Override

@@ -18,8 +18,6 @@ final class Interpreter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Interpreter.class);
 
-    private static final int THREE = 3;
-
     /**
      * @param store The computer store
      */
@@ -39,24 +37,18 @@ final class Interpreter {
             try {
                 Class<?> clazz = Class.forName(instructionClassName);
 
-                Constructor<?> declaredConstructor = clazz.getDeclaredConstructors()[0];
-                int parameterCount = declaredConstructor.getParameterCount();
-
                 try {
                     Instruction instruction;
 
-                    switch (parameterCount) {
-                    case 1:
-                        instruction = (Instruction) declaredConstructor.newInstance(order.query);
-                        break;
-                    case 2:
-                        instruction = (Instruction) declaredConstructor.newInstance(order.query, order.address);
-                        break;
-                    case THREE:
+                    if (order.hasModifier()) {
+                        Constructor<?> declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class, int.class);
                         instruction = (Instruction) declaredConstructor.newInstance(order.query, order.address, order.modifier);
-                        break;
-                    default:
-                        throw new IllegalStateException();
+                    } else if (order.hasAddress()) {
+                        Constructor<?> declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class);
+                        instruction = (Instruction) declaredConstructor.newInstance(order.query, order.address);
+                    } else {
+                        Constructor<?> declaredConstructor = clazz.getDeclaredConstructor(boolean.class);
+                        instruction = (Instruction) declaredConstructor.newInstance(order.query);
                     }
 
                     if (instruction.execute(store)) {
@@ -65,6 +57,8 @@ final class Interpreter {
 
                 } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
                     LOGGER.error("Caught Exception while attempting to instantiate instruction", e);
+                } catch (NoSuchMethodException e) {
+                    LOGGER.error("Caught Exception while attempting to get constructor for instruction", e);
                 }
             } catch (SecurityException | ClassNotFoundException e) {
                 LOGGER.error("Caught exception while looking up instruction class", e);

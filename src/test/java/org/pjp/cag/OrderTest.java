@@ -18,18 +18,18 @@ public class OrderTest {
 
         assertFalse(order.query);
         assertEquals(OrderNumber.ARC, order.orderNumber);
-        assertEquals(0, order.address);
-        assertEquals(0, order.modifier);
+        assertFalse(order.hasAddress());
+        assertFalse(order.hasModifier());
     }
 
     @Test
     public void testCreateQARC() {
-        Order order = Order.create(true, "LDAN", null, null);
+        Order order = Order.create(true, "ARC", null, null);
 
         assertTrue(order.query);
-        assertEquals(OrderNumber.LDAN, order.orderNumber);
-        assertEquals(0, order.address);
-        assertEquals(0, order.modifier);
+        assertEquals(OrderNumber.ARC, order.orderNumber);
+        assertFalse(order.hasAddress());
+        assertFalse(order.hasModifier());
     }
 
     /*
@@ -42,8 +42,9 @@ public class OrderTest {
 
         assertFalse(order.query);
         assertEquals(OrderNumber.LDAN, order.orderNumber);
+        assertTrue(order.hasAddress());
         assertEquals(123, order.address);
-        assertEquals(0, order.modifier);
+        assertFalse(order.hasModifier());
     }
 
     @Test
@@ -52,8 +53,9 @@ public class OrderTest {
 
         assertTrue(order.query);
         assertEquals(OrderNumber.LDAN, order.orderNumber);
+        assertTrue(order.hasAddress());
         assertEquals(123, order.address);
-        assertEquals(0, order.modifier);
+        assertFalse(order.hasModifier());
     }
 
     /*
@@ -66,6 +68,8 @@ public class OrderTest {
 
         assertFalse(order.query);
         assertEquals(OrderNumber.LDA, order.orderNumber);
+        assertTrue(order.hasAddress());
+        assertTrue(order.hasModifier());
         assertEquals(123, order.address);
         assertEquals(3, order.modifier);
     }
@@ -76,6 +80,8 @@ public class OrderTest {
 
         assertTrue(order.query);
         assertEquals(OrderNumber.LDA, order.orderNumber);
+        assertTrue(order.hasAddress());
+        assertTrue(order.hasModifier());
         assertEquals(123, order.address);
         assertEquals(3, order.modifier);
     }

@@ -19,6 +19,14 @@ public final class LDA extends Instruction {
         super(query, address, modifier);
     }
 
+    /**
+     * @param query The query flag
+     * @param address The address
+     */
+    public LDA(boolean query, int address) {
+        super(query, address);
+    }
+
     @Override
     public boolean execute(Store store) {
         Word word = store.getLocation(getEffectiveAddress(store));
