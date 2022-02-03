@@ -8,26 +8,30 @@ import org.pjp.cag.instruction.Instruction;
  *
  */
 enum OrderNumber {
-    LDA(0),
-    LDAN(10),
-    MLTN(13),
+    LDA(0, 2),
+    LDAN(10, 1),
+    MLTN(13, 1),
 
     // Jumps
-    JST(38),
+    JST(38, 0),
 
     // Math
-    ARC(45),
+    ARC(45, 1),
 
     // Input & Output
-    PNT(53);
+    PNT(53, 2);
 
     private final int numericFunction;
 
+    private final int arity;    // could be derived by instruction lookup but that does not feel right for the assembly phase
+
     /**
      * @param numericFunction The instruction opcode
+     * @param arity The arity, ie.e the expected number of arguments
      */
-    OrderNumber(int numericFunction) {
+    OrderNumber(int numericFunction, int arity) {
         this.numericFunction = numericFunction;
+        this.arity = arity;
     }
 
     /**
@@ -35,6 +39,13 @@ enum OrderNumber {
      */
     int numericFunction() {
         return numericFunction;
+    }
+
+    /**
+     * @return The arity
+     */
+    int arity() {
+        return arity;
     }
 
     /**

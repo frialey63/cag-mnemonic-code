@@ -22,7 +22,6 @@ import org.slf4j.LoggerFactory;
 
 /**
  * The assembler parses the program text and enters the Order, number or character into the computer store.
- * TODO validate the number of arguments supplied for an Order
  * @author developer
  */
 final class Assembler {

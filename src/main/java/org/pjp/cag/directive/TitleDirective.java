@@ -1,6 +1,6 @@
 package org.pjp.cag.directive;
 
-import com.google.common.base.Preconditions;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * This class represents the TITLE directive.
@@ -21,7 +21,7 @@ public final class TitleDirective extends Directive {
      */
     public TitleDirective(String title) {
         super(TITLE);
-        this.title = Preconditions.checkNotNull(title, "title cannot be null");
+        this.title = checkNotNull(title, "title cannot be null");
     }
 
     /**

@@ -7,9 +7,6 @@ package org.pjp.cag.exception;
  */
 public final class UnknownOrderException extends RuntimeException {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 8161797116022732760L;
 
     /**

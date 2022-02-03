@@ -1,8 +1,9 @@
 package org.pjp.cag;
 
-import org.pjp.cag.exception.UnknownOrderException;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Preconditions;
+import org.pjp.cag.exception.IncorrectArityException;
+import org.pjp.cag.exception.UnknownOrderException;
 
 /**
  * The Order comprises the mnemonic for an instruction together with its associated arguments.
@@ -26,18 +27,29 @@ public final class Order {
             OrderNumber orderNumber = OrderNumber.valueOf(orderNumberStr);
 
             if (addressStr == null) {
-                return new Order(query, orderNumber);
+                if (orderNumber.arity() == 0) {
+                    return new Order(query, orderNumber);
+                }
+
             } else {
                 int address = Integer.parseInt(addressStr);          // will parse because matched to number in the regex
 
                 if (modifierStr == null) {
-                    return new Order(query, orderNumber, address);
-                } else {
-                    int modifier = Integer.parseInt(modifierStr);   // will parse because matched to number in the regex
+                    if (orderNumber.arity() > 0) {
+                        return new Order(query, orderNumber, address);
+                    }
 
-                    return new Order(query, orderNumber, address, modifier);
+                } else {
+                    if (orderNumber.arity() == 2) {
+                        int modifier = Integer.parseInt(modifierStr);   // will parse because matched to number in the regex
+
+                        return new Order(query, orderNumber, address, modifier);
+                    }
                 }
             }
+
+            throw new IncorrectArityException(orderNumberStr + " has an arity of " + orderNumber.arity());
+
         } catch (IllegalArgumentException e) {
             throw new UnknownOrderException("Failed to look-up the OrderNumber by value: " + orderNumberStr);
         }
@@ -58,7 +70,7 @@ public final class Order {
     private Order(boolean query, OrderNumber orderNumber, int address, int modifier) {
         super();
         this.query = query;
-        this.orderNumber = Preconditions.checkNotNull(orderNumber, "orderNumber cannot be null");
+        this.orderNumber = checkNotNull(orderNumber, "orderNumber cannot be null");
         this.address = address;
         this.modifier = modifier;
     }

@@ -1,10 +1,10 @@
 package org.pjp.cag.directive;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import java.util.Arrays;
 
 import org.pjp.cag.Store;
-
-import com.google.common.base.Preconditions;
 
 /**
  * This class represents a directive with an associated address.
@@ -35,8 +35,8 @@ public final class AddressDirective extends Directive {
         super(type);
         this.address = address;
 
-        Preconditions.checkArgument(Arrays.binarySearch(TYPES, type) != -1, "illegal type");
-        Preconditions.checkArgument((Store.REGISTERS <= address)  && (address < Store.SIZE), "illegal type");
+        checkArgument(Arrays.binarySearch(TYPES, type) != -1, "illegal type");
+        checkArgument((Store.REGISTERS <= address)  && (address < Store.SIZE), "illegal type");
     }
 
     /**

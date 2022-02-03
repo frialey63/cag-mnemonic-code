@@ -25,7 +25,7 @@ public final class Computer {
         if (args.length == 1) {
             Path path = Paths.get(args[0]);
 
-            innerMain(path);
+            innerMain(path, true);
         } else {
             System.err.println(USAGE);
         }
@@ -33,8 +33,9 @@ public final class Computer {
 
     /**
      * @param program The path for the program text
+     * @param execute If true then execute after assembly
      */
-    static void innerMain(Path program) {
+    static void innerMain(Path program, boolean execute) {
         Store store = new Store();
 
         try {
@@ -44,7 +45,9 @@ public final class Computer {
                 store.dump();
             }
 
-            new Interpreter().interpret(store);
+            if (execute) {
+                new Interpreter().interpret(store);
+            }
 
         } catch (IOException e) {
             LOGGER.error("Caught IOException while attempting assembly", e);

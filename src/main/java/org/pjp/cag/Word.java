@@ -1,8 +1,8 @@
 package org.pjp.cag;
 
-import org.pjp.cag.exception.FaultyWordException;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.google.common.base.Preconditions;
+import org.pjp.cag.exception.FaultyWordException;
 
 /**
  * The Word represents the contents of a storage location as either an Order, number or character.
@@ -55,7 +55,7 @@ public final class Word {
     }
 
     private Word(Order order) {
-        this.order = Preconditions.checkNotNull(order, "order cannot be null");
+        this.order = checkNotNull(order, "order cannot be null");
         number = null;
         character = null;
     }
@@ -67,7 +67,7 @@ public final class Word {
     }
 
     private Word(Character character) {
-        this.character = Preconditions.checkNotNull(character, "character cannot be null");
+        this.character = checkNotNull(character, "character cannot be null");
         order = null;
         number = null;
     }

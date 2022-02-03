@@ -14,21 +14,21 @@ public class OrderTest {
 
     @Test
     public void testCreateARC() {
-        Order order = Order.create(false, "ARC", null, null);
+        Order order = Order.create(false, "ARC", "999", null);
 
         assertFalse(order.query);
         assertEquals(OrderNumber.ARC, order.orderNumber);
-        assertFalse(order.hasAddress());
+        assertTrue(order.hasAddress());
         assertFalse(order.hasModifier());
     }
 
     @Test
     public void testCreateQARC() {
-        Order order = Order.create(true, "ARC", null, null);
+        Order order = Order.create(true, "ARC", "999", null);
 
         assertTrue(order.query);
         assertEquals(OrderNumber.ARC, order.orderNumber);
-        assertFalse(order.hasAddress());
+        assertTrue(order.hasAddress());
         assertFalse(order.hasModifier());
     }
 

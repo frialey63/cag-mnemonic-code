@@ -11,7 +11,14 @@ import org.junit.Test;
 
 public class ComputerTest {
 
-    private static final String PROGRAM = "data/pi.txt";
+    private static final String ARITY = "data/arity.txt";
+
+    private static final String PI = "data/pi.txt";
+
+    @Test
+    public void testInnerMainAssembly() throws IOException {
+        Computer.innerMain(Paths.get(ARITY), false);
+    }
 
     @Test
     public void testInnerMain() throws IOException {
@@ -21,7 +28,7 @@ public class ComputerTest {
 
             System.setOut(printStream);
 
-            Computer.innerMain(Paths.get(PROGRAM));
+            Computer.innerMain(Paths.get(PI), true);
 
             String printText = outputStream.toString();
 

@@ -50,7 +50,7 @@
                 <configuration>
                     <mainClass>org.pjp.cag.Computer</mainClass>
                     <arguments>
-                        <argument>data/program.txt</argument>
+                        <argument>data/pi.txt</argument>
                     </arguments>
                 </configuration>
             </plugin>
