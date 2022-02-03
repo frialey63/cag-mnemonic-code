@@ -1,7 +1,6 @@
 package org.pjp.cag;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.pjp.cag.exception.UnknownOrderException;
 
 import com.google.common.base.Preconditions;
 
@@ -11,8 +10,6 @@ import com.google.common.base.Preconditions;
  *
  */
 public final class Order {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(Order.class);
 
     static final int NULL = -1;
 
@@ -42,8 +39,7 @@ public final class Order {
                 }
             }
         } catch (IllegalArgumentException e) {
-            LOGGER.error("Caught IllegalArgumentException while attempting to look-up the OrderNumber by value", e);
-            throw e;
+            throw new UnknownOrderException("Failed to look-up the OrderNumber by value: " + orderNumberStr);
         }
     }
 

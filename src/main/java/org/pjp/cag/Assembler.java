@@ -129,7 +129,7 @@ final class Assembler {
                         }
 
                     } else {
-                        throw new ParseException("failed to match line to order or directive");
+                        throw new ParseException("failed to match line to order or directive: " + l);
                     }
                 }
             }
