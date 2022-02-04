@@ -25,32 +25,24 @@ public final class Computer {
         if (args.length == 1) {
             Path path = Paths.get(args[0]);
 
-            innerMain(path, true);
+            Store store = new Store();
+
+            try {
+                new Assembler().assemble(path, store);
+
+                if (LOGGER.isDebugEnabled()) {
+                    store.dump();
+                }
+
+                if (true) {
+                    new Interpreter().interpret(store);
+                }
+
+            } catch (IOException e) {
+                LOGGER.error("Caught IOException while attempting assembly", e);
+            }
         } else {
             System.err.println(USAGE);
-        }
-    }
-
-    /**
-     * @param program The path for the program text
-     * @param execute If true then execute after assembly
-     */
-    static void innerMain(Path program, boolean execute) {
-        Store store = new Store();
-
-        try {
-            new Assembler().assemble(program, store);
-
-            if (LOGGER.isDebugEnabled()) {
-                store.dump();
-            }
-
-            if (execute) {
-                new Interpreter().interpret(store);
-            }
-
-        } catch (IOException e) {
-            LOGGER.error("Caught IOException while attempting assembly", e);
         }
     }
 
