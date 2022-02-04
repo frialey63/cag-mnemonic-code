@@ -9,8 +9,16 @@ import org.pjp.cag.instruction.Instruction;
  */
 enum OrderNumber {
     LDA(0, 2),
+    ADD(1, 2),
+    SUB(2, 2),
+    MLT(3, 2),
+    DIV(4, 2),
     LDAN(10, 1),
+    ADDN(11, 1),
+    SUBN(12, 1),
     MLTN(13, 1),
+    DIVN(14, 1),
+    STA(20, 2),
 
     // Jumps
     JST(38, 0),

@@ -6,17 +6,17 @@ import org.junit.Test;
 import org.pjp.cag.Store;
 import org.pjp.cag.TestConstants;
 
-public class MLTNTest {
+public class DIVNTest {
 
     @Test
     public void testExecute() {
         Store store = new Store();
         store.setAccumulator(321);
 
-        MLTN instruction = new MLTN(false, 999);
+        DIVN instruction = new DIVN(false, 999);
         instruction.execute(store);
 
-        assertEquals(321 * 999, store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals(321.0 / 999, store.getAccumulator(), TestConstants.PRECISION);
     }
 
 }

@@ -7,13 +7,13 @@ import org.pjp.cag.Store;
  * @author developer
  *
  */
-public final class MLTN extends Instruction {
+public final class DIVN extends Instruction {
 
     /**
      * @param query The query flag
      * @param number The number
      */
-    public MLTN(boolean query, int number) {
+    public DIVN(boolean query, int number) {
         super(query, number);
     }
 
@@ -21,7 +21,7 @@ public final class MLTN extends Instruction {
     public boolean execute(Store store) {
         float accumulator = store.getAccumulator();
 
-        store.setAccumulator(accumulator * addressNumber);
+        store.setAccumulator(accumulator / addressNumber);
 
         return true;
     }
