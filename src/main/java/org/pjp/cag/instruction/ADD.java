@@ -4,7 +4,7 @@ import org.pjp.cag.Store;
 import org.pjp.cag.Word;
 
 /**
- * Load the accumulator with the number read from the specified location of store.
+ * Sum the accumulator with the number read from the specified location of store.
  * @author developer
  *
  */

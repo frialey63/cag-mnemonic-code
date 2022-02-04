@@ -3,7 +3,7 @@ package org.pjp.cag.instruction;
 import org.pjp.cag.Store;
 
 /**
- * Calculate the arctan of the value in the accumulator and restore into the accumulator.
+ * Calculate the arctan of the accumulator and restore into the accumulator.
  * @author developer
  *
  */

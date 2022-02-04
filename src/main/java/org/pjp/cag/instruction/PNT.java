@@ -3,7 +3,7 @@ package org.pjp.cag.instruction;
 import org.pjp.cag.Store;
 
 /**
- * Print the value in the accumulator using the specified numeric format.
+ * Print the accumulator using the specified numeric format.
  * @author developer
  *
  */

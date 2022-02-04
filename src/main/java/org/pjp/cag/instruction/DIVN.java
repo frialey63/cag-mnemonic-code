@@ -3,7 +3,7 @@ package org.pjp.cag.instruction;
 import org.pjp.cag.Store;
 
 /**
- * Multiply the value in the accumulator by the constant number.
+ * Divide the value in the accumulator by the constant number.
  * @author developer
  *
  */

@@ -3,7 +3,7 @@ package org.pjp.cag.instruction;
 import org.pjp.cag.Store;
 
 /**
- * Load the accumulator with the constant number.
+ * Subtract from the accumulator the constant number.
  * @author developer
  *
  */
