@@ -171,14 +171,14 @@ public class StoreTest {
     public void testSetLocationIllegalMin() {
         Store store = new Store();
 
-        store.setLocation(Store.REGISTERS - 1, Word.create(3579));
+        store.setLocation(Store.ZERO, Word.create(3579));
     }
 
     @Test(expected = IllegalLocationException.class)
     public void testGetLocationIllegalMin() {
         Store store = new Store();
 
-        store.getLocation(Store.REGISTERS - 1);
+        store.getLocation(Store.ZERO);
     }
 
 }

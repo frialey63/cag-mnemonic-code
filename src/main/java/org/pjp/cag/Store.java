@@ -1,12 +1,13 @@
 package org.pjp.cag;
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 import org.pjp.cag.exception.IllegalLocationException;
 import org.pjp.cag.exception.IllegalRegisterException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * FIXME need to allow storage of numbers directly to the registers by program execution
  * The storage of the computer comprising 10 registers and 1000 words, each word can be populated by an Order, number or character.
  * @author developer
  *
@@ -39,7 +40,9 @@ public final class Store {
     private Word[] word = new Word[SIZE];
 
     {
-        for (int i = 0; i < SIZE; i++) {
+        word[0] = Word.create(ZERO);
+
+        for (int i = 1; i < SIZE; i++) {
             word[i] = Word.empty();
         }
     }
@@ -69,7 +72,9 @@ public final class Store {
      * @param address The address
      */
     public void setControlAddress(int address) {
-        if ((address > ZERO && address < REGISTERS) || address >= SIZE) {
+        checkArgument(address >= 0);
+
+        if ((address > ZERO && address < REGISTERS) || (address >= SIZE)) {
             throw new IllegalLocationException("control address out of range: " + address);
         }
 
@@ -95,7 +100,9 @@ public final class Store {
      * @param number The number
      */
     public void setRegister(int register, float number) {
-        if (register < 1 || register >= REGISTERS) {
+        checkArgument(register >= 0);
+
+        if ((register == ZERO) || (register >= REGISTERS)) {
             throw new IllegalRegisterException("illegal register: " + register);
         }
 
@@ -114,7 +121,9 @@ public final class Store {
      * @return The value of the register
      */
     public float getRegister(int register) {
-        if (register < 1 || register >= REGISTERS) {
+        checkArgument(register >= 0);
+
+        if ((register == ZERO) || (register >= REGISTERS)) {
             throw new IllegalRegisterException("illegal register: " + register);
         }
 
@@ -126,7 +135,9 @@ public final class Store {
      * @param word The word
      */
     public void setLocation(int location, Word word) {
-        if (location < REGISTERS || location >= SIZE) {
+        checkArgument(location >= 0);
+
+        if ((location == ZERO) || (location >= SIZE)) {
             throw new IllegalLocationException("location out of range: " + location);
         }
 
@@ -145,7 +156,9 @@ public final class Store {
      * @return The word at the location
      */
     public Word getLocation(int location) {
-        if (location < REGISTERS || location >= SIZE) {
+        checkArgument(location >= 0);
+
+        if ((location == ZERO) || (location >= SIZE)) {
             throw new IllegalLocationException("location out of range: " + location);
         }
 

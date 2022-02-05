@@ -22,7 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * TODO aka Maybe the Loader as opposed to the Assembler?
  * The assembler parses the program text and enters the Order, number or character into the computer store.
  * @author developer
  */
