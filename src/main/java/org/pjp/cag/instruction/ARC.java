@@ -11,7 +11,7 @@ public final class ARC extends Instruction {
 
     /**
      * @param query The query flag
-     * @param address TODO The address of the error handler
+     * @param address The address of the error handler
      */
     public ARC(boolean query, int address) {
         super(query, address);
@@ -19,11 +19,18 @@ public final class ARC extends Instruction {
 
     @Override
     public boolean execute(Store store) {
+        boolean result = true;
+
         float accumulator = store.getAccumulator();
 
-        store.setAccumulator((float) Math.atan(accumulator));
+        try {
+            store.setAccumulator((float) Math.atan(accumulator));
+        } catch (Exception e) {
+            store.setControlAddress(addressNumber);
+            result = false;
+        }
 
-        return true;
+        return result;
     }
 
 }

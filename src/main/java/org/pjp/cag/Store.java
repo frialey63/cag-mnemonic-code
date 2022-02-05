@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * FIXME need to allow storage of numbers directly to the registers by program execution
  * The storage of the computer comprising 10 registers and 1000 words, each word can be populated by an Order, number or character.
  * @author developer
  *
