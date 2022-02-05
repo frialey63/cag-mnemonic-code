@@ -1,10 +1,9 @@
 package org.pjp.cag.directive;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
-import java.util.Arrays;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.pjp.cag.Store;
+import org.pjp.cag.exception.StorageException;
 
 /**
  * This class represents a directive with an associated address.
@@ -23,8 +22,6 @@ public final class AddressDirective extends Directive {
      */
     public static final String EXECUTE = "EXECUTE";
 
-    private static final String[] TYPES = {EXECUTE, STORE };   // natural ordering
-
     private final int address;
 
     /**
@@ -33,10 +30,11 @@ public final class AddressDirective extends Directive {
      */
     public AddressDirective(String type, int address) {
         super(type);
-        this.address = address;
+        this.address = checkNotNull(address, "address cannot be null");
 
-        checkArgument(Arrays.binarySearch(TYPES, type) != -1, "illegal type");
-        checkArgument((Store.REGISTERS <= address)  && (address < Store.SIZE), "illegal type");
+        if ((address < Store.REGISTERS) || (address >= Store.SIZE)) {
+            throw new StorageException("store / execute not allowed for directive with address: " + address);
+        }
     }
 
     /**

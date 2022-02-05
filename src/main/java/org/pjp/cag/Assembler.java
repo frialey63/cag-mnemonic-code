@@ -17,10 +17,12 @@ import org.pjp.cag.directive.Directive;
 import org.pjp.cag.directive.TitleDirective;
 import org.pjp.cag.exception.ParseException;
 import org.pjp.cag.exception.StorageException;
+import org.pjp.cag.exception.UnknownDirectiveException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * TODO aka The Loader as opposed to Assembler?
  * The assembler parses the program text and enters the Order, number or character into the computer store.
  * @author developer
  */
@@ -81,22 +83,26 @@ final class Assembler {
                     if (TITLE.equals(type)) {
                         title = true;
                     } else {
-                        int address = Integer.parseInt(matcher.group(2).trim());
+                        int address;
+
+                        switch (type) {
+                        case EXECUTE:
+                            address = Integer.parseInt(matcher.group(2).trim());
+                            store.setControlAddress(address);
+                            break;
+                        case STORE:
+                            address = Integer.parseInt(matcher.group(2).trim());
+                            currentLocation = address;
+                            break;
+                        default:
+                            throw new UnknownDirectiveException("the directive is unknown: " + type);
+                        }
+
                         AddressDirective addressDirective = new AddressDirective(type, address);
                         directives.add(addressDirective);
 
                         LOGGER.debug("    " + addressDirective);
 
-                        switch (addressDirective.getType()) {
-                        case EXECUTE:
-                            store.setControlAddress(addressDirective.getAddress());
-                            break;
-                        case STORE:
-                            currentLocation = addressDirective.getAddress();
-                            break;
-                        default:
-                            throw new IllegalStateException();
-                        }
                     }
                 } else {
                     matcher = ORDER.matcher(l);
