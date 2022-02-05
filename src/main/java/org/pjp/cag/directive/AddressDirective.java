@@ -3,7 +3,7 @@ package org.pjp.cag.directive;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.pjp.cag.Store;
-import org.pjp.cag.exception.StorageException;
+import org.pjp.cag.exception.InvalidAddressException;
 
 /**
  * This class represents a directive with an associated address.
@@ -33,7 +33,7 @@ public final class AddressDirective extends Directive {
         this.address = checkNotNull(address, "address cannot be null");
 
         if ((address < Store.REGISTERS) || (address >= Store.SIZE)) {
-            throw new StorageException("store / execute not allowed for directive with address: " + address);
+            throw new InvalidAddressException("store / execute not allowed for address: " + address);
         }
     }
 

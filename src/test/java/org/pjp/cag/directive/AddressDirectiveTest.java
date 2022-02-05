@@ -3,18 +3,18 @@ package org.pjp.cag.directive;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import org.pjp.cag.exception.StorageException;
+import org.pjp.cag.exception.InvalidAddressException;
 
 public class AddressDirectiveTest {
 
     private static final int ADDRESS_12 = 12;
 
-    @Test(expected = StorageException.class)
+    @Test(expected = InvalidAddressException.class)
     public void testConstructCannotStore() {
         new AddressDirective(AddressDirective.STORE, 9);
     }
 
-    @Test(expected = StorageException.class)
+    @Test(expected = InvalidAddressException.class)
     public void testConstructCannotExecute() {
         new AddressDirective(AddressDirective.EXECUTE, 1000);
     }
