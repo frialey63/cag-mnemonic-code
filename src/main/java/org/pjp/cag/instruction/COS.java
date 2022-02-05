@@ -3,17 +3,17 @@ package org.pjp.cag.instruction;
 import org.pjp.cag.Store;
 
 /**
- * Calculate the arc tangent of the accumulator and restore into the accumulator.
+ * Calculate the cosine of the accumulator and restore into the accumulator.
  * @author developer
  *
  */
-public final class ARC extends Instruction {
+public final class COS extends Instruction {
 
     /**
      * @param query The query flag
      * @param address The address of the error handler
      */
-    public ARC(boolean query, int address) {
+    public COS(boolean query, int address) {
         super(query, address);
     }
 
@@ -24,7 +24,7 @@ public final class ARC extends Instruction {
         float accumulator = store.getAccumulator();
 
         try {
-            store.setAccumulator((float) Math.atan(accumulator));
+            store.setAccumulator((float) Math.cos(accumulator));
         } catch (Exception e) {
             store.setControlAddress(addressNumber);
             result = false;

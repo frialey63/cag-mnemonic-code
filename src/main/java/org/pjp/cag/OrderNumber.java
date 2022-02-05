@@ -13,17 +13,25 @@ enum OrderNumber {
     SUB(2, 2),
     MLT(3, 2),
     DIV(4, 2),
+
     LDAN(10, 1),
     ADDN(11, 1),
     SUBN(12, 1),
     MLTN(13, 1),
     DIVN(14, 1),
+
+    // Store
     STA(20, 2),
 
     // Jumps
     JST(38, 0),
 
-    // Math
+    // Math TODO check the use of modifiers for error handlers
+    SQT(40, 1),
+    EXP(41, 1),
+    LGN(42, 1),
+    SIN(43, 1),
+    COS(44, 1),
     ARC(45, 1),
 
     // Input & Output

@@ -3,17 +3,17 @@ package org.pjp.cag.instruction;
 import org.pjp.cag.Store;
 
 /**
- * Calculate the arc tangent of the accumulator and restore into the accumulator.
+ * Calculate the natural log of the accumulator and restore into the accumulator.
  * @author developer
  *
  */
-public final class ARC extends Instruction {
+public final class LGN extends Instruction {
 
     /**
      * @param query The query flag
      * @param address The address of the error handler
      */
-    public ARC(boolean query, int address) {
+    public LGN(boolean query, int address) {
         super(query, address);
     }
 
@@ -23,11 +23,11 @@ public final class ARC extends Instruction {
 
         float accumulator = store.getAccumulator();
 
-        try {
-            store.setAccumulator((float) Math.atan(accumulator));
-        } catch (Exception e) {
+        if (accumulator < 0) {
             store.setControlAddress(addressNumber);
             result = false;
+        } else {
+            store.setAccumulator((float) Math.log(accumulator));
         }
 
         return result;
