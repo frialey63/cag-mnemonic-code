@@ -24,7 +24,7 @@ enum OrderNumber {
     STA(20, 2),
 
     // Jumps
-    JST(38, 0),
+    JST(34, 0),
 
     // Math TODO check the use of modifiers for error handlers
     SQT(40, 1),
@@ -33,6 +33,7 @@ enum OrderNumber {
     SIN(43, 1),
     COS(44, 1),
     ARC(45, 1),
+    ENT(46, 1),
 
     // Input & Output
     PNT(53, 2);
