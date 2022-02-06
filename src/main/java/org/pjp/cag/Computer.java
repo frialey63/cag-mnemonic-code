@@ -27,8 +27,12 @@ public final class Computer {
 
             Store store = new Store();
 
+            assert store.zero();
+
             try {
                 new Assembler().assemble(path, store);
+
+                assert store.zero();
 
                 if (LOGGER.isDebugEnabled()) {
                     store.dump();
@@ -36,6 +40,8 @@ public final class Computer {
 
                 if (true) {
                     new Interpreter().interpret(store);
+
+                    assert store.zero();
                 }
 
             } catch (IOException e) {

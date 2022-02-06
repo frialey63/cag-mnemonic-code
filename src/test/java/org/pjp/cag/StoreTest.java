@@ -10,6 +10,13 @@ import org.pjp.cag.exception.IllegalRegisterException;
 public class StoreTest {
 
     @Test
+    public void testZero() {
+        Store store = new Store();
+
+        assertTrue(store.zero());
+    }
+
+    @Test
     public void testSetAccumulator() {
         Store store = new Store();
 

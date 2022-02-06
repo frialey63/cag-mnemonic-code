@@ -48,6 +48,13 @@ public final class Store {
     }
 
     /**
+     * @return True if Zero
+     */
+    public boolean zero() {
+        return word[0].number() == ZERO;
+    }
+
+    /**
      * @param number The number
      */
     public void setAccumulator(float number) {
