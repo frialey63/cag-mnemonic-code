@@ -31,9 +31,12 @@ public final class Store {
      */
     public static final int ZERO = 0;
 
-    private static final int ACCUMULATOR = 1;
+    /**
+     * The link register.
+     */
+    public static final int LINK = 4;
 
-    private static final int RETURN = 4;
+    private static final int ACCUMULATOR = 1;
 
     private static final int CONTROL = 5;
 
@@ -100,6 +103,15 @@ public final class Store {
      */
     public void incControlAddress() {
         setControlAddress(getControlAddress() + 1);
+    }
+
+    /**
+     * Set the link address which enables the return from a subroutine.
+     */
+    public void updateLinkAddress() {
+        int address = getControlAddress();
+
+        setRegister(LINK, address + 1);
     }
 
     /**

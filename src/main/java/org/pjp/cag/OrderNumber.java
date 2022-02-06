@@ -24,7 +24,11 @@ enum OrderNumber {
     STA(20, 2),
 
     // Jumps
-    JST(34, 0),
+    JUN(30, 2),
+    JGR(31, 2),
+    JEQ(32, 2),
+    JSR(33, 2),
+    JST(34),
 
     // Math TODO check the use of modifiers for error handlers
     SQT(40, 1),
@@ -36,7 +40,8 @@ enum OrderNumber {
     ENT(46, 1),
 
     // Input & Output
-    PNT(53, 2);
+    PNT(53, 2),
+    PNL(54);
 
     private final int numericFunction;
 
@@ -49,6 +54,13 @@ enum OrderNumber {
     OrderNumber(int numericFunction, int arity) {
         this.numericFunction = numericFunction;
         this.arity = arity;
+    }
+
+    /**
+     * @param numericFunction The instruction opcode
+     */
+    OrderNumber(int numericFunction) {
+        this(numericFunction, 0);
     }
 
     /**

@@ -5,7 +5,7 @@ import static org.pjp.cag.Store.ZERO;
 import org.pjp.cag.Store;
 
 /**
- * Jump to start / stop.
+ * Wait. TODO Jump when start button pressed
  * @author developer
  *
  */
