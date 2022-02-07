@@ -4,6 +4,7 @@ import org.pjp.cag.Store;
 import org.pjp.cag.io.PaperTape;
 
 /**
+ * TODO charset for printing
  * Print the character at the address which may be modified.
  * @author developer
  *

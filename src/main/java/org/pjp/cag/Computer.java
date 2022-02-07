@@ -14,6 +14,11 @@ import org.slf4j.LoggerFactory;
  */
 public final class Computer {
 
+    /**
+     * The name of the character set.
+     */
+    public static final String CHARSET = "UTF-8";
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Computer.class);
 
     private static final String USAGE = "usage: org.pjp.cag.Computer <filename>";

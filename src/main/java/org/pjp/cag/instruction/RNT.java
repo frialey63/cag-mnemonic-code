@@ -3,6 +3,7 @@ package org.pjp.cag.instruction;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 
 import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
@@ -12,20 +13,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Read the character to the address which may be modified.
+ * Read the number to the address which may be modified.
  * @author developer
  *
  */
-public final class RCT extends Instruction {
+public final class RNT extends Instruction {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RCT.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RNT.class);
 
     /**
      * @param query The query flag
      * @param address The address
      * @param modifier The modifier
      */
-    public RCT(boolean query, int address, int modifier) {
+    public RNT(boolean query, int address, int modifier) {
         super(query, address, modifier);
     }
 
@@ -34,12 +35,15 @@ public final class RCT extends Instruction {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(PaperTape.in, Computer.CHARSET));
 
-            char character = (char) reader.read();
+            float number = Float.parseFloat(reader.readLine());
 
-            store.setLocation(getEffectiveAddress(store), Word.create(character));
+            store.setLocation(getEffectiveAddress(store), Word.create(number));
 
+        } catch (UnsupportedEncodingException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
         } catch (IOException e) {
-            LOGGER.error("caught IOException while attempting to read character from tape", e);
+            LOGGER.error("caught IOException while attempting to read number from tape", e);
         }
 
         return true;
