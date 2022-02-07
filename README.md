@@ -1,5 +1,5 @@
 # cag-mnemonic-code
-Simulator for the City &amp; Guilds Mnemonic Code
+Simulator for the 1964 City &amp; Guilds Mnemonic Code
 
 ## Computer Resurrection Issue 71
 

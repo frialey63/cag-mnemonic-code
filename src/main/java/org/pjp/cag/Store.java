@@ -45,9 +45,13 @@ public final class Store {
     private Word[] word = new Word[SIZE];
 
     {
-        word[0] = Word.create(ZERO);
+        word[ZERO] = Word.create(ZERO);
 
-        for (int i = 1; i < SIZE; i++) {
+        for (int i = 1; i < REGISTERS; i++) {
+            word[i] = Word.create(ZERO);
+        }
+
+        for (int i = REGISTERS; i < SIZE; i++) {
             word[i] = Word.empty();
         }
     }

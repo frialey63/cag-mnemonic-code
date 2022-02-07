@@ -3,6 +3,7 @@ package org.pjp.cag;
 import static org.pjp.cag.directive.AddressDirective.EXECUTE;
 import static org.pjp.cag.directive.AddressDirective.STORE;
 import static org.pjp.cag.directive.TitleDirective.TITLE;
+import static org.pjp.cag.directive.WaitDirective.WAIT;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -82,6 +83,8 @@ final class Assembler {
 
                     if (TITLE.equals(type)) {
                         title = true;
+                    } else if (WAIT.equals(type)) {
+                        throw new UnsupportedOperationException("the WAIT directive is not implemented");
                     } else {
                         int address;
 

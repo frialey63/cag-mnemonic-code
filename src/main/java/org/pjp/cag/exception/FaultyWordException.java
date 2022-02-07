@@ -1,7 +1,7 @@
 package org.pjp.cag.exception;
 
 /**
- * This exception occurs if a word is mis-interpreted, i.e. it contains a number but it was interpreted as an Order.
+ * This exception occurs if a word is mis-interpreted, e.g. it contains a number but it was interpreted as an Order.
  * @author developer
  *
  */

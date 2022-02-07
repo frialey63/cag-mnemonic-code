@@ -21,14 +21,20 @@ public final class Computer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Computer.class);
 
-    private static final String USAGE = "usage: org.pjp.cag.Computer <filename>";
+    private static final String USAGE = "usage: org.pjp.cag.Computer <filename> [trace]";
 
     /**
      * @param args The program arguments
      */
     public static void main(String[] args) {
-        if (args.length == 1) {
+        boolean trace = false;
+
+        if (args.length >= 1) {
             Path path = Paths.get(args[0]);
+
+            if (args.length == 2) {
+                trace = true;
+            }
 
             Store store = new Store();
 
@@ -44,7 +50,7 @@ public final class Computer {
                 }
 
                 if (true) {
-                    new Interpreter().interpret(store);
+                    new Interpreter().interpret(store, trace);
 
                     assert store.zero();
                 }

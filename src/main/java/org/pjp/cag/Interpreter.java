@@ -6,6 +6,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.io.PaperTape;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,8 +21,9 @@ final class Interpreter {
 
     /**
      * @param store The computer store
+     * @param trace If true then produce trace
      */
-    void interpret(Store store) {
+    void interpret(Store store, boolean trace) {
 
         while (true) {
             int address = store.getControlAddress();
@@ -31,6 +33,10 @@ final class Interpreter {
             }
 
             Order order = store.getLocation(address).order();
+
+            if (trace && order.query) {
+                PaperTape.out.printf("Q %4d %.6e\n", store.getControlAddress(), store.getAccumulator());
+            }
 
             String instructionClassName = order.orderNumber.instructionClass();
 
