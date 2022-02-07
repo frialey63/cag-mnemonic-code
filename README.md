@@ -7,6 +7,10 @@ Simulator for the 1964 City &amp; Guilds Mnemonic Code
 
 [City & Guilds Mnemonic Code](https://www.computerconservationsociety.org/resurrection/res71.htm#f)
 
+## Terry Froggatt's Home Page
+
+[Elliott Computers](http://www.tjfroggatt.plus.com/)
+
 ## Centre for Computing History
 
 [Centre for Computing History](http://www.computinghistory.org.uk)
