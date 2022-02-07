@@ -23,9 +23,9 @@ public final class PCT extends Instruction {
     public boolean execute(Store store) {
         Character character = store.getLocation(getEffectiveAddress(store)).character();
 
-        String format = "%c";
+        String format = "%s";
 
-        System.out.printf(format, character.asChar());
+        System.out.printf(format, character);
 
         return true;
     }

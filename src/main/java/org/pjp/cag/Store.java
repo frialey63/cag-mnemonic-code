@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
  */
 public final class Store {
 
+    private static final String SEPARATOR = "------ STORE -----";
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Store.class);
 
     /**
@@ -188,8 +190,15 @@ public final class Store {
      * Dump the contents of the store.
      */
     public void dump() {
+        StringBuilder builder = new StringBuilder(SEPARATOR);
+        builder.append('\n');
+
         for (int i = 0; i < word.length; i++) {
-            LOGGER.debug(String.format("%3d %s \n", i, word[i]));
+            builder.append(String.format("%3d %s \n", i, word[i]));
         }
+
+        builder.append(SEPARATOR);
+
+        LOGGER.debug(builder.toString());
     }
 }

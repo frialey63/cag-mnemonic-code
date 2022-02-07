@@ -8,7 +8,8 @@ package org.pjp.cag;
 public enum Character {
     A;
 
-    public char asChar() {
-        return name().charAt(0);
+    @Override
+    public String toString() {
+        return name();
     }
 }

@@ -99,8 +99,16 @@ public final class Order {
 
     @Override
     public String toString() {
-        return "Order [query=" + query + ", orderNumber=" + orderNumber + ", address=" + address + ", modifier=" + modifier + "]";
-    }
+        int queryFlag = query ? 1 : 0;
+
+        if (hasModifier()) {
+            return String.format("%s%1d%03d%1d", orderNumber, queryFlag, address, modifier);
+        } else if (hasAddress()) {
+            return String.format("%s%1d%03d0", orderNumber, queryFlag, address);
+        }
+
+        return String.format("%s%1d0000", orderNumber, queryFlag);
+     }
 
     // CHECKSTYLE:OFF auto-generated
 

@@ -65,13 +65,6 @@ enum OrderNumber {
     }
 
     /**
-     * @return The instruction opcode
-     */
-    int numericFunction() {
-        return numericFunction;
-    }
-
-    /**
      * @return The arity
      */
     int arity() {
@@ -84,4 +77,10 @@ enum OrderNumber {
     String instructionClass() {
         return Instruction.class.getPackage().getName() + "." + name();
     }
+
+    @Override
+    public String toString() {
+        return String.format("%02d", numericFunction);
+    }
+
 }

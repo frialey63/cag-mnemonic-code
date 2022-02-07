@@ -10,6 +10,39 @@ import org.pjp.cag.exception.UnknownOrderException;
 
 public class OrderTest {
 
+    @Test
+    public void testToString() {
+        Order order = Order.create(false, "PNL", null, null);
+
+        assertEquals("5400000", order.toString());
+
+        order = Order.create(true, "PNL", null, null);
+
+        assertEquals("5410000", order.toString());
+    }
+
+    @Test
+    public void testToStringWithAddress() {
+        Order order = Order.create(false, "LDAN", "44", null);
+
+        assertEquals("1000440", order.toString());
+
+        order = Order.create(true, "LDAN", "44", null);
+
+        assertEquals("1010440", order.toString());
+    }
+
+    @Test
+    public void testToStringWithModifier() {
+        Order order = Order.create(false, "LDA", "44", "3");
+
+        assertEquals("0000443", order.toString());
+
+        order = Order.create(true, "LDA", "44", "3");
+
+        assertEquals("0010443", order.toString());
+    }
+
     /*
      * Order without address
      */
