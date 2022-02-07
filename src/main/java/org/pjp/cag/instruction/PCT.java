@@ -1,15 +1,23 @@
 package org.pjp.cag.instruction;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+
+import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
 import org.pjp.cag.io.PaperTape;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * TODO charset for printing with OutputStreamWriter
  * Print the character at the address which may be modified.
  * @author developer
  *
  */
 public final class PCT extends Instruction {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PCT.class);
 
     /**
      * @param query The query flag
@@ -22,11 +30,14 @@ public final class PCT extends Instruction {
 
     @Override
     public boolean execute(Store store) {
-        Character character = store.getLocation(getEffectiveAddress(store)).character();
+        char character = store.getLocation(getEffectiveAddress(store)).character();
 
-        String format = "%s";
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(PaperTape.out, Computer.CHARSET))) {
+            writer.write(character);
 
-        PaperTape.out.printf(format, character);
+        } catch (IOException e) {
+           LOGGER.error("caught IOException while attempting to write character to tape", e);
+        }
 
         return true;
     }

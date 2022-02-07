@@ -29,7 +29,7 @@ public class WordTest {
     }
 
     @Test(expected = FaultyWordException.class)
-    public void testCreateOrderNotCharacte0() {
+    public void testCreateOrderNotCharacter() {
         Order order = Order.create(false, "LDA", "123", "3");
 
         Word word = Word.create(order);
@@ -63,6 +63,8 @@ public class WordTest {
     public void testCreateChar() {
         fail("Not yet implemented");
     }
+
+    // TODO exceptional cases
 
     @Test
     public void testEmpty() {

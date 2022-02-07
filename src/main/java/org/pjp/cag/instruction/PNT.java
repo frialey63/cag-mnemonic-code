@@ -1,15 +1,23 @@
 package org.pjp.cag.instruction;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+
+import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
 import org.pjp.cag.io.PaperTape;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * TODO charset for printing with OutputStreamWriter
  * Print the accumulator using the specified numeric format.
  * @author developer
  *
  */
 public final class PNT extends Instruction {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(PNT.class);
 
     /**
      * @param query The query flag
@@ -29,7 +37,12 @@ public final class PNT extends Instruction {
 
         String format = "%" + width + "." + precision + "f";
 
-        PaperTape.out.printf(format, accumulator);
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(PaperTape.out, Computer.CHARSET))) {
+            writer.write(String.format(format, accumulator));
+
+        } catch (IOException e) {
+           LOGGER.error("caught IOException while attempting to write number to tape", e);
+        }
 
         return true;
     }

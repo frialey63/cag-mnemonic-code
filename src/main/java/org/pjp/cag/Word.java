@@ -104,7 +104,7 @@ public final class Word {
     /**
      * @return The character contained in the word
      */
-    public Character character() {
+    public char character() {
         if (character == null) {
             throw new FaultyWordException("not a character");
         }

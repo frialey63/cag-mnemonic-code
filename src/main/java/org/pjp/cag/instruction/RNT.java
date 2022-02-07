@@ -3,7 +3,6 @@ package org.pjp.cag.instruction;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 
 import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
@@ -32,16 +31,11 @@ public final class RNT extends Instruction {
 
     @Override
     public boolean execute(Store store) {
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(PaperTape.in, Computer.CHARSET));
-
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(PaperTape.in, Computer.CHARSET))) {
             float number = Float.parseFloat(reader.readLine());
 
             store.setLocation(getEffectiveAddress(store), Word.create(number));
 
-        } catch (UnsupportedEncodingException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
         } catch (IOException e) {
             LOGGER.error("caught IOException while attempting to read number from tape", e);
         }

@@ -31,9 +31,7 @@ public final class RCT extends Instruction {
 
     @Override
     public boolean execute(Store store) {
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(PaperTape.in, Computer.CHARSET));
-
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(PaperTape.in, Computer.CHARSET))) {
             char character = (char) reader.read();
 
             store.setLocation(getEffectiveAddress(store), Word.create(character));
