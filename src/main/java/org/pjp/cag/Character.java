@@ -6,5 +6,9 @@ package org.pjp.cag;
  *
  */
 public enum Character {
+    A;
 
+    public char asChar() {
+        return name().charAt(0);
+    }
 }

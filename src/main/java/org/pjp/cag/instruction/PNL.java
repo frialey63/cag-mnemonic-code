@@ -11,11 +11,9 @@ public final class PNL extends Instruction {
 
     /**
      * @param query The query flag
-     * @param integralDigits The number of integer digits
-     * @param fractionalDigits The number of fractional digits
      */
-    public PNL(boolean query, int integralDigits, int fractionalDigits) {
-        super(query, integralDigits, fractionalDigits);
+    public PNL(boolean query) {
+        super(query);
     }
 
     @Override
