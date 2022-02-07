@@ -14,11 +14,11 @@ public class ComputerTest {
 
     @Test
     public void testMain() throws IOException {
-        PrintStream prevOut = System.out;
+        PrintStream prevOut = Computer.tape;
 
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, "UTF-8")) {
 
-            System.setOut(printStream);
+            Computer.setTape(printStream);
 
             Computer.main(new String[] {PI });
 
@@ -27,7 +27,7 @@ public class ComputerTest {
             assertEquals("SIMPLE TEST\n3.141593", printText);
 
         } finally {
-            System.setOut(prevOut);
+            Computer.setTape(prevOut);
         }
     }
 

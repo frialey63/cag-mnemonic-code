@@ -4,6 +4,7 @@ import org.pjp.cag.Store;
 
 /**
  * Jump to subroutine at the address which may be modified.
+ * Note return from subroutine is by JUN 0, 4
  * @author developer
  *
  */

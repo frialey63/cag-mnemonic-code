@@ -1,5 +1,6 @@
 package org.pjp.cag.instruction;
 
+import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
 
 /**
@@ -18,7 +19,7 @@ public final class PNL extends Instruction {
 
     @Override
     public boolean execute(Store store) {
-        System.out.println();
+        Computer.tape.println();
         return true;
     }
 

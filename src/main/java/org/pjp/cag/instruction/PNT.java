@@ -1,5 +1,6 @@
 package org.pjp.cag.instruction;
 
+import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
 
 /**
@@ -27,7 +28,7 @@ public final class PNT extends Instruction {
 
         String format = "%" + width + "." + precision + "f";
 
-        System.out.printf(format, accumulator);
+        Computer.tape.printf(format, accumulator);
 
         return true;
     }

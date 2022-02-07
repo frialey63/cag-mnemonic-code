@@ -1,6 +1,7 @@
 package org.pjp.cag.instruction;
 
 import org.pjp.cag.Character;
+import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
 
 /**
@@ -25,7 +26,7 @@ public final class PCT extends Instruction {
 
         String format = "%s";
 
-        System.out.printf(format, character);
+        Computer.tape.printf(format, character);
 
         return true;
     }

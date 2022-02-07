@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 import org.junit.Test;
+import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
 import org.pjp.cag.Word;
 
@@ -14,11 +15,11 @@ public class PCTTest {
 
     @Test
     public void testExecute() throws IOException {
-        PrintStream prevOut = System.out;
+        PrintStream prevOut = Computer.tape;
 
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, "UTF-8")) {
 
-            System.setOut(printStream);
+            Computer.setTape(printStream);
 
             Store store = new Store();
             store.setLocation(110, Word.create(org.pjp.cag.Character.A));
@@ -32,7 +33,7 @@ public class PCTTest {
             assertEquals("A", printText);
 
         } finally {
-            System.setOut(prevOut);
+            Computer.setTape(prevOut);
         }
     }
 

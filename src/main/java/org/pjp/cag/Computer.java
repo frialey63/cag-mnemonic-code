@@ -1,6 +1,7 @@
 package org.pjp.cag;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -13,6 +14,34 @@ import org.slf4j.LoggerFactory;
  *
  */
 public final class Computer {
+
+    // CHECKSTYLE:OFF encapsulation
+
+    /**
+     * The punched card writer.
+     */
+    public static PrintStream card = System.out;
+
+    /**
+     * The paper tape writer.
+     */
+    public static PrintStream tape = System.out;
+
+    // CHECKSTYLE:ON
+
+    /**
+     * @param card The PrintStream associated with the punched card
+     */
+    public static void setCard(PrintStream card) {
+        Computer.card = card;
+    }
+
+    /**
+     * @param tape The PrintStream associated with the paper tape
+     */
+    public static void setTape(PrintStream tape) {
+        Computer.tape = tape;
+    }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Computer.class);
 
