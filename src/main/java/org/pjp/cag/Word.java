@@ -31,7 +31,7 @@ public final class Word {
      * @param character The character from which the word is created
      * @return The word
      */
-    public static Word create(Character character) {
+    public static Word create(char character) {
         return new Word(character);
     }
 
@@ -66,7 +66,7 @@ public final class Word {
         character = null;
     }
 
-    private Word(Character character) {
+    private Word(char character) {
         this.character = checkNotNull(character, "character cannot be null");
         order = null;
         number = null;

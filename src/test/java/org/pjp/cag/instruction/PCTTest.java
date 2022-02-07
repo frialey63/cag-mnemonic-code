@@ -22,7 +22,7 @@ public class PCTTest {
             PaperTape.setOut(printStream);
 
             Store store = new Store();
-            store.setLocation(110, Word.create(org.pjp.cag.Character.A));
+            store.setLocation(110, Word.create('A'));
             store.setRegister(3, 10);
 
             PCT instruction = new PCT(false, 100, 3);

@@ -40,7 +40,9 @@ enum OrderNumber {
     ENT(46, 1),
 
     // Input & Output
+    RCT(50, 2),
     PCT(51, 2),
+    RNT(52, 2),
     PNT(53, 2),
     PNL(54);
 

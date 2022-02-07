@@ -1,6 +1,5 @@
 package org.pjp.cag.instruction;
 
-import org.pjp.cag.Character;
 import org.pjp.cag.Store;
 import org.pjp.cag.io.PaperTape;
 
