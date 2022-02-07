@@ -1,7 +1,7 @@
 package org.pjp.cag.instruction;
 
-import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
+import org.pjp.cag.io.PaperTape;
 
 /**
  * Print the accumulator using the specified numeric format.
@@ -28,7 +28,7 @@ public final class PNT extends Instruction {
 
         String format = "%" + width + "." + precision + "f";
 
-        Computer.tape.printf(format, accumulator);
+        PaperTape.out.printf(format, accumulator);
 
         return true;
     }

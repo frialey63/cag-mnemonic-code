@@ -18,6 +18,7 @@ import org.pjp.cag.directive.TitleDirective;
 import org.pjp.cag.exception.ParseException;
 import org.pjp.cag.exception.StorageException;
 import org.pjp.cag.exception.UnknownDirectiveException;
+import org.pjp.cag.io.PaperTape;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -69,7 +70,7 @@ final class Assembler {
                 TitleDirective titleDirective = new TitleDirective(l);
                 directives.add(titleDirective);
 
-                Computer.tape.println(titleDirective.getTitle());
+                PaperTape.out.println(titleDirective.getTitle());
 
                 title = false;
             } else {

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 import org.junit.Test;
+import org.pjp.cag.io.PaperTape;
 
 public class ComputerTest {
 
@@ -14,11 +15,11 @@ public class ComputerTest {
 
     @Test
     public void testMain() throws IOException {
-        PrintStream prevOut = Computer.tape;
+        PrintStream prevOut = PaperTape.out;
 
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, "UTF-8")) {
 
-            Computer.setTape(printStream);
+            PaperTape.setOut(printStream);
 
             Computer.main(new String[] {PI });
 
@@ -27,7 +28,7 @@ public class ComputerTest {
             assertEquals("SIMPLE TEST\n3.141593", printText);
 
         } finally {
-            Computer.setTape(prevOut);
+            PaperTape.setOut(prevOut);
         }
     }
 

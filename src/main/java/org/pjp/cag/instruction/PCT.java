@@ -1,8 +1,8 @@
 package org.pjp.cag.instruction;
 
 import org.pjp.cag.Character;
-import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
+import org.pjp.cag.io.PaperTape;
 
 /**
  * Print the character at the address which may be modified.
@@ -26,7 +26,7 @@ public final class PCT extends Instruction {
 
         String format = "%s";
 
-        Computer.tape.printf(format, character);
+        PaperTape.out.printf(format, character);
 
         return true;
     }
