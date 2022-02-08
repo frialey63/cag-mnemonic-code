@@ -15,6 +15,8 @@ public class AssemblerTest {
 
     private static final String DATA = "data";
 
+    private static final String NUMBERS = DATA + "/numbers.txt";
+
     private static final String CHARACTERS = DATA + "/characters.txt";
 
     private static final String MISSING_STORAGE_DIRECTIVE = DATA + "/missing_storage_directive.txt";
@@ -22,6 +24,22 @@ public class AssemblerTest {
     private static final String UNPARSEABLE_TEXT = DATA + "/unparseable_text.txt";
 
     private static final String UNKNOWN_DIRECTIVE = DATA + "/unknown_directive.txt";
+
+    @Test
+    public void testAssembleNumbers() throws IOException {
+        Path path = Paths.get(NUMBERS);
+
+        Store store = new Store();
+
+        new Assembler().assemble(path, store);
+
+        assertEquals(0, store.getLocation(12).number(), TestConstants.PRECISION);
+        assertEquals(1, store.getLocation(13).number(), TestConstants.PRECISION);
+        assertEquals(-1, store.getLocation(14).number(), TestConstants.PRECISION);
+        assertEquals(123.456, store.getLocation(15).number(), TestConstants.PRECISION);
+        assertEquals(-321.654, store.getLocation(16).number(), TestConstants.PRECISION);
+        assertEquals(+2.0e-04, store.getLocation(17).number(), TestConstants.PRECISION);
+    }
 
     @Test
     public void testAssembleCharacters() throws IOException {

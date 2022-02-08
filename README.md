@@ -7,10 +7,6 @@ Simulator for the 1964 City &amp; Guilds Mnemonic Code
 
 [City & Guilds Mnemonic Code](https://www.computerconservationsociety.org/resurrection/res71.htm#f)
 
-## Terry Froggatt's Home Page
-
-[Elliott Computers](http://www.tjfroggatt.plus.com/)
-
 ## Andrew Herbert's Documentation Archive
 
 [Elliott 900 Series Computers](https://andrewjherbert.github.io/Elliott-900-documentation/)
@@ -20,6 +16,10 @@ Simulator for the 1964 City &amp; Guilds Mnemonic Code
 [City & Guilds 319 Mnemonic Code (1967)](https://andrewjherbert.github.io/Elliott-900-documentation/City%20and%20Guilds%20319%20Mnemonic%20Code%20%281967%29.pdf)
 
 [City & Guilds 319 Mnemonic Code (1968)](https://andrewjherbert.github.io/Elliott-900-documentation/City%20and%20Guilds%20319%20Mnemonic%20Code%20%281968%29.pdf)
+
+## Terry Froggatt's Home Page
+
+[Elliott Computers](http://www.tjfroggatt.plus.com/)
 
 ## Centre for Computing History
 

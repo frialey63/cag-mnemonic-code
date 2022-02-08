@@ -2,9 +2,7 @@ package org.pjp.cag;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.pjp.cag.exception.runtime.FaultyWordException;
 
@@ -38,33 +36,46 @@ public class WordTest {
     }
 
     @Test
-    public void testCreateFloat() {
+    public void testCreateNumber() {
         Word word = Word.create(123);
 
         assertEquals(123, word.number(), TestConstants.PRECISION);
     }
 
     @Test(expected = FaultyWordException.class)
-    public void testCreateFloatNotOrder() {
+    public void testCreateNumberNotOrder() {
         Word word = Word.create(123);
 
         word.order();
     }
 
     @Test(expected = FaultyWordException.class)
-    public void testCreateFloatNotCharacter() {
+    public void testCreateNumberNotCharacter() {
         Word word = Word.create(123);
 
         word.character();
     }
 
-    @Ignore
     @Test
-    public void testCreateChar() {
-        fail("Not yet implemented");
+    public void testCreateCharacter() {
+        Word word = Word.create('A');
+
+        assertEquals('A', word.character());
     }
 
-    // TODO exceptional cases
+    @Test(expected = FaultyWordException.class)
+    public void testCreateCharacterNotOrder() {
+        Word word = Word.create('A');
+
+        word.order();
+    }
+
+    @Test(expected = FaultyWordException.class)
+    public void testCreateCharacterNotNumber() {
+        Word word = Word.create('A');
+
+        word.number();
+    }
 
     @Test
     public void testEmpty() {

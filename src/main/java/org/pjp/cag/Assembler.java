@@ -39,9 +39,10 @@ final class Assembler {
 
     private static final Pattern ORDER = Pattern.compile("(Q)?([A-Z]+)( ([0-9]+)(,[0-9]+)?)?");
 
-    private static final Pattern CHARACTER = Pattern.compile("^=([a-zA-Z0-9])");    // TODO more characters for Elliot 903 Telecode
+    private static final Pattern CHARACTER = Pattern.compile("^=[a-zA-Z0-9]");    // TODO more characters for Elliot 903 Telecode
 
-    private static final Pattern NUMBER = Pattern.compile("");      	            // TODO numbers
+    // https://www.regular-expressions.info/floatingpoint.html
+    private static final Pattern NUMBER = Pattern.compile("^[-+][0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?");
 
     private List<Directive> directives = new ArrayList<>();
 
@@ -126,14 +127,22 @@ final class Assembler {
                         storeWord(store, Word.create(order));
 
                     } else {
-                        matcher = CHARACTER.matcher(l);
+                        matcher = NUMBER.matcher(l);
 
                         if (matcher.matches()) {
-                            char character = matcher.group(1).charAt(0);
+                            float number = Float.parseFloat(matcher.group(0));
 
-                            storeWord(store, Word.create(character));
+                            storeWord(store, Word.create(number));
                         } else {
-                            throw new ParseException("failed to match line to order or directive: " + l);
+                            matcher = CHARACTER.matcher(l);
+
+                            if (matcher.matches()) {
+                                char character = matcher.group(0).charAt(1);
+
+                                storeWord(store, Word.create(character));
+                            } else {
+                                throw new ParseException("failed to match line to order or directive: " + l);
+                            }
                         }
                     }
                 }
