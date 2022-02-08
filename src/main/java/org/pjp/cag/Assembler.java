@@ -35,15 +35,13 @@ final class Assembler {
 
     private static final int ADDRESS_GROUP = 4;
 
-    private static final int THIRD_GROUP = 3;
-
     private static final Pattern DIRECTIVE = Pattern.compile("\\(([A-Z]+)( [0-9]+)?\\)");
 
     private static final Pattern ORDER = Pattern.compile("(Q)?([A-Z]+)( ([0-9]+)(,[0-9]+)?)?");
 
-    private static final Pattern CHARACTER = Pattern.compile("");   // TODO characters
+    private static final Pattern CHARACTER = Pattern.compile("^=([a-zA-Z0-9])");    // TODO more characters for Elliot 903 Telecode
 
-    private static final Pattern NUMBER = Pattern.compile("");      // TODO numbers
+    private static final Pattern NUMBER = Pattern.compile("");      	            // TODO numbers
 
     private List<Directive> directives = new ArrayList<>();
 
@@ -112,9 +110,6 @@ final class Assembler {
                     matcher = ORDER.matcher(l);
 
                     if (matcher.matches()) {
-                        LOGGER.trace("ORDER -> " + matcher.group(1) + " | " + matcher.group(2) + " | " + matcher.group(THIRD_GROUP) + " | "
-                                + matcher.group(ADDRESS_GROUP) + " | " + matcher.group(MODIFIER_GROUP));
-
                         boolean query = "Q".equals(matcher.group(1));
                         String orderNumberStr = matcher.group(2);
                         String addressStr = matcher.group(ADDRESS_GROUP);
@@ -128,20 +123,32 @@ final class Assembler {
 
                         LOGGER.debug("    " + order);
 
-                        if (currentLocation != -1) {
-                            store.setLocation(currentLocation, Word.create(order));
-
-                            currentLocation++;
-
-                        } else {
-                            throw new StorageException("undefined current location while storing order (missing STORE directive)");
-                        }
+                        storeWord(store, Word.create(order));
 
                     } else {
-                        throw new ParseException("failed to match line to order or directive: " + l);
+                        matcher = CHARACTER.matcher(l);
+
+                        if (matcher.matches()) {
+                            char character = matcher.group(1).charAt(0);
+
+                            storeWord(store, Word.create(character));
+                        } else {
+                            throw new ParseException("failed to match line to order or directive: " + l);
+                        }
                     }
                 }
             }
         });
+    }
+
+    private void storeWord(Store store, Word word) {
+        if (currentLocation != -1) {
+            store.setLocation(currentLocation, word);
+
+            currentLocation++;
+
+        } else {
+            throw new StorageException("undefined current location while storing word (missing STORE directive)");
+        }
     }
 }

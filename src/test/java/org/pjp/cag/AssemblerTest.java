@@ -1,5 +1,7 @@
 package org.pjp.cag;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,11 +15,28 @@ public class AssemblerTest {
 
     private static final String DATA = "data";
 
+    private static final String CHARACTERS = DATA + "/characters.txt";
+
     private static final String MISSING_STORAGE_DIRECTIVE = DATA + "/missing_storage_directive.txt";
 
     private static final String UNPARSEABLE_TEXT = DATA + "/unparseable_text.txt";
 
     private static final String UNKNOWN_DIRECTIVE = DATA + "/unknown_directive.txt";
+
+    @Test
+    public void testAssembleCharacters() throws IOException {
+        Path path = Paths.get(CHARACTERS);
+
+        Store store = new Store();
+
+        new Assembler().assemble(path, store);
+
+        assertEquals('H', store.getLocation(12).character());
+        assertEquals('E', store.getLocation(13).character());
+        assertEquals('L', store.getLocation(14).character());
+        assertEquals('L', store.getLocation(15).character());
+        assertEquals('O', store.getLocation(16).character());
+    }
 
     @Test(expected = StorageException.class)
     public void testAssembleMissingStorageDirective() throws IOException {
