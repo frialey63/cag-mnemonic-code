@@ -1,6 +1,7 @@
 package org.pjp.cag.exception;
 
 /**
+ * TODO develop error handling, maybe assembler should be checked and interpreter unchecked
  * The abstract exception containing common error code and address attributes, from which all other CAG exceptions are derived.
  * @author developer
  *
@@ -11,16 +12,12 @@ public abstract class AbstractException extends RuntimeException {
 
     private final int errorCode;
 
-    private final int address;
-
     /**
      * @param errorCode The error code
-     * @param address The address
      */
-    public AbstractException(int errorCode, int address) {
+    public AbstractException(int errorCode) {
         super();
         this.errorCode = errorCode;
-        this.address = address;
     }
 
     /**
@@ -30,16 +27,8 @@ public abstract class AbstractException extends RuntimeException {
         return errorCode;
     }
 
-    /**
-     * @return The address
-     */
-    public int getAddress() {
-        return address;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("ERR %2d %4d", errorCode, address);
+    public String getMessage() {
+        return String.format("ERR %2d", errorCode);
     }
 
 }
