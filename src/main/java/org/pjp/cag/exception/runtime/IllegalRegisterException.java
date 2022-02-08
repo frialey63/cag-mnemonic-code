@@ -1,4 +1,4 @@
-package org.pjp.cag.exception;
+package org.pjp.cag.exception.runtime;
 
 /**
  * This exception occurs when an attempt is made to read/write a register in store with an invalid number.

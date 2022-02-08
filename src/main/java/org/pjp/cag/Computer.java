@@ -17,7 +17,7 @@ public final class Computer {
     /**
      * The name of the character set.
      */
-    public static final String CHARSET = "UTF-8";
+    public static final String CHARSET = "UTF-8";   // TODO should be Elliot 903 Telecode
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Computer.class);
 

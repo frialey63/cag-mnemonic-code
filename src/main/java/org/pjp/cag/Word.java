@@ -2,7 +2,7 @@ package org.pjp.cag;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.pjp.cag.exception.FaultyWordException;
+import org.pjp.cag.exception.runtime.FaultyWordException;
 
 /**
  * The Word represents the contents of a storage location as either an Order, number or character.

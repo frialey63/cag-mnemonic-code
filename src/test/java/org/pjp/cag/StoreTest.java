@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.pjp.cag.exception.IllegalLocationException;
-import org.pjp.cag.exception.IllegalRegisterException;
+import org.pjp.cag.exception.runtime.IllegalLocationException;
+import org.pjp.cag.exception.runtime.IllegalRegisterException;
 
 public class StoreTest {
 

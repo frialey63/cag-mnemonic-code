@@ -84,7 +84,8 @@ final class Assembler {
                     if (TITLE.equals(type)) {
                         title = true;
                     } else if (WAIT.equals(type)) {
-                        throw new UnsupportedOperationException("the WAIT directive is not implemented");
+                        // end of assembly process for now
+                        return;
                     } else {
                         int address;
 

@@ -1,4 +1,4 @@
-package org.pjp.cag.exception;
+package org.pjp.cag.exception.runtime;
 
 /**
  * This exception occurs if a word is mis-interpreted, e.g. it contains a number but it was interpreted as an Order.

@@ -1,0 +1,17 @@
+Questions
+=========
+
+Resurrection
+------------
+
+p21 Assume trace is 1 or 0 in the seven digit number representing an order
+
+p22 Should all math functions accept n,m cf SQT, EXP and LGN, note the ARC in the example program has an address.
+
+p23 PNL does this punch tape and/or card?
+
+P24 The collating sequence for characters in 1968 version
+
+p24 (TITLE) what is the output for the title, tape or card or something else?
+
+p26 A full list of the assembler error codes?
