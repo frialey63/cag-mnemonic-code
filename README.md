@@ -1,7 +1,9 @@
 # cag-mnemonic-code
 Simulator for the 1964 City &amp; Guilds Mnemonic Code
 
-## Computer Resurrection Issue 71
+## Computer Conservation Society
+
+[Resurrection - The CCS Journal](https://www.computerconservationsociety.org/resurrection.htm)
 
 [Computer Resurrection Issue 71](https://www.computerconservationsociety.org/resurrection/res71.htm)
 
