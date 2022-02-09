@@ -2,8 +2,8 @@ package org.pjp.cag;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.pjp.cag.exception.IncorrectArityException;
-import org.pjp.cag.exception.UnknownOrderException;
+import org.pjp.cag.exception.assembly.IncorrectArityException;
+import org.pjp.cag.exception.assembly.UnknownOrderException;
 
 /**
  * The Order comprises the mnemonic for an instruction together with its associated arguments.

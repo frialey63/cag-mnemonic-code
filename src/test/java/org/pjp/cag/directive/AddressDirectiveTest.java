@@ -3,7 +3,7 @@ package org.pjp.cag.directive;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import org.pjp.cag.exception.InvalidAddressException;
+import org.pjp.cag.exception.assembly.InvalidAddressException;
 
 public class AddressDirectiveTest {
 

@@ -6,29 +6,32 @@ package org.pjp.cag.exception;
  * @author developer
  *
  */
-public abstract class AbstractException extends RuntimeException {
+public abstract class AbstractCAGException extends RuntimeException {
 
     private static final long serialVersionUID = -2604761222265709513L;
 
-    private final int errorCode;
+    /**
+     * @param message The message
+     * @param cause The cause
+     */
+    public AbstractCAGException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
     /**
-     * @param errorCode The error code
+     * @param message The message
      */
-    public AbstractException(int errorCode) {
-        super();
-        this.errorCode = errorCode;
+    public AbstractCAGException(String message) {
+        super(message);
     }
 
     /**
      * @return The error code
      */
-    public int getErrorCode() {
-        return errorCode;
-    }
+    public abstract int getErrorCode();
 
     public String getMessage() {
-        return String.format("ERR %2d", errorCode);
+        return String.format("ERR %2d", getErrorCode());
     }
 
 }

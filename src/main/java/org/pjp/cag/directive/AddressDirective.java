@@ -3,7 +3,7 @@ package org.pjp.cag.directive;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.pjp.cag.Store;
-import org.pjp.cag.exception.InvalidAddressException;
+import org.pjp.cag.exception.assembly.InvalidAddressException;
 
 /**
  * This class represents a directive with an associated address.

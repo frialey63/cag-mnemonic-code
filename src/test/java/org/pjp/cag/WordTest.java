@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.pjp.cag.exception.runtime.FaultyWordException;
+import org.pjp.cag.exception.FaultyWordException;
 
 public class WordTest {
 

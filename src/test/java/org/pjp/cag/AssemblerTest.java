@@ -7,9 +7,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.Test;
-import org.pjp.cag.exception.ParseException;
-import org.pjp.cag.exception.StorageException;
-import org.pjp.cag.exception.UnknownDirectiveException;
+import org.pjp.cag.exception.assembly.ParseException;
+import org.pjp.cag.exception.assembly.StorageException;
+import org.pjp.cag.exception.assembly.UnknownDirectiveException;
 
 public class AssemblerTest {
 

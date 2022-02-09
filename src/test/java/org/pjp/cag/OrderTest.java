@@ -5,8 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.pjp.cag.exception.IncorrectArityException;
-import org.pjp.cag.exception.UnknownOrderException;
+import org.pjp.cag.exception.assembly.IncorrectArityException;
+import org.pjp.cag.exception.assembly.UnknownOrderException;
 
 public class OrderTest {
 
