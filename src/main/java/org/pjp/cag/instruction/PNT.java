@@ -28,6 +28,14 @@ public final class PNT extends Instruction {
         super(query, integralDigits, fractionalDigits);
     }
 
+    /**
+     * @param query The query flag
+     * @param integralDigits The number of integer digits
+     */
+    public PNT(boolean query, int integralDigits) {
+        super(query, integralDigits);
+    }
+
     @Override
     public boolean execute(Store store) {
         float accumulator = store.getAccumulator();

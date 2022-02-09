@@ -39,7 +39,7 @@ enum OrderNumber {
     ARC(45, 1),
     ENT(46, 1),
 
-    // Input & Output
+    // IO Read & Punch
     RCT(50, 2),
     PCT(51, 2),
     RNT(52, 2),

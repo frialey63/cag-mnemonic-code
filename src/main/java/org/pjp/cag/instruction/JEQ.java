@@ -18,6 +18,14 @@ public final class JEQ extends Instruction {
         super(query, address, modifier);
     }
 
+    /**
+     * @param query The query flag
+     * @param address The address
+     */
+    public JEQ(boolean query, int address) {
+        super(query, address);
+    }
+
     @Override
     public boolean execute(Store store) {
         boolean result = true;

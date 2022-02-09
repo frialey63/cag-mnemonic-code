@@ -28,6 +28,14 @@ public final class PCT extends Instruction {
         super(query, address, modifier);
     }
 
+    /**
+     * @param query The query flag
+     * @param address The address
+     */
+    public PCT(boolean query, int address) {
+        super(query, address);
+    }
+
     @Override
     public boolean execute(Store store) {
         char character = store.getLocation(getEffectiveAddress(store)).character();

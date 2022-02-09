@@ -23,48 +23,46 @@ final class Interpreter {
      * @param trace If true then produce trace
      */
     void interpret(Store store, boolean trace) {
+        int address = ZERO;
+
         try {
             while (true) {
-                int address = ZERO;
+                address = store.getControlAddress();
 
-                try {
-                    address = store.getControlAddress();
+                if (address == ZERO) {
+                    break;
+                }
 
-                    if (address == ZERO) {
-                        break;
-                    }
+                Order order = store.getLocation(address).order();
 
-                    Order order = store.getLocation(address).order();
+                if (trace && order.query) {
+                    System.out.printf("Q %4d %.6e\n", store.getControlAddress(), store.getAccumulator());
+                }
 
-                    if (trace && order.query) {
-                        System.out.printf("Q %4d %.6e\n", store.getControlAddress(), store.getAccumulator());
-                    }
+                String instructionClassName = order.orderNumber.instructionClass();
 
-                    String instructionClassName = order.orderNumber.instructionClass();
+                Class<?> clazz = Class.forName(instructionClassName);
 
-                    Class<?> clazz = Class.forName(instructionClassName);
+                Instruction instruction;
 
-                    Instruction instruction;
+                if (order.hasModifier()) {
+                    Constructor<?> declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class, int.class);
+                    instruction = (Instruction) declaredConstructor.newInstance(order.query, order.address, order.modifier);
+                } else if (order.hasAddress()) {
+                    Constructor<?> declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class);
+                    instruction = (Instruction) declaredConstructor.newInstance(order.query, order.address);
+                } else {
+                    Constructor<?> declaredConstructor = clazz.getDeclaredConstructor(boolean.class);
+                    instruction = (Instruction) declaredConstructor.newInstance(order.query);
+                }
 
-                    if (order.hasModifier()) {
-                        Constructor<?> declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class, int.class);
-                        instruction = (Instruction) declaredConstructor.newInstance(order.query, order.address, order.modifier);
-                    } else if (order.hasAddress()) {
-                        Constructor<?> declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class);
-                        instruction = (Instruction) declaredConstructor.newInstance(order.query, order.address);
-                    } else {
-                        Constructor<?> declaredConstructor = clazz.getDeclaredConstructor(boolean.class);
-                        instruction = (Instruction) declaredConstructor.newInstance(order.query);
-                    }
-
-                    if (instruction.execute(store)) {
-                        store.incControlAddress();
-                    }
-                } catch (AbstractCAGException e) {
-                    System.out.printf("ERR %2d %4d\n", e.getErrorCode(), address);
-                    LOGGER.debug(e.getMessage(), e);
+                if (instruction.execute(store)) {
+                    store.incControlAddress();
                 }
             }
+        } catch (AbstractCAGException e) {
+            System.out.printf("ERR %2d %4d\n", e.getErrorCode(), address);
+            LOGGER.debug(e.getMessage(), e);
         } catch (Exception e) {
             LOGGER.error("caught unexpected Exception while interpreting the program", e);
         }

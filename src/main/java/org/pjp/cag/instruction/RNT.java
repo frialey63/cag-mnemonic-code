@@ -29,6 +29,14 @@ public final class RNT extends Instruction {
         super(query, address, modifier);
     }
 
+    /**
+     * @param query The query flag
+     * @param address The address
+     */
+    public RNT(boolean query, int address) {
+        super(query, address);
+    }
+
     @Override
     public boolean execute(Store store) {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(PaperTape.in, Computer.CHARSET))) {
