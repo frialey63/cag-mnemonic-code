@@ -61,9 +61,10 @@ final class Assembler {
     /**
      * @param program The path for the program text
      * @param store The computer store
+     * @return True if assembly was successful
      * @throws IOException
      */
-    void assemble(Path program, Store store) throws IOException {
+    boolean assemble(Path program, Store store) throws IOException {
         try {
             Files.lines(program).forEach(l -> {
                 LOGGER.debug(l);
@@ -157,6 +158,8 @@ final class Assembler {
             // halt the assembly and prevent execution
             throw e;
         }
+
+        return true;
     }
 
     private void storeWord(Store store, Word word) {

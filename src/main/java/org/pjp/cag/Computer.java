@@ -41,17 +41,17 @@ public final class Computer {
 
             assert store.zero();
 
-            new Assembler().assemble(path, store);
+            if (new Assembler().assemble(path, store)) {
+                assert store.zero();
 
-            assert store.zero();
+                if (LOGGER.isDebugEnabled()) {
+                    store.dump();
+                }
 
-            if (LOGGER.isDebugEnabled()) {
-                store.dump();
+                new Interpreter().interpret(store, trace);
+
+                assert store.zero();
             }
-
-            new Interpreter().interpret(store, trace);
-
-            assert store.zero();
 
         } else {
             System.err.println(USAGE);
