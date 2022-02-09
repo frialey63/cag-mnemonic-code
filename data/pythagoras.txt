@@ -9,8 +9,8 @@ QJSR 100
 QPNT 1,6
 QJST
 (STORE 50)
-+3
-+4
++3.0
++4.0
 (STORE 100)
 LDA 7
 MLT 7
