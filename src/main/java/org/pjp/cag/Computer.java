@@ -25,8 +25,9 @@ public final class Computer {
 
     /**
      * @param args The program arguments
+     * @throws IOException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         boolean trace = false;
 
         if (args.length >= 1) {
@@ -40,24 +41,18 @@ public final class Computer {
 
             assert store.zero();
 
-            try {
-                new Assembler().assemble(path, store);
+            new Assembler().assemble(path, store);
 
-                assert store.zero();
+            assert store.zero();
 
-                if (LOGGER.isDebugEnabled()) {
-                    store.dump();
-                }
-
-                if (true) {
-                    new Interpreter().interpret(store, trace);
-
-                    assert store.zero();
-                }
-
-            } catch (IOException e) {
-                LOGGER.error("Caught IOException while attempting assembly", e);
+            if (LOGGER.isDebugEnabled()) {
+                store.dump();
             }
+
+            new Interpreter().interpret(store, trace);
+
+            assert store.zero();
+
         } else {
             System.err.println(USAGE);
         }

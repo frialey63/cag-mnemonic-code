@@ -3,14 +3,14 @@ package org.pjp.cag;
 import static org.pjp.cag.Store.ZERO;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
+import org.pjp.cag.exception.AbstractCAGException;
 import org.pjp.cag.instruction.Instruction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The interpreter reads the Orders from the store according to the control register and instantiates and executes the corresponding instruction.
+ * The Interpreter reads the Orders from the store according to the control register and instantiates and executes the corresponding instruction.
  * @author developer
  *
  */
@@ -23,26 +23,27 @@ final class Interpreter {
      * @param trace If true then produce trace
      */
     void interpret(Store store, boolean trace) {
-
-        while (true) {
-            int address = store.getControlAddress();
-
-            if (address == ZERO) {
-                break;
-            }
-
-            Order order = store.getLocation(address).order();
-
-            if (trace && order.query) {
-                System.out.printf("Q %4d %.6e\n", store.getControlAddress(), store.getAccumulator());
-            }
-
-            String instructionClassName = order.orderNumber.instructionClass();
-
-            try {
-                Class<?> clazz = Class.forName(instructionClassName);
+        try {
+            while (true) {
+                int address = ZERO;
 
                 try {
+                    address = store.getControlAddress();
+
+                    if (address == ZERO) {
+                        break;
+                    }
+
+                    Order order = store.getLocation(address).order();
+
+                    if (trace && order.query) {
+                        System.out.printf("Q %4d %.6e\n", store.getControlAddress(), store.getAccumulator());
+                    }
+
+                    String instructionClassName = order.orderNumber.instructionClass();
+
+                    Class<?> clazz = Class.forName(instructionClassName);
+
                     Instruction instruction;
 
                     if (order.hasModifier()) {
@@ -59,15 +60,13 @@ final class Interpreter {
                     if (instruction.execute(store)) {
                         store.incControlAddress();
                     }
-
-                } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-                    LOGGER.error("Caught Exception while attempting to instantiate instruction", e);
-                } catch (NoSuchMethodException e) {
-                    LOGGER.error("Caught Exception while attempting to get constructor for instruction", e);
+                } catch (AbstractCAGException e) {
+                    System.out.printf("ERR %2d %4d\n", e.getErrorCode(), address);
+                    LOGGER.debug(e.getMessage(), e);
                 }
-            } catch (SecurityException | ClassNotFoundException e) {
-                LOGGER.error("Caught exception while looking up instruction class", e);
             }
+        } catch (Exception e) {
+            LOGGER.error("caught unexpected Exception while interpreting the program", e);
         }
     }
 }

@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 import org.pjp.cag.directive.AddressDirective;
 import org.pjp.cag.directive.Directive;
 import org.pjp.cag.directive.TitleDirective;
+import org.pjp.cag.exception.AbstractCAGException;
 import org.pjp.cag.exception.assembly.ParseException;
 import org.pjp.cag.exception.assembly.StorageException;
 import org.pjp.cag.exception.assembly.UnknownDirectiveException;
@@ -24,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The assembler parses the program text and enters the Order, number or character into the computer store.
+ * The Assembler parses the program text and enters the Order, number or character into the computer store.
  * @author developer
  */
 final class Assembler {
@@ -63,91 +64,99 @@ final class Assembler {
      * @throws IOException
      */
     void assemble(Path program, Store store) throws IOException {
-        Files.lines(program).forEach(l -> {
-            LOGGER.debug(l);
+        try {
+            Files.lines(program).forEach(l -> {
+                LOGGER.debug(l);
 
-            if (title) {
-                TitleDirective titleDirective = new TitleDirective(l);
-                directives.add(titleDirective);
+                if (title) {
+                    TitleDirective titleDirective = new TitleDirective(l);
+                    directives.add(titleDirective);
 
-                PaperTape.out.println(titleDirective.getTitle());
+                    PaperTape.out.println(titleDirective.getTitle());
 
-                title = false;
-            } else {
-
-                Matcher matcher = DIRECTIVE.matcher(l);
-
-                if (matcher.matches()) {
-                    String type = matcher.group(1);
-
-                    if (TITLE.equals(type)) {
-                        title = true;
-                    } else if (WAIT.equals(type)) {
-                        // end of assembly process for now
-                        return;
-                    } else {
-                        int address;
-
-                        switch (type) {
-                        case EXECUTE:
-                            address = Integer.parseInt(matcher.group(2).trim());
-                            store.setControlAddress(address);
-                            break;
-                        case STORE:
-                            address = Integer.parseInt(matcher.group(2).trim());
-                            currentLocation = address;
-                            break;
-                        default:
-                            throw new UnknownDirectiveException("the directive is unknown: " + type);
-                        }
-
-                        AddressDirective addressDirective = new AddressDirective(type, address);
-                        directives.add(addressDirective);
-
-                        LOGGER.debug("    " + addressDirective);
-
-                    }
+                    title = false;
                 } else {
-                    matcher = ORDER.matcher(l);
+
+                    Matcher matcher = DIRECTIVE.matcher(l);
 
                     if (matcher.matches()) {
-                        boolean query = "Q".equals(matcher.group(1));
-                        String orderNumberStr = matcher.group(2);
-                        String addressStr = matcher.group(ADDRESS_GROUP);
-                        String modifierStr = matcher.group(MODIFIER_GROUP);
+                        String type = matcher.group(1);
 
-                        if (modifierStr != null) {
-                            modifierStr = modifierStr.replaceFirst("\\,", "");
+                        if (TITLE.equals(type)) {
+                            title = true;
+                        } else if (WAIT.equals(type)) {
+                            // end of assembly process for now
+                            return;
+                        } else {
+                            int address;
+
+                            switch (type) {
+                            case EXECUTE:
+                                address = Integer.parseInt(matcher.group(2).trim());
+                                store.setControlAddress(address);
+                                break;
+                            case STORE:
+                                address = Integer.parseInt(matcher.group(2).trim());
+                                currentLocation = address;
+                                break;
+                            default:
+                                throw new UnknownDirectiveException("the directive is unknown: " + type);
+                            }
+
+                            AddressDirective addressDirective = new AddressDirective(type, address);
+                            directives.add(addressDirective);
+
+                            LOGGER.debug("    " + addressDirective);
+
                         }
-
-                        Order order = Order.create(query, orderNumberStr, addressStr, modifierStr);
-
-                        LOGGER.debug("    " + order);
-
-                        storeWord(store, Word.create(order));
-
                     } else {
-                        matcher = NUMBER.matcher(l);
+                        matcher = ORDER.matcher(l);
 
                         if (matcher.matches()) {
-                            float number = Float.parseFloat(matcher.group(0));
+                            boolean query = "Q".equals(matcher.group(1));
+                            String orderNumberStr = matcher.group(2);
+                            String addressStr = matcher.group(ADDRESS_GROUP);
+                            String modifierStr = matcher.group(MODIFIER_GROUP);
 
-                            storeWord(store, Word.create(number));
+                            if (modifierStr != null) {
+                                modifierStr = modifierStr.replaceFirst("\\,", "");
+                            }
+
+                            Order order = Order.create(query, orderNumberStr, addressStr, modifierStr);
+
+                            LOGGER.debug("    " + order);
+
+                            storeWord(store, Word.create(order));
+
                         } else {
-                            matcher = CHARACTER.matcher(l);
+                            matcher = NUMBER.matcher(l);
 
                             if (matcher.matches()) {
-                                char character = matcher.group(0).charAt(1);
+                                float number = Float.parseFloat(matcher.group(0));
 
-                                storeWord(store, Word.create(character));
+                                storeWord(store, Word.create(number));
                             } else {
-                                throw new ParseException("failed to match line to order or directive: " + l);
+                                matcher = CHARACTER.matcher(l);
+
+                                if (matcher.matches()) {
+                                    char character = matcher.group(0).charAt(1);
+
+                                    storeWord(store, Word.create(character));
+                                } else {
+                                    throw new ParseException("failed to match line to order or directive: " + l);
+                                }
                             }
                         }
                     }
                 }
-            }
-        });
+            });
+        } catch (AbstractCAGException e) {
+            System.out.printf("ERR %2d %4d\n", e.getErrorCode(), currentLocation);
+            LOGGER.debug(e.getMessage(), e);
+
+            // halt the assembly and prevent execution
+            throw e;
+        }
     }
 
     private void storeWord(Store store, Word word) {
