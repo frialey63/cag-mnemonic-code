@@ -4,6 +4,7 @@ import static org.pjp.cag.directive.AddressDirective.EXECUTE;
 import static org.pjp.cag.directive.AddressDirective.STORE;
 import static org.pjp.cag.directive.TitleDirective.TITLE;
 import static org.pjp.cag.directive.WaitDirective.WAIT;
+import static org.pjp.cag.Store.ZERO;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -38,7 +39,7 @@ final class Assembler {
 
     private static final Pattern DIRECTIVE = Pattern.compile("\\(([A-Z]+)( [0-9]+)?\\)");
 
-    private static final Pattern ORDER = Pattern.compile("(Q)?([A-Z]+)( ([0-9]+)(,[0-9]+)?)?");
+    private static final Pattern ORDER = Pattern.compile("(Q)?([A-Z]+)( ([0-9]+)(,[0-9]+)?)?"); // FIXME the query digit should follow the mnemonic
 
     private static final Pattern CHARACTER = Pattern.compile("^=[a-zA-Z0-9]");    // TODO more characters for Elliot 903 Telecode
 
@@ -49,7 +50,7 @@ final class Assembler {
 
     private boolean title;
 
-    private int currentLocation = -1;
+    private int currentLocation = ZERO;
 
     /**
      * @return The list of Directives
@@ -163,7 +164,7 @@ final class Assembler {
     }
 
     private void storeWord(Store store, Word word) {
-        if (currentLocation != -1) {
+        if (currentLocation != ZERO) {
             store.setLocation(currentLocation, word);
 
             currentLocation++;

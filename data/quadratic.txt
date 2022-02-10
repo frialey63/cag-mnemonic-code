@@ -1,1 +1,2 @@
-TODO solve the quadratic
+(TITLE)
+Quadratic

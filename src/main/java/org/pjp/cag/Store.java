@@ -34,6 +34,36 @@ public final class Store {
     public static final int ZERO = 0;
 
     /**
+     * Index register 2.
+     */
+    public static final int INDEX_2 = 2;
+
+    /**
+     * Index register 3.
+     */
+    public static final int INDEX_3 = 3;
+
+    /**
+     * Index register 6.
+     */
+    public static final int INDEX_6 = 6;
+
+    /**
+     * Index register 7.
+     */
+    public static final int INDEX_7 = 7;
+
+    /**
+     * Index register 8.
+     */
+    public static final int INDEX_8 = 8;
+
+    /**
+     * Index register 9.
+     */
+    public static final int INDEX_9 = 9;
+
+    /**
      * The link register.
      */
     public static final int LINK = 4;

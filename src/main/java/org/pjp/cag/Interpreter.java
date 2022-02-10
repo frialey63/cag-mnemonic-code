@@ -35,10 +35,6 @@ final class Interpreter {
 
                 Order order = store.getLocation(address).order();
 
-                if (trace && order.query) {
-                    System.out.printf("Q %4d %.6e\n", store.getControlAddress(), store.getAccumulator());
-                }
-
                 String instructionClassName = order.orderNumber.instructionClass();
 
                 Class<?> clazz = Class.forName(instructionClassName);
@@ -56,9 +52,16 @@ final class Interpreter {
                     instruction = (Instruction) declaredConstructor.newInstance(order.query);
                 }
 
+                int savedAddress = address;
+
                 if (instruction.execute(store)) {
                     store.incControlAddress();
                 }
+
+                if (trace && order.query) {
+                    System.out.printf("Q %4d %.6e\n", savedAddress, store.getAccumulator());
+                }
+
             }
         } catch (AbstractCAGException e) {
             System.out.printf("ERR %2d %4d\n", e.getErrorCode(), address);

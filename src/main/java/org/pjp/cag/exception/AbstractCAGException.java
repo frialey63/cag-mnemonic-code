@@ -1,6 +1,7 @@
 package org.pjp.cag.exception;
 
 /**
+ * TODO maybe refactor exceptions into Command Pattern to reduce verbosity
  * The abstract exception containing common error code and address attributes, from which all other CAG exceptions are derived.
  * @author developer
  *

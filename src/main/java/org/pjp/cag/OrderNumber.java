@@ -48,7 +48,8 @@ enum OrderNumber {
 
     private final int numericFunction;
 
-    private final int arity;    // could be derived by instruction lookup but that does not feel right for the assembly phase
+    // where 0 means no args, 1 means exactly 1 arg, 2 means 1 or 2 args
+    private final int arity;
 
     /**
      * @param numericFunction The instruction opcode
