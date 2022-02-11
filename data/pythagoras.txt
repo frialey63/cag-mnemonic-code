@@ -7,7 +7,7 @@ LDA 51 Q
 STA 8 Q
 JSR 100 Q
 PNT 1,6 Q
-JST Q
+JST
 (STORE 50)
 +3.0
 +4.0

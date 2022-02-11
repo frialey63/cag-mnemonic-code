@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -15,23 +16,9 @@ import org.pjp.cag.exception.assembly.UnknownDirectiveException;
 
 public class AssemblerTest {
 
-    private static final String DATA = "data";
-
-    private static final String NUMBERS = DATA + "/numbers.txt";
-
-    private static final String CHARACTERS = DATA + "/characters.txt";
-
-    private static final String QUERY = DATA + "/query.txt";
-
-    private static final String MISSING_STORAGE_DIRECTIVE = DATA + "/missing_storage_directive.txt";
-
-    private static final String UNPARSEABLE_TEXT = DATA + "/unparseable_text.txt";
-
-    private static final String UNKNOWN_DIRECTIVE = DATA + "/unknown_directive.txt";
-
     @Test
-    public void testAssembleNumbers() throws IOException {
-        Path path = Paths.get(NUMBERS);
+    public void testAssembleNumbers() throws URISyntaxException, IOException {
+        Path path = Paths.get(ClassLoader.getSystemResource("numbers.txt").toURI());
 
         Store store = new Store();
 
@@ -46,8 +33,8 @@ public class AssemblerTest {
     }
 
     @Test
-    public void testAssembleCharacters() throws IOException {
-        Path path = Paths.get(CHARACTERS);
+    public void testAssembleCharacters() throws URISyntaxException, IOException {
+        Path path = Paths.get(ClassLoader.getSystemResource("characters.txt").toURI());
 
         Store store = new Store();
 
@@ -61,8 +48,8 @@ public class AssemblerTest {
     }
 
     @Test
-    public void testAssembleQuery() throws IOException {
-        Path path = Paths.get(QUERY);
+    public void testAssembleQuery() throws URISyntaxException, IOException {
+        Path path = Paths.get(ClassLoader.getSystemResource("query.txt").toURI());
 
         Store store = new Store();
 
@@ -72,12 +59,12 @@ public class AssemblerTest {
         assertFalse(store.getLocation(13).order().query);
         assertFalse(store.getLocation(14).order().query);
         assertTrue(store.getLocation(15).order().query);
-        assertTrue(store.getLocation(16).order().query);
+        assertFalse(store.getLocation(16).order().query);
     }
 
     @Test(expected = StorageException.class)
-    public void testAssembleMissingStorageDirective() throws IOException {
-        Path path = Paths.get(MISSING_STORAGE_DIRECTIVE);
+    public void testAssembleMissingStorageDirective() throws URISyntaxException, IOException {
+        Path path = Paths.get(ClassLoader.getSystemResource("missing_storage_directive.txt").toURI());
 
         Store store = new Store();
 
@@ -85,8 +72,8 @@ public class AssemblerTest {
     }
 
     @Test(expected = ParseException.class)
-    public void testAssembleUnparseableText() throws IOException {
-        Path path = Paths.get(UNPARSEABLE_TEXT);
+    public void testAssembleUnparseableText() throws URISyntaxException, IOException {
+        Path path = Paths.get(ClassLoader.getSystemResource("unparseable_text.txt").toURI());
 
         Store store = new Store();
 
@@ -94,8 +81,8 @@ public class AssemblerTest {
     }
 
     @Test(expected = UnknownDirectiveException.class)
-    public void testAssembleUnknownDirective() throws IOException {
-        Path path = Paths.get(UNKNOWN_DIRECTIVE);
+    public void testAssembleUnknownDirective() throws URISyntaxException, IOException {
+        Path path = Paths.get(ClassLoader.getSystemResource("unknown_directive.txt").toURI());
 
         Store store = new Store();
 

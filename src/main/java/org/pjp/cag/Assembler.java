@@ -45,7 +45,7 @@ final class Assembler {
 
     private static final Pattern DIRECTIVE = Pattern.compile("\\(([A-Z]+)( [0-9]+)?\\)");
 
-    private static final Pattern ORDER = Pattern.compile("([A-Z]+)( ([0-9]+)(,[0-9]+)?)?( Q)?");
+    private static final Pattern ORDER = Pattern.compile("([A-Z]+)( ([0-9]+)(,[0-9]+)?( Q)?)?");
 
     private static final Pattern CHARACTER = Pattern.compile("^=[a-zA-Z0-9]");    // TODO more characters for Elliot 903 Telecode
 
