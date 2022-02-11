@@ -41,6 +41,8 @@ final class Assembler {
 
     private static final int MNEMONIC = 1;
 
+    // TODO maybe improve regexp with optional witespace
+
     private static final Pattern DIRECTIVE = Pattern.compile("\\(([A-Z]+)( [0-9]+)?\\)");
 
     private static final Pattern ORDER = Pattern.compile("([A-Z]+)( ([0-9]+)(,[0-9]+)?)?( Q)?");
