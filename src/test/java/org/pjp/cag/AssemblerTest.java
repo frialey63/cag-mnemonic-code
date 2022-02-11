@@ -1,6 +1,8 @@
 package org.pjp.cag;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -18,6 +20,8 @@ public class AssemblerTest {
     private static final String NUMBERS = DATA + "/numbers.txt";
 
     private static final String CHARACTERS = DATA + "/characters.txt";
+
+    private static final String QUERY = DATA + "/query.txt";
 
     private static final String MISSING_STORAGE_DIRECTIVE = DATA + "/missing_storage_directive.txt";
 
@@ -54,6 +58,21 @@ public class AssemblerTest {
         assertEquals('L', store.getLocation(14).character());
         assertEquals('L', store.getLocation(15).character());
         assertEquals('O', store.getLocation(16).character());
+    }
+
+    @Test
+    public void testAssembleQuery() throws IOException {
+        Path path = Paths.get(QUERY);
+
+        Store store = new Store();
+
+        new Assembler().assemble(path, store);
+
+        assertTrue(store.getLocation(12).order().query);
+        assertFalse(store.getLocation(13).order().query);
+        assertFalse(store.getLocation(14).order().query);
+        assertTrue(store.getLocation(15).order().query);
+        assertTrue(store.getLocation(16).order().query);
     }
 
     @Test(expected = StorageException.class)

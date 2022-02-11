@@ -1,10 +1,10 @@
 package org.pjp.cag;
 
+import static org.pjp.cag.Store.ZERO;
 import static org.pjp.cag.directive.AddressDirective.EXECUTE;
 import static org.pjp.cag.directive.AddressDirective.STORE;
 import static org.pjp.cag.directive.TitleDirective.TITLE;
 import static org.pjp.cag.directive.WaitDirective.WAIT;
-import static org.pjp.cag.Store.ZERO;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -33,13 +33,17 @@ final class Assembler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Assembler.class);
 
-    private static final int MODIFIER_GROUP = 5;
+    private static final int QUERY = 5;
 
-    private static final int ADDRESS_GROUP = 4;
+    private static final int MODIFIER = 4;
+
+    private static final int ADDRESS = 3;
+
+    private static final int MNEMONIC = 1;
 
     private static final Pattern DIRECTIVE = Pattern.compile("\\(([A-Z]+)( [0-9]+)?\\)");
 
-    private static final Pattern ORDER = Pattern.compile("(Q)?([A-Z]+)( ([0-9]+)(,[0-9]+)?)?"); // FIXME the query digit should follow the mnemonic
+    private static final Pattern ORDER = Pattern.compile("([A-Z]+)( ([0-9]+)(,[0-9]+)?)?( Q)?");
 
     private static final Pattern CHARACTER = Pattern.compile("^=[a-zA-Z0-9]");    // TODO more characters for Elliot 903 Telecode
 
@@ -115,10 +119,10 @@ final class Assembler {
                         matcher = ORDER.matcher(l);
 
                         if (matcher.matches()) {
-                            boolean query = "Q".equals(matcher.group(1));
-                            String orderNumberStr = matcher.group(2);
-                            String addressStr = matcher.group(ADDRESS_GROUP);
-                            String modifierStr = matcher.group(MODIFIER_GROUP);
+                            String orderNumberStr = matcher.group(MNEMONIC);
+                            String addressStr = matcher.group(ADDRESS);
+                            String modifierStr = matcher.group(MODIFIER);
+                            boolean query = " Q".equals(matcher.group(QUERY));
 
                             if (modifierStr != null) {
                                 modifierStr = modifierStr.replaceFirst("\\,", "");
