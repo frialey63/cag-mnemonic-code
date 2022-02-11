@@ -53,13 +53,17 @@ enum OrderNumber {
     ENT(46, 1),
 
     /*
-     * Group 5 (IO, Read & Punch)
+     * Group 5 (Paper Tape)
      */
     RCT(50, 2),
     PCT(51, 2),
     RNT(52, 2),
     PNT(53, 2),
     PNL(54);
+
+    /*
+     * Group 6 (Card) Not included
+     */
 
     private final int numericFunction;
 

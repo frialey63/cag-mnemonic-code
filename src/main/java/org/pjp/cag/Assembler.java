@@ -47,7 +47,7 @@ final class Assembler {
 
     private static final Pattern ORDER = Pattern.compile("([A-Z]+)( ([0-9]+)(,[0-9]+)?( Q)?)?");
 
-    private static final Pattern CHARACTER = Pattern.compile("^=[a-zA-Z0-9]");    // TODO more characters for Elliot 903 Telecode
+    private static final Pattern CHARACTER = Pattern.compile("^=[a-zA-Z0-9]");    // TODO more characters for Elliot 903 Telecode // FIXME not available in 1964?
 
     // https://www.regular-expressions.info/floatingpoint.html
     private static final Pattern NUMBER = Pattern.compile("^[-+][0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?");
@@ -93,7 +93,7 @@ final class Assembler {
                         if (TITLE.equals(type)) {
                             title = true;
                         } else if (WAIT.equals(type)) {
-                            // end of assembly process for now
+                            // TODO end of assembly process for now
                             return;
                         } else {
                             int address;
