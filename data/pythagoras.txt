@@ -1,5 +1,7 @@
 (TITLE)
 Pythagoras
+(TITLE)
+The square on the hypoteneuse is equals to the sum of the squares on the other two sides.
 (STORE 12)
 LDA 50 Q
 STA 7 Q

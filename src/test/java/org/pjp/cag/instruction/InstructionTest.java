@@ -27,11 +27,21 @@ public class InstructionTest {
     }
 
     @Test
-    public void testGetEffectiveAddressModified() {
+    public void testGetEffectiveAddressModifiedNearestPositive() {
         Store store = new Store();
-        store.setRegister(3, 10);
+        store.setRegister(3, 10.3f);
 
         LDA lda = new LDA(false, 100, 3);
+
+        assertEquals(110, lda.getEffectiveAddress(store));
+    }
+
+    @Test
+    public void testGetEffectiveAddressModifiedNearestNegative() {
+        Store store = new Store();
+        store.setRegister(3, -9.8f);
+
+        LDA lda = new LDA(false, 120, 3);
 
         assertEquals(110, lda.getEffectiveAddress(store));
     }

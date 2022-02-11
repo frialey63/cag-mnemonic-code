@@ -8,29 +8,42 @@ import org.pjp.cag.instruction.Instruction;
  *
  */
 enum OrderNumber {
+
+    /*
+     * Group 0
+     */
     LDA(0, 2),
     ADD(1, 2),
     SUB(2, 2),
     MLT(3, 2),
     DIV(4, 2),
 
+    /*
+     * Group 1
+     */
     LDAN(10, 1),
     ADDN(11, 1),
     SUBN(12, 1),
     MLTN(13, 1),
     DIVN(14, 1),
 
-    // Store
+    /*
+     * Group 2 (Store)
+     */
     STA(20, 2),
 
-    // Jumps
+    /*
+     * Group 3 (Jumps)
+     */
     JUN(30, 2),
     JGR(31, 2),
     JEQ(32, 2),
     JSR(33, 2),
     JST(34),
 
-    // Math TODO check the use of modifiers for error handlers
+    /*
+     * Group 4 (Math) TODO check the use of modifiers for error handlers
+     */
     SQT(40, 1),
     EXP(41, 1),
     LGN(42, 1),
@@ -39,7 +52,9 @@ enum OrderNumber {
     ARC(45, 1),
     ENT(46, 1),
 
-    // IO Read & Punch
+    /*
+     * Group 5 (IO, Read & Punch)
+     */
     RCT(50, 2),
     PCT(51, 2),
     RNT(52, 2),

@@ -39,7 +39,7 @@ final class Assembler {
 
     private static final int ADDRESS = 3;
 
-    private static final int MNEMONIC = 1;
+    private static final int FUNCTION = 1;
 
     // TODO maybe improve regexp with optional witespace
 
@@ -121,7 +121,7 @@ final class Assembler {
                         matcher = ORDER.matcher(l);
 
                         if (matcher.matches()) {
-                            String orderNumberStr = matcher.group(MNEMONIC);
+                            String orderNumberStr = matcher.group(FUNCTION);
                             String addressStr = matcher.group(ADDRESS);
                             String modifierStr = matcher.group(MODIFIER);
                             boolean query = " Q".equals(matcher.group(QUERY));
