@@ -41,16 +41,14 @@ final class Assembler {
 
     private static final int FUNCTION = 1;
 
-    // TODO maybe improve regexp with optional whitespace
+    private static final Pattern DIRECTIVE = Pattern.compile("\\( *([A-Z]+) *([0-9]+)? *\\)");
 
-    private static final Pattern DIRECTIVE = Pattern.compile("^\\( *([A-Z]+)( *[0-9]+)? *\\)$");
+    private static final Pattern ORDER = Pattern.compile("([A-Z]+) *(([0-9]+) *(, *[0-9]+)? *(Q)?)?");
 
-    private static final Pattern ORDER = Pattern.compile("([A-Z]+)( ([0-9]+)(,[0-9]+)?( Q)?)?");
-
-    private static final Pattern CHARACTER = Pattern.compile("^=[a-zA-Z0-9]");    // TODO more characters for Elliot 903 Telecode // FIXME not available in 1964?
+    private static final Pattern CHARACTER = Pattern.compile("=[a-zA-Z0-9]");    // TODO more characters for Elliot 903 Telecode // FIXME not available in 1964?
 
     // https://www.regular-expressions.info/floatingpoint.html
-    private static final Pattern NUMBER = Pattern.compile("^[-+][0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?");
+    private static final Pattern NUMBER = Pattern.compile("[-+][0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?");
 
     private List<Directive> directives = new ArrayList<>();
 
@@ -126,10 +124,10 @@ final class Assembler {
                             String orderNumberStr = matcher.group(FUNCTION);
                             String addressStr = matcher.group(ADDRESS);
                             String modifierStr = matcher.group(MODIFIER);
-                            boolean query = " Q".equals(matcher.group(QUERY));
+                            boolean query = "Q".equals(matcher.group(QUERY));
 
                             if (modifierStr != null) {
-                                modifierStr = modifierStr.replaceFirst("\\,", "");
+                                modifierStr = modifierStr.replaceFirst("\\,", "").trim();
                             }
 
                             Order order = Order.create(query, orderNumberStr, addressStr, modifierStr);
