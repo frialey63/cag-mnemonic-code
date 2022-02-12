@@ -41,9 +41,9 @@ final class Assembler {
 
     private static final int FUNCTION = 1;
 
-    // TODO maybe improve regexp with optional witespace
+    // TODO maybe improve regexp with optional whitespace
 
-    private static final Pattern DIRECTIVE = Pattern.compile("\\(([A-Z]+)( [0-9]+)?\\)");
+    private static final Pattern DIRECTIVE = Pattern.compile("^\\( *([A-Z]+)( *[0-9]+)? *\\)$");
 
     private static final Pattern ORDER = Pattern.compile("([A-Z]+)( ([0-9]+)(,[0-9]+)?( Q)?)?");
 
@@ -73,11 +73,13 @@ final class Assembler {
      */
     boolean assemble(Path program, Store store) throws IOException {
         try {
-            Files.lines(program).forEach(l -> {
-                LOGGER.debug(l);
+            Files.lines(program).forEach(line -> {
+                LOGGER.debug(line);
+
+                line = line.trim();
 
                 if (title) {
-                    TitleDirective titleDirective = new TitleDirective(l);
+                    TitleDirective titleDirective = new TitleDirective(line);
                     directives.add(titleDirective);
 
                     PaperTape.out.println(titleDirective.getTitle());
@@ -85,7 +87,7 @@ final class Assembler {
                     title = false;
                 } else {
 
-                    Matcher matcher = DIRECTIVE.matcher(l);
+                    Matcher matcher = DIRECTIVE.matcher(line);
 
                     if (matcher.matches()) {
                         String type = matcher.group(1);
@@ -118,7 +120,7 @@ final class Assembler {
 
                         }
                     } else {
-                        matcher = ORDER.matcher(l);
+                        matcher = ORDER.matcher(line);
 
                         if (matcher.matches()) {
                             String orderNumberStr = matcher.group(FUNCTION);
@@ -137,21 +139,21 @@ final class Assembler {
                             storeWord(store, Word.create(order));
 
                         } else {
-                            matcher = NUMBER.matcher(l);
+                            matcher = NUMBER.matcher(line);
 
                             if (matcher.matches()) {
                                 float number = Float.parseFloat(matcher.group(0));
 
                                 storeWord(store, Word.create(number));
                             } else {
-                                matcher = CHARACTER.matcher(l);
+                                matcher = CHARACTER.matcher(line);
 
                                 if (matcher.matches()) {
                                     char character = matcher.group(0).charAt(1);
 
                                     storeWord(store, Word.create(character));
                                 } else {
-                                    throw new ParseException("failed to match line to order or directive: " + l);
+                                    throw new ParseException("failed to match line to order or directive: " + line);
                                 }
                             }
                         }
