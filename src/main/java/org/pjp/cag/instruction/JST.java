@@ -13,9 +13,19 @@ public final class JST extends Instruction {
 
     /**
      * @param query The query flag
+     * @param address The address
+     * @param modifier The modifier
      */
-    public JST(boolean query) {
-        super(query);
+    public JST(boolean query, int address, int modifier) {
+        super(query, address, modifier);
+    }
+
+    /**
+     * @param query The query flag
+     * @param address The address
+     */
+    public JST(boolean query, int address) {
+        super(query, address);
     }
 
     @Override

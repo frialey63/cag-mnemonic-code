@@ -12,7 +12,7 @@ public class JSTTest {
         Store store = new Store();
         store.setControlAddress(12);
 
-        JST instruction = new JST(false);
+        JST instruction = new JST(false, 0);
         instruction.execute(store);
 
         assertEquals(Store.ZERO, store.getControlAddress());

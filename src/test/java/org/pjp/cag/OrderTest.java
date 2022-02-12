@@ -48,28 +48,18 @@ public class OrderTest {
      */
 
     @Test
-    public void testCreateJST() {
-        Order order = Order.create(false, "JST", null, null);
+    public void testCreatePNL() {
+        Order order = Order.create(false, "PNL", null, null);
 
         assertFalse(order.query);
-        assertEquals(OrderNumber.JST, order.orderNumber);
-        assertFalse(order.hasAddress());
-        assertFalse(order.hasModifier());
-    }
-
-    @Test
-    public void testCreateQJST() {
-        Order order = Order.create(true, "JST", null, null);
-
-        assertTrue(order.query);
-        assertEquals(OrderNumber.JST, order.orderNumber);
+        assertEquals(OrderNumber.PNL, order.orderNumber);
         assertFalse(order.hasAddress());
         assertFalse(order.hasModifier());
     }
 
     @Test(expected = IncorrectArityException.class)
-    public void testCreateJSTTooManyArgs() {
-        Order.create(false, "JST", "666", null);
+    public void testCreatePNLTooManyArgs() {
+        Order.create(false, "PNL", "666", null);
     }
 
     /*
@@ -102,7 +92,7 @@ public class OrderTest {
     }
 
     @Test(expected = IncorrectArityException.class)
-    public void testCreateARCMissingTooManyArgs() {
+    public void testCreateARCTooManyArgs() {
         Order.create(false, "ARC", "999", "9");
     }
 

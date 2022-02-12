@@ -3,6 +3,7 @@ package org.pjp.cag;
 import org.pjp.cag.instruction.Instruction;
 
 /**
+ * TODO maybe rename to Function or Mnemonic
  * This enum represents the mnemonic for the instruction corresponding to an Order.
  * @author developer
  *
@@ -39,7 +40,7 @@ enum OrderNumber {
     JGR(31, 2),
     JEQ(32, 2),
     JSR(33, 2),
-    JST(34),
+    JST(34, 2),
 
     /*
      * Group 4 (Math) TODO check the use of modifiers for error handlers
