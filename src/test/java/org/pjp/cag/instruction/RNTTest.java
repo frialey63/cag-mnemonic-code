@@ -9,6 +9,7 @@ import java.io.InputStream;
 import org.junit.Test;
 import org.pjp.cag.Store;
 import org.pjp.cag.TestConstants;
+import org.pjp.cag.exception.NumberReadException;
 import org.pjp.cag.io.PaperTape;
 
 public class RNTTest {
@@ -17,17 +18,34 @@ public class RNTTest {
     public void testExecute() throws IOException {
         InputStream prevIn = PaperTape.in;
 
-        try (InputStream inputStream = new ByteArrayInputStream("123.456".getBytes())) {
+        try (InputStream inputStream = new ByteArrayInputStream("123.4567".getBytes())) {
 
             PaperTape.setIn(inputStream);
 
             Store store = new Store();
-            store.setRegister(3, 10);
 
-            RNT instruction = new RNT(false, 100, 3);
+            RNT instruction = new RNT(false);
             instruction.execute(store);
 
-            assertEquals(123.456, store.getLocation(110).number(), TestConstants.PRECISION);
+            assertEquals(123.4567, store.getAccumulator(), TestConstants.PRECISION);
+
+        } finally {
+            PaperTape.setIn(prevIn);
+        }
+    }
+
+    @Test(expected = NumberReadException.class)
+    public void testExecuteTooManyDecimalDigits() throws IOException {
+        InputStream prevIn = PaperTape.in;
+
+        try (InputStream inputStream = new ByteArrayInputStream("123.45678".getBytes())) {
+
+            PaperTape.setIn(inputStream);
+
+            Store store = new Store();
+
+            RNT instruction = new RNT(false);
+            instruction.execute(store);
 
         } finally {
             PaperTape.setIn(prevIn);

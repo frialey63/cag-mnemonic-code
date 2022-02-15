@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
-import org.pjp.cag.Word;
+import org.pjp.cag.exception.NumberReadException;
 import org.pjp.cag.io.PaperTape;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,35 +20,39 @@ public final class RNT extends Instruction {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RNT.class);
 
-    /**
-     * @param query The query flag
-     * @param address The address
-     * @param modifier The modifier
-     */
-    public RNT(boolean query, int address, int modifier) {
-        super(query, address, modifier);
-    }
+    private static final int MAX_DECIMAL_DIGITS = 7;
 
     /**
      * @param query The query flag
-     * @param address The address
      */
-    public RNT(boolean query, int address) {
-        super(query, address);
+    public RNT(boolean query) {
+        super(query);
     }
 
     @Override
     public boolean execute(Store store) {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(PaperTape.in, Computer.CHARSET))) {
-            float number = Float.parseFloat(reader.readLine());
+            float number = Float.parseFloat(checkDecimalDigits(reader.readLine()));
 
-            store.setLocation(getEffectiveAddress(store), Word.create(number));
+            store.setAccumulator(number);
 
         } catch (IOException e) {
             LOGGER.error("caught IOException while attempting to read number from tape", e);
         }
 
         return true;
+    }
+
+    private String checkDecimalDigits(String line) throws IOException {
+        String temp = line.trim().replaceAll("\\.", "").replaceAll("\\+", "").replaceAll("\\-", "").toLowerCase();
+
+        String[] digits = temp.split("e");
+
+        if (digits[0].length() > MAX_DECIMAL_DIGITS) {
+            throw new NumberReadException("number read has more than 7 decimal digits");
+        }
+
+        return line;
     }
 
 }

@@ -58,9 +58,9 @@ enum OrderNumber {
      */
     RCT(50, 2),
     PCT(51, 2),
-    RNT(52, 2),
-    PNT(53, 2),
-    PNL(54);
+    RNT(52),    // TODO address with maybe modifier will be ignored but must obey tests for error 7 and 9
+    PNT(53, 2), // TODO spec for both integral and fractional digits required
+    PNL(54);    // TODO address with maybe modifier will be ignored but must obey tests for error 7 and 9
 
     /*
      * Group 6 (Card) Not included
