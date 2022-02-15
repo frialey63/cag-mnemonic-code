@@ -9,7 +9,6 @@ import java.io.InputStream;
 import org.junit.Test;
 import org.pjp.cag.Store;
 import org.pjp.cag.TestConstants;
-import org.pjp.cag.exception.NumberReadException;
 import org.pjp.cag.io.PaperTape;
 
 public class RNTTest {
@@ -34,7 +33,7 @@ public class RNTTest {
         }
     }
 
-    @Test(expected = NumberReadException.class)
+    @Test(expected = NumberFormatException.class)
     public void testExecuteTooManyDecimalDigits() throws IOException {
         InputStream prevIn = PaperTape.in;
 
