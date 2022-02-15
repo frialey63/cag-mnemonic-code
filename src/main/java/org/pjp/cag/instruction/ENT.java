@@ -11,10 +11,9 @@ public final class ENT extends Instruction {
 
     /**
      * @param query The query flag
-     * @param address The address of the error handler
      */
-    public ENT(boolean query, int address) {
-        super(query, address);
+    public ENT(boolean query) {
+        super(query);
     }
 
     @Override

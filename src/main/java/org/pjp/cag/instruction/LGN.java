@@ -11,7 +11,16 @@ public final class LGN extends Instruction {
 
     /**
      * @param query The query flag
-     * @param address The address of the error handler
+     * @param address The address
+     * @param modifier The modifier
+     */
+    public LGN(boolean query, int address, int modifier) {
+        super(query, address, modifier);
+    }
+
+    /**
+     * @param query The query flag
+     * @param address The address
      */
     public LGN(boolean query, int address) {
         super(query, address);
@@ -23,8 +32,8 @@ public final class LGN extends Instruction {
 
         float accumulator = store.getAccumulator();
 
-        if (accumulator < 0) {
-            store.setControlAddress(addressNumber);
+        if (accumulator <= 0) {
+            store.setControlAddress(getEffectiveAddress(store));
             result = false;
         } else {
             store.setAccumulator((float) Math.log(accumulator));

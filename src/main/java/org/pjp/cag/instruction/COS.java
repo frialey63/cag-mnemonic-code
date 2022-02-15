@@ -11,10 +11,9 @@ public final class COS extends Instruction {
 
     /**
      * @param query The query flag
-     * @param address The address of the error handler
      */
-    public COS(boolean query, int address) {
-        super(query, address);
+    public COS(boolean query) {
+        super(query);
     }
 
     @Override

@@ -63,40 +63,6 @@ public class OrderTest {
     }
 
     /*
-     * Order with address
-     */
-
-    @Test
-    public void testCreateARC() {
-        Order order = Order.create(false, "ARC", "999", null);
-
-        assertFalse(order.query);
-        assertEquals(OrderNumber.ARC, order.orderNumber);
-        assertTrue(order.hasAddress());
-        assertFalse(order.hasModifier());
-    }
-
-    @Test
-    public void testCreateQARC() {
-        Order order = Order.create(true, "ARC", "999", null);
-
-        assertTrue(order.query);
-        assertEquals(OrderNumber.ARC, order.orderNumber);
-        assertTrue(order.hasAddress());
-        assertFalse(order.hasModifier());
-    }
-
-    @Test(expected = IncorrectArityException.class)
-    public void testCreateARCMissingArg() {
-        Order.create(false, "ARC", null, null);
-    }
-
-    @Test(expected = IncorrectArityException.class)
-    public void testCreateARCTooManyArgs() {
-        Order.create(false, "ARC", "999", "9");
-    }
-
-    /*
      * Order with address and (optional) modifier
      */
 

@@ -19,4 +19,27 @@ public class EXPTest {
         assertEquals(Math.exp(1), store.getAccumulator(), TestConstants.PRECISION);
     }
 
+    @Test
+    public void testExecuteError() {
+        Store store = new Store();
+        store.setAccumulator(40.5f);
+
+        EXP instruction = new EXP(false, 16);
+        instruction.execute(store);
+
+        assertEquals(16, store.getControlAddress());
+    }
+
+    @Test
+    public void testExecuteErrorModified() {
+        Store store = new Store();
+        store.setAccumulator(40.5f);
+        store.setRegister(3, 10);
+
+        EXP instruction = new EXP(false, 16, 3);
+        instruction.execute(store);
+
+        assertEquals(26, store.getControlAddress());
+    }
+
 }

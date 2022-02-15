@@ -30,4 +30,16 @@ public class LGNTest {
         assertEquals(16, store.getControlAddress());
     }
 
+    @Test
+    public void testExecuteErrorModified() {
+        Store store = new Store();
+        store.setAccumulator(0);
+        store.setRegister(3, 10);
+
+        LGN instruction = new LGN(false, 16, 3);
+        instruction.execute(store);
+
+        assertEquals(26, store.getControlAddress());
+    }
+
 }

@@ -5,23 +5,26 @@ import static org.junit.Assert.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.junit.Test;
 import org.pjp.cag.io.PaperTape;
 
 public class ComputerTest {
 
-    private static final String PI = "data/pi.txt";
-
     @Test
-    public void testMain() throws IOException {
+    public void testInnerMain() throws IOException, URISyntaxException {
         PrintStream prevOut = PaperTape.out;
 
         try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, "UTF-8")) {
 
             PaperTape.setOut(printStream);
 
-            Computer.main(new String[] {PI });
+            Path path = Paths.get(ClassLoader.getSystemResource("simple_test.txt").toURI());
+
+            Computer.innerMain(path, false);
 
             String printText = outputStream.toString();
 

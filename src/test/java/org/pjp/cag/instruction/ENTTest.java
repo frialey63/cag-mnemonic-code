@@ -13,7 +13,7 @@ public class ENTTest {
         Store store = new Store();
         store.setAccumulator(1.7f);
 
-        ENT instruction = new ENT(false, 16);
+        ENT instruction = new ENT(false);
         instruction.execute(store);
 
         assertEquals(1, store.getAccumulator(), TestConstants.PRECISION);
@@ -24,7 +24,7 @@ public class ENTTest {
         Store store = new Store();
         store.setAccumulator(-1.2f);
 
-        ENT instruction = new ENT(false, 16);
+        ENT instruction = new ENT(false);
         instruction.execute(store);
 
         assertEquals(-1, store.getAccumulator(), TestConstants.PRECISION);

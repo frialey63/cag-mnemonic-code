@@ -11,10 +11,9 @@ public final class SIN extends Instruction {
 
     /**
      * @param query The query flag
-     * @param address The address of the error handler
      */
-    public SIN(boolean query, int address) {
-        super(query, address);
+    public SIN(boolean query) {
+        super(query);
     }
 
     @Override

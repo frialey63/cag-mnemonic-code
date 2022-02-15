@@ -13,7 +13,7 @@ public class ARCTest {
         Store store = new Store();
         store.setAccumulator(1);
 
-        ARC instruction = new ARC(false, 16);
+        ARC instruction = new ARC(false);
         instruction.execute(store);
 
         assertEquals(Math.atan(1), store.getAccumulator(), TestConstants.PRECISION);

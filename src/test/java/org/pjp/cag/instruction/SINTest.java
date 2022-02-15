@@ -13,7 +13,7 @@ public class SINTest {
         Store store = new Store();
         store.setAccumulator(0.5f);
 
-        SIN instruction = new SIN(false, 16);
+        SIN instruction = new SIN(false);
         instruction.execute(store);
 
         assertEquals(Math.sin(0.5), store.getAccumulator(), TestConstants.PRECISION);

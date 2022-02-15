@@ -11,7 +11,16 @@ public final class SQT extends Instruction {
 
     /**
      * @param query The query flag
-     * @param address The address of the error handler
+     * @param address The address
+     * @param modifier The modifier
+     */
+    public SQT(boolean query, int address, int modifier) {
+        super(query, address, modifier);
+    }
+
+    /**
+     * @param query The query flag
+     * @param address The address
      */
     public SQT(boolean query, int address) {
         super(query, address);
@@ -24,7 +33,7 @@ public final class SQT extends Instruction {
         float accumulator = store.getAccumulator();
 
         if (accumulator < 0) {
-            store.setControlAddress(addressNumber);
+            store.setControlAddress(getEffectiveAddress(store));
             result = false;
         } else {
             store.setAccumulator((float) Math.sqrt(accumulator));

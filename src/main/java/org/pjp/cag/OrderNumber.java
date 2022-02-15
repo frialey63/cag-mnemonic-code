@@ -43,15 +43,15 @@ enum OrderNumber {
     JST(34, 2),
 
     /*
-     * Group 4 (Math) TODO check the use of modifiers for error handlers
+     * Group 4 (Math)
      */
-    SQT(40, 1),
-    EXP(41, 1),
-    LGN(42, 1),
-    SIN(43, 1),
-    COS(44, 1),
-    ARC(45, 1),
-    ENT(46, 1),
+    SQT(40, 2),
+    EXP(41, 2),
+    LGN(42, 2),
+    SIN(43),
+    COS(44),
+    ARC(45),
+    ENT(46),
 
     /*
      * Group 5 (Paper Tape)

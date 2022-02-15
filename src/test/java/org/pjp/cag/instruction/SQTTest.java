@@ -30,4 +30,16 @@ public class SQTTest {
         assertEquals(16, store.getControlAddress());
     }
 
+    @Test
+    public void testExecuteErrorModified() {
+        Store store = new Store();
+        store.setAccumulator(-1);
+        store.setRegister(3, 10);
+
+        SQT instruction = new SQT(false, 16, 3);
+        instruction.execute(store);
+
+        assertEquals(26, store.getControlAddress());
+    }
+
 }

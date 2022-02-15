@@ -9,9 +9,20 @@ import org.pjp.cag.Store;
  */
 public final class EXP extends Instruction {
 
+    private static final int LIMIT = 40;
+
     /**
      * @param query The query flag
-     * @param address The address of the error handler
+     * @param address The address
+     * @param modifier The modifier
+     */
+    public EXP(boolean query, int address, int modifier) {
+        super(query, address, modifier);
+    }
+
+    /**
+     * @param query The query flag
+     * @param address The address
      */
     public EXP(boolean query, int address) {
         super(query, address);
@@ -23,11 +34,11 @@ public final class EXP extends Instruction {
 
         float accumulator = store.getAccumulator();
 
-        try {
-            store.setAccumulator((float) Math.exp(accumulator));
-        } catch (Exception e) {
-            store.setControlAddress(addressNumber);
+        if (accumulator > LIMIT) {
+            store.setControlAddress(getEffectiveAddress(store));
             result = false;
+        } else {
+            store.setAccumulator((float) Math.exp(accumulator));
         }
 
         return result;

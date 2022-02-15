@@ -28,33 +28,31 @@ public final class Computer {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        boolean trace = false;
-
         if (args.length >= 1) {
             Path path = Paths.get(args[0]);
 
-            if (args.length == 2) {
-                trace = true;
-            }
-
-            Store store = new Store();
-
-            assert store.zero();
-
-            if (new Assembler().assemble(path, store)) {
-                assert store.zero();
-
-                if (LOGGER.isDebugEnabled()) {
-                    store.dump();
-                }
-
-                new Interpreter().interpret(store, trace);
-
-                assert store.zero();
-            }
+            innerMain(path, (args.length == 2));
 
         } else {
             System.err.println(USAGE);
+        }
+    }
+
+    static void innerMain(Path path, boolean trace) throws IOException {
+        Store store = new Store();
+
+        assert store.zero();
+
+        if (new Assembler().assemble(path, store)) {
+            assert store.zero();
+
+            if (LOGGER.isDebugEnabled()) {
+                store.dump();
+            }
+
+            new Interpreter().interpret(store, trace);
+
+            assert store.zero();
         }
     }
 

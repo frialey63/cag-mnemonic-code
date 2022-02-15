@@ -13,7 +13,7 @@ public class COSTest {
         Store store = new Store();
         store.setAccumulator(0.5f);
 
-        COS instruction = new COS(false, 16);
+        COS instruction = new COS(false);
         instruction.execute(store);
 
         assertEquals(Math.cos(0.5), store.getAccumulator(), TestConstants.PRECISION);
