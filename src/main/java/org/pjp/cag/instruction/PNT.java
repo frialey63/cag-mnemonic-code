@@ -10,6 +10,10 @@ import org.pjp.cag.io.PaperTape;
  */
 public final class PNT extends Instruction {
 
+    private static final int FOUR = 4;
+
+    private static final int TEN = 10;
+
     /**
      * @param query The query flag
      * @param integralDigits The number of integer digits
@@ -31,12 +35,35 @@ public final class PNT extends Instruction {
     public boolean execute(Store store) {
         float accumulator = store.getAccumulator();
 
-        int width = addressNumber + modifier;
+        int width = addressNumber + modifier + (accumulator < 0 ? 2 : 1);
         int precision = modifier;
 
-        String format = "%" + width + "." + precision + "f";
+        String leadingSpace = (accumulator > 0) ? " " : "";
+        String trailingSpace = "  ";
+        String format;
 
-        PaperTape.out.printf(format, accumulator);
+        if (Math.abs(accumulator) > Math.pow(TEN, addressNumber)) {
+            format = leadingSpace + "%0" + width + "." + precision + "e" + trailingSpace;   // TODO more scientific number formatting
+        } else {
+            format = leadingSpace + "%0" + width + "." + precision + "f" + trailingSpace;
+        }
+
+        String str = String.format(format, accumulator);
+
+        // convert leading zeros to leading spaces
+        if (accumulator < 0) {
+            while (str.matches(" *\\-0[0-9]{1}.*")) {
+                str = str.replaceFirst("-0", " -");
+            }
+        } else {
+            while (str.matches(" *0[0-9]{1}.*")) {
+                str = str.replaceFirst("0", " ");
+            }
+        }
+
+        assert str.length() == (addressNumber + modifier + FOUR);
+
+        PaperTape.out.print(str);
 
         return true;
     }

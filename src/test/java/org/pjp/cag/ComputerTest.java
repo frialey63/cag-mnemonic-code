@@ -28,7 +28,7 @@ public class ComputerTest {
 
             String printText = outputStream.toString();
 
-            assertEquals("SIMPLE TEST\n3.141593", printText);
+            assertEquals("SIMPLE TEST\n 3.141593  ", printText);
 
         } finally {
             PaperTape.setOut(prevOut);
