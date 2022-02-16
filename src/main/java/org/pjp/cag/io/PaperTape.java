@@ -1,7 +1,12 @@
 package org.pjp.cag.io;
 
-import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+
+import org.pjp.cag.Computer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This device is the paper tape reader & writer.
@@ -10,12 +15,14 @@ import java.io.PrintStream;
  */
 public final class PaperTape {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(PaperTape.class);
+
     // CHECKSTYLE:OFF encapsulation
 
     /**
      * The paper tape reader.
      */
-    public static InputStream in = System.in;
+    public static InputStreamReader in;
 
     /**
      * The paper tape writer.
@@ -24,10 +31,18 @@ public final class PaperTape {
 
     // CHECKSTYLE:ON
 
+    static {
+        try {
+            in = new InputStreamReader(System.in, Computer.CHARSET);
+        } catch (UnsupportedEncodingException e) {
+            LOGGER.error("caught UnsupportedEncodingException while initialising in", e);
+        }
+    }
+
     /**
-     * @param in The InputStream associated with the reader
+     * @param in The InputStreamReader associated with the reader
      */
-    public static void setIn(InputStream in) {
+    public static void setIn(InputStreamReader in) {
         PaperTape.in = in;
     }
 

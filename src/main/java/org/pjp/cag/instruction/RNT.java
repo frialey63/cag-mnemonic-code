@@ -1,10 +1,8 @@
 package org.pjp.cag.instruction;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
 import org.pjp.cag.io.PaperTape;
 import org.slf4j.Logger;
@@ -19,6 +17,21 @@ public final class RNT extends Instruction {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RNT.class);
 
+    private static String readline(InputStreamReader reader) throws IOException {
+        StringBuffer sb = new StringBuffer();
+
+        int ch;
+        while ((ch = reader.read()) != -1) {
+            if (ch == '\n') {
+                break;
+            }
+
+            sb.append((char) ch);
+        }
+
+        return sb.toString();
+    }
+
     /**
      * @param query The query flag
      */
@@ -28,11 +41,10 @@ public final class RNT extends Instruction {
 
     @Override
     public boolean execute(Store store) {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(PaperTape.in, Computer.CHARSET))) {
-            float number = Float.parseFloat(reader.readLine());
+        try {
+            float number = Float.parseFloat(readline(PaperTape.in));
 
             store.setAccumulator(number);
-
         } catch (IOException e) {
             LOGGER.error("caught IOException while attempting to read number from tape", e);
         }

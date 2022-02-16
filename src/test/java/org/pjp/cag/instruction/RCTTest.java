@@ -4,10 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.InputStreamReader;
 
-import org.junit.Ignore;
 import org.junit.Test;
+import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
 import org.pjp.cag.TestConstants;
 import org.pjp.cag.io.PaperTape;
@@ -16,11 +16,11 @@ public class RCTTest {
 
     @Test
     public void testExecute() throws IOException {
-        InputStream prevIn = PaperTape.in;
+        InputStreamReader prevIn = PaperTape.in;
 
-        try (InputStream inputStream = new ByteArrayInputStream("A".getBytes())) {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("A".getBytes()), Computer.CHARSET)) {
 
-            PaperTape.setIn(inputStream);
+            PaperTape.setIn(inputStreamReader);
 
             Store store = new Store();
             store.setRegister(3, 10);
@@ -35,16 +35,16 @@ public class RCTTest {
         }
     }
 
-    @Ignore // FIXME paper tape reader using Java input streams
     @Test
     public void testExecuteCharacterFollowingNumber() throws IOException {
-        InputStream prevIn = PaperTape.in;
+        InputStreamReader prevIn = PaperTape.in;
 
-        try (InputStream inputStream = new ByteArrayInputStream("123.456\nA".getBytes())) {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("123.456\nA".getBytes()), Computer.CHARSET)) {
 
-            PaperTape.setIn(inputStream);
+            PaperTape.setIn(inputStreamReader);
 
             Store store = new Store();
+            store.setRegister(3, 10);
 
             Instruction instruction = new RNT(false);
             instruction.execute(store);
