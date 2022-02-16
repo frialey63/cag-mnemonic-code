@@ -45,7 +45,24 @@ final class Assembler {
 
     private static final Pattern ORDER = Pattern.compile("([A-Z]+) *(([0-9]+) *(, *[0-9]+)? *(Q)?)?");
 
-    private static final Pattern CHARACTER = Pattern.compile("=[a-zA-Z0-9]");    // TODO more characters for Elliot 903 Telecode // FIXME not available in 1964?
+    /*
+     903 TELECODE
+
+        00   10    20    30    40    50    60    70    80    90   100   110   120
+
+     0 nul   lf                 (     2     <     F     P     Z     d     n     x
+     1                          )     3     =     G     Q     [     e     o     y
+     2                   sp     *     4     >     H     R     £     f     p     z
+     3                    !     +     5     ❿        I     S     ]     g     q
+     4                    "     ,     6     ’     J     T     ↑     h     r
+     5                    ½     -     7     A     K     U     ←     I     s
+     6                    $     .     8     B     L     V     @     j     t
+     7 bel                %     /     9     C     M     W     a     k     u   del
+     8                    &     0     :     D     N     X     b     l     v
+     9 tab                ‘     1     ;     E     O     Y     c     m     w
+
+     */
+    private static final Pattern CHARACTER = Pattern.compile("=[ \\!\"\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/0-9\\:\\;\\<\\=\\>A-Z\\[\\£\\]\\@a-z]");
 
     // https://www.regular-expressions.info/floatingpoint.html
     private static final Pattern NUMBER = Pattern.compile("[-+][0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?");
@@ -144,7 +161,7 @@ final class Assembler {
 
                                 storeWord(store, Word.create(number));
                             } else {
-                                matcher = CHARACTER.matcher(line);
+                                matcher = CHARACTER.matcher(line);   // FIXME not available in 1964?
 
                                 if (matcher.matches()) {
                                     char character = matcher.group(0).charAt(1);

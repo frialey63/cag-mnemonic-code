@@ -27,6 +27,8 @@ Simulator for the 1964 City &amp; Guilds Mnemonic Code
 
 [Centre for Computing History](http://www.computinghistory.org.uk)
 
+[Elliott 903 Computer Facts](http://www.computinghistory.org.uk/downloads/39396)
+
 [Memories of a Programmer - Helen Young](http://www.computinghistory.org.uk/articles/32.htm)
 
 [Computing in Schools - The Early Years (by Tony Goodhew)](http://www.computinghistory.org.uk/userdata/files/computing_in_schools_-_the_early_years.pdf)
