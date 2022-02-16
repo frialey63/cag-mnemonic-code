@@ -16,42 +16,42 @@ public final class Order {
 
     /**
      * @param query If true then provide trace output when executed
-     * @param orderNumberStr The mnemonic for the instruction
+     * @param functionStr The mnemonic for the instruction
      * @param addressStr The address
      * @param modifierStr The modifier
      * @return The order
      */
-    public static Order create(boolean query, String orderNumberStr, String addressStr, String modifierStr) {
+    public static Order create(boolean query, String functionStr, String addressStr, String modifierStr) {
 
         try {
-            OrderNumber orderNumber = OrderNumber.valueOf(orderNumberStr);
+            Function function = Function.valueOf(functionStr);
 
             if (addressStr == null) {
-                if (orderNumber.arity() == 0) {
-                    return new Order(query, orderNumber);
+                if (function.arity() == 0) {
+                    return new Order(query, function);
                 }
 
             } else {
                 int address = Integer.parseInt(addressStr);          // will parse because matched to number in the regex
 
                 if (modifierStr == null) {
-                    if (orderNumber.arity() > 0) {
-                        return new Order(query, orderNumber, address);
+                    if (function.arity() > 0) {
+                        return new Order(query, function, address);
                     }
 
                 } else {
-                    if (orderNumber.arity() == 2) {
+                    if (function.arity() == 2) {
                         int modifier = Integer.parseInt(modifierStr);   // will parse because matched to number in the regex
 
-                        return new Order(query, orderNumber, address, modifier);
+                        return new Order(query, function, address, modifier);
                     }
                 }
             }
 
-            throw new IncorrectArityException(orderNumberStr + " has an arity of " + orderNumber.arity());
+            throw new IncorrectArityException(functionStr + " has an arity of " + function.arity());
 
         } catch (IllegalArgumentException e) {
-            throw new UnknownOrderException("Failed to look-up the OrderNumber by value: " + orderNumberStr);
+            throw new UnknownOrderException("Failed to look-up the Function by value: " + functionStr);
         }
     }
 
@@ -59,7 +59,7 @@ public final class Order {
 
     final boolean query;
 
-    final OrderNumber orderNumber;
+    final Function function;
 
     final int address;  // 10 - 999
 
@@ -67,20 +67,20 @@ public final class Order {
 
     // CHECKSTYLE:ON
 
-    private Order(boolean query, OrderNumber orderNumber, int address, int modifier) {
+    private Order(boolean query, Function function, int address, int modifier) {
         super();
         this.query = query;
-        this.orderNumber = checkNotNull(orderNumber, "orderNumber cannot be null");
+        this.function = checkNotNull(function, "function cannot be null");
         this.address = address;
         this.modifier = modifier;
     }
 
-    private Order(boolean query, OrderNumber orderNumber, int address) {
-        this(query, orderNumber, address, NULL);
+    private Order(boolean query, Function function, int address) {
+        this(query, function, address, NULL);
     }
 
-    private Order(boolean query, OrderNumber orderNumber) {
-        this(query, orderNumber, NULL, NULL);
+    private Order(boolean query, Function function) {
+        this(query, function, NULL, NULL);
     }
 
     /**
@@ -102,12 +102,12 @@ public final class Order {
         int queryFlag = query ? 1 : 0;
 
         if (hasModifier()) {
-            return String.format("%s%1d%03d%1d", orderNumber, queryFlag, address, modifier);
+            return String.format("%s%1d%03d%1d", function, queryFlag, address, modifier);
         } else if (hasAddress()) {
-            return String.format("%s%1d%03d0", orderNumber, queryFlag, address);
+            return String.format("%s%1d%03d0", function, queryFlag, address);
         }
 
-        return String.format("%s%1d0000", orderNumber, queryFlag);
+        return String.format("%s%1d0000", function, queryFlag);
      }
 
     // CHECKSTYLE:OFF auto-generated
@@ -118,7 +118,7 @@ public final class Order {
         int result = 1;
         result = prime * result + address;
         result = prime * result + modifier;
-        result = prime * result + ((orderNumber == null) ? 0 : orderNumber.hashCode());
+        result = prime * result + ((function == null) ? 0 : function.hashCode());
         result = prime * result + (query ? 1231 : 1237);
         return result;
     }
@@ -136,7 +136,7 @@ public final class Order {
             return false;
         if (modifier != other.modifier)
             return false;
-        if (orderNumber != other.orderNumber)
+        if (function != other.function)
             return false;
         if (query != other.query)
             return false;

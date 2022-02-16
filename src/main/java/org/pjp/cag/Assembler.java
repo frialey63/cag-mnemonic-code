@@ -121,7 +121,7 @@ final class Assembler {
                         matcher = ORDER.matcher(line);
 
                         if (matcher.matches()) {
-                            String orderNumberStr = matcher.group(FUNCTION);
+                            String functionStr = matcher.group(FUNCTION);
                             String addressStr = matcher.group(ADDRESS);
                             String modifierStr = matcher.group(MODIFIER);
                             boolean query = "Q".equals(matcher.group(QUERY));
@@ -130,7 +130,7 @@ final class Assembler {
                                 modifierStr = modifierStr.replaceFirst("\\,", "").trim();
                             }
 
-                            Order order = Order.create(query, orderNumberStr, addressStr, modifierStr);
+                            Order order = Order.create(query, functionStr, addressStr, modifierStr);
 
                             LOGGER.debug("    " + order);
 

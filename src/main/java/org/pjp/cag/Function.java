@@ -3,12 +3,11 @@ package org.pjp.cag;
 import org.pjp.cag.instruction.Instruction;
 
 /**
- * TODO maybe rename to Function or Mnemonic
- * This enum represents the mnemonic for the instruction corresponding to an Order.
+ * This enum represents the function (mnemonic) constituent part of an Order.
  * @author developer
  *
  */
-enum OrderNumber {
+enum Function {
 
     /*
      * Group 0
@@ -66,25 +65,25 @@ enum OrderNumber {
      * Group 6 (Card) Not included
      */
 
-    private final int numericFunction;
+    private final int code;
 
     // where 0 means no args, 1 means exactly 1 arg, 2 means 1 or 2 args
     private final int arity;
 
     /**
-     * @param numericFunction The instruction opcode
+     * @param code The instruction opcode
      * @param arity The arity, ie.e the expected number of arguments
      */
-    OrderNumber(int numericFunction, int arity) {
-        this.numericFunction = numericFunction;
+    Function(int code, int arity) {
+        this.code = code;
         this.arity = arity;
     }
 
     /**
-     * @param numericFunction The instruction opcode
+     * @param code The instruction opcode
      */
-    OrderNumber(int numericFunction) {
-        this(numericFunction, 0);
+    Function(int code) {
+        this(code, 0);
     }
 
     /**
@@ -103,7 +102,7 @@ enum OrderNumber {
 
     @Override
     public String toString() {
-        return String.format("%02d", numericFunction);
+        return String.format("%02d", code);
     }
 
 }

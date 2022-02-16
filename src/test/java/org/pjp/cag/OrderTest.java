@@ -52,7 +52,7 @@ public class OrderTest {
         Order order = Order.create(false, "PNL", null, null);
 
         assertFalse(order.query);
-        assertEquals(OrderNumber.PNL, order.orderNumber);
+        assertEquals(Function.PNL, order.function);
         assertFalse(order.hasAddress());
         assertFalse(order.hasModifier());
     }
@@ -71,7 +71,7 @@ public class OrderTest {
         Order order = Order.create(false, "LDA", "123", null);
 
         assertFalse(order.query);
-        assertEquals(OrderNumber.LDA, order.orderNumber);
+        assertEquals(Function.LDA, order.function);
         assertTrue(order.hasAddress());
         assertFalse(order.hasModifier());
         assertEquals(123, order.address);
@@ -82,7 +82,7 @@ public class OrderTest {
         Order order = Order.create(false, "LDA", "123", "3");
 
         assertFalse(order.query);
-        assertEquals(OrderNumber.LDA, order.orderNumber);
+        assertEquals(Function.LDA, order.function);
         assertTrue(order.hasAddress());
         assertTrue(order.hasModifier());
         assertEquals(123, order.address);
@@ -94,7 +94,7 @@ public class OrderTest {
         Order order = Order.create(true, "LDA", "123", null);
 
         assertTrue(order.query);
-        assertEquals(OrderNumber.LDA, order.orderNumber);
+        assertEquals(Function.LDA, order.function);
         assertTrue(order.hasAddress());
         assertFalse(order.hasModifier());
         assertEquals(123, order.address);
@@ -105,7 +105,7 @@ public class OrderTest {
         Order order = Order.create(true, "LDA", "123", "3");
 
         assertTrue(order.query);
-        assertEquals(OrderNumber.LDA, order.orderNumber);
+        assertEquals(Function.LDA, order.function);
         assertTrue(order.hasAddress());
         assertTrue(order.hasModifier());
         assertEquals(123, order.address);

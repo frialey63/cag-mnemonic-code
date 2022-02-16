@@ -35,7 +35,7 @@ final class Interpreter {
 
                 Order order = store.getLocation(address).order();
 
-                String instructionClassName = order.orderNumber.instructionClass();
+                String instructionClassName = order.function.instructionClass();
 
                 Class<?> clazz = Class.forName(instructionClassName);
 
