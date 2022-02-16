@@ -39,4 +39,60 @@ public class PCTTest {
         }
     }
 
+    @Test
+    public void testExecuteCharacterFollowingNumber() throws IOException {
+        PrintStream prevOut = PaperTape.out;
+
+        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, Computer.CHARSET)) {
+
+            PaperTape.setOut(printStream);
+
+            Store store = new Store();
+            store.setAccumulator((float) Math.PI);
+            store.setLocation(110, Word.create('A'));
+            store.setRegister(3, 10);
+
+            Instruction instruction = new PNT(false, 1, 6);
+            instruction.execute(store);
+
+            instruction = new PCT(false, 100, 3);
+            instruction.execute(store);
+
+            String printText = outputStream.toString();
+
+            assertEquals(" 3.141593  A", printText);
+
+        } finally {
+            PaperTape.setOut(prevOut);
+        }
+    }
+
+    @Test
+    public void testExecuteNumberFollowingCharacter() throws IOException {
+        PrintStream prevOut = PaperTape.out;
+
+        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, Computer.CHARSET)) {
+
+            PaperTape.setOut(printStream);
+
+            Store store = new Store();
+            store.setAccumulator((float) Math.PI);
+            store.setLocation(110, Word.create('A'));
+            store.setRegister(3, 10);
+
+            Instruction instruction = new PCT(false, 100, 3);
+            instruction.execute(store);
+
+            instruction = new PNT(false, 1, 6);
+            instruction.execute(store);
+
+            String printText = outputStream.toString();
+
+            assertEquals("A 3.141593  ", printText);
+
+        } finally {
+            PaperTape.setOut(prevOut);
+        }
+    }
+
 }
