@@ -33,22 +33,4 @@ public class RNTTest {
         }
     }
 
-    @Test(expected = NumberFormatException.class)
-    public void testExecuteTooManyDecimalDigits() throws IOException {
-        InputStream prevIn = PaperTape.in;
-
-        try (InputStream inputStream = new ByteArrayInputStream("123.45678".getBytes())) {
-
-            PaperTape.setIn(inputStream);
-
-            Store store = new Store();
-
-            RNT instruction = new RNT(false);
-            instruction.execute(store);
-
-        } finally {
-            PaperTape.setIn(prevIn);
-        }
-    }
-
 }

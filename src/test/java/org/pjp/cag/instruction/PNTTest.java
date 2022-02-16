@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
@@ -39,6 +38,29 @@ public class PNTTest {
     }
 
     @Test
+    public void testExecuteFloat() throws IOException {
+        PrintStream prevOut = PaperTape.out;
+
+        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, Computer.CHARSET)) {
+
+            PaperTape.setOut(printStream);
+
+            Store store = new Store();
+            store.setAccumulator((float) Math.PI);
+
+            PNT instruction = new PNT(false, 0, 0);
+            instruction.execute(store);
+
+            String printText = outputStream.toString();
+
+            assertEquals(" 3.141593e+00  ", printText);
+
+        } finally {
+            PaperTape.setOut(prevOut);
+        }
+    }
+
+    @Test
     public void testExecuteLeadingZeros() throws IOException {
         PrintStream prevOut = PaperTape.out;
 
@@ -62,7 +84,7 @@ public class PNTTest {
     }
 
     @Test
-    public void testExecuteLeadingZeros2() throws IOException {
+    public void testExecuteLeadingZerosWithSignificantZero() throws IOException {
         PrintStream prevOut = PaperTape.out;
 
         try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, Computer.CHARSET)) {
@@ -131,7 +153,7 @@ public class PNTTest {
     }
 
     @Test
-    public void testExecuteNegativeLeadingZeros2() throws IOException {
+    public void testExecuteNegativeLeadingZerosWithSignificantZero() throws IOException {
         PrintStream prevOut = PaperTape.out;
 
         try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, Computer.CHARSET)) {
@@ -153,7 +175,52 @@ public class PNTTest {
         }
     }
 
-    @Ignore
+    @Test
+    public void testExecuteInteger() throws IOException {
+        PrintStream prevOut = PaperTape.out;
+
+        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, Computer.CHARSET)) {
+
+            PaperTape.setOut(printStream);
+
+            Store store = new Store();
+            store.setAccumulator((float) Math.PI);
+
+            PNT instruction = new PNT(false, 3, 0);
+            instruction.execute(store);
+
+            String printText = outputStream.toString();
+
+            assertEquals("   3  ", printText);
+
+        } finally {
+            PaperTape.setOut(prevOut);
+        }
+    }
+
+    @Test
+    public void testExecuteNegativeInteger() throws IOException {
+        PrintStream prevOut = PaperTape.out;
+
+        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, Computer.CHARSET)) {
+
+            PaperTape.setOut(printStream);
+
+            Store store = new Store();
+            store.setAccumulator((float) -Math.PI);
+
+            PNT instruction = new PNT(false, 3, 0);
+            instruction.execute(store);
+
+            String printText = outputStream.toString();
+
+            assertEquals("  -3  ", printText);
+
+        } finally {
+            PaperTape.setOut(prevOut);
+        }
+    }
+
     @Test
     public void testExecuteNumberExceedsFormat() throws IOException {
         PrintStream prevOut = PaperTape.out;
@@ -171,6 +238,29 @@ public class PNTTest {
             String printText = outputStream.toString();
 
             assertEquals(" 3.141593e+01  ", printText);
+
+        } finally {
+            PaperTape.setOut(prevOut);
+        }
+    }
+
+    @Test
+    public void testExecuteNegativeNumberExceedsFormat() throws IOException {
+        PrintStream prevOut = PaperTape.out;
+
+        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, Computer.CHARSET)) {
+
+            PaperTape.setOut(printStream);
+
+            Store store = new Store();
+            store.setAccumulator((float) (-10 * Math.PI));
+
+            PNT instruction = new PNT(false, 1, 6);
+            instruction.execute(store);
+
+            String printText = outputStream.toString();
+
+            assertEquals("-3.141593e+01  ", printText);
 
         } finally {
             PaperTape.setOut(prevOut);
