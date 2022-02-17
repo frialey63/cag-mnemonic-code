@@ -65,6 +65,8 @@ enum Function {
      * Group 6 (Card) Not included
      */
 
+    private static final int BASE = 10;
+
     private final int code;
 
     // where 0 means no args, 1 means exactly 1 arg, 2 means 1 or 2 args
@@ -84,6 +86,10 @@ enum Function {
      */
     Function(int code) {
         this(code, 0);
+    }
+
+    int group() {
+        return code / BASE;
     }
 
     /**

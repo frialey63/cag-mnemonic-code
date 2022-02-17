@@ -7,6 +7,22 @@ import org.junit.Test;
 public class FunctionTest {
 
     @Test
+    public void testCode() {
+
+        assertEquals(0, Function.LDA.group());
+
+        assertEquals(1, Function.ADDN.group());
+
+        assertEquals(2, Function.STA.group());
+
+        assertEquals(3, Function.JEQ.group());
+
+        assertEquals(4, Function.SIN.group());
+
+        assertEquals(5, Function.PNL.group());
+    }
+
+    @Test
     public void testArity() {
         Function function = Function.LDAN;
 
