@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
-import org.pjp.cag.TestConstants;
+import org.pjp.cag.test.TestConstants;
 
 public class SINTest {
 
@@ -16,7 +16,7 @@ public class SINTest {
         SIN instruction = new SIN(false);
         instruction.execute(store);
 
-        assertEquals(Math.sin(0.5), store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals((float) Math.sin(0.5), store.getAccumulator(), TestConstants.DELTA);
     }
 
 }

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
-import org.pjp.cag.TestConstants;
+import org.pjp.cag.test.TestConstants;
 
 public class COSTest {
 
@@ -16,7 +16,7 @@ public class COSTest {
         COS instruction = new COS(false);
         instruction.execute(store);
 
-        assertEquals(Math.cos(0.5), store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals((float) Math.cos(0.5), store.getAccumulator(), TestConstants.DELTA);
     }
 
 }

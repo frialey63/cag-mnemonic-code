@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
-import org.pjp.cag.TestConstants;
+import org.pjp.cag.test.TestConstants;
 
 public class ARCTest {
 
@@ -16,7 +16,7 @@ public class ARCTest {
         ARC instruction = new ARC(false);
         instruction.execute(store);
 
-        assertEquals(Math.atan(1), store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals((float) Math.atan(1), store.getAccumulator(), TestConstants.DELTA);
     }
 
 }

@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.pjp.cag.exception.FaultyWordException;
+import org.pjp.cag.test.TestConstants;
 
 public class WordTest {
 
@@ -39,7 +40,7 @@ public class WordTest {
     public void testCreateNumber() {
         Word word = Word.create(123);
 
-        assertEquals(123, word.number(), TestConstants.PRECISION);
+        assertEquals(123.0f, word.number(), TestConstants.DELTA);
     }
 
     @Test(expected = FaultyWordException.class)

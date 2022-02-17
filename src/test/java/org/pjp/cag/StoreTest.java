@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.pjp.cag.exception.IllegalLocationException;
 import org.pjp.cag.exception.IllegalRegisterException;
+import org.pjp.cag.test.TestConstants;
 
 public class StoreTest {
 
@@ -22,11 +23,11 @@ public class StoreTest {
 
         store.setAccumulator(321);
 
-        assertEquals(321, store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals(321.0f, store.getAccumulator(), TestConstants.DELTA);
 
         store.clearAccumulator();
 
-        assertEquals(0, store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals(0.0f, store.getAccumulator(), TestConstants.DELTA);
     }
 
     @Test
@@ -108,11 +109,11 @@ public class StoreTest {
 
         store.setRegister(register, 248);
 
-        assertEquals(248, store.getRegister(register), TestConstants.PRECISION);
+        assertEquals(248.0f, store.getRegister(register), TestConstants.DELTA);
 
         store.clearRegister(register);
 
-        assertEquals(0, store.getRegister(register), TestConstants.PRECISION);
+        assertEquals(0f, store.getRegister(register), TestConstants.DELTA);
     }
 
     @Test
@@ -173,7 +174,7 @@ public class StoreTest {
 
         store.setLocation(address, Word.create(3579));
 
-        assertEquals(3579, store.getLocation(address).number(), TestConstants.PRECISION);
+        assertEquals(3579.0f, store.getLocation(address).number(), TestConstants.DELTA);
 
         store.clearLocation(address);
 

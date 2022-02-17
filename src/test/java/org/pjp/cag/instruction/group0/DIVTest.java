@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
-import org.pjp.cag.TestConstants;
 import org.pjp.cag.Word;
 import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.test.TestConstants;
 
 public class DIVTest {
 
@@ -20,7 +20,7 @@ public class DIVTest {
         Instruction instruction = new DIV(false, 100, 3);
         instruction.execute(store);
 
-        assertEquals(123.0 / 456, store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals((float) (123.0 / 456), store.getAccumulator(), TestConstants.DELTA);
     }
 
 }

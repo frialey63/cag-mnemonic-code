@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
-import org.pjp.cag.TestConstants;
+import org.pjp.cag.test.TestConstants;
 
 public class EXPTest {
 
@@ -16,7 +16,7 @@ public class EXPTest {
         EXP instruction = new EXP(false, 16);
         instruction.execute(store);
 
-        assertEquals(Math.exp(1), store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals((float) Math.exp(1), store.getAccumulator(), TestConstants.DELTA);
     }
 
     @Test

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
-import org.pjp.cag.TestConstants;
+import org.pjp.cag.test.TestConstants;
 
 public class SQTTest {
 
@@ -16,7 +16,7 @@ public class SQTTest {
         SQT instruction = new SQT(false, 16);
         instruction.execute(store);
 
-        assertEquals(Math.sqrt(678), store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals((float) Math.sqrt(678), store.getAccumulator(), TestConstants.DELTA);
     }
 
     @Test

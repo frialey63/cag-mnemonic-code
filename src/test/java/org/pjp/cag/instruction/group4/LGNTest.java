@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
-import org.pjp.cag.TestConstants;
+import org.pjp.cag.test.TestConstants;
 
 public class LGNTest {
 
@@ -16,7 +16,7 @@ public class LGNTest {
         LGN instruction = new LGN(false, 16);
         instruction.execute(store);
 
-        assertEquals(Math.log(678), store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals((float) Math.log(678), store.getAccumulator(), TestConstants.DELTA);
     }
 
     @Test

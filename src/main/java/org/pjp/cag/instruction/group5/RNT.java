@@ -21,11 +21,21 @@ public final class RNT extends Instruction {
     private static String readline(InputStreamReader reader) throws IOException {
         StringBuffer sb = new StringBuffer();
 
+        boolean prevSpace = false;
+
         int ch;
         while ((ch = reader.read()) != -1) {
             if (ch == '\n') {
                 break;
             }
+
+            boolean space = (ch == ' ');
+
+            if (space && prevSpace) {
+                break;
+            }
+
+            prevSpace = space;
 
             sb.append((char) ch);
         }

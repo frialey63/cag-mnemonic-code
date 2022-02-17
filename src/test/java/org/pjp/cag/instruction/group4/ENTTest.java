@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
-import org.pjp.cag.TestConstants;
+import org.pjp.cag.test.TestConstants;
 
 public class ENTTest {
 
@@ -16,7 +16,7 @@ public class ENTTest {
         ENT instruction = new ENT(false);
         instruction.execute(store);
 
-        assertEquals(1, store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals(1.0f, store.getAccumulator(), TestConstants.DELTA);
     }
 
     @Test
@@ -27,7 +27,7 @@ public class ENTTest {
         ENT instruction = new ENT(false);
         instruction.execute(store);
 
-        assertEquals(-1, store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals(-1.0f, store.getAccumulator(), TestConstants.DELTA);
     }
 
 }

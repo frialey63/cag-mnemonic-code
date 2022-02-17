@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
-import org.pjp.cag.TestConstants;
+import org.pjp.cag.test.TestConstants;
 
 public class DIVNTest {
 
@@ -16,7 +16,7 @@ public class DIVNTest {
         DIVN instruction = new DIVN(false, 999);
         instruction.execute(store);
 
-        assertEquals(321.0 / 999, store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals((float) (321.0 / 999), store.getAccumulator(), TestConstants.DELTA);
     }
 
 }

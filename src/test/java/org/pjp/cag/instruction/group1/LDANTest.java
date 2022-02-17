@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
-import org.pjp.cag.TestConstants;
+import org.pjp.cag.test.TestConstants;
 
 public class LDANTest {
 
@@ -16,7 +16,7 @@ public class LDANTest {
         LDAN instruction = new LDAN(false, 999);
         instruction.execute(store);
 
-        assertEquals(999, store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals(999.0f, store.getAccumulator(), TestConstants.DELTA);
     }
 
 }

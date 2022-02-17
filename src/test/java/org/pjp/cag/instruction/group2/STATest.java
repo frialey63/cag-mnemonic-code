@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
-import org.pjp.cag.TestConstants;
+import org.pjp.cag.test.TestConstants;
 
 public class STATest {
 
@@ -18,8 +18,8 @@ public class STATest {
         STA instruction = new STA(false, 100, 3);
         instruction.execute(store);
 
-        assertEquals(654, store.getLocation(110).number(), TestConstants.PRECISION);
-        assertEquals(654, store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals(654.0f, store.getLocation(110).number(), TestConstants.DELTA);
+        assertEquals(654.0f, store.getAccumulator(), TestConstants.DELTA);
     }
 
 }

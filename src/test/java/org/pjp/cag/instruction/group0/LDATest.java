@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
-import org.pjp.cag.TestConstants;
 import org.pjp.cag.Word;
+import org.pjp.cag.test.TestConstants;
 
 public class LDATest {
 
@@ -19,7 +19,7 @@ public class LDATest {
         LDA instruction = new LDA(false, 100, 3);
         instruction.execute(store);
 
-        assertEquals(456, store.getAccumulator(), TestConstants.PRECISION);
+        assertEquals(456.0f, store.getAccumulator(), TestConstants.DELTA);
     }
 
 }

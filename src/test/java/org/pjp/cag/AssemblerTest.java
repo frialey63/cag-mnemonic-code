@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.pjp.cag.exception.assembly.ParseException;
 import org.pjp.cag.exception.assembly.StorageException;
 import org.pjp.cag.exception.assembly.UnknownDirectiveException;
+import org.pjp.cag.test.TestConstants;
 
 public class AssemblerTest {
 
@@ -24,12 +25,12 @@ public class AssemblerTest {
 
         new Assembler().assemble(path, store);
 
-        assertEquals(0, store.getLocation(12).number(), TestConstants.PRECISION);
-        assertEquals(1, store.getLocation(13).number(), TestConstants.PRECISION);
-        assertEquals(-1, store.getLocation(14).number(), TestConstants.PRECISION);
-        assertEquals(123.456, store.getLocation(15).number(), TestConstants.PRECISION);
-        assertEquals(-321.654, store.getLocation(16).number(), TestConstants.PRECISION);
-        assertEquals(+2.0e-04, store.getLocation(17).number(), TestConstants.PRECISION);
+        assertEquals(0f, store.getLocation(12).number(), TestConstants.DELTA);
+        assertEquals(1.0f, store.getLocation(13).number(), TestConstants.DELTA);
+        assertEquals(-1.0f, store.getLocation(14).number(), TestConstants.DELTA);
+        assertEquals(123.456f, store.getLocation(15).number(), 0.001f);
+        assertEquals(-321.654f, store.getLocation(16).number(), 0.001f);
+        assertEquals(+2.0e-04, store.getLocation(17).number(), TestConstants.DELTA);
     }
 
     @Test

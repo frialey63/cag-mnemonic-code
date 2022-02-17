@@ -9,9 +9,9 @@ import java.io.InputStreamReader;
 import org.junit.Test;
 import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
-import org.pjp.cag.TestConstants;
 import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.instruction.group2.STA;
 
 public class RNTTest {
 
@@ -28,7 +28,7 @@ public class RNTTest {
             RNT instruction = new RNT(false);
             instruction.execute(store);
 
-            assertEquals(123.4567, store.getAccumulator(), TestConstants.PRECISION);
+            assertEquals(123.4567f, store.getAccumulator(), 0.0001f);
 
         } finally {
             PaperTape.setIn(prevIn);
@@ -53,7 +53,34 @@ public class RNTTest {
             instruction.execute(store);
 
             assertEquals('A', (char) store.getLocation(120).character());
-            assertEquals(123.456, store.getAccumulator(), TestConstants.PRECISION);
+            assertEquals(123.456f, store.getAccumulator(), 0.001f);
+
+        } finally {
+            PaperTape.setIn(prevIn);
+        }
+    }
+
+    @Test
+    public void testExecuteNumberFollowingNumber() throws IOException {
+        InputStreamReader prevIn = PaperTape.in;
+
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("987.654  123.456".getBytes()), Computer.CHARSET)) {
+
+            PaperTape.setIn(inputStreamReader);
+
+            Store store = new Store();
+
+            Instruction instruction = new RNT(false);
+            instruction.execute(store);
+
+            instruction = new STA(false, 100);
+            instruction.execute(store);
+
+            instruction = new RNT(false);
+            instruction.execute(store);
+
+            assertEquals(987.654f, store.getLocation(100).number(), 0.001f);
+            assertEquals(123.456f, store.getAccumulator(), 0.001f);
 
         } finally {
             PaperTape.setIn(prevIn);
