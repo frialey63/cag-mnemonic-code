@@ -1,2 +1,49 @@
 (TITLE)
 Quadratic
+(TITLE)
+Solving an example quadratic equation
+(TITLE)
+Inputs 7:a 8:b 9:c Working 6:det 2:temp Outputs 2:x1 3:x2
+(STORE 12)
+LDA 50
+STA 7
+LDA 51
+STA 8
+LDA 52
+STA 9
+JSR 100
+LDA 3
+PNT 1,6
+PNL
+LDA 2
+PNT 1,6
+JST 0
+(STORE 50)
++5.0
++6.0
++1.0
+(STORE 100)
+LDA 7
+MLT 9
+MLTN 4
+STA 2
+LDA 8
+MLT 8
+SUB 2
+SQT 999
+STA 6
+LDA 7
+MLTN 2
+STA 2
+LDAN 0
+SUB 8
+ADD 6
+DIV 2
+STA 3
+LDAN 0
+SUB 8
+SUB 6
+DIV 2
+STA 2
+JUN 0,4
+(EXECUTE 12)
