@@ -13,9 +13,11 @@ public final class PNL extends Instruction {
 
     /**
      * @param query The query flag
+     * @param address The address
+     * @param modifier The modifier
      */
-    public PNL(boolean query) {
-        super(query);
+    public PNL(boolean query, int address, int modifier) {
+        super(query, address, modifier);
     }
 
     @Override

@@ -146,13 +146,6 @@ public class StoreTest {
     }
 
     @Test(expected = IllegalRegisterException.class)
-    public void testGetRegisterIllegalMax() {
-        Store store = new Store();
-
-        store.getRegister(Store.REGISTERS);
-    }
-
-    @Test(expected = IllegalRegisterException.class)
     public void testSetRegisterIllegalMin() {
         Store store = new Store();
 
@@ -160,10 +153,10 @@ public class StoreTest {
     }
 
     @Test(expected = IllegalRegisterException.class)
-    public void testGetRegisterIllegalMin() {
+    public void testGetRegisterIllegalMax() {
         Store store = new Store();
 
-        store.getRegister(Store.ZERO);
+        store.getRegister(Store.REGISTERS);
     }
 
     @Test
@@ -189,13 +182,6 @@ public class StoreTest {
     }
 
     @Test(expected = IllegalLocationException.class)
-    public void testGetLocationIllegalMax() {
-        Store store = new Store();
-
-        store.getLocation(Store.SIZE);
-    }
-
-    @Test(expected = IllegalLocationException.class)
     public void testSetLocationIllegalMin() {
         Store store = new Store();
 
@@ -203,10 +189,11 @@ public class StoreTest {
     }
 
     @Test(expected = IllegalLocationException.class)
-    public void testGetLocationIllegalMin() {
+    public void testGetLocationIllegalMax() {
         Store store = new Store();
 
-        store.getLocation(Store.ZERO);
+        store.getLocation(Store.SIZE);
     }
+
 
 }

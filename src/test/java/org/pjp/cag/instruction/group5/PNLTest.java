@@ -1,6 +1,7 @@
 package org.pjp.cag.instruction.group5;
 
 import static org.junit.Assert.assertEquals;
+import static org.pjp.cag.Store.ZERO;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class PNLTest {
             Store store = new Store();
             store.setAccumulator((float) Math.PI);
 
-            PNL instruction = new PNL(false);
+            PNL instruction = new PNL(false, ZERO, ZERO);
             instruction.execute(store);
 
             String printText = outputStream.toString();

@@ -5,7 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.pjp.cag.exception.assembly.IncorrectArityException;
 import org.pjp.cag.exception.assembly.UnknownOrderException;
 
 public class OrderTest {
@@ -57,11 +56,6 @@ public class OrderTest {
         assertFalse(order.hasModifier());
     }
 
-    @Test(expected = IncorrectArityException.class)
-    public void testCreatePNLTooManyArgs() {
-        Order.create(false, "PNL", "666", null);
-    }
-
     /*
      * Order with address and (optional) modifier
      */
@@ -110,11 +104,6 @@ public class OrderTest {
         assertTrue(order.hasModifier());
         assertEquals(123, order.address);
         assertEquals(3, order.modifier);
-    }
-
-    @Test(expected = IncorrectArityException.class)
-    public void testCreateLDAMissingArg() {
-        Order.create(false, "LDA", null, null);
     }
 
     /*

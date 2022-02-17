@@ -1,6 +1,7 @@
 package org.pjp.cag.instruction.group4;
 
 import static org.junit.Assert.assertEquals;
+import static org.pjp.cag.Store.ZERO;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
@@ -13,7 +14,7 @@ public class SQTTest {
         Store store = new Store();
         store.setAccumulator(678);
 
-        SQT instruction = new SQT(false, 16);
+        SQT instruction = new SQT(false, 16, ZERO);
         instruction.execute(store);
 
         assertEquals((float) Math.sqrt(678), store.getAccumulator(), TestConstants.DELTA);
@@ -24,7 +25,7 @@ public class SQTTest {
         Store store = new Store();
         store.setAccumulator(-1);
 
-        SQT instruction = new SQT(false, 16);
+        SQT instruction = new SQT(false, 16, ZERO);
         instruction.execute(store);
 
         assertEquals(16, store.getControlAddress());

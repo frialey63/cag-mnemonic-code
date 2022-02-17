@@ -12,41 +12,41 @@ enum Function {
     /*
      * Group 0
      */
-    LDA(0, 2),
-    ADD(1, 2),
-    SUB(2, 2),
-    MLT(3, 2),
-    DIV(4, 2),
+    LDA(0),
+    ADD(1),
+    SUB(2),
+    MLT(3),
+    DIV(4),
 
     /*
      * Group 1
      */
-    LDAN(10, 1),
-    ADDN(11, 1),
-    SUBN(12, 1),
-    MLTN(13, 1),
-    DIVN(14, 1),
+    LDAN(10),
+    ADDN(11),
+    SUBN(12),
+    MLTN(13),
+    DIVN(14),
 
     /*
      * Group 2 (Store)
      */
-    STA(20, 2),
+    STA(20),
 
     /*
      * Group 3 (Jumps)
      */
-    JUN(30, 2),
-    JGR(31, 2),
-    JEQ(32, 2),
-    JSR(33, 2),
-    JST(34, 2),
+    JUN(30),
+    JGR(31),
+    JEQ(32),
+    JSR(33),
+    JST(34),
 
     /*
      * Group 4 (Math)
      */
-    SQT(40, 2),
-    EXP(41, 2),
-    LGN(42, 2),
+    SQT(40),
+    EXP(41),
+    LGN(42),
     SIN(43),
     COS(44),
     ARC(45),
@@ -55,10 +55,10 @@ enum Function {
     /*
      * Group 5 (Paper Tape)
      */
-    RCT(50, 2),
-    PCT(51, 2),
+    RCT(50),
+    PCT(51),
     RNT(52),    // TODO address with maybe modifier will be ignored but must obey tests for error 7 and 9
-    PNT(53, 2), // TODO spec for both integral and fractional digits required
+    PNT(53),    // TODO spec for both integral and fractional digits required
     PNL(54);    // TODO address with maybe modifier will be ignored but must obey tests for error 7 and 9
 
     /*
@@ -69,23 +69,11 @@ enum Function {
 
     private final int code;
 
-    // where 0 means no args, 1 means exactly 1 arg, 2 means 1 or 2 args
-    private final int arity;
-
-    /**
-     * @param code The instruction opcode
-     * @param arity The arity, ie.e the expected number of arguments
-     */
-    Function(int code, int arity) {
-        this.code = code;
-        this.arity = arity;
-    }
-
     /**
      * @param code The instruction opcode
      */
     Function(int code) {
-        this(code, 0);
+        this.code = code;
     }
 
     /**
@@ -93,13 +81,6 @@ enum Function {
      */
     int group() {
         return code / BASE;
-    }
-
-    /**
-     * @return The arity
-     */
-    int arity() {
-        return arity;
     }
 
     /**

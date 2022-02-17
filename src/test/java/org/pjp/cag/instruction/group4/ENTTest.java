@@ -1,6 +1,7 @@
 package org.pjp.cag.instruction.group4;
 
 import static org.junit.Assert.assertEquals;
+import static org.pjp.cag.Store.ZERO;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
@@ -13,7 +14,7 @@ public class ENTTest {
         Store store = new Store();
         store.setAccumulator(1.7f);
 
-        ENT instruction = new ENT(false);
+        ENT instruction = new ENT(false, ZERO, ZERO);
         instruction.execute(store);
 
         assertEquals(1.0f, store.getAccumulator(), TestConstants.DELTA);
@@ -24,7 +25,7 @@ public class ENTTest {
         Store store = new Store();
         store.setAccumulator(-1.2f);
 
-        ENT instruction = new ENT(false);
+        ENT instruction = new ENT(false, ZERO, ZERO);
         instruction.execute(store);
 
         assertEquals(-1.0f, store.getAccumulator(), TestConstants.DELTA);

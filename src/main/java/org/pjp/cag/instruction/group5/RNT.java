@@ -45,9 +45,11 @@ public final class RNT extends Instruction {
 
     /**
      * @param query The query flag
+     * @param address The address
+     * @param modifier The modifier
      */
-    public RNT(boolean query) {
-        super(query);
+    public RNT(boolean query, int address, int modifier) {
+        super(query, address, modifier);
     }
 
     @Override

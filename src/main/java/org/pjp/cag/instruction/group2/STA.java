@@ -20,14 +20,6 @@ public final class STA extends Instruction {
         super(query, address, modifier);
     }
 
-    /**
-     * @param query The query flag
-     * @param address The address
-     */
-    public STA(boolean query, int address) {
-        super(query, address);
-    }
-
     @Override
     public boolean execute(Store store) {
         float accumulator = store.getAccumulator();

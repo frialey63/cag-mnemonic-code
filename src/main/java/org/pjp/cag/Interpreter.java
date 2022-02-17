@@ -38,18 +38,34 @@ final class Interpreter {
                 String instructionClassName = order.function.instructionClass();
 
                 Class<?> clazz = Class.forName(instructionClassName);
+                Constructor<?> declaredConstructor = null;
 
                 Instruction instruction;
 
                 if (order.hasModifier()) {
-                    Constructor<?> declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class, int.class);
+                    declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class, int.class);
                     instruction = (Instruction) declaredConstructor.newInstance(order.query, order.address, order.modifier);
                 } else if (order.hasAddress()) {
-                    Constructor<?> declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class);
-                    instruction = (Instruction) declaredConstructor.newInstance(order.query, order.address);
+                    try {
+                        declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class);
+                        instruction = (Instruction) declaredConstructor.newInstance(order.query, order.address);
+                    } catch (NoSuchMethodException e) {
+                        declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class, int.class);
+                        instruction = (Instruction) declaredConstructor.newInstance(order.query, order.address, ZERO);
+                    }
                 } else {
-                    Constructor<?> declaredConstructor = clazz.getDeclaredConstructor(boolean.class);
-                    instruction = (Instruction) declaredConstructor.newInstance(order.query);
+                    try {
+                        declaredConstructor = clazz.getDeclaredConstructor(boolean.class);
+                        instruction = (Instruction) declaredConstructor.newInstance(order.query);
+                    } catch (NoSuchMethodException e) {
+                        try {
+                            declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class);
+                            instruction = (Instruction) declaredConstructor.newInstance(order.query, ZERO);
+                        } catch (Exception e1) {
+                            declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class, int.class);
+                            instruction = (Instruction) declaredConstructor.newInstance(order.query, ZERO, ZERO);
+                        }
+                    }
                 }
 
                 int savedAddress = address;

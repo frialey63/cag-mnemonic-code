@@ -1,6 +1,7 @@
 package org.pjp.cag.instruction.group5;
 
 import static org.junit.Assert.assertEquals;
+import static org.pjp.cag.Store.ZERO;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class RNTTest {
 
             Store store = new Store();
 
-            RNT instruction = new RNT(false);
+            RNT instruction = new RNT(false, ZERO, ZERO);
             instruction.execute(store);
 
             assertEquals(123.4567f, store.getAccumulator(), 0.0001f);
@@ -49,7 +50,7 @@ public class RNTTest {
             Instruction instruction = new RCT(false, 110, 3);
             instruction.execute(store);
 
-            instruction = new RNT(false);
+            instruction = new RNT(false, ZERO, ZERO);
             instruction.execute(store);
 
             assertEquals('A', (char) store.getLocation(120).character());
@@ -70,13 +71,13 @@ public class RNTTest {
 
             Store store = new Store();
 
-            Instruction instruction = new RNT(false);
+            Instruction instruction = new RNT(false, ZERO, ZERO);
             instruction.execute(store);
 
-            instruction = new STA(false, 100);
+            instruction = new STA(false, 100, ZERO);
             instruction.execute(store);
 
-            instruction = new RNT(false);
+            instruction = new RNT(false, ZERO, ZERO);
             instruction.execute(store);
 
             assertEquals(987.654f, store.getLocation(100).number(), 0.001f);

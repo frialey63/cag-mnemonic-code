@@ -2,7 +2,6 @@ package org.pjp.cag;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.pjp.cag.exception.assembly.IncorrectArityException;
 import org.pjp.cag.exception.assembly.UnknownOrderException;
 
 /**
@@ -22,34 +21,22 @@ public final class Order {
      * @return The order
      */
     public static Order create(boolean query, String functionStr, String addressStr, String modifierStr) {
-
         try {
             Function function = Function.valueOf(functionStr);
 
             if (addressStr == null) {
-                if (function.arity() == 0) {
-                    return new Order(query, function);
-                }
-
+                return new Order(query, function);
             } else {
-                int address = Integer.parseInt(addressStr);          // will parse because matched to number in the regex
+                int address = Integer.parseInt(addressStr);      // will parse because matched to number in the regex
 
                 if (modifierStr == null) {
-                    if (function.arity() > 0) {
-                        return new Order(query, function, address);
-                    }
-
+                    return new Order(query, function, address);
                 } else {
-                    if (function.arity() == 2) {
-                        int modifier = Integer.parseInt(modifierStr);   // will parse because matched to number in the regex
+                    int modifier = Integer.parseInt(modifierStr);   // will parse because matched to number in the regex
 
-                        return new Order(query, function, address, modifier);
-                    }
+                    return new Order(query, function, address, modifier);
                 }
             }
-
-            throw new IncorrectArityException(functionStr + " has an arity of " + function.arity());
-
         } catch (IllegalArgumentException e) {
             throw new UnknownOrderException("Failed to look-up the Function by value: " + functionStr);
         }

@@ -1,5 +1,7 @@
 package org.pjp.cag.instruction;
 
+import static org.pjp.cag.Store.ZERO;
+
 import org.pjp.cag.Store;
 
 /**
@@ -80,7 +82,7 @@ public abstract class Instruction implements Executable {
 
 
     private int getModification(Store store) {
-        if (modifier == 0) {
+        if (modifier == ZERO) {
             return 0;
         }
 

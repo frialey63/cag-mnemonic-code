@@ -1,9 +1,9 @@
 (TITLE)
 Pythagoras
 (TITLE)
-The square on the hypoteneuse is equals to the sum of the squares on the other two sides.
+The square on the hypotenuse is equals to the sum of the squares on the other two sides.
 (TITLE)
-Inputs 7:a 8:b Working 2:temp Outputs 1:c
+Inputs 7:sideA 8:sideB Working 2:temp Output 1:hypotenuse
 (STORE 12)
 LDA 50
 STA 7

@@ -1,6 +1,7 @@
 package org.pjp.cag.instruction;
 
 import static org.junit.Assert.assertEquals;
+import static org.pjp.cag.Store.ZERO;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
@@ -19,7 +20,7 @@ public class InstructionTest {
 
     @Test
     public void testGetAddress() {
-        SQT sqt = new SQT(false, 100);
+        SQT sqt = new SQT(false, 100, ZERO);
 
         assertEquals(100, sqt.getAddress());
     }
@@ -35,7 +36,7 @@ public class InstructionTest {
     public void testGetEffectiveAddressUnmodified() {
         Store store = new Store();
 
-        LDA lda = new LDA(false, 100, 0);
+        LDA lda = new LDA(false, 100, ZERO);
 
         assertEquals(100, lda.getEffectiveAddress(store));
     }

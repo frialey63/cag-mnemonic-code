@@ -21,14 +21,6 @@ public final class JST extends Instruction {
         super(query, address, modifier);
     }
 
-    /**
-     * @param query The query flag
-     * @param address The address
-     */
-    public JST(boolean query, int address) {
-        super(query, address);
-    }
-
     @Override
     public boolean execute(Store store) {
         store.setControlAddress(ZERO);

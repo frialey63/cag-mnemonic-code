@@ -75,10 +75,10 @@ public final class Store {
     private Word[] word = new Word[SIZE];
 
     {
-        word[ZERO] = Word.create(ZERO);
+        word[ZERO] = Word.create(0);
 
         for (int i = 1; i < REGISTERS; i++) {
-            word[i] = Word.create(ZERO);
+            word[i] = Word.create(0);
         }
 
         for (int i = REGISTERS; i < SIZE; i++) {
@@ -90,7 +90,7 @@ public final class Store {
      * @return True if Zero
      */
     public boolean zero() {
-        return word[0].number() == ZERO;
+        return word[ZERO].number() == 0;
     }
 
     /**
@@ -168,7 +168,7 @@ public final class Store {
      * @param register The register to clear
      */
     public void clearRegister(int register) {
-        setRegister(register, ZERO);
+        setRegister(register, 0);
     }
 
     /**
@@ -178,7 +178,7 @@ public final class Store {
     public float getRegister(int register) {
         checkArgument(register >= 0);
 
-        if ((register == ZERO) || (register >= REGISTERS)) {
+        if (register >= REGISTERS) {
             throw new IllegalRegisterException("illegal register: " + register);
         }
 
@@ -213,7 +213,7 @@ public final class Store {
     public Word getLocation(int location) {
         checkArgument(location >= 0);
 
-        if ((location == ZERO) || (location >= SIZE)) {
+        if (location >= SIZE) {
             throw new IllegalLocationException("location out of range: " + location);
         }
 

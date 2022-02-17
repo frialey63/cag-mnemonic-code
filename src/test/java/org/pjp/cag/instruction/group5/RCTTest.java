@@ -1,6 +1,7 @@
 package org.pjp.cag.instruction.group5;
 
 import static org.junit.Assert.assertEquals;
+import static org.pjp.cag.Store.ZERO;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -46,7 +47,7 @@ public class RCTTest {
             Store store = new Store();
             store.setRegister(3, 10);
 
-            Instruction instruction = new RNT(false);
+            Instruction instruction = new RNT(false, ZERO, ZERO);
             instruction.execute(store);
 
             instruction = new RCT(false, 110, 3);
@@ -71,7 +72,7 @@ public class RCTTest {
             Store store = new Store();
             store.setRegister(3, 10);
 
-            Instruction instruction = new RNT(false);
+            Instruction instruction = new RNT(false, ZERO, ZERO);
             instruction.execute(store);
 
             instruction = new RCT(false, 110, 3);

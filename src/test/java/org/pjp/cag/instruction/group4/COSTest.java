@@ -1,6 +1,7 @@
 package org.pjp.cag.instruction.group4;
 
 import static org.junit.Assert.assertEquals;
+import static org.pjp.cag.Store.ZERO;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
@@ -13,7 +14,7 @@ public class COSTest {
         Store store = new Store();
         store.setAccumulator(0.5f);
 
-        COS instruction = new COS(false);
+        COS instruction = new COS(false, ZERO, ZERO);
         instruction.execute(store);
 
         assertEquals((float) Math.cos(0.5), store.getAccumulator(), TestConstants.DELTA);
