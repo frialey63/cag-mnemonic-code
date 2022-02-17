@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import org.pjp.cag.Store;
 import org.pjp.cag.Word;
+import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.instruction.Instruction;
-import org.pjp.cag.io.PaperTape;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

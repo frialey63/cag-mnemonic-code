@@ -11,8 +11,8 @@ import org.junit.Test;
 import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
 import org.pjp.cag.Word;
+import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.instruction.Instruction;
-import org.pjp.cag.io.PaperTape;
 
 public class PCTTest {
 

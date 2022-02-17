@@ -1,8 +1,8 @@
 package org.pjp.cag.instruction.group5;
 
 import org.pjp.cag.Store;
+import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.instruction.Instruction;
-import org.pjp.cag.io.PaperTape;
 
 /**
  * Print the character at the address which may be modified.

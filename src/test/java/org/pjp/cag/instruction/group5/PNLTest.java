@@ -10,7 +10,7 @@ import java.io.PrintStream;
 import org.junit.Test;
 import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
-import org.pjp.cag.io.PaperTape;
+import org.pjp.cag.dev.PaperTape;
 
 public class PNLTest {
 

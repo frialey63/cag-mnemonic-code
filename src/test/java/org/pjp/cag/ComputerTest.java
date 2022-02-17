@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.Test;
-import org.pjp.cag.io.PaperTape;
+import org.pjp.cag.dev.PaperTape;
 
 public class ComputerTest {
 

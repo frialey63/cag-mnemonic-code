@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.directive.AddressDirective;
 import org.pjp.cag.directive.Directive;
 import org.pjp.cag.directive.TitleDirective;
@@ -21,7 +22,6 @@ import org.pjp.cag.exception.AbstractCAGException;
 import org.pjp.cag.exception.assembly.ParseException;
 import org.pjp.cag.exception.assembly.StorageException;
 import org.pjp.cag.exception.assembly.UnknownDirectiveException;
-import org.pjp.cag.io.PaperTape;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
