@@ -88,6 +88,9 @@ enum Function {
         this(code, 0);
     }
 
+    /**
+     * @return The group
+     */
     int group() {
         return code / BASE;
     }
@@ -103,7 +106,7 @@ enum Function {
      * @return The class through which the instruction is instantiated at interpretation time
      */
     String instructionClass() {
-        return Instruction.class.getPackage().getName() + "." + name();
+        return String.format("%s.group%1d.%s", Instruction.class.getPackage().getName(), group(), name());
     }
 
     @Override

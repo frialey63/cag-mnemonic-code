@@ -9,15 +9,11 @@ import org.pjp.cag.Store;
  */
 public abstract class Instruction implements Executable {
 
-    // CHECKSTYLE:OFF encapsulation
+    private boolean query;
 
-    boolean query;
+    private int addressNumber;  // 0 - 999
 
-    int addressNumber;  // 0 - 999
-
-    int modifier;       // 0 - 9
-
-    // CHECKSTYLE:ON
+    private int modifier;       // 0 - 9
 
     /**
      * @param query The query flag
@@ -47,10 +43,38 @@ public abstract class Instruction implements Executable {
     }
 
     /**
+     * @return True if query
+     */
+    public boolean isQuery() {
+        return query;
+    }
+
+    /**
+     * @return The address/number as a number
+     */
+    protected int getNumber() {
+        return addressNumber;
+    }
+
+    /**
+     * @return The address as an address
+     */
+    protected int getAddress() {
+        return addressNumber;
+    }
+
+    /**
+     * @return The modifier
+     */
+    protected int getModifier() {
+        return modifier;
+    }
+
+    /**
      * @param store The store
      * @return The effective address which is the summation of the address and the modification
      */
-    int getEffectiveAddress(Store store) {
+    protected int getEffectiveAddress(Store store) {
         return addressNumber + getModification(store);
     }
 
