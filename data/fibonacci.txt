@@ -1,2 +1,32 @@
 (TITLE)
 Fibonacci
+(TITLE)
+Prints the first 10 elements of the Fibonacci Sequence
+(TITLE)
+3:counter 7:previous 8:current 2:temp
+(STORE 12)
+LDAN 8
+STA 3
+LDAN 0
+PNT 6,1
+PNL
+STA 7
+LDAN 1
+PNT 6,1
+PNL
+STA 8
+LDA 8
+ADD 7
+PNT 6,1
+PNL
+STA 2
+LDA 8
+STA 7
+LDA 2
+STA 8
+LDA 3
+SUBN 1
+STA 3
+JGR 22
+JST 0
+(EXECUTE 12)
