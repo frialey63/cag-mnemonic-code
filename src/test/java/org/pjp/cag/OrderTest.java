@@ -15,9 +15,9 @@ public class OrderTest {
 
         assertEquals("5400000", order.toString());
 
-        order = Order.create(true, "PNL", null, null);
+        order = Order.create(true, "PNL", "12", null);
 
-        assertEquals("5410000", order.toString());
+        assertEquals("5410120", order.toString());
     }
 
     @Test

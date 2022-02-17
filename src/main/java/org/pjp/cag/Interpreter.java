@@ -74,7 +74,7 @@ final class Interpreter {
                     store.incControlAddress();
                 }
 
-                if (trace && order.query) {
+                if (trace && instruction.isQuery()) {
                     System.out.printf("Q %4d %.6e\n", savedAddress, store.getAccumulator());
                 }
 

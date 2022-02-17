@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.pjp.cag.exception.assembly.ParseException;
 import org.pjp.cag.exception.assembly.StorageException;
 import org.pjp.cag.exception.assembly.UnknownDirectiveException;
+import org.pjp.cag.exception.assembly.UnknownOrderException;
 import org.pjp.cag.test.TestConstants;
 
 public class AssemblerTest {
@@ -75,6 +76,15 @@ public class AssemblerTest {
     @Test(expected = ParseException.class)
     public void testAssembleUnparseableText() throws URISyntaxException, IOException {
         Path path = Paths.get(ClassLoader.getSystemResource("unparseable_text.txt").toURI());
+
+        Store store = new Store();
+
+        new Assembler().assemble(path, store);
+    }
+
+    @Test(expected = UnknownOrderException.class)
+    public void testAssembleUnknownOrder() throws URISyntaxException, IOException {
+        Path path = Paths.get(ClassLoader.getSystemResource("unknown_order.txt").toURI());
 
         Store store = new Store();
 

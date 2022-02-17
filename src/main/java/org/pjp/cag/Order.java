@@ -25,7 +25,7 @@ public final class Order {
             Function function = Function.valueOf(functionStr);
 
             if (addressStr == null) {
-                return new Order(query, function);
+                return new Order(function);
             } else {
                 int address = Integer.parseInt(addressStr);      // will parse because matched to number in the regex
 
@@ -66,8 +66,8 @@ public final class Order {
         this(query, function, address, NULL);
     }
 
-    private Order(boolean query, Function function) {
-        this(query, function, NULL, NULL);
+    private Order(Function function) {
+        this(false, function, NULL, NULL);
     }
 
     /**
