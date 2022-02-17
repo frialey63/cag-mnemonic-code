@@ -62,7 +62,7 @@ final class Assembler {
      9 tab                ‘     1     ;     E     O     Y     c     m     w
 
      */
-    private static final Pattern CHARACTER = Pattern.compile("=[ \\!\"\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/0-9\\:\\;\\<\\=\\>A-Z\\[\\£\\]\\@a-z]");
+    private static final Pattern CHARACTER = Pattern.compile("=[ \\!\"\\½\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/0-9\\:\\;\\<\\=\\>\\`A-Z\\[\\£\\]\\@a-z]");
 
     // https://www.regular-expressions.info/floatingpoint.html
     private static final Pattern NUMBER = Pattern.compile("[-+][0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?");
