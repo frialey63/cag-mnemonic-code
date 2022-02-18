@@ -2,7 +2,9 @@ package org.pjp.cag;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,11 +25,15 @@ public final class Computer {
      */
     public static final String CHARSET = "UTF-8";
 
+    private static final int THREE = 3;
+
+    private static final String TRACE = "trace";
+
+    private static final File DIR = new File("data");
+
     private static final Logger LOGGER = LoggerFactory.getLogger(Computer.class);
 
     private static final String USAGE = "usage: org.pjp.cag.Computer <filename> [trace]";
-
-    private static final File DATA = new File("data", "data.dat");
 
     /**
      * @param args The program arguments
@@ -36,11 +42,24 @@ public final class Computer {
     public static void main(String[] args) throws IOException {
         if (args.length >= 1) {
             Path path = Paths.get(args[0]);
+            File data = null;
+            boolean trace = false;
 
-            try (InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(DATA), Computer.CHARSET)) {
+            if (args.length >= THREE) {
+                data = new File(DIR, args[1]);
+                trace = TRACE.equalsIgnoreCase(args[2]);
+            } else if (args.length == 2) {
+                if (TRACE.equalsIgnoreCase(args[1])) {
+                    trace = true;
+                } else {
+                    data = new File(args[1]);
+                }
+            }
+
+            try (InputStreamReader inputStreamReader = new InputStreamReader(getInputStream(data), Computer.CHARSET)) {
                 PaperTape.setIn(inputStreamReader);
 
-                innerMain(path, (args.length == 2));
+                innerMain(path, trace);
             }
         } else {
             System.err.println(USAGE);
@@ -63,6 +82,14 @@ public final class Computer {
 
             assert store.zero();
         }
+    }
+
+    private static InputStream getInputStream(File file) throws FileNotFoundException {
+        if (file == null) {
+            return System.in;
+        }
+
+        return new FileInputStream(file);
     }
 
     private Computer() {

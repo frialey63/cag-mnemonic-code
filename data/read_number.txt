@@ -1,5 +1,5 @@
 (TITLE)
-Read Numbers
+Read Number
 (STORE 12)
 LDAN 5
 STA 2

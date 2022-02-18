@@ -1,5 +1,5 @@
 (TITLE)
-Read Characters
+Read Character
 (STORE 12)
 LDAN 5
 RCT 100, 1
