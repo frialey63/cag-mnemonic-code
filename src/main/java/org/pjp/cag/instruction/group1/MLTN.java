@@ -22,7 +22,7 @@ public final class MLTN extends Instruction {
     public boolean execute(Store store) {
         float accumulator = store.getAccumulator();
 
-        store.setAccumulator(accumulator * getNumber());
+        store.setAccumulator(accumulator * getLiteral());
 
         return true;
     }

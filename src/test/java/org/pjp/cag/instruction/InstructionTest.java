@@ -12,10 +12,10 @@ import org.pjp.cag.instruction.group4.SQT;
 public class InstructionTest {
 
     @Test
-    public void testGetNumber() {
+    public void testGetLiteral() {
         LDAN ldan = new LDAN(false, 100);
 
-        assertEquals(100, ldan.getNumber());
+        assertEquals(100, ldan.getLiteral());
     }
 
     @Test

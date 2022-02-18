@@ -13,7 +13,7 @@ public abstract class Instruction implements Executable {
 
     private boolean query;
 
-    private int addressNumber;  // 0 - 999
+    private int addressLiteral; // 0 - 999
 
     private int modifier;       // 0 - 9
 
@@ -25,7 +25,7 @@ public abstract class Instruction implements Executable {
     public Instruction(boolean query, int address, int modifier) {
         super();
         this.query = query;
-        this.addressNumber = address;
+        this.addressLiteral = address;
         this.modifier = modifier;
     }
 
@@ -52,17 +52,17 @@ public abstract class Instruction implements Executable {
     }
 
     /**
-     * @return The address/number as a number
+     * @return The literal
      */
-    protected int getNumber() {
-        return addressNumber;
+    protected int getLiteral() {
+        return addressLiteral;
     }
 
     /**
-     * @return The address as an address
+     * @return The address
      */
     protected int getAddress() {
-        return addressNumber;
+        return addressLiteral;
     }
 
     /**
@@ -77,7 +77,7 @@ public abstract class Instruction implements Executable {
      * @return The effective address which is the summation of the address and the modification
      */
     protected int getEffectiveAddress(Store store) {
-        return addressNumber + getModification(store);
+        return addressLiteral + getModification(store);
     }
 
 
