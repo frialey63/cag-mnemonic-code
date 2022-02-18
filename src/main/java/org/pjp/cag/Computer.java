@@ -1,9 +1,13 @@
 package org.pjp.cag;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.pjp.cag.dev.PaperTape;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +27,8 @@ public final class Computer {
 
     private static final String USAGE = "usage: org.pjp.cag.Computer <filename> [trace]";
 
+    private static final File DATA = new File("data", "data.dat");
+
     /**
      * @param args The program arguments
      * @throws IOException
@@ -31,8 +37,11 @@ public final class Computer {
         if (args.length >= 1) {
             Path path = Paths.get(args[0]);
 
-            innerMain(path, (args.length == 2));
+            try (InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(DATA), Computer.CHARSET)) {
+                PaperTape.setIn(inputStreamReader);
 
+                innerMain(path, (args.length == 2));
+            }
         } else {
             System.err.println(USAGE);
         }

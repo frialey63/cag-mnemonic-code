@@ -55,7 +55,9 @@ public final class RNT extends Instruction {
     @Override
     public boolean execute(Store store) {
         try {
-            float number = Float.parseFloat(readline(PaperTape.in));
+            String line = readline(PaperTape.in);
+
+            float number = Float.parseFloat(line);
 
             store.setAccumulator(number);
         } catch (IOException e) {
