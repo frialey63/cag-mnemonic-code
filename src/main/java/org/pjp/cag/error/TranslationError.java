@@ -8,28 +8,25 @@ package org.pjp.cag.error;
 public enum TranslationError {
 
     /**
-     * The error 1.
-     * (May be due to a mis-punched tape.  The tape stops when this error is found.)
+     * The error 1.  (May be due to a mis-punched tape.  The tape stops when this error is found.)
      */
     ERR_1(1, "Inadmissable character - no decode"),
 
     /**
      * The error 2.
-     * Character other than letter, digit + -, (or) found.
      */
-    ERR_2(2, "Unacceptable character in this position."),
+    ERR_2(2, "Unacceptable character in this position.\nCharacter other than letter, digit + -, (or) found."),
 
     /**
-     * The error 3.
-     * (Integer exceeding 131071)
+     * The error 3.  (Integer exceeding 131071)
      */
     ERR_3(3, "Number out of range."),
 
     /**
      * The error 4.
-     * Due to omission of (STORE) directive
+     *
      */
-    ERR_4(4, "Compiling program out of store range."),
+    ERR_4(4, "Compiling program out of store range.\nDue to omission of (STORE) directive."),
 
     /**
      * The error 5.
@@ -65,9 +62,13 @@ public enum TranslationError {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return String.format("ERR%1d %s", number, description);
+
+    public int number() {
+        return number;
+    }
+
+    public String description() {
+        return description;
     }
 
 }

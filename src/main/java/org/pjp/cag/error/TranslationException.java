@@ -10,7 +10,7 @@ public class TranslationException extends Exception {
     private static final long serialVersionUID = -4242386450213011282L;
 
     public TranslationException(TranslationError error) {
-        super(error.toString());
+        super(String.format("%2d", error.number()));
     }
 
 

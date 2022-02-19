@@ -2,8 +2,6 @@
 Quadratic
 (TITLE)
 Solving an example quadratic equation
-(TITLE)
-Inputs 7:a 8:b 9:c Working 6:det 2:temp Outputs 2:x1 3:x2
 (STORE 12)
 LDA 50
 STA 7

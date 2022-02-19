@@ -21,6 +21,11 @@ import org.slf4j.LoggerFactory;
 public final class Computer {
 
     /**
+     * The maximum integer 2^17 - 1.
+     */
+    public static final int MAX_INT = 131071;
+
+    /**
      * The name of the character set.
      */
     public static final String CHARSET = "UTF-8";
@@ -66,7 +71,7 @@ public final class Computer {
         }
     }
 
-    static void innerMain(Path path, boolean trace) throws IOException {
+    static void innerMain(Path path, boolean trace) {
         Store store = new Store();
 
         assert store.zero();

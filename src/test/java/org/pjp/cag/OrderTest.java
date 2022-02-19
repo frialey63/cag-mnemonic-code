@@ -5,12 +5,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.pjp.cag.exception.assembly.UnknownOrderException;
+import org.pjp.cag.error.TranslationException;
 
 public class OrderTest {
 
     @Test
-    public void testToString() {
+    public void testToString() throws TranslationException {
         Order order = Order.create(false, "PNL", null, null);
 
         assertEquals("5400000", order.toString());
@@ -21,7 +21,7 @@ public class OrderTest {
     }
 
     @Test
-    public void testToStringWithAddress() {
+    public void testToStringWithAddress() throws TranslationException {
         Order order = Order.create(false, "LDAN", "44", null);
 
         assertEquals("1000440", order.toString());
@@ -32,7 +32,7 @@ public class OrderTest {
     }
 
     @Test
-    public void testToStringWithModifier() {
+    public void testToStringWithModifier() throws TranslationException {
         Order order = Order.create(false, "LDA", "44", "3");
 
         assertEquals("0000443", order.toString());
@@ -47,7 +47,7 @@ public class OrderTest {
      */
 
     @Test
-    public void testCreatePNL() {
+    public void testCreatePNL() throws TranslationException {
         Order order = Order.create(false, "PNL", null, null);
 
         assertFalse(order.query);
@@ -61,7 +61,7 @@ public class OrderTest {
      */
 
     @Test
-    public void testCreateLDA() {
+    public void testCreateLDA() throws TranslationException {
         Order order = Order.create(false, "LDA", "123", null);
 
         assertFalse(order.query);
@@ -72,7 +72,7 @@ public class OrderTest {
     }
 
     @Test
-    public void testCreateLDAModified() {
+    public void testCreateLDAModified() throws TranslationException {
         Order order = Order.create(false, "LDA", "123", "3");
 
         assertFalse(order.query);
@@ -84,7 +84,7 @@ public class OrderTest {
     }
 
     @Test
-    public void testCreateQLDA() {
+    public void testCreateQLDA() throws TranslationException {
         Order order = Order.create(true, "LDA", "123", null);
 
         assertTrue(order.query);
@@ -95,7 +95,7 @@ public class OrderTest {
     }
 
     @Test
-    public void testCreateQLDAModified() {
+    public void testCreateQLDAModified() throws TranslationException {
         Order order = Order.create(true, "LDA", "123", "3");
 
         assertTrue(order.query);
@@ -105,14 +105,5 @@ public class OrderTest {
         assertEquals(123, order.address);
         assertEquals(3, order.modifier);
     }
-
-    /*
-     * Unknown Order
-     */
-    @Test(expected = UnknownOrderException.class)
-    public void testCreateUnknown() {
-        Order.create(false, "ABC", null, null);
-    }
-
 
 }

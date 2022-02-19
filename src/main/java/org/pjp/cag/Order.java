@@ -2,7 +2,8 @@ package org.pjp.cag;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.pjp.cag.exception.assembly.UnknownOrderException;
+import org.pjp.cag.error.TranslationError;
+import org.pjp.cag.error.TranslationException;
 
 /**
  * The Order comprises the mnemonic for an instruction together with its associated arguments.
@@ -19,26 +20,35 @@ public final class Order {
      * @param addressStr The address
      * @param modifierStr The modifier
      * @return The order
+     * @throws TranslationException
      */
-    public static Order create(boolean query, String functionStr, String addressStr, String modifierStr) {
+    public static Order create(boolean query, String functionStr, String addressStr, String modifierStr) throws TranslationException {
         try {
             Function function = Function.valueOf(functionStr);
 
             if (addressStr == null) {
                 return new Order(function);
             } else {
-                int address = Integer.parseInt(addressStr);      // will parse because matched to number in the regex
+                int address = Integer.parseInt(addressStr);          // will parse because matched to number in the regex
 
-                if (modifierStr == null) {
+                if (address >= Store.SIZE) {
+                    throw new TranslationException(TranslationError.ERR_9);
+                }
+
+               if (modifierStr == null) {
                     return new Order(query, function, address);
                 } else {
                     int modifier = Integer.parseInt(modifierStr);   // will parse because matched to number in the regex
+
+                    if (modifier >= Store.REGISTERS) {
+                        throw new TranslationException(TranslationError.ERR_7);
+                    }
 
                     return new Order(query, function, address, modifier);
                 }
             }
         } catch (IllegalArgumentException e) {
-            throw new UnknownOrderException("Failed to look-up the Function by value: " + functionStr);
+            throw new TranslationException(TranslationError.ERR_8);
         }
     }
 

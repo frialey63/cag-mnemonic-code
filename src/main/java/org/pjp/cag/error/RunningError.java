@@ -62,9 +62,12 @@ public enum RunningError {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return String.format("ERR%1d %s", number, description);
+    public int getNumber() {
+        return number;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
 }

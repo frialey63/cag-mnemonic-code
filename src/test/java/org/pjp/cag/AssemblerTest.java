@@ -2,25 +2,23 @@ package org.pjp.cag;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
-import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.Test;
-import org.pjp.cag.exception.assembly.ParseException;
-import org.pjp.cag.exception.assembly.StorageException;
-import org.pjp.cag.exception.assembly.UnknownDirectiveException;
-import org.pjp.cag.exception.assembly.UnknownOrderException;
+import org.pjp.cag.error.TranslationError;
+import org.pjp.cag.error.TranslationException;
 import org.pjp.cag.test.TestConstants;
 
 public class AssemblerTest {
 
     @Test
-    public void testAssembleNumbers() throws URISyntaxException, IOException {
-        Path path = Paths.get(ClassLoader.getSystemResource("numbers.txt").toURI());
+    public void testAssembleNumbers() throws URISyntaxException {
+        Path path = Paths.get(ClassLoader.getSystemResource("number.txt").toURI());
 
         Store store = new Store();
 
@@ -35,22 +33,7 @@ public class AssemblerTest {
     }
 
     @Test
-    public void testAssembleCharacters() throws URISyntaxException, IOException {
-        Path path = Paths.get(ClassLoader.getSystemResource("characters.txt").toURI());
-
-        Store store = new Store();
-
-        new Assembler().assemble(path, store);
-
-        assertEquals('H', store.getLocation(12).character());
-        assertEquals('E', store.getLocation(13).character());
-        assertEquals('L', store.getLocation(14).character());
-        assertEquals('L', store.getLocation(15).character());
-        assertEquals('O', store.getLocation(16).character());
-    }
-
-    @Test
-    public void testAssembleQuery() throws URISyntaxException, IOException {
+    public void testAssembleQuery() throws URISyntaxException {
         Path path = Paths.get(ClassLoader.getSystemResource("query.txt").toURI());
 
         Store store = new Store();
@@ -64,40 +47,105 @@ public class AssemblerTest {
         assertFalse(store.getLocation(16).order().query);
     }
 
-    @Test(expected = StorageException.class)
-    public void testAssembleMissingStorageDirective() throws URISyntaxException, IOException {
-        Path path = Paths.get(ClassLoader.getSystemResource("missing_storage_directive.txt").toURI());
+    @Test
+    public void testAssembleUnacceptableCharacter() {
+        TranslationException exception = assertThrows(TranslationException.class, () -> {
+            Store store = new Store();
 
-        Store store = new Store();
+            new Assembler().assemble("ABC$123", store);
+        });
 
-        new Assembler().assemble(path, store);
+        assertEquals(TranslationError.ERR_2.number(), Integer.parseInt(exception.getMessage().trim()));
     }
 
-    @Test(expected = ParseException.class)
-    public void testAssembleUnparseableText() throws URISyntaxException, IOException {
-        Path path = Paths.get(ClassLoader.getSystemResource("unparseable_text.txt").toURI());
+    @Test
+    public void testAssembleNumberOutOfRange() {
+        TranslationException exception = assertThrows(TranslationException.class, () -> {
+            Store store = new Store();
 
-        Store store = new Store();
+            new Assembler().assemble("+131072", store);
+        });
 
-        new Assembler().assemble(path, store);
+        assertEquals(TranslationError.ERR_3.number(), Integer.parseInt(exception.getMessage().trim()));
     }
 
-    @Test(expected = UnknownOrderException.class)
-    public void testAssembleUnknownOrder() throws URISyntaxException, IOException {
-        Path path = Paths.get(ClassLoader.getSystemResource("unknown_order.txt").toURI());
+    @Test
+    public void testAssembleOutOfStoreRange() {
+        TranslationException exception = assertThrows(TranslationException.class, () -> {
+            Path path = Paths.get(ClassLoader.getSystemResource("missing_storage_directive.txt").toURI());
 
-        Store store = new Store();
+            Store store = new Store();
 
-        new Assembler().assemble(path, store);
+            new Assembler().innerAssemble(path, store);
+        });
+
+        assertEquals(TranslationError.ERR_4.number(), Integer.parseInt(exception.getMessage().trim()));
     }
 
-    @Test(expected = UnknownDirectiveException.class)
-    public void testAssembleUnknownDirective() throws URISyntaxException, IOException {
-        Path path = Paths.get(ClassLoader.getSystemResource("unknown_directive.txt").toURI());
+    @Test
+    public void testAssembleUnknownDirective() {
+        TranslationException exception = assertThrows(TranslationException.class, () -> {
+            Store store = new Store();
 
-        Store store = new Store();
+            new Assembler().assemble("(FRED)", store);
+        });
 
-        new Assembler().assemble(path, store);
+        assertEquals(TranslationError.ERR_5.number(), Integer.parseInt(exception.getMessage().trim()));
+    }
+
+    @Test
+    public void testAssembleIntegerInDirective() {
+        TranslationException exception = assertThrows(TranslationException.class, () -> {
+            Store store = new Store();
+
+            new Assembler().assemble("(TITLE 999)", store);
+        });
+
+        assertEquals(TranslationError.ERR_6.number(), Integer.parseInt(exception.getMessage().trim()));
+    }
+
+    @Test
+    public void testAssembleModifierNotIndex() {
+        TranslationException exception = assertThrows(TranslationException.class, () -> {
+            Store store = new Store();
+
+            new Assembler().assemble("LDA 100,10", store);
+        });
+
+        assertEquals(TranslationError.ERR_7.number(), Integer.parseInt(exception.getMessage().trim()));
+    }
+
+    @Test
+    public void testAssembleErrorInMnemonic() {
+        TranslationException exception = assertThrows(TranslationException.class, () -> {
+            Store store = new Store();
+
+            new Assembler().assemble("ZAP", store);
+        });
+
+        assertEquals(TranslationError.ERR_8.number(), Integer.parseInt(exception.getMessage().trim()));
+    }
+
+    @Test
+    public void testAssembleAddressOutOfRange() {
+        TranslationException exception = assertThrows(TranslationException.class, () -> {
+            Store store = new Store();
+
+            new Assembler().assemble("LDA 1001", store);
+        });
+
+        assertEquals(TranslationError.ERR_9.number(), Integer.parseInt(exception.getMessage().trim()));
+    }
+
+    @Test
+    public void testAssembleAddressDirectiveOutOfRange() {
+        TranslationException exception = assertThrows(TranslationException.class, () -> {
+            Store store = new Store();
+
+            new Assembler().assemble("(STORE 1000)", store);
+        });
+
+        assertEquals(TranslationError.ERR_9.number(), Integer.parseInt(exception.getMessage().trim()));
     }
 
 }

@@ -57,9 +57,22 @@ public final class RNT extends Instruction {
         try {
             String line = readline(PaperTape.in);
 
-            float number = Float.parseFloat(line);
+            try {
+                long integer = Long.parseLong(line);
 
-            store.setAccumulator(number);
+//                // TODO the running error for integer out of range
+//                if (Math.abs(integer) > Computer.MAX_INT) {
+//
+//                }
+
+                store.setAccumulator(integer);
+
+            } catch (NumberFormatException e) {
+                float number = Float.parseFloat(line);
+
+                store.setAccumulator(number);
+            }
+
         } catch (IOException e) {
             LOGGER.error("caught IOException while attempting to read number from tape", e);
         }

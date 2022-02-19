@@ -3,7 +3,8 @@ package org.pjp.cag.directive;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.pjp.cag.Store;
-import org.pjp.cag.exception.assembly.InvalidAddressException;
+import org.pjp.cag.error.TranslationError;
+import org.pjp.cag.error.TranslationException;
 
 /**
  * This class represents a directive with an associated address.
@@ -27,13 +28,14 @@ public final class AddressDirective extends Directive {
     /**
      * @param type The type of the directive
      * @param address The address
+     * @throws TranslationException
      */
-    public AddressDirective(String type, int address) {
+    public AddressDirective(String type, int address) throws TranslationException {
         super(type);
         this.address = checkNotNull(address, "address cannot be null");
 
-        if ((address < Store.REGISTERS) || (address >= Store.SIZE)) {
-            throw new InvalidAddressException("store / execute not allowed for address: " + address);
+        if (address >= Store.SIZE) {
+            throw new TranslationException(TranslationError.ERR_9);
         }
     }
 

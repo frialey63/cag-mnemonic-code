@@ -4,13 +4,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.pjp.cag.error.TranslationException;
 import org.pjp.cag.exception.FaultyWordException;
 import org.pjp.cag.test.TestConstants;
 
 public class WordTest {
 
     @Test
-    public void testCreateOrder() {
+    public void testCreateOrder() throws TranslationException {
         Order order = Order.create(false, "LDA", "123", "3");
 
         Word word = Word.create(order);
@@ -19,7 +20,7 @@ public class WordTest {
     }
 
     @Test(expected = FaultyWordException.class)
-    public void testCreateOrderNotNumber() {
+    public void testCreateOrderNotNumber() throws TranslationException {
         Order order = Order.create(false, "LDA", "123", "3");
 
         Word word = Word.create(order);
@@ -28,7 +29,7 @@ public class WordTest {
     }
 
     @Test(expected = FaultyWordException.class)
-    public void testCreateOrderNotCharacter() {
+    public void testCreateOrderNotCharacter() throws TranslationException {
         Order order = Order.create(false, "LDA", "123", "3");
 
         Word word = Word.create(order);
