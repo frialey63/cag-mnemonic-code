@@ -38,8 +38,7 @@ public enum RunningError {
     ERR_15(15, "Arithmetic or Output attempted with instruction not number."),
 
     /**
-     * The error 16.
-     * (Due to PCT using location not filled by RCT instruction)
+     * The error 16.  (Due to PCT using location not filled by RCT instruction)
      */
     ERR_16(16, "Inadmissable character to output."),
 
@@ -51,7 +50,7 @@ public enum RunningError {
     /**
      * The error 18.
      */
-    ERR_18(18, "FLoating point overflow (e.g. dividing by zero).");
+    ERR_18(18, "Floating point overflow (e.g. dividing by zero).");
 
     private final int number;
 
