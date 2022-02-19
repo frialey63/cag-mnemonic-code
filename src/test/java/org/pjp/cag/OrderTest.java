@@ -5,7 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.pjp.cag.error.TranslationException;
+import org.pjp.cag.exception.TranslationException;
 
 public class OrderTest {
 

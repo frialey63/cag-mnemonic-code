@@ -1,4 +1,4 @@
-package org.pjp.cag.error;
+package org.pjp.cag.exception;
 
 /**
  * This exception wraps the errors which may occur during the translation of a program.

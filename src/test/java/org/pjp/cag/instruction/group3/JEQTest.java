@@ -6,8 +6,8 @@ import static org.pjp.cag.Store.ZERO;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
-import org.pjp.cag.error.RunningError;
-import org.pjp.cag.error.RunningException;
+import org.pjp.cag.exception.RunningError;
+import org.pjp.cag.exception.RunningException;
 
 public class JEQTest {
 

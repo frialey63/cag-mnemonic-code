@@ -2,8 +2,8 @@ package org.pjp.cag;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.pjp.cag.error.TranslationError;
-import org.pjp.cag.error.TranslationException;
+import org.pjp.cag.exception.TranslationError;
+import org.pjp.cag.exception.TranslationException;
 
 /**
  * The Order comprises the mnemonic for an instruction together with its associated arguments.

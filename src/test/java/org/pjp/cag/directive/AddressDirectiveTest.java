@@ -3,7 +3,7 @@ package org.pjp.cag.directive;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import org.pjp.cag.error.TranslationException;
+import org.pjp.cag.exception.TranslationException;
 
 public class AddressDirectiveTest {
 

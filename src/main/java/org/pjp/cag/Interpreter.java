@@ -4,7 +4,9 @@ import static org.pjp.cag.Store.ZERO;
 
 import java.lang.reflect.Constructor;
 
-import org.pjp.cag.error.RunningException;
+import org.pjp.cag.exception.RunningError;
+import org.pjp.cag.exception.RunningException;
+import org.pjp.cag.exception.internal.FaultyWordException;
 import org.pjp.cag.instruction.Instruction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,14 @@ import org.slf4j.LoggerFactory;
 final class Interpreter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Interpreter.class);
+
+    static Order getOrder(Store store, int address) {
+        try {
+            return store.getLocation(address).order();
+        } catch (FaultyWordException e) {
+            throw new RunningException(RunningError.ERR_11);
+        }
+    }
 
     /**
      * @param store The computer store
@@ -33,7 +43,7 @@ final class Interpreter {
                     break;
                 }
 
-                Order order = store.getLocation(address).order();
+                Order order = getOrder(store, address);
 
                 String instructionClassName = order.function.instructionClass();
 

@@ -10,8 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.Test;
-import org.pjp.cag.error.TranslationError;
-import org.pjp.cag.error.TranslationException;
+import org.pjp.cag.exception.TranslationError;
+import org.pjp.cag.exception.TranslationException;
 import org.pjp.cag.test.TestConstants;
 
 public class AssemblerTest {

@@ -1,4 +1,4 @@
-package org.pjp.cag.error;
+package org.pjp.cag.exception;
 
 /**
  * This enum represents the run error numbers for the CAG computer.

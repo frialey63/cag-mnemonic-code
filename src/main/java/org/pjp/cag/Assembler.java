@@ -18,8 +18,8 @@ import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.directive.AddressDirective;
 import org.pjp.cag.directive.Directive;
 import org.pjp.cag.directive.TitleDirective;
-import org.pjp.cag.error.TranslationError;
-import org.pjp.cag.error.TranslationException;
+import org.pjp.cag.exception.TranslationError;
+import org.pjp.cag.exception.TranslationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

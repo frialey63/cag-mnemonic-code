@@ -3,6 +3,7 @@ package org.pjp.cag.error;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+import org.pjp.cag.exception.TranslationError;
 
 public class TranslationErrorTest {
 

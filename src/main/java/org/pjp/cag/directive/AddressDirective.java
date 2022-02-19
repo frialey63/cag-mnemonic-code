@@ -3,8 +3,8 @@ package org.pjp.cag.directive;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.pjp.cag.Store;
-import org.pjp.cag.error.TranslationError;
-import org.pjp.cag.error.TranslationException;
+import org.pjp.cag.exception.TranslationError;
+import org.pjp.cag.exception.TranslationException;
 
 /**
  * This class represents a directive with an associated address.

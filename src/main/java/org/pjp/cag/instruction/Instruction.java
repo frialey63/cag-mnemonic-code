@@ -3,6 +3,9 @@ package org.pjp.cag.instruction;
 import static org.pjp.cag.Store.ZERO;
 
 import org.pjp.cag.Store;
+import org.pjp.cag.exception.RunningError;
+import org.pjp.cag.exception.RunningException;
+import org.pjp.cag.exception.internal.FaultyWordException;
 
 /**
  * This abstract class represents the common elements for all instructions.
@@ -81,11 +84,23 @@ public abstract class Instruction implements Executable {
     }
 
 
-    private int getModification(Store store) {
+    /**
+     * @param store The store
+     * @return The modification
+     */
+    protected int getModification(Store store) {
         if (modifier == ZERO) {
             return 0;
         }
 
-        return Math.round(store.getRegister(modifier));
+        float modification;
+
+        try {
+            modification = store.getRegister(modifier);
+        } catch (FaultyWordException e) {
+            throw new RunningException(RunningError.ERR_12);
+        }
+
+        return Math.round(modification);
     }
 }

@@ -2,8 +2,8 @@ package org.pjp.cag;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-import org.pjp.cag.exception.IllegalLocationException;
-import org.pjp.cag.exception.IllegalRegisterException;
+import org.pjp.cag.exception.internal.IllegalLocationException;
+import org.pjp.cag.exception.internal.IllegalRegisterException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
