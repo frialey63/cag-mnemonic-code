@@ -61,11 +61,11 @@ public enum RunningError {
         this.description = description;
     }
 
-    public int getNumber() {
+    public int number() {
         return number;
     }
 
-    public String getDescription() {
+    public String description() {
         return description;
     }
 

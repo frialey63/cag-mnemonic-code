@@ -1,9 +1,13 @@
 package org.pjp.cag.instruction.group3;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
+import static org.pjp.cag.Store.ZERO;
 
 import org.junit.Test;
 import org.pjp.cag.Store;
+import org.pjp.cag.error.RunningError;
+import org.pjp.cag.error.RunningException;
 
 public class JGRTest {
 
@@ -44,6 +48,19 @@ public class JGRTest {
         instruction.execute(store);
 
         assertEquals(12, store.getControlAddress());
+    }
+
+    @Test
+    public void testJumpOutOfRange() {
+        RunningException exception = assertThrows(RunningException.class, () -> {
+            Store store = new Store();
+            store.setAccumulator(1);
+
+            JGR instruction = new JGR(false, 1000, ZERO);
+            instruction.execute(store);
+        });
+
+        assertEquals(RunningError.ERR_10.number(), Integer.parseInt(exception.getMessage().trim()));
     }
 
 }

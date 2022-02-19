@@ -10,7 +10,7 @@ public class RunningException extends RuntimeException {
     private static final long serialVersionUID = 2344136039363995508L;
 
     public RunningException(RunningError error) {
-        super(error.toString());
+        super(String.format("%2d", error.number()));
     }
 
 

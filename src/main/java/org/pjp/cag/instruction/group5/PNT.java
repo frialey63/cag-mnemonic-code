@@ -23,16 +23,16 @@ public final class PNT extends Instruction {
 
     private static final int BASE = 10;
 
-    private static final String ZERO = String.valueOf(new DecimalFormatSymbols().getZeroDigit());
+    private static final String ZERO_DIGIT = String.valueOf(new DecimalFormatSymbols().getZeroDigit());
 
     private static String convertLeadingZeros(float number, String str) {
         if (number < 0) {
             while (str.matches(" *\\-0[0-9]{1}.*")) {
-                str = str.replaceFirst("-" + ZERO, " -");
+                str = str.replaceFirst("-" + ZERO_DIGIT, " -");
             }
         } else {
             while (str.matches(" *0[0-9]{1}.*")) {
-                str = str.replaceFirst(ZERO, " ");
+                str = str.replaceFirst(ZERO_DIGIT, " ");
             }
         }
 

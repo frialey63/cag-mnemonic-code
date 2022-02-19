@@ -4,7 +4,7 @@ import static org.pjp.cag.Store.ZERO;
 
 import java.lang.reflect.Constructor;
 
-import org.pjp.cag.exception.AbstractCAGException;
+import org.pjp.cag.error.RunningException;
 import org.pjp.cag.instruction.Instruction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -79,8 +79,8 @@ final class Interpreter {
                 }
 
             }
-        } catch (AbstractCAGException e) {
-            System.out.printf("ERR %2d %4d\n", e.getErrorCode(), address);
+        } catch (RunningException e) {
+            System.out.printf("ERR %s %4d\n", e.getMessage(), address);
             LOGGER.debug(e.getMessage(), e);
         } catch (Exception e) {
             LOGGER.error("caught unexpected Exception while interpreting the program", e);
