@@ -3,8 +3,10 @@ package org.pjp.cag.instruction.group5;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
 import org.pjp.cag.dev.PaperTape;
+import org.pjp.cag.exception.internal.NumberOutOfRangeException;
 import org.pjp.cag.instruction.Instruction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,10 +62,12 @@ public final class RNT extends Instruction {
             try {
                 long integer = Long.parseLong(line);
 
-//                // TODO the running error for integer out of range
-//                if (Math.abs(integer) > Computer.MAX_INT) {
-//
-//                }
+                // No running error equivalent to translation error for integer out of range
+                if (Math.abs(integer) > Computer.MAX_INT) {
+                    String msg = "number out of range while reading from tape: " + integer;
+                    LOGGER.error(msg);
+                    throw new NumberOutOfRangeException(msg);
+                }
 
                 store.setAccumulator(integer);
 

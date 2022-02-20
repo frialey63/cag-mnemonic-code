@@ -57,9 +57,9 @@ enum Function {
      */
     RCT(50),
     PCT(51),
-    RNT(52),    // TODO address with maybe modifier will be ignored but must obey tests for error 7 and 9
-    PNT(53),    // TODO spec for both integral and fractional digits required
-    PNL(54);    // TODO address with maybe modifier will be ignored but must obey tests for error 7 and 9
+    RNT(52),
+    PNT(53),    // TODO both integral and fractional digits required?
+    PNL(54);
 
     /*
      * Group 6 (Card) Not included

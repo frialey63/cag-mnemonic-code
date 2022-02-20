@@ -15,6 +15,8 @@ public final class Order {
     static final int NULL = -1;
 
     /**
+     * Note PNT n,m will be accepted with any feasible n and m, there is no special validation for PNT.
+     *
      * @param query If true then provide trace output when executed
      * @param functionStr The mnemonic for the instruction
      * @param addressStr The address
@@ -27,6 +29,7 @@ public final class Order {
             Function function = Function.valueOf(functionStr);
 
             if (addressStr == null) {
+                // only for test
                 return new Order(function);
             } else {
                 int address = Integer.parseInt(addressStr);          // will parse because matched to number in the regex
