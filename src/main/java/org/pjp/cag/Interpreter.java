@@ -7,6 +7,7 @@ import java.lang.reflect.Constructor;
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.exception.internal.FaultyWordException;
+import org.pjp.cag.exception.internal.IllegalLocationException;
 import org.pjp.cag.instruction.Instruction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,16 @@ final class Interpreter {
             return store.getLocation(address).order();
         } catch (FaultyWordException e) {
             throw new RunningException(RunningError.ERR_11);
+        } catch (IllegalLocationException e) {
+            throw new RunningException(RunningError.ERR_13);
+        }
+    }
+
+    static boolean executeInstruction(Store store, Instruction instruction) {
+        try {
+            return instruction.execute(store);
+        } catch (IllegalLocationException e) {
+            throw new RunningException(RunningError.ERR_13);
         }
     }
 
@@ -80,7 +91,7 @@ final class Interpreter {
 
                 int savedAddress = address;
 
-                if (instruction.execute(store)) {
+                if (executeInstruction(store, instruction)) {
                     store.incControlAddress();
                 }
 
@@ -96,4 +107,5 @@ final class Interpreter {
             LOGGER.error("caught unexpected Exception while interpreting the program", e);
         }
     }
+
 }
