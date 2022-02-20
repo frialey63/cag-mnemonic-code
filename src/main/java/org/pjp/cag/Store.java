@@ -4,8 +4,6 @@ import static com.google.common.base.Preconditions.checkArgument;
 
 import org.pjp.cag.exception.internal.IllegalLocationException;
 import org.pjp.cag.exception.internal.IllegalRegisterException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The storage of the computer comprising 10 registers and 1000 words, each word can be populated by an Order, number or character.
@@ -14,9 +12,9 @@ import org.slf4j.LoggerFactory;
  */
 public final class Store {
 
-    private static final String SEPARATOR = "------ STORE -----";
+    private static final String BEGIN = "------ STORE -----";
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Store.class);
+    private static final String END =   "------------------";
 
     /**
      * The size of the store, i.e. number of words.
@@ -131,7 +129,7 @@ public final class Store {
      * @return The address in the control register
      */
     public int getControlAddress() {
-        return Math.round(getRegister(CONTROL));
+        return (int) Math.floor(getRegister(CONTROL));
     }
 
     /**
@@ -221,18 +219,18 @@ public final class Store {
     }
 
     /**
-     * Dump the contents of the store.
+     * @return Entire store content as a String
      */
-    public void dump() {
-        StringBuilder builder = new StringBuilder(SEPARATOR);
+    public String dump() {
+        StringBuilder builder = new StringBuilder(BEGIN);
         builder.append('\n');
 
         for (int i = 0; i < word.length; i++) {
             builder.append(String.format("%3d %s \n", i, word[i]));
         }
 
-        builder.append(SEPARATOR);
+        builder.append(END);
 
-        LOGGER.debug(builder.toString());
+        return builder.toString();
     }
 }

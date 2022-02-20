@@ -4,11 +4,22 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.pjp.cag.exception.TranslationException;
 import org.pjp.cag.exception.internal.IllegalLocationException;
 import org.pjp.cag.exception.internal.IllegalRegisterException;
 import org.pjp.cag.test.TestConstants;
 
 public class StoreTest {
+
+    @Test
+    public void testDump() throws TranslationException {
+        Store store = new Store();
+        store.setLocation(12, Word.create(Order.create(false, "LDA", "123", "3")));
+        store.setLocation(100, Word.create(123));
+        store.setLocation(200, Word.create('A'));
+
+        store.dump();
+    }
 
     @Test
     public void testZero() {

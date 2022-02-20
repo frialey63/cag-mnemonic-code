@@ -101,7 +101,7 @@ public abstract class Instruction implements Executable {
             throw new RunningException(RunningError.ERR_12);
         }
 
-        return Math.round(modification);
+        return (int) Math.floor(modification);
     }
 
     // CHECKSTYLE:OFF auto-generated

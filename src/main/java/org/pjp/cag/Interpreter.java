@@ -78,6 +78,7 @@ final class Interpreter {
                     }
                 } else {
                     try {
+                        // for completeness, there are no instructions with this constructor
                         declaredConstructor = clazz.getDeclaredConstructor(boolean.class);
                         instruction = (Instruction) declaredConstructor.newInstance(order.query);
                     } catch (NoSuchMethodException e) {

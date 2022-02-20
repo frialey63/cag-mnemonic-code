@@ -40,6 +40,14 @@ public final class Computer {
 
     private static final String USAGE = "usage: org.pjp.cag.Computer <filename> [trace]";
 
+    static InputStream getInputStream(File file) throws FileNotFoundException {
+        if (file == null) {
+            return System.in;
+        }
+
+        return new FileInputStream(file);
+    }
+
     /**
      * @param args The program arguments
      * @throws IOException
@@ -80,21 +88,13 @@ public final class Computer {
             assert store.zero();
 
             if (LOGGER.isDebugEnabled()) {
-                store.dump();
+                LOGGER.debug(store.dump());
             }
 
             new Interpreter().interpret(store, trace);
 
             assert store.zero();
         }
-    }
-
-    private static InputStream getInputStream(File file) throws FileNotFoundException {
-        if (file == null) {
-            return System.in;
-        }
-
-        return new FileInputStream(file);
     }
 
     private Computer() {

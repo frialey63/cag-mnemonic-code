@@ -23,7 +23,7 @@ public final class ENT extends Instruction {
     public boolean execute(Store store) {
         float accumulator = store.getAccumulator();
 
-        store.setAccumulator((int) accumulator);
+        store.setAccumulator((float) Math.floor(accumulator));
 
         return true;
     }

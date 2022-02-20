@@ -12,23 +12,23 @@ public class ENTTest {
     @Test
     public void testExecute() {
         Store store = new Store();
-        store.setAccumulator(1.7f);
+        store.setAccumulator(8.6f);
 
         ENT instruction = new ENT(false, ZERO, ZERO);
         instruction.execute(store);
 
-        assertEquals(1.0f, store.getAccumulator(), TestConstants.DELTA);
+        assertEquals(8, store.getAccumulator(), TestConstants.DELTA);
     }
 
     @Test
     public void testExecuteNegative() {
         Store store = new Store();
-        store.setAccumulator(-1.2f);
+        store.setAccumulator(-8.6f);
 
         ENT instruction = new ENT(false, ZERO, ZERO);
         instruction.execute(store);
 
-        assertEquals(-1.0f, store.getAccumulator(), TestConstants.DELTA);
+        assertEquals(-9, store.getAccumulator(), TestConstants.DELTA);
     }
 
 }

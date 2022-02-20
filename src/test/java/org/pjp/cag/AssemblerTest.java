@@ -30,6 +30,15 @@ public class AssemblerTest {
     }
 
     @Test
+    public void testAssembleError() throws URISyntaxException {
+        Path path = Paths.get(ClassLoader.getSystemResource("missing_storage_directive.txt").toURI());
+
+        Store store = new Store();
+
+        assertFalse(new Assembler().assemble(path, store));
+    }
+
+    @Test
     public void testAssembleQuery() throws URISyntaxException {
         Path path = Paths.get(ClassLoader.getSystemResource("query.txt").toURI());
 
