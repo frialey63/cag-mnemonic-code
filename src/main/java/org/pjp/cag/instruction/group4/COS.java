@@ -2,8 +2,6 @@ package org.pjp.cag.instruction.group4;
 
 import org.pjp.cag.Store;
 import org.pjp.cag.instruction.Instruction;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Calculate the cosine of the accumulator and restore into the accumulator.
@@ -11,8 +9,6 @@ import org.slf4j.LoggerFactory;
  *
  */
 public final class COS extends Instruction {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(COS.class);
 
     /**
      * @param query The query flag
@@ -27,11 +23,7 @@ public final class COS extends Instruction {
     public boolean execute(Store store) {
         float accumulator = store.getAccumulator();
 
-        try {
-            store.setAccumulator((float) Math.cos(accumulator));
-        } catch (Exception e) {
-            LOGGER.error("caught unexpected Exception while attempting COS calculation", e);
-        }
+        store.setAccumulator((float) Math.cos(accumulator));
 
         return true;
     }

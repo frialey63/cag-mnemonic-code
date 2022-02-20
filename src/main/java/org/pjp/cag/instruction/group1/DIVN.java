@@ -1,6 +1,8 @@
 package org.pjp.cag.instruction.group1;
 
 import org.pjp.cag.Store;
+import org.pjp.cag.exception.RunningError;
+import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.instruction.Instruction;
 
 /**
@@ -22,7 +24,13 @@ public final class DIVN extends Instruction {
     public boolean execute(Store store) {
         float accumulator = store.getAccumulator();
 
-        store.setAccumulator(accumulator / getLiteral());
+        int literal = getLiteral();
+
+        if (literal == 0) {
+            throw new RunningException(RunningError.ERR_18);
+        }
+
+        store.setAccumulator(accumulator / literal);
 
         return true;
     }

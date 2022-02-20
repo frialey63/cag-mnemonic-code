@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.instruction.group0.DIV;
 import org.pjp.cag.instruction.group2.STA;
 
 public class InterpreterTest {
@@ -55,11 +56,24 @@ public class InterpreterTest {
             Store store = new Store();
 
             Instruction sta = new STA(false, 1001, ZERO);
-
             Interpreter.executeInstruction(store, sta);
         });
 
         assertEquals(RunningError.ERR_13.number(), Integer.parseInt(exception.getMessage().trim()));
+    }
+
+    @Test
+    public void testExecuteInstructionFloatingPointOverflow() {
+        RunningException exception = assertThrows(RunningException.class, () -> {
+            Store store = new Store();
+            store.setAccumulator(1);
+            store.setLocation(100, Word.create(0));
+
+            Instruction div = new DIV(false, 100, ZERO);
+            Interpreter.executeInstruction(store, div);
+        });
+
+        assertEquals(RunningError.ERR_18.number(), Integer.parseInt(exception.getMessage().trim()));
     }
 
 }

@@ -36,6 +36,8 @@ final class Interpreter {
             return instruction.execute(store);
         } catch (IllegalLocationException e) {
             throw new RunningException(RunningError.ERR_13);
+        } catch (ArithmeticException e) {
+            throw new RunningException(RunningError.ERR_18);
         }
     }
 
