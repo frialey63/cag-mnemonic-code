@@ -50,7 +50,7 @@ final class Assembler {
 
     private boolean title;
 
-    private int currentLocation = ZERO;
+    private int address = ZERO;
 
     /**
      * @return The list of Directives
@@ -70,7 +70,7 @@ final class Assembler {
         try {
             innerAssemble(program, store);
         } catch (TranslationException e) {
-            System.out.printf("ERR %s %4d\n", e.getMessage(), currentLocation);
+            System.out.printf("ERR %s %4d\n", e.getMessage(), address);
             LOGGER.debug(e.getMessage(), e);
 
             // halt the assembly and prevent execution
@@ -119,22 +119,22 @@ final class Assembler {
                     // TODO end of assembly process for now
                     return;
                 } else {
-                    int address;
+                    int directiveAddress;
 
                     switch (type) {
                     case EXECUTE:
-                        address = Integer.parseInt(matcher.group(2).trim());    // will parse because matched to number in the regex
-                        store.setControlAddress(address);
+                        directiveAddress = Integer.parseInt(matcher.group(2).trim());    // will parse because matched to number in the regex
+                        store.setControlAddress(directiveAddress);
                         break;
                     case STORE:
-                        address = Integer.parseInt(matcher.group(2).trim());    // will parse because matched to number in the regex
-                        currentLocation = address;
+                        directiveAddress = Integer.parseInt(matcher.group(2).trim());    // will parse because matched to number in the regex
+                        address = directiveAddress;
                         break;
                     default:
                         throw new TranslationException(TranslationError.ERR_5);
                     }
 
-                    AddressDirective addressDirective = new AddressDirective(type, address);
+                    AddressDirective addressDirective = new AddressDirective(type, directiveAddress);
                     directives.add(addressDirective);
 
                     LOGGER.debug("    " + addressDirective);
@@ -186,10 +186,10 @@ final class Assembler {
     }
 
     private void storeWord(Store store, Word word) throws TranslationException {
-        if (currentLocation != ZERO) {
-            store.setLocation(currentLocation, word);
+        if (address != ZERO) {
+            store.setLocation(address, word);
 
-            currentLocation++;
+            address++;
 
         } else {
             throw new TranslationException(TranslationError.ERR_4);

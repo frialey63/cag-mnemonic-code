@@ -103,4 +103,37 @@ public abstract class Instruction implements Executable {
 
         return Math.round(modification);
     }
+
+    // CHECKSTYLE:OFF auto-generated
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + addressLiteral;
+        result = prime * result + modifier;
+        result = prime * result + (query ? 1231 : 1237);
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Instruction other = (Instruction) obj;
+        if (addressLiteral != other.addressLiteral)
+            return false;
+        if (modifier != other.modifier)
+            return false;
+        if (query != other.query)
+            return false;
+        return true;
+    }
+
+    // CHECKSTYLE:ON
+
 }
