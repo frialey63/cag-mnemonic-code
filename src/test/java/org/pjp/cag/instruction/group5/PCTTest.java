@@ -106,7 +106,7 @@ public class PCTTest {
             Store store = new Store();
             store.setLocation(100, Word.create(123));
 
-            Instruction pct = new PCT(false, 100, ZERO);
+            PCT pct = new PCT(false, 100, ZERO);
             pct.execute(store);
         });
 

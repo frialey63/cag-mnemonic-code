@@ -24,10 +24,10 @@ final class Interpreter {
     static Order getOrder(Store store, int address) {
         try {
             return store.getLocation(address).order();
-        } catch (FaultyWordException e) {
-            throw new RunningException(RunningError.ERR_11);
         } catch (IllegalLocationException e) {
             throw new RunningException(RunningError.ERR_13);
+        } catch (FaultyWordException e) {
+            throw new RunningException(RunningError.ERR_11);
         }
     }
 

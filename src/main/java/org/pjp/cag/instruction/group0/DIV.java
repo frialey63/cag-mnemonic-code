@@ -4,6 +4,7 @@ import org.pjp.cag.Store;
 import org.pjp.cag.Word;
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
+import org.pjp.cag.exception.internal.FaultyWordException;
 import org.pjp.cag.instruction.Instruction;
 
 /**
@@ -25,15 +26,18 @@ public final class DIV extends Instruction {
     @Override
     public boolean execute(Store store) {
         Word word = store.getLocation(getEffectiveAddress(store));
-        float number = word.number();
 
-        if (number == 0.0) {
-            throw new RunningException(RunningError.ERR_18);
+        try {
+            float number = word.number();
+
+            if (number == 0.0) {
+                throw new RunningException(RunningError.ERR_18);
+            }
+
+            store.setAccumulator(store.getAccumulator() / number);
+        } catch (FaultyWordException e) {
+            throw new RunningException(RunningError.ERR_15);
         }
-
-        float accumulator = store.getAccumulator();
-
-        store.setAccumulator(accumulator / number);
 
         return true;
     }

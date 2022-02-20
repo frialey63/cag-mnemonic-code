@@ -2,6 +2,9 @@ package org.pjp.cag.instruction.group0;
 
 import org.pjp.cag.Store;
 import org.pjp.cag.Word;
+import org.pjp.cag.exception.RunningError;
+import org.pjp.cag.exception.RunningException;
+import org.pjp.cag.exception.internal.FaultyWordException;
 import org.pjp.cag.instruction.Instruction;
 
 /**
@@ -24,9 +27,13 @@ public final class ADD extends Instruction {
     public boolean execute(Store store) {
         Word word = store.getLocation(getEffectiveAddress(store));
 
-        float accumulator = store.getAccumulator();
+        try {
+            float number = word.number();
 
-        store.setAccumulator(accumulator + word.number());
+            store.setAccumulator(store.getAccumulator() + number);
+        } catch (FaultyWordException e) {
+            throw new RunningException(RunningError.ERR_15);
+        }
 
         return true;
     }

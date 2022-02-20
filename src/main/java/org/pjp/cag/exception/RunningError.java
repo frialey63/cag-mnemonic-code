@@ -45,7 +45,7 @@ public enum RunningError {
     /**
      * The error 17.
      */
-    ERR_17(17, "RUN before EXECUTE directive e.g. if RUN is given at a (WAIT)."),
+    ERR_17(17, "RUN before EXECUTE directive e.g. if RUN is given at a (WAIT)."),   // TODO error 17
 
     /**
      * The error 18.
