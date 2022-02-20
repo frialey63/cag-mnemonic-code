@@ -146,7 +146,10 @@ public final class Word {
         if (getClass() != obj.getClass())
             return false;
         Word other = (Word) obj;
-        if (character != other.character)
+        if (character == null) {
+            if (other.character != null)
+                return false;
+        } else if (!character.equals(other.character))
             return false;
         if (number == null) {
             if (other.number != null)
