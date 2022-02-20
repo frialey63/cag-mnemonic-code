@@ -68,9 +68,9 @@ public final class Store {
      */
     public static final int LINK = 4;
 
-    private static final int ACCUMULATOR = 1;
+    private static final int ACCUMULATOR = 1;   // TODO this is "accumulator address"
 
-    private static final int CONTROL = 5;
+    private static final int CONTROL = 5;       // FIXME this is an index register, the program counter is separate from store
 
     private Word[] word = new Word[SIZE];
 
