@@ -2,6 +2,9 @@ package org.pjp.cag.instruction.group5;
 
 import org.pjp.cag.Store;
 import org.pjp.cag.dev.PaperTape;
+import org.pjp.cag.exception.RunningError;
+import org.pjp.cag.exception.RunningException;
+import org.pjp.cag.exception.internal.FaultyWordException;
 import org.pjp.cag.instruction.Instruction;
 
 /**
@@ -22,9 +25,13 @@ public final class PCT extends Instruction {
 
     @Override
     public boolean execute(Store store) {
-        char character = store.getLocation(getEffectiveAddress(store)).character();
+        try {
+            char character = store.getLocation(getEffectiveAddress(store)).character();
 
-        PaperTape.out.printf("%c", character);
+            PaperTape.out.printf("%c", character);
+        } catch (FaultyWordException e) {
+            throw new RunningException(RunningError.ERR_16);
+        }
 
         return true;
     }

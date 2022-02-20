@@ -1,6 +1,8 @@
 package org.pjp.cag.instruction.group5;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
+import static org.pjp.cag.Store.ZERO;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -12,6 +14,8 @@ import org.pjp.cag.Computer;
 import org.pjp.cag.Store;
 import org.pjp.cag.Word;
 import org.pjp.cag.dev.PaperTape;
+import org.pjp.cag.exception.RunningError;
+import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.instruction.Instruction;
 
 public class PCTTest {
@@ -94,6 +98,19 @@ public class PCTTest {
         } finally {
             PaperTape.setOut(prevOut);
         }
+    }
+
+    @Test
+    public void testExecuteInadmissableCharacter() {
+        RunningException exception = assertThrows(RunningException.class, () -> {
+            Store store = new Store();
+            store.setLocation(100, Word.create(123));
+
+            Instruction pct = new PCT(false, 100, ZERO);
+            pct.execute(store);
+        });
+
+        assertEquals(RunningError.ERR_16.number(), Integer.parseInt(exception.getMessage().trim()));
     }
 
 }
