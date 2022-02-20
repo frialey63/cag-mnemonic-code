@@ -44,29 +44,35 @@ public final class Word {
 
     private static final Word EMPTY = new Word();
 
-    private Order order;
+    private final Order order;
 
-    private Float number;
+    private final Float number;
 
-    private Character character;
+    private final Character character;
 
     private Word() {
         super();
+        order = null;
+        number = null;
+        character = null;
     }
 
     private Word(Order order) {
+        super();
         this.order = checkNotNull(order, "order cannot be null");
         number = null;
         character = null;
     }
 
     private Word(float number) {
+        super();
         this.number = number;
         order = null;
         character = null;
     }
 
     private Word(char character) {
+        super();
         this.character = checkNotNull(character, "character cannot be null");
         order = null;
         number = null;

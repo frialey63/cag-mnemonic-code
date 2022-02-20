@@ -17,19 +17,16 @@ import org.pjp.cag.test.TestConstants;
 public class AssemblerTest {
 
     @Test
-    public void testAssembleNumbers() throws URISyntaxException {
-        Path path = Paths.get(ClassLoader.getSystemResource("number.txt").toURI());
+    public void testAssemble() throws URISyntaxException {
+        Path path = Paths.get(ClassLoader.getSystemResource("simple_test.txt").toURI());
 
         Store store = new Store();
 
-        new Assembler().assemble(path, store);
+        Assembler assembler = new Assembler();
+        boolean result = assembler.assemble(path, store);
 
-        assertEquals(0f, store.getLocation(12).number(), TestConstants.DELTA);
-        assertEquals(1.0f, store.getLocation(13).number(), TestConstants.DELTA);
-        assertEquals(-1.0f, store.getLocation(14).number(), TestConstants.DELTA);
-        assertEquals(123.456f, store.getLocation(15).number(), 0.001f);
-        assertEquals(-321.654f, store.getLocation(16).number(), 0.001f);
-        assertEquals(+2.0e-04, store.getLocation(17).number(), TestConstants.DELTA);
+        assertTrue(result);
+        assertEquals(3, assembler.getDirectives().size());
     }
 
     @Test
@@ -38,13 +35,31 @@ public class AssemblerTest {
 
         Store store = new Store();
 
-        new Assembler().assemble(path, store);
+        boolean result = new Assembler().assemble(path, store);
 
+        assertTrue(result);
         assertTrue(store.getLocation(12).order().query);
         assertFalse(store.getLocation(13).order().query);
         assertFalse(store.getLocation(14).order().query);
         assertTrue(store.getLocation(15).order().query);
         assertFalse(store.getLocation(16).order().query);
+    }
+
+    @Test
+    public void testAssembleNumbers() throws URISyntaxException {
+        Path path = Paths.get(ClassLoader.getSystemResource("number.txt").toURI());
+
+        Store store = new Store();
+
+        boolean result = new Assembler().assemble(path, store);
+
+        assertTrue(result);
+        assertEquals(0f, store.getLocation(12).number(), TestConstants.DELTA);
+        assertEquals(1.0f, store.getLocation(13).number(), TestConstants.DELTA);
+        assertEquals(-1.0f, store.getLocation(14).number(), TestConstants.DELTA);
+        assertEquals(123.456f, store.getLocation(15).number(), 0.001f);
+        assertEquals(-321.654f, store.getLocation(16).number(), 0.001f);
+        assertEquals(+2.0e-04, store.getLocation(17).number(), TestConstants.DELTA);
     }
 
     @Test

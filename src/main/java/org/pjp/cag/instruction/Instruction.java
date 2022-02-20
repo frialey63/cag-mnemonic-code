@@ -14,11 +14,11 @@ import org.pjp.cag.exception.internal.FaultyWordException;
  */
 public abstract class Instruction implements Executable {
 
-    private boolean query;
+    private final boolean query;
 
-    private int addressLiteral; // 0 - 999
+    private final int addressLiteral; // 0 - 999
 
-    private int modifier;       // 0 - 9
+    private final int modifier;       // 0 - 9
 
     /**
      * @param query The query flag

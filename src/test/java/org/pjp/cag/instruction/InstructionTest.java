@@ -2,6 +2,7 @@ package org.pjp.cag.instruction;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 import static org.pjp.cag.Store.ZERO;
 
 import org.junit.Test;
@@ -35,6 +36,13 @@ public class InstructionTest {
         LDA lda = new LDA(false, 100, 3);
 
         assertEquals(3, lda.getModifier());
+    }
+
+    @Test
+    public void testIsQuery() {
+        LDA lda = new LDA(true, 100, 3);
+
+        assertTrue(lda.isQuery());
     }
 
     @Test
