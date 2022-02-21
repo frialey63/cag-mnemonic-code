@@ -99,7 +99,7 @@ final class Interpreter {
                 }
 
                 if (trace && instruction.isQuery()) {
-                    System.out.printf("Q %4d %.6e\n", savedAddress, store.getAccumulator());
+                    System.out.printf("Q %4d %.6e\n", savedAddress, store.accumulator().get());
                 }
 
             }

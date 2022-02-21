@@ -69,12 +69,12 @@ public final class RNT extends Instruction {
                     throw new NumberOutOfRangeException(msg);
                 }
 
-                store.setAccumulator(integer);
+                store.accumulator().set(integer);
 
             } catch (NumberFormatException e) {
                 float number = Float.parseFloat(line);
 
-                store.setAccumulator(number);
+                store.accumulator().set(number);
             }
 
         } catch (IOException e) {

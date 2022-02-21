@@ -30,7 +30,7 @@ public final class ADD extends Instruction {
         try {
             float number = word.number();
 
-            store.setAccumulator(store.getAccumulator() + number);
+            store.accumulator().add(number);
         } catch (FaultyWordException e) {
             throw new RunningException(RunningError.ERR_15);
         }

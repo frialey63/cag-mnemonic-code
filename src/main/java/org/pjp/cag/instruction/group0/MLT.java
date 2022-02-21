@@ -30,7 +30,7 @@ public final class MLT extends Instruction {
         try {
             float number = word.number();
 
-            store.setAccumulator(store.getAccumulator() * number);
+            store.accumulator().mlt(number);
         } catch (FaultyWordException e) {
             throw new RunningException(RunningError.ERR_15);
         }

@@ -12,18 +12,18 @@ public class SQTTest {
     @Test
     public void testExecute() {
         Store store = new Store();
-        store.setAccumulator(678);
+        store.accumulator().set(678);
 
         SQT instruction = new SQT(false, 16, ZERO);
         instruction.execute(store);
 
-        assertEquals((float) Math.sqrt(678), store.getAccumulator(), TestConstants.DELTA);
+        assertEquals((float) Math.sqrt(678), store.accumulator().get(), TestConstants.DELTA);
     }
 
     @Test
     public void testExecuteError() {
         Store store = new Store();
-        store.setAccumulator(-1);
+        store.accumulator().set(-1);
 
         SQT instruction = new SQT(false, 16, ZERO);
         instruction.execute(store);
@@ -34,7 +34,7 @@ public class SQTTest {
     @Test
     public void testExecuteErrorModified() {
         Store store = new Store();
-        store.setAccumulator(-1);
+        store.accumulator().set(-1);
         store.setRegister(3, 10);
 
         SQT instruction = new SQT(false, 16, 3);

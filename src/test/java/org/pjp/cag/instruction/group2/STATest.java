@@ -11,7 +11,7 @@ public class STATest {
     @Test
     public void testExecute() {
         Store store = new Store();
-        store.setAccumulator(654);
+        store.accumulator().set(654);
         store.clearLocation(110);
         store.setRegister(3, 10);
 
@@ -19,7 +19,7 @@ public class STATest {
         instruction.execute(store);
 
         assertEquals(654.0f, store.getLocation(110).number(), TestConstants.DELTA);
-        assertEquals(654.0f, store.getAccumulator(), TestConstants.DELTA);
+        assertEquals(654.0f, store.accumulator().get(), TestConstants.DELTA);
     }
 
 }

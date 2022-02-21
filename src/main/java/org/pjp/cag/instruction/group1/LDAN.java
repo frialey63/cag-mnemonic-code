@@ -20,7 +20,7 @@ public final class LDAN extends Instruction {
 
     @Override
     public boolean execute(Store store) {
-        store.setAccumulator(getLiteral());
+        store.accumulator().set(getLiteral());
 
         return true;
     }

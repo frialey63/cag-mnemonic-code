@@ -23,13 +23,13 @@ public final class SQT extends Instruction {
     public boolean execute(Store store) {
         boolean result = true;
 
-        float accumulator = store.getAccumulator();
+        float accumulator = store.accumulator().get();
 
         if (accumulator < 0) {
             store.controlRegister().setAddress(getEffectiveAddress(store));
             result = false;
         } else {
-            store.setAccumulator((float) Math.sqrt(accumulator));
+            store.accumulator().set((float) Math.sqrt(accumulator));
         }
 
         return result;

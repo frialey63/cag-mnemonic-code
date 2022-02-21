@@ -11,12 +11,12 @@ public class LDANTest {
     @Test
     public void testExecute() {
         Store store = new Store();
-        store.clearAccumulator();
+        store.accumulator().clear();
 
         LDAN instruction = new LDAN(false, 999);
         instruction.execute(store);
 
-        assertEquals(999.0f, store.getAccumulator(), TestConstants.DELTA);
+        assertEquals(999.0f, store.accumulator().get(), TestConstants.DELTA);
     }
 
 }

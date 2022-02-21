@@ -25,7 +25,7 @@ public final class JGR extends Instruction {
     public boolean execute(Store store) {
         boolean result = true;
 
-        float accumulator = store.getAccumulator();
+        float accumulator = store.accumulator().get();
 
         if (accumulator > 0) {
             int effectiveAddress = getEffectiveAddress(store);

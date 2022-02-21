@@ -53,7 +53,7 @@ public class RCTTest {
             instruction = new RCT(false, 110, 3);
             instruction.execute(store);
 
-            assertEquals(123.456f, store.getAccumulator(), 0.001f);
+            assertEquals(123.456f, store.accumulator().get(), 0.001f);
             assertEquals('A', (char) store.getLocation(120).character());
 
         } finally {
@@ -78,7 +78,7 @@ public class RCTTest {
             instruction = new RCT(false, 110, 3);
             instruction.execute(store);
 
-            assertEquals(123.456f, store.getAccumulator(), 0.001f);
+            assertEquals(123.456f, store.accumulator().get(), 0.001f);
             assertEquals('A', (char) store.getLocation(120).character());
 
         } finally {

@@ -12,12 +12,12 @@ public class ARCTest {
     @Test
     public void testExecute() {
         Store store = new Store();
-        store.setAccumulator(1);
+        store.accumulator().set(1);
 
         ARC instruction = new ARC(false, ZERO, ZERO);
         instruction.execute(store);
 
-        assertEquals((float) Math.atan(1), store.getAccumulator(), TestConstants.DELTA);
+        assertEquals((float) Math.atan(1), store.accumulator().get(), TestConstants.DELTA);
     }
 
 }

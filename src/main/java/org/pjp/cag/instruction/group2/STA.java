@@ -22,7 +22,7 @@ public final class STA extends Instruction {
 
     @Override
     public boolean execute(Store store) {
-        float accumulator = store.getAccumulator();
+        float accumulator = store.accumulator().get();
 
         store.setLocation(getEffectiveAddress(store), Word.create(accumulator));
 

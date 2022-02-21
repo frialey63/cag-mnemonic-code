@@ -23,7 +23,7 @@ public class PNTTest {
             PaperTape.setOut(printStream);
 
             Store store = new Store();
-            store.setAccumulator((float) Math.PI);
+            store.accumulator().set((float) Math.PI);
 
             PNT instruction = new PNT(false, 1, 6);
             instruction.execute(store);
@@ -46,7 +46,7 @@ public class PNTTest {
             PaperTape.setOut(printStream);
 
             Store store = new Store();
-            store.setAccumulator((float) Math.PI);
+            store.accumulator().set((float) Math.PI);
 
             PNT instruction = new PNT(false, 0, 0);
             instruction.execute(store);
@@ -69,7 +69,7 @@ public class PNTTest {
             PaperTape.setOut(printStream);
 
             Store store = new Store();
-            store.setAccumulator((float) 3.14);
+            store.accumulator().set((float) 3.14);
 
             PNT instruction = new PNT(false, 6, 1);
             instruction.execute(store);
@@ -92,7 +92,7 @@ public class PNTTest {
             PaperTape.setOut(printStream);
 
             Store store = new Store();
-            store.setAccumulator((float) 0.14);
+            store.accumulator().set((float) 0.14);
 
             PNT instruction = new PNT(false, 6, 1);
             instruction.execute(store);
@@ -115,7 +115,7 @@ public class PNTTest {
             PaperTape.setOut(printStream);
 
             Store store = new Store();
-            store.setAccumulator((float) -Math.PI);
+            store.accumulator().set((float) -Math.PI);
 
             PNT instruction = new PNT(false, 1, 6);
             instruction.execute(store);
@@ -138,7 +138,7 @@ public class PNTTest {
             PaperTape.setOut(printStream);
 
             Store store = new Store();
-            store.setAccumulator((float) -3.14);
+            store.accumulator().set((float) -3.14);
 
             PNT instruction = new PNT(false, 6, 1);
             instruction.execute(store);
@@ -161,7 +161,7 @@ public class PNTTest {
             PaperTape.setOut(printStream);
 
             Store store = new Store();
-            store.setAccumulator((float) -0.14);
+            store.accumulator().set((float) -0.14);
 
             PNT instruction = new PNT(false, 6, 1);
             instruction.execute(store);
@@ -184,7 +184,7 @@ public class PNTTest {
             PaperTape.setOut(printStream);
 
             Store store = new Store();
-            store.setAccumulator((float) Math.PI);
+            store.accumulator().set((float) Math.PI);
 
             PNT instruction = new PNT(false, 3, 0);
             instruction.execute(store);
@@ -207,7 +207,7 @@ public class PNTTest {
             PaperTape.setOut(printStream);
 
             Store store = new Store();
-            store.setAccumulator((float) -Math.PI);
+            store.accumulator().set((float) -Math.PI);
 
             PNT instruction = new PNT(false, 3, 0);
             instruction.execute(store);
@@ -230,7 +230,7 @@ public class PNTTest {
             PaperTape.setOut(printStream);
 
             Store store = new Store();
-            store.setAccumulator((float) (10 * Math.PI));
+            store.accumulator().set((float) (10 * Math.PI));
 
             PNT instruction = new PNT(false, 1, 6);
             instruction.execute(store);
@@ -253,7 +253,7 @@ public class PNTTest {
             PaperTape.setOut(printStream);
 
             Store store = new Store();
-            store.setAccumulator((float) (-10 * Math.PI));
+            store.accumulator().set((float) (-10 * Math.PI));
 
             PNT instruction = new PNT(false, 1, 6);
             instruction.execute(store);

@@ -28,6 +28,11 @@ public final class Store {
     public static final int ZERO = 0;
 
     /**
+     * The accumulator.
+     */
+    public static final int ACCUMULATOR = 1;
+
+    /**
      * Index register 2.
      */
     public static final int INDEX_2 = 2;
@@ -67,17 +72,15 @@ public final class Store {
      */
     public static final int INDEX_9 = 9;
 
-    private static final int ACCUMULATOR = 1;
-
     private static final String BEGIN = "------ STORE -----";
 
     private static final String END =   "------------------";
 
-    private final Accumulator accumulator = new Accumulator();
+    private Word[] word = new Word[SIZE];
+
+    private final Accumulator accumulator = new Accumulator(this);
 
     private final ControlRegister controlRegister = new ControlRegister();
-
-    private Word[] word = new Word[SIZE];
 
     {
         word[ZERO] = Word.create(0);
@@ -104,27 +107,6 @@ public final class Store {
      */
     public boolean zero() {
         return word[ZERO].number() == 0;
-    }
-
-    /**
-     * @param number The number
-     */
-    public void setAccumulator(float number) {
-        setRegister(ACCUMULATOR, number);
-    }
-
-    /**
-     * Clear the accumulator.
-     */
-    public void clearAccumulator() {
-        clearRegister(ACCUMULATOR);
-    }
-
-    /**
-     * @return The value of the accumulator
-     */
-    public float getAccumulator() {
-        return getRegister(ACCUMULATOR);
     }
 
     /**

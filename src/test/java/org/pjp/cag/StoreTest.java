@@ -29,19 +29,6 @@ public class StoreTest {
     }
 
     @Test
-    public void testSetAccumulator() {
-        Store store = new Store();
-
-        store.setAccumulator(321);
-
-        assertEquals(321.0f, store.getAccumulator(), TestConstants.DELTA);
-
-        store.clearAccumulator();
-
-        assertEquals(0.0f, store.getAccumulator(), TestConstants.DELTA);
-    }
-
-    @Test
     public void testSetLinkAddress() {
         Store store = new Store();
 

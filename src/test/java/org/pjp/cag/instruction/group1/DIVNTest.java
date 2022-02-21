@@ -14,19 +14,19 @@ public class DIVNTest {
     @Test
     public void testExecute() {
         Store store = new Store();
-        store.setAccumulator(321);
+        store.accumulator().set(321);
 
         DIVN instruction = new DIVN(false, 999);
         instruction.execute(store);
 
-        assertEquals((float) (321.0 / 999), store.getAccumulator(), TestConstants.DELTA);
+        assertEquals((float) (321.0 / 999), store.accumulator().get(), TestConstants.DELTA);
     }
 
     @Test
     public void testExecuteFloatingPointOverflow() {
         RunningException exception = assertThrows(RunningException.class, () -> {
             Store store = new Store();
-            store.setAccumulator(321);
+            store.accumulator().set(321);
 
             DIVN instruction = new DIVN(false, 0);
             instruction.execute(store);

@@ -17,14 +17,14 @@ public class LDATest {
     @Test
     public void testExecute() {
         Store store = new Store();
-        store.clearAccumulator();
+        store.accumulator().clear();
         store.setLocation(110, Word.create(456));
         store.setRegister(3, 10);
 
         LDA instruction = new LDA(false, 100, 3);
         instruction.execute(store);
 
-        assertEquals(456.0f, store.getAccumulator(), TestConstants.DELTA);
+        assertEquals(456.0f, store.accumulator().get(), TestConstants.DELTA);
     }
 
     @Test

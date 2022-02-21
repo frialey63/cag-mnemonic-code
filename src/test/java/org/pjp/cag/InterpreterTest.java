@@ -66,7 +66,7 @@ public class InterpreterTest {
     public void testExecuteInstructionFloatingPointOverflow() {
         RunningException exception = assertThrows(RunningException.class, () -> {
             Store store = new Store();
-            store.setAccumulator(1);
+            store.accumulator().set(1);
             store.setLocation(100, Word.create(0));
 
             Instruction div = new DIV(false, 100, ZERO);

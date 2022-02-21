@@ -58,7 +58,7 @@ public final class PNT extends Instruction {
 
     @Override
     public boolean execute(Store store) {
-        float accumulator = store.getAccumulator();
+        float accumulator = store.accumulator().get();
 
         String str;
 

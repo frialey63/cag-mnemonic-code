@@ -21,9 +21,9 @@ public final class SIN extends Instruction {
 
     @Override
     public boolean execute(Store store) {
-        float accumulator = store.getAccumulator();
+        float accumulator = store.accumulator().get();
 
-        store.setAccumulator((float) Math.sin(accumulator));
+        store.accumulator().set((float) Math.sin(accumulator));
 
         return true;
     }

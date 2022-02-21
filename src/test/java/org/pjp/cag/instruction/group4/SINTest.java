@@ -12,12 +12,12 @@ public class SINTest {
     @Test
     public void testExecute() {
         Store store = new Store();
-        store.setAccumulator(0.5f);
+        store.accumulator().set(0.5f);
 
         SIN instruction = new SIN(false, ZERO, ZERO);
         instruction.execute(store);
 
-        assertEquals((float) Math.sin(0.5), store.getAccumulator(), TestConstants.DELTA);
+        assertEquals((float) Math.sin(0.5), store.accumulator().get(), TestConstants.DELTA);
     }
 
 }

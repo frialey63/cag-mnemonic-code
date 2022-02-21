@@ -21,9 +21,9 @@ public final class ARC extends Instruction {
 
     @Override
     public boolean execute(Store store) {
-        float accumulator = store.getAccumulator();
+        float accumulator = store.accumulator().get();
 
-        store.setAccumulator((float) Math.atan(accumulator));
+        store.accumulator().set((float) Math.atan(accumulator));
 
         return true;
     }

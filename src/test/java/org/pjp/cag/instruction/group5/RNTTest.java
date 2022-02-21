@@ -29,7 +29,7 @@ public class RNTTest {
             RNT instruction = new RNT(false, ZERO, ZERO);
             instruction.execute(store);
 
-            assertEquals(123.4567f, store.getAccumulator(), 0.0001f);
+            assertEquals(123.4567f, store.accumulator().get(), 0.0001f);
 
         } finally {
             PaperTape.setIn(prevIn);
@@ -54,7 +54,7 @@ public class RNTTest {
             instruction.execute(store);
 
             assertEquals('A', (char) store.getLocation(120).character());
-            assertEquals(123.456f, store.getAccumulator(), 0.001f);
+            assertEquals(123.456f, store.accumulator().get(), 0.001f);
 
         } finally {
             PaperTape.setIn(prevIn);
@@ -81,7 +81,7 @@ public class RNTTest {
             instruction.execute(store);
 
             assertEquals(987.654f, store.getLocation(100).number(), 0.001f);
-            assertEquals(123.456f, store.getAccumulator(), 0.001f);
+            assertEquals(123.456f, store.accumulator().get(), 0.001f);
 
         } finally {
             PaperTape.setIn(prevIn);

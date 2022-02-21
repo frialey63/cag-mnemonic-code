@@ -24,7 +24,7 @@ public class PNLTest {
             PaperTape.setOut(printStream);
 
             Store store = new Store();
-            store.setAccumulator((float) Math.PI);
+            store.accumulator().set((float) Math.PI);
 
             PNL instruction = new PNL(false, ZERO, ZERO);
             instruction.execute(store);

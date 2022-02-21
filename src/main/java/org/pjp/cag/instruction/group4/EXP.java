@@ -25,13 +25,13 @@ public final class EXP extends Instruction {
     public boolean execute(Store store) {
         boolean result = true;
 
-        float accumulator = store.getAccumulator();
+        float accumulator = store.accumulator().get();
 
         if (accumulator > LIMIT) {
             store.controlRegister().setAddress(getEffectiveAddress(store));
             result = false;
         } else {
-            store.setAccumulator((float) Math.exp(accumulator));
+            store.accumulator().set((float) Math.exp(accumulator));
         }
 
         return result;

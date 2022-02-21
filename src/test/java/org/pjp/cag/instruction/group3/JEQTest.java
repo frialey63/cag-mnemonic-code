@@ -14,7 +14,7 @@ public class JEQTest {
     @Test
     public void testExecuteGreater() {
         Store store = new Store();
-        store.setAccumulator(1);
+        store.accumulator().set(1);
         store.controlRegister().setAddress(12);
         store.setRegister(3, 10);
 
@@ -27,7 +27,7 @@ public class JEQTest {
     @Test
     public void testExecuteEquals() {
         Store store = new Store();
-        store.setAccumulator(0);
+        store.accumulator().set(0);
         store.controlRegister().setAddress(12);
         store.setRegister(3, 10);
 
@@ -40,7 +40,7 @@ public class JEQTest {
     @Test
     public void testExecuteLesser() {
         Store store = new Store();
-        store.setAccumulator(-1);
+        store.accumulator().set(-1);
         store.controlRegister().setAddress(12);
         store.setRegister(3, 10);
 
@@ -54,7 +54,7 @@ public class JEQTest {
     public void testJumpOutOfRange() {
         RunningException exception = assertThrows(RunningException.class, () -> {
             Store store = new Store();
-            store.setAccumulator(0);
+            store.accumulator().set(0);
 
             JEQ instruction = new JEQ(false, 1000, ZERO);
             instruction.execute(store);

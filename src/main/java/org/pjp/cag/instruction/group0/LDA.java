@@ -28,7 +28,7 @@ public final class LDA extends Instruction {
         Word word = store.getLocation(getEffectiveAddress(store));
 
         try {
-            store.setAccumulator(word.number());
+            store.accumulator().set(word.number());
         } catch (FaultyWordException e) {
             throw new RunningException(RunningError.ERR_15);
         }

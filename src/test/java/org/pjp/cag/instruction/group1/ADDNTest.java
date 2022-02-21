@@ -11,12 +11,12 @@ public class ADDNTest {
     @Test
     public void testExecute() {
         Store store = new Store();
-        store.setAccumulator(321);
+        store.accumulator().set(321);
 
         ADDN instruction = new ADDN(false, 999);
         instruction.execute(store);
 
-        assertEquals((float) (321 + 999), store.getAccumulator(), TestConstants.DELTA);
+        assertEquals((float) (321 + 999), store.accumulator().get(), TestConstants.DELTA);
     }
 
 }

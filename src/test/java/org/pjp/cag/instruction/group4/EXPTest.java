@@ -12,18 +12,18 @@ public class EXPTest {
     @Test
     public void testExecute() {
         Store store = new Store();
-        store.setAccumulator(1);
+        store.accumulator().set(1);
 
         EXP instruction = new EXP(false, 16, ZERO);
         instruction.execute(store);
 
-        assertEquals((float) Math.exp(1), store.getAccumulator(), TestConstants.DELTA);
+        assertEquals((float) Math.exp(1), store.accumulator().get(), TestConstants.DELTA);
     }
 
     @Test
     public void testExecuteError() {
         Store store = new Store();
-        store.setAccumulator(40.5f);
+        store.accumulator().set(40.5f);
 
         EXP instruction = new EXP(false, 16, ZERO);
         instruction.execute(store);
@@ -34,7 +34,7 @@ public class EXPTest {
     @Test
     public void testExecuteErrorModified() {
         Store store = new Store();
-        store.setAccumulator(40.5f);
+        store.accumulator().set(40.5f);
         store.setRegister(3, 10);
 
         EXP instruction = new EXP(false, 16, 3);

@@ -53,7 +53,7 @@ public class PCTTest {
             PaperTape.setOut(printStream);
 
             Store store = new Store();
-            store.setAccumulator((float) Math.PI);
+            store.accumulator().set((float) Math.PI);
             store.setLocation(110, Word.create('A'));
             store.setRegister(3, 10);
 
@@ -81,7 +81,7 @@ public class PCTTest {
             PaperTape.setOut(printStream);
 
             Store store = new Store();
-            store.setAccumulator((float) Math.PI);
+            store.accumulator().set((float) Math.PI);
             store.setLocation(110, Word.create('A'));
             store.setRegister(3, 10);
 

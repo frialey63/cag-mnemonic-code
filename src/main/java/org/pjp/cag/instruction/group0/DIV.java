@@ -34,7 +34,7 @@ public final class DIV extends Instruction {
                 throw new RunningException(RunningError.ERR_18);
             }
 
-            store.setAccumulator(store.getAccumulator() / number);
+            store.accumulator().div(number);
         } catch (FaultyWordException e) {
             throw new RunningException(RunningError.ERR_15);
         }

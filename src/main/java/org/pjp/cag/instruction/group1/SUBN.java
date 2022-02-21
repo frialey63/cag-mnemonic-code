@@ -20,9 +20,9 @@ public final class SUBN extends Instruction {
 
     @Override
     public boolean execute(Store store) {
-        float accumulator = store.getAccumulator();
+        int literal = getLiteral();
 
-        store.setAccumulator(accumulator - getLiteral());
+        store.accumulator().sub(literal);
 
         return true;
     }
