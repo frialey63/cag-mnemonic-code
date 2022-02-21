@@ -2,8 +2,11 @@
 Fibonacci
 (TITLE)
 Prints the first 10 elements of the Fibonacci Sequence
+(TITLE)
+3-counter, 7-previous, 8-current, 2-temp
 (STORE 12)
-LDAN 8
+LDA 100
+SUBN 2
 STA 3
 LDAN 0
 PNT 6,1
@@ -25,6 +28,8 @@ STA 8
 LDA 3
 SUBN 1
 STA 3
-JGR 22
+JGR 23
 JST
+(STORE 100)
++10
 (EXECUTE 12)

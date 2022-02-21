@@ -1,2 +1,32 @@
 (TITLE)
 e
+(TITLE)
+Calculation of e using the Euler method
+(TITLE)
+5-sum, 6-factorial, 7-counter
+(STORE 12)
+LDAN 1
+STA 5
+LDAN 1
+STA 6
+LDAN 1
+STA 7
+LDAN 1
+DIV 6
+ADD 5
+STA 5
+LDA 7
+ADDN 1
+STA 7
+MLT 6
+STA 6
+LDA 7
+SUB 100
+JEQ 31
+JUN 18
+LDA 5
+PNT 1,6
+JST
+(STORE 100)
++10
+(EXECUTE 12)
