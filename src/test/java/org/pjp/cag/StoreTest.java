@@ -81,38 +81,6 @@ public class StoreTest {
     }
 
     @Test
-    public void testSetControlAddressMax() {
-        Store store = new Store();
-
-        int address = Store.SIZE - 1;
-
-        store.setControlAddress(address);
-    }
-
-    @Test
-    public void testSetControlAddressMin() {
-        Store store = new Store();
-
-        int address = Store.REGISTERS;
-
-        store.setControlAddress(address);
-    }
-
-    @Test(expected = IllegalLocationException.class)
-    public void testSetControlAddressIllegalMax() {
-        Store store = new Store();
-
-        store.setControlAddress(Store.SIZE);
-    }
-
-    @Test(expected = IllegalLocationException.class)
-    public void testSetControlAddressIllegalMin() {
-        Store store = new Store();
-
-        store.setControlAddress(Store.REGISTERS - 1);
-    }
-
-    @Test
     public void testSetRegister() {
         Store store = new Store();
 

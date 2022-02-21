@@ -58,7 +58,7 @@ enum Function {
     RCT(50),
     PCT(51),
     RNT(52),
-    PNT(53),    // TODO both integral and fractional digits required?
+    PNT(53),    // both integral and fractional digits required?
     PNL(54);
 
     /*

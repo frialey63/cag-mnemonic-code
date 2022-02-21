@@ -12,10 +12,6 @@ import org.pjp.cag.exception.internal.IllegalRegisterException;
  */
 public final class Store {
 
-    private static final String BEGIN = "------ STORE -----";
-
-    private static final String END =   "------------------";
-
     /**
      * The size of the store, i.e. number of words.
      */
@@ -42,6 +38,16 @@ public final class Store {
     public static final int INDEX_3 = 3;
 
     /**
+     * The link register.
+     */
+    public static final int LINK = 4;
+
+    /**
+     * Index register 5.
+     */
+    public static final int INDEX_5 = 5;
+
+    /**
      * Index register 6.
      */
     public static final int INDEX_6 = 6;
@@ -61,14 +67,13 @@ public final class Store {
      */
     public static final int INDEX_9 = 9;
 
-    /**
-     * The link register.
-     */
-    public static final int LINK = 4;
-
     private static final int ACCUMULATOR = 1;   // FIXME this is "accumulator address"
 
-    private static final int CONTROL = 5;       // FIXME this is an index register, the program counter is separate from store
+    private static final String BEGIN = "------ STORE -----";
+
+    private static final String END =   "------------------";
+
+    private final ControlRegister controlRegister = new ControlRegister();
 
     private Word[] word = new Word[SIZE];
 
@@ -116,34 +121,28 @@ public final class Store {
      * @param address The address
      */
     public void setControlAddress(int address) {
-        checkArgument(address >= 0);
-
-        if ((address > ZERO && address < REGISTERS) || (address >= SIZE)) {
-            throw new IllegalLocationException("control address out of range: " + address);
-        }
-
-        setRegister(CONTROL, address);
+        controlRegister.setAddress(address);
     }
 
     /**
      * @return The address in the control register
      */
     public int getControlAddress() {
-        return (int) Math.floor(getRegister(CONTROL));
+        return controlRegister.getAddress();
     }
 
     /**
      * Increment the address in the control register.
      */
     public void incControlAddress() {
-        setControlAddress(getControlAddress() + 1);
+        controlRegister.incAddress();
     }
 
     /**
      * Set the link address which enables the return from a subroutine.
      */
     public void updateLinkAddress() {
-        int address = getControlAddress();
+        int address = controlRegister.getAddress();
 
         setRegister(LINK, address + 1);
     }
