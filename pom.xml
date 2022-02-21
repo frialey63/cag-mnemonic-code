@@ -47,12 +47,56 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.0.0</version>
-                <configuration>
-                    <mainClass>org.pjp.cag.CAGMnemonicCode1964</mainClass>
-                    <arguments>
-                        <argument>data/simple_test.txt</argument>
-                    </arguments>
-                </configuration>
+                <executions>
+                    <execution>
+                        <id>simple-test</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>org.pjp.cag.CAGMnemonicCode1964</mainClass>
+                            <arguments>
+                                <argument>data/simple_test.txt</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>pythagoras</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>org.pjp.cag.CAGMnemonicCode1964</mainClass>
+                            <arguments>
+                                <argument>data/pythagoras.txt</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>quadratic</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>org.pjp.cag.CAGMnemonicCode1964</mainClass>
+                            <arguments>
+                                <argument>data/quadratic.txt</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>fibonacii</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>org.pjp.cag.CAGMnemonicCode1964</mainClass>
+                            <arguments>
+                                <argument>data/fibonacii.txt</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
