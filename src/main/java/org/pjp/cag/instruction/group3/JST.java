@@ -8,7 +8,7 @@ import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.instruction.Instruction;
 
 /**
- * Wait. TODO signals - jump when start button pressed
+ * Wait. TODO interrupts - jump when start button pressed
  * @author developer
  *
  */

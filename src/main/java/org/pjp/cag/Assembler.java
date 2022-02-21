@@ -116,7 +116,7 @@ final class Assembler {
                     title = true;
 
                 } else if (WAIT.equals(type)) {
-                    // TODO signals - end of assembly process for now
+                    // TODO interrupts - end of assembly process for now
                     return;
                 } else {
                     int directiveAddress;
