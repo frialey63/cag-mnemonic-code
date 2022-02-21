@@ -5,7 +5,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import org.pjp.cag.exception.internal.IllegalLocationException;
 
 /**
- * The control register which holds the address of the next instruction to be executed..
+ * The control register which holds the address of the next instruction to be executed.
  * @author developer
  *
  */

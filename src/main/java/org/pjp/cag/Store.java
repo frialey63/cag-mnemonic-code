@@ -67,7 +67,7 @@ public final class Store {
      */
     public static final int INDEX_9 = 9;
 
-    private static final int ACCUMULATOR = 1;   // FIXME this is "accumulator address"
+    private static final int ACCUMULATOR = 1;
 
     private static final String BEGIN = "------ STORE -----";
 
