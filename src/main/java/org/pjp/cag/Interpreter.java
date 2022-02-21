@@ -85,7 +85,7 @@ final class Interpreter {
                         try {
                             declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class);
                             instruction = (Instruction) declaredConstructor.newInstance(order.query, ZERO);
-                        } catch (Exception e1) {
+                        } catch (NoSuchMethodException e1) {
                             declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class, int.class);
                             instruction = (Instruction) declaredConstructor.newInstance(order.query, ZERO, ZERO);
                         }
