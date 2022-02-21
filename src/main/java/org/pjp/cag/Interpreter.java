@@ -50,7 +50,7 @@ final class Interpreter {
 
         try {
             while (true) {
-                address = store.getControlAddress();
+                address = store.controlRegister().getAddress();
 
                 if (address == ZERO) {
                     break;
@@ -95,7 +95,7 @@ final class Interpreter {
                 int savedAddress = address;
 
                 if (executeInstruction(store, instruction)) {
-                    store.incControlAddress();
+                    store.controlRegister().incAddress();
                 }
 
                 if (trace && instruction.isQuery()) {

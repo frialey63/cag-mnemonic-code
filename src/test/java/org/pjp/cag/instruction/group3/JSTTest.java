@@ -14,12 +14,12 @@ public class JSTTest {
     @Test
     public void testExecute() {
         Store store = new Store();
-        store.setControlAddress(12);
+        store.controlRegister().setAddress(12);
 
         JST instruction = new JST(false, ZERO, ZERO);
         instruction.execute(store);
 
-        assertEquals(Store.ZERO, store.getControlAddress());
+        assertEquals(Store.ZERO, store.controlRegister().getAddress());
     }
 
     @Test

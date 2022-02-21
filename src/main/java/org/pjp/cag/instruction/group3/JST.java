@@ -31,7 +31,7 @@ public final class JST extends Instruction {
             throw new RunningException(RunningError.ERR_10);
         }
 
-        store.setControlAddress(ZERO);
+        store.controlRegister().setAddress(ZERO);
 
         return false;
     }

@@ -31,7 +31,7 @@ public final class JSR extends Instruction {
         }
 
         store.updateLinkAddress();
-        store.setControlAddress(effectiveAddress);
+        store.controlRegister().setAddress(effectiveAddress);
 
         return false;
     }

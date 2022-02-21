@@ -28,7 +28,7 @@ public final class EXP extends Instruction {
         float accumulator = store.getAccumulator();
 
         if (accumulator > LIMIT) {
-            store.setControlAddress(getEffectiveAddress(store));
+            store.controlRegister().setAddress(getEffectiveAddress(store));
             result = false;
         } else {
             store.setAccumulator((float) Math.exp(accumulator));

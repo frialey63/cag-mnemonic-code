@@ -42,38 +42,10 @@ public class StoreTest {
     }
 
     @Test
-    public void testSetControlAddress() {
-        Store store = new Store();
-
-        store.setControlAddress(567);
-
-        assertEquals(567, store.getControlAddress());
-
-        int maxAddress = Store.SIZE - 1;
-
-        store.setControlAddress(maxAddress);
-
-        assertEquals(maxAddress, store.getControlAddress());
-    }
-
-    @Test
-    public void testIncControlAddress() {
-        Store store = new Store();
-
-        store.setControlAddress(567);
-
-        assertEquals(567, store.getControlAddress());
-
-        store.incControlAddress();
-
-        assertEquals(568, store.getControlAddress());
-    }
-
-    @Test
     public void testSetLinkAddress() {
         Store store = new Store();
 
-        store.setControlAddress(567);
+        store.controlRegister().setAddress(567);
 
         store.updateLinkAddress();
 

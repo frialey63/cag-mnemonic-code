@@ -26,7 +26,7 @@ public final class SQT extends Instruction {
         float accumulator = store.getAccumulator();
 
         if (accumulator < 0) {
-            store.setControlAddress(getEffectiveAddress(store));
+            store.controlRegister().setAddress(getEffectiveAddress(store));
             result = false;
         } else {
             store.setAccumulator((float) Math.sqrt(accumulator));

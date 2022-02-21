@@ -124,7 +124,7 @@ final class Assembler {
                     switch (type) {
                     case EXECUTE:
                         directiveAddress = Integer.parseInt(matcher.group(2).trim());    // will parse because matched to number in the regex
-                        store.setControlAddress(directiveAddress);
+                        store.controlRegister().setAddress(directiveAddress);
                         break;
                     case STORE:
                         directiveAddress = Integer.parseInt(matcher.group(2).trim());    // will parse because matched to number in the regex

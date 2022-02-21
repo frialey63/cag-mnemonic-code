@@ -28,7 +28,7 @@ public class LGNTest {
         LGN instruction = new LGN(false, 16, ZERO);
         instruction.execute(store);
 
-        assertEquals(16, store.getControlAddress());
+        assertEquals(16, store.controlRegister().getAddress());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class LGNTest {
         LGN instruction = new LGN(false, 16, 3);
         instruction.execute(store);
 
-        assertEquals(26, store.getControlAddress());
+        assertEquals(26, store.controlRegister().getAddress());
     }
 
 }

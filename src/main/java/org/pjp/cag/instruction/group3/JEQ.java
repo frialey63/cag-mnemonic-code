@@ -34,7 +34,7 @@ public final class JEQ extends Instruction {
                 throw new RunningException(RunningError.ERR_10);
             }
 
-            store.setControlAddress(effectiveAddress);
+            store.controlRegister().setAddress(effectiveAddress);
             result = false;
         }
 

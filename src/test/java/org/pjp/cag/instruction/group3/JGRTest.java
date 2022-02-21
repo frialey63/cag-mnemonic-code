@@ -15,39 +15,39 @@ public class JGRTest {
     public void testExecuteGreater() {
         Store store = new Store();
         store.setAccumulator(1);
-        store.setControlAddress(12);
+        store.controlRegister().setAddress(12);
         store.setRegister(3, 10);
 
         JGR instruction = new JGR(false, 100, 3);
         instruction.execute(store);
 
-        assertEquals(110, store.getControlAddress());
+        assertEquals(110, store.controlRegister().getAddress());
     }
 
     @Test
     public void testExecuteEquals() {
         Store store = new Store();
         store.setAccumulator(0);
-        store.setControlAddress(12);
+        store.controlRegister().setAddress(12);
         store.setRegister(3, 10);
 
         JGR instruction = new JGR(false, 100, 3);
         instruction.execute(store);
 
-        assertEquals(12, store.getControlAddress());
+        assertEquals(12, store.controlRegister().getAddress());
     }
 
     @Test
     public void testExecuteLesser() {
         Store store = new Store();
         store.setAccumulator(-1);
-        store.setControlAddress(12);
+        store.controlRegister().setAddress(12);
         store.setRegister(3, 10);
 
         JGR instruction = new JGR(false, 100, 3);
         instruction.execute(store);
 
-        assertEquals(12, store.getControlAddress());
+        assertEquals(12, store.controlRegister().getAddress());
     }
 
     @Test

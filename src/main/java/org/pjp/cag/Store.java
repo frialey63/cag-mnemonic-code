@@ -73,6 +73,8 @@ public final class Store {
 
     private static final String END =   "------------------";
 
+    private final Accumulator accumulator = new Accumulator();
+
     private final ControlRegister controlRegister = new ControlRegister();
 
     private Word[] word = new Word[SIZE];
@@ -87,6 +89,14 @@ public final class Store {
         for (int i = REGISTERS; i < SIZE; i++) {
             word[i] = Word.empty();
         }
+    }
+
+    public Accumulator accumulator() {
+        return accumulator;
+    }
+
+    public ControlRegister controlRegister() {
+        return controlRegister;
     }
 
     /**
@@ -118,31 +128,10 @@ public final class Store {
     }
 
     /**
-     * @param address The address
-     */
-    public void setControlAddress(int address) {
-        controlRegister.setAddress(address);
-    }
-
-    /**
-     * @return The address in the control register
-     */
-    public int getControlAddress() {
-        return controlRegister.getAddress();
-    }
-
-    /**
-     * Increment the address in the control register.
-     */
-    public void incControlAddress() {
-        controlRegister.incAddress();
-    }
-
-    /**
      * Set the link address which enables the return from a subroutine.
      */
     public void updateLinkAddress() {
-        int address = controlRegister.getAddress();
+        int address = controlRegister().getAddress();
 
         setRegister(LINK, address + 1);
     }

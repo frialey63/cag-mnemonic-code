@@ -14,13 +14,13 @@ public class JUNTest {
     @Test
     public void testExecute() {
         Store store = new Store();
-        store.setControlAddress(12);
+        store.controlRegister().setAddress(12);
         store.setRegister(3, 10);
 
         JUN instruction = new JUN(false, 100, 3);
         instruction.execute(store);
 
-        assertEquals(110, store.getControlAddress());
+        assertEquals(110, store.controlRegister().getAddress());
     }
 
     @Test
