@@ -30,10 +30,6 @@ public final class DIV extends Instruction {
         try {
             float number = word.number();
 
-            if (number == 0.0) {
-                throw new RunningException(RunningError.ERR_18);
-            }
-
             store.accumulator().div(number);
         } catch (FaultyWordException e) {
             throw new RunningException(RunningError.ERR_15);

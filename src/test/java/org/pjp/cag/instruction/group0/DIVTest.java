@@ -40,19 +40,4 @@ public class DIVTest {
         assertEquals(RunningError.ERR_15.number(), Integer.parseInt(exception.getMessage().trim()));
     }
 
-    @Test
-    public void testExecuteFloatingPointOverflow() {
-        RunningException exception = assertThrows(RunningException.class, () -> {
-            Store store = new Store();
-            store.accumulator().set(123);
-            store.setLocation(110, Word.create(0.0f));
-            store.setRegister(3, 10);
-
-            DIV instruction = new DIV(false, 100, 3);
-            instruction.execute(store);
-        });
-
-        assertEquals(RunningError.ERR_18.number(), Integer.parseInt(exception.getMessage().trim()));
-    }
-
 }

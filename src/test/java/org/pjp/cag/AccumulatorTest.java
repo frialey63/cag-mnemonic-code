@@ -1,8 +1,11 @@
 package org.pjp.cag;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 import org.junit.Test;
+import org.pjp.cag.exception.RunningError;
+import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.test.TestConstants;
 
 public class AccumulatorTest {
@@ -72,6 +75,18 @@ public class AccumulatorTest {
         store.accumulator().div(456);
 
         assertEquals((float) (123.0 / 456), store.accumulator().get(), TestConstants.DELTA);
+    }
+
+    @Test
+    public void testDivFloatingPointOverflow() {
+        RunningException exception = assertThrows(RunningException.class, () -> {
+            Store store = new Store();
+
+            store.accumulator().set(123);
+            store.accumulator().div(0);
+        });
+
+        assertEquals(RunningError.ERR_18.number(), Integer.parseInt(exception.getMessage().trim()));
     }
 
 }

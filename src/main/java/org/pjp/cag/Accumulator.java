@@ -1,5 +1,8 @@
 package org.pjp.cag;
 
+import org.pjp.cag.exception.RunningError;
+import org.pjp.cag.exception.RunningException;
+
 /**
  * The accumulator which performs the basic arithmetic operations.
  * @author developer
@@ -57,7 +60,18 @@ public final class Accumulator {
      * @param value Divisor for the accumulator
      */
     public void div(float value) {
+        if (value == 0.0) {
+            throw new RunningException(RunningError.ERR_18);
+        }
+
         set(get() / value);
     }
 
+    /**
+     * @param function TODO name of the special function
+     * @return True if the function could be performed on the current value of the accumulator
+     */
+    public boolean special(String function) {
+        throw new UnsupportedOperationException();
+    }
 }
