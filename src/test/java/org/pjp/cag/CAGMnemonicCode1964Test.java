@@ -15,16 +15,16 @@ import java.nio.file.Paths;
 import org.junit.Test;
 import org.pjp.cag.dev.PaperTape;
 
-public class ComputerTest {
+public class CAGMnemonicCode1964Test {
 
     @Test
     public void testGetInputStream() throws IOException {
-        assertTrue(Computer.getInputStream(Files.createTempFile("tmp-", ".tmp").toFile()) instanceof FileInputStream);
+        assertTrue(CAGMnemonicCode1964.getInputStream(Files.createTempFile("tmp-", ".tmp").toFile()) instanceof FileInputStream);
     }
 
     @Test
     public void testGetInputStreamNull() throws IOException {
-        assertEquals(System.in, Computer.getInputStream(null));
+        assertEquals(System.in, CAGMnemonicCode1964.getInputStream(null));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class ComputerTest {
 
             Path path = Paths.get(ClassLoader.getSystemResource("simple_test.txt").toURI());
 
-            Computer.innerMain(path, false);
+            CAGMnemonicCode1964.innerMain(path, false);
 
             String printText = outputStream.toString();
 
@@ -58,7 +58,7 @@ public class ComputerTest {
 
             Path path = Paths.get(ClassLoader.getSystemResource("unusual.txt").toURI());
 
-            Computer.innerMain(path, false);
+            CAGMnemonicCode1964.innerMain(path, false);
 
             String printText = outputStream.toString();
 

@@ -1,4 +1,4 @@
-package org.pjp.cag;
+package org.pjp.cag.cpu;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;

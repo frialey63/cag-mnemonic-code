@@ -1,4 +1,4 @@
-package org.pjp.cag;
+package org.pjp.cag.cpu;
 
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;

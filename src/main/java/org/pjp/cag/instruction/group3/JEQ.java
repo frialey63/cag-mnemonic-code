@@ -1,6 +1,6 @@
 package org.pjp.cag.instruction.group3;
 
-import org.pjp.cag.Store;
+import org.pjp.cag.cpu.Store;
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.instruction.Instruction;

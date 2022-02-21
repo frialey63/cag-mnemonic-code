@@ -1,4 +1,4 @@
-package org.pjp.cag;
+package org.pjp.cag.cpu;
 
 /**
  * TODO The interrupt handler.

@@ -1,6 +1,6 @@
 package org.pjp.cag;
 
-import static org.pjp.cag.Store.ZERO;
+import static org.pjp.cag.cpu.Store.ZERO;
 import static org.pjp.cag.directive.AddressDirective.EXECUTE;
 import static org.pjp.cag.directive.AddressDirective.STORE;
 import static org.pjp.cag.directive.TitleDirective.TITLE;
@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.pjp.cag.cpu.Store;
+import org.pjp.cag.cpu.Word;
 import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.directive.AddressDirective;
 import org.pjp.cag.directive.Directive;
@@ -166,7 +168,7 @@ final class Assembler {
                         try {
                             long integer = Long.parseLong(line);
 
-                            if (Math.abs(integer) > Computer.MAX_INT) {
+                            if (Math.abs(integer) > CAGMnemonicCode1964.MAX_INT) {
                                 throw new TranslationException(TranslationError.ERR_3);
                             }
 

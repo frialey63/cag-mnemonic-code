@@ -1,6 +1,6 @@
 package org.pjp.cag.instruction;
 
-import org.pjp.cag.Store;
+import org.pjp.cag.cpu.Store;
 
 /**
  * This interface represents the executability of any instruction.

@@ -2,7 +2,7 @@ package org.pjp.cag.instruction.group5;
 
 import java.text.DecimalFormatSymbols;
 
-import org.pjp.cag.Store;
+import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.instruction.Instruction;
 

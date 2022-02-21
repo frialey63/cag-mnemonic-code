@@ -1,15 +1,15 @@
 package org.pjp.cag.instruction.group5;
 
 import static org.junit.Assert.assertEquals;
-import static org.pjp.cag.Store.ZERO;
+import static org.pjp.cag.cpu.Store.ZERO;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.junit.Test;
-import org.pjp.cag.Computer;
-import org.pjp.cag.Store;
+import org.pjp.cag.CAGMnemonicCode1964;
+import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.instruction.Instruction;
 import org.pjp.cag.instruction.group2.STA;
@@ -20,7 +20,7 @@ public class RNTTest {
     public void testExecute() throws IOException {
         InputStreamReader prevIn = PaperTape.in;
 
-        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("123.4567".getBytes()), Computer.CHARSET)) {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("123.4567".getBytes()), CAGMnemonicCode1964.CHARSET)) {
 
             PaperTape.setIn(inputStreamReader);
 
@@ -40,7 +40,7 @@ public class RNTTest {
     public void testExecuteNumberFollowingCharacter() throws IOException {
         InputStreamReader prevIn = PaperTape.in;
 
-        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("A123.456".getBytes()), Computer.CHARSET)) {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("A123.456".getBytes()), CAGMnemonicCode1964.CHARSET)) {
 
             PaperTape.setIn(inputStreamReader);
 
@@ -65,7 +65,7 @@ public class RNTTest {
     public void testExecuteNumberFollowingNumber() throws IOException {
         InputStreamReader prevIn = PaperTape.in;
 
-        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("987.654  123.456".getBytes()), Computer.CHARSET)) {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("987.654  123.456".getBytes()), CAGMnemonicCode1964.CHARSET)) {
 
             PaperTape.setIn(inputStreamReader);
 

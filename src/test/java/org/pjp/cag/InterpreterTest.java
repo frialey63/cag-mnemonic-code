@@ -2,9 +2,11 @@ package org.pjp.cag;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
-import static org.pjp.cag.Store.ZERO;
+import static org.pjp.cag.cpu.Store.ZERO;
 
 import org.junit.Test;
+import org.pjp.cag.cpu.Store;
+import org.pjp.cag.cpu.Word;
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.instruction.Instruction;

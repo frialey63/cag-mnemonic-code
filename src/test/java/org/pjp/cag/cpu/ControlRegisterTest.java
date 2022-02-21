@@ -1,7 +1,7 @@
-package org.pjp.cag;
+package org.pjp.cag.cpu;
 
 import static org.junit.Assert.assertEquals;
-import static org.pjp.cag.Store.ZERO;
+import static org.pjp.cag.cpu.Store.ZERO;
 
 import org.junit.Test;
 import org.pjp.cag.exception.internal.IllegalLocationException;

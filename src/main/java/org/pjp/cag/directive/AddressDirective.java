@@ -2,7 +2,7 @@ package org.pjp.cag.directive;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.pjp.cag.Store;
+import org.pjp.cag.cpu.Store;
 import org.pjp.cag.exception.TranslationError;
 import org.pjp.cag.exception.TranslationException;
 

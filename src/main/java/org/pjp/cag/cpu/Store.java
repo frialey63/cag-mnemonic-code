@@ -1,4 +1,4 @@
-package org.pjp.cag;
+package org.pjp.cag.cpu;
 
 import static com.google.common.base.Preconditions.checkArgument;
 

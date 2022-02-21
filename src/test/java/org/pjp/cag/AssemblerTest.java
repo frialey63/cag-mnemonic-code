@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.Test;
+import org.pjp.cag.cpu.Store;
 import org.pjp.cag.exception.TranslationError;
 import org.pjp.cag.exception.TranslationException;
 import org.pjp.cag.test.TestConstants;

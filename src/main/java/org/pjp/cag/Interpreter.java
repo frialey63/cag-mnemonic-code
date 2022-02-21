@@ -1,9 +1,10 @@
 package org.pjp.cag;
 
-import static org.pjp.cag.Store.ZERO;
+import static org.pjp.cag.cpu.Store.ZERO;
 
 import java.lang.reflect.Constructor;
 
+import org.pjp.cag.cpu.Store;
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.exception.internal.FaultyWordException;

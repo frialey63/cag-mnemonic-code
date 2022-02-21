@@ -2,8 +2,8 @@ package org.pjp.cag.instruction.group5;
 
 import java.io.IOException;
 
-import org.pjp.cag.Store;
-import org.pjp.cag.Word;
+import org.pjp.cag.cpu.Store;
+import org.pjp.cag.cpu.Word;
 import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.instruction.Instruction;
 import org.slf4j.Logger;

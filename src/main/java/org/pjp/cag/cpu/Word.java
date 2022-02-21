@@ -1,7 +1,8 @@
-package org.pjp.cag;
+package org.pjp.cag.cpu;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.pjp.cag.Order;
 import org.pjp.cag.exception.internal.FaultyWordException;
 
 /**

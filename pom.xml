@@ -48,7 +48,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <mainClass>org.pjp.cag.Computer</mainClass>
+                    <mainClass>org.pjp.cag.CAGMnemonicCode1964</mainClass>
                     <arguments>
                         <argument>data/simple_test.txt</argument>
                     </arguments>

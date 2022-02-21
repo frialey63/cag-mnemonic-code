@@ -2,7 +2,7 @@ package org.pjp.cag.instruction.group5;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
-import static org.pjp.cag.Store.ZERO;
+import static org.pjp.cag.cpu.Store.ZERO;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -10,9 +10,9 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 import org.junit.Test;
-import org.pjp.cag.Computer;
-import org.pjp.cag.Store;
-import org.pjp.cag.Word;
+import org.pjp.cag.CAGMnemonicCode1964;
+import org.pjp.cag.cpu.Store;
+import org.pjp.cag.cpu.Word;
 import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
@@ -24,7 +24,7 @@ public class PCTTest {
     public void testExecute() throws IOException {
         PrintStream prevOut = PaperTape.out;
 
-        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, Computer.CHARSET)) {
+        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, CAGMnemonicCode1964.CHARSET)) {
 
             PaperTape.setOut(printStream);
 
@@ -48,7 +48,7 @@ public class PCTTest {
     public void testExecuteCharacterFollowingNumber() throws IOException {
         PrintStream prevOut = PaperTape.out;
 
-        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, Computer.CHARSET)) {
+        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, CAGMnemonicCode1964.CHARSET)) {
 
             PaperTape.setOut(printStream);
 
@@ -76,7 +76,7 @@ public class PCTTest {
     public void testExecuteNumberFollowingCharacter() throws IOException {
         PrintStream prevOut = PaperTape.out;
 
-        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, Computer.CHARSET)) {
+        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, CAGMnemonicCode1964.CHARSET)) {
 
             PaperTape.setOut(printStream);
 

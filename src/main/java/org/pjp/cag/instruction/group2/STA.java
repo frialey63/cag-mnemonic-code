@@ -1,7 +1,7 @@
 package org.pjp.cag.instruction.group2;
 
-import org.pjp.cag.Store;
-import org.pjp.cag.Word;
+import org.pjp.cag.cpu.Store;
+import org.pjp.cag.cpu.Word;
 import org.pjp.cag.instruction.Instruction;
 
 /**

@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 
-import org.pjp.cag.Computer;
+import org.pjp.cag.CAGMnemonicCode1964;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,7 +33,7 @@ public final class PaperTape {
 
     static {
         try {
-            in = new InputStreamReader(System.in, Computer.CHARSET);
+            in = new InputStreamReader(System.in, CAGMnemonicCode1964.CHARSET);
         } catch (UnsupportedEncodingException e) {
             LOGGER.error("caught UnsupportedEncodingException while initialising in", e);
         }

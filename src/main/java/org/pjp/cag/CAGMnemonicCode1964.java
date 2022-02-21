@@ -9,16 +9,17 @@ import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The computer has a store and coordinates the assembly of the program by the Assembler and the execution of the program by the Interpreter.
+ * The CAG Mnemonic Code 1964 coordinates the assembly of the program by the Assembler and the execution of the program by the Interpreter.
  * @author developer
  *
  */
-public final class Computer {
+public final class CAGMnemonicCode1964 {
 
     /**
      * The maximum integer 2^17 - 1.
@@ -36,7 +37,7 @@ public final class Computer {
 
     private static final File DIR = new File("data");
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Computer.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CAGMnemonicCode1964.class);
 
     private static final String USAGE = "usage: org.pjp.cag.Computer <filename> [trace]";
 
@@ -69,7 +70,7 @@ public final class Computer {
                 }
             }
 
-            try (InputStreamReader inputStreamReader = new InputStreamReader(getInputStream(data), Computer.CHARSET)) {
+            try (InputStreamReader inputStreamReader = new InputStreamReader(getInputStream(data), CAGMnemonicCode1964.CHARSET)) {
                 PaperTape.setIn(inputStreamReader);
 
                 innerMain(path, trace);
@@ -97,7 +98,7 @@ public final class Computer {
         }
     }
 
-    private Computer() {
+    private CAGMnemonicCode1964() {
         // prevent instantiation
     }
 

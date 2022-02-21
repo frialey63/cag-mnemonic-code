@@ -1,7 +1,7 @@
 package org.pjp.cag.instruction.group5;
 
 import static org.junit.Assert.assertEquals;
-import static org.pjp.cag.Store.ZERO;
+import static org.pjp.cag.cpu.Store.ZERO;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -9,8 +9,8 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 import org.junit.Test;
-import org.pjp.cag.Computer;
-import org.pjp.cag.Store;
+import org.pjp.cag.CAGMnemonicCode1964;
+import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
 
 public class PNLTest {
@@ -19,7 +19,7 @@ public class PNLTest {
     public void testExecute() throws IOException {
         PrintStream prevOut = PaperTape.out;
 
-        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, Computer.CHARSET)) {
+        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, CAGMnemonicCode1964.CHARSET)) {
 
             PaperTape.setOut(printStream);
 
