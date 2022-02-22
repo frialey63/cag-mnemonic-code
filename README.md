@@ -1,6 +1,8 @@
 # cag-mnemonic-code
 Simulator for the City &amp; Guilds Mnemonic Code
 
+TODO Reasoning, Overview of specs and impls, Roadmap, Dedication
+
 ## Computer Conservation Society
 
 [Resurrection - The CCS Journal](https://www.computerconservationsociety.org/resurrection.htm)

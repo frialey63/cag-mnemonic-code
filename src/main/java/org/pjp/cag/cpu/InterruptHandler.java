@@ -1,7 +1,7 @@
 package org.pjp.cag.cpu;
 
 /**
- * TODO The interrupt handler.
+ * TODO the interrupt handler.
  * @author developer
  *
  */
