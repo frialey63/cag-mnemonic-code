@@ -25,6 +25,7 @@ public class LDATest {
         instruction.execute(store);
 
         assertEquals(456.0f, store.accumulator().get(), TestConstants.DELTA);
+        assertEquals(456.0f, store.getLocation(110).number(), TestConstants.DELTA);
     }
 
     @Test

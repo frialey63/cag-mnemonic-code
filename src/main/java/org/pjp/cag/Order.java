@@ -30,7 +30,6 @@ public final class Order {
             Function function = Function.valueOf(functionStr);
 
             if (addressStr == null) {
-                // only for test
                 return new Order(function);
             } else {
                 int address = Integer.parseInt(addressStr);          // will parse because matched to number in the regex

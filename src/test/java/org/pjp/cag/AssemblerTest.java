@@ -56,7 +56,7 @@ public class AssemblerTest {
     }
 
     @Test
-    public void testAssembleNumbers() throws URISyntaxException {
+    public void testAssembleNumber() throws URISyntaxException {
         Path path = Paths.get(ClassLoader.getSystemResource("number.txt").toURI());
 
         Store store = new Store();
@@ -64,12 +64,23 @@ public class AssemblerTest {
         boolean result = new Assembler().assemble(path, store);
 
         assertTrue(result);
-        assertEquals(0f, store.getLocation(12).number(), TestConstants.DELTA);
+        assertEquals(0, store.getLocation(12).number(), TestConstants.DELTA);
         assertEquals(1.0f, store.getLocation(13).number(), TestConstants.DELTA);
         assertEquals(-1.0f, store.getLocation(14).number(), TestConstants.DELTA);
         assertEquals(123.456f, store.getLocation(15).number(), 0.001f);
         assertEquals(-321.654f, store.getLocation(16).number(), 0.001f);
         assertEquals(+2.0e-04, store.getLocation(17).number(), TestConstants.DELTA);
+    }
+
+    @Test
+    public void testInnerAssembleNumberWithoutSign() throws URISyntaxException {
+        TranslationException exception = assertThrows(TranslationException.class, () -> {
+            Store store = new Store();
+
+            new Assembler().assemble("0", store);
+        });
+
+        assertEquals(TranslationError.ERR_2.number(), Integer.parseInt(exception.getMessage().trim()));
     }
 
     @Test

@@ -29,6 +29,7 @@ public class SQTTest {
         instruction.execute(store);
 
         assertEquals(16, store.controlRegister().getAddress());
+        assertEquals(-1, store.accumulator().get(), TestConstants.DELTA);
     }
 
     @Test
@@ -41,6 +42,7 @@ public class SQTTest {
         instruction.execute(store);
 
         assertEquals(26, store.controlRegister().getAddress());
+        assertEquals(-1, store.accumulator().get(), TestConstants.DELTA);
     }
 
 }

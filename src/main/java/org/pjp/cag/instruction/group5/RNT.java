@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import org.pjp.cag.CAGMnemonicCode1964;
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
-import org.pjp.cag.exception.internal.NumberOutOfRangeException;
 import org.pjp.cag.instruction.Instruction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,32 +55,38 @@ public final class RNT extends Instruction {
 
     @Override
     public boolean execute(Store store) {
+        boolean result = true;
+
         try {
             String line = readline(PaperTape.in);
 
             try {
                 long integer = Long.parseLong(line);
 
-                // No running error equivalent to translation error for integer out of range
                 if (Math.abs(integer) > CAGMnemonicCode1964.MAX_INT) {
-                    String msg = "number out of range while reading from tape: " + integer;
-                    LOGGER.error(msg);
-                    throw new NumberOutOfRangeException(msg);
+                    store.controlRegister().setAddress(getEffectiveAddress(store));
+                    result = false;
+                } else {
+                    store.accumulator().set(integer);
+
                 }
-
-                store.accumulator().set(integer);
-
             } catch (NumberFormatException e) {
-                float number = Float.parseFloat(line);
+                try {
+                    float number = Float.parseFloat(line);
 
-                store.accumulator().set(number);
+                    store.accumulator().set(number);
+                } catch (NumberFormatException e1) {
+                    // TODO seems reasonable to use error handler as hinted in Resurrection #71 but not in A.T.Gough paper, also for MAX_INT checking
+                    store.controlRegister().setAddress(getEffectiveAddress(store));
+                    result = false;
+                }
             }
 
         } catch (IOException e) {
             LOGGER.error("caught IOException while attempting to read number from tape", e);
         }
 
-        return true;
+        return result;
     }
 
 }

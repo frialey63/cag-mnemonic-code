@@ -25,6 +25,7 @@ public class DIVTest {
         instruction.execute(store);
 
         assertEquals((float) (123.0 / 456), store.accumulator().get(), TestConstants.DELTA);
+        assertEquals(456.0f, store.getLocation(110).number(), TestConstants.DELTA);
     }
 
     @Test

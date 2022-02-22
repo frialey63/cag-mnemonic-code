@@ -68,10 +68,10 @@ public final class Accumulator {
     }
 
     /**
-     * @param function TODO name of the special function
+     * @param function TODO name of the standard function
      * @return True if the function could be performed on the current value of the accumulator
      */
-    public boolean special(String function) {
+    public boolean standard(String function) {
         throw new UnsupportedOperationException();
     }
 }

@@ -52,7 +52,7 @@ public class StoreTest {
 
         store.clearRegister(register);
 
-        assertEquals(0f, store.getRegister(register), TestConstants.DELTA);
+        assertEquals(0, store.getRegister(register), TestConstants.DELTA);
     }
 
     @Test

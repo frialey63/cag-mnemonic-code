@@ -34,7 +34,7 @@ public class AccumulatorTest {
 
         store.accumulator().clear();
 
-        assertEquals(0.0f, store.accumulator().get(), TestConstants.DELTA);
+        assertEquals(0, store.accumulator().get(), TestConstants.DELTA);
     }
 
     @Test

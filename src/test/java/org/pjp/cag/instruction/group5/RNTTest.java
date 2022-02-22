@@ -13,6 +13,7 @@ import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.instruction.Instruction;
 import org.pjp.cag.instruction.group2.STA;
+import org.pjp.cag.test.TestConstants;
 
 public class RNTTest {
 
@@ -82,6 +83,51 @@ public class RNTTest {
 
             assertEquals(987.654f, store.getLocation(100).number(), 0.001f);
             assertEquals(123.456f, store.accumulator().get(), 0.001f);
+
+        } finally {
+            PaperTape.setIn(prevIn);
+        }
+    }
+
+    @Test
+    public void testExecuteNumberOutOfRange() throws IOException {
+        InputStreamReader prevIn = PaperTape.in;
+
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("131072".getBytes()), CAGMnemonicCode1964.CHARSET)) {
+
+            PaperTape.setIn(inputStreamReader);
+
+            Store store = new Store();
+            store.accumulator().clear();
+
+            RNT instruction = new RNT(false, 16, ZERO);
+            instruction.execute(store);
+
+            assertEquals(16, store.controlRegister().getAddress());
+            assertEquals(0, store.accumulator().get(), TestConstants.DELTA);
+
+        } finally {
+            PaperTape.setIn(prevIn);
+        }
+    }
+
+    @Test
+    public void testExecuteNumberFormatError() throws IOException {
+        InputStreamReader prevIn = PaperTape.in;
+
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("1A2".getBytes()), CAGMnemonicCode1964.CHARSET)) {
+
+            PaperTape.setIn(inputStreamReader);
+
+            Store store = new Store();
+            store.accumulator().clear();
+            store.setRegister(3, 10);
+
+            RNT instruction = new RNT(false, 16, 3);
+            instruction.execute(store);
+
+            assertEquals(26, store.controlRegister().getAddress());
+            assertEquals(0, store.accumulator().get(), TestConstants.DELTA);
 
         } finally {
             PaperTape.setIn(prevIn);

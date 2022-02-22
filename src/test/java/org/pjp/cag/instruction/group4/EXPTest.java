@@ -29,6 +29,7 @@ public class EXPTest {
         instruction.execute(store);
 
         assertEquals(16, store.controlRegister().getAddress());
+        assertEquals(40.5f, store.accumulator().get(), TestConstants.DELTA);
     }
 
     @Test
@@ -41,6 +42,7 @@ public class EXPTest {
         instruction.execute(store);
 
         assertEquals(26, store.controlRegister().getAddress());
+        assertEquals(40.5f, store.accumulator().get(), TestConstants.DELTA);
     }
 
 }
