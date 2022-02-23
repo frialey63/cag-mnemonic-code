@@ -4,7 +4,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 /**
- * This device is the punched card reader & writer.
+ * This device is the Punched Card reader & writer.
  * @author developer
  *
  */

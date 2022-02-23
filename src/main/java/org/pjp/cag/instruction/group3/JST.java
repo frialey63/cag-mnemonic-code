@@ -8,8 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Stop, originally Wait with facility to continue from the modifiable address
- * when CONTINUE button pressed.
+ * Stop, originally Wait with facility to continue from the modifiable address when CONTINUE button pressed.
  *
  * @author developer
  *

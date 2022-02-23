@@ -1,7 +1,7 @@
 package org.pjp.cag.order;
 
 /**
- * This abstract class represents the type for any directive.
+ * This abstract class represents the type for any Directive.
  * @author developer
  *
  */

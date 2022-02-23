@@ -4,7 +4,7 @@ import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
 
 /**
- * The accumulator which performs the basic arithmetic operations.
+ * The Accumulator which performs the basic arithmetic operations.
  * @author developer
  *
  */

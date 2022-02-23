@@ -8,7 +8,7 @@ import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.exception.internal.FaultyWordException;
 
 /**
- * This abstract class represents the common elements for all instructions.
+ * This abstract class represents the common elements for all Instructions.
  * @author developer
  *
  */

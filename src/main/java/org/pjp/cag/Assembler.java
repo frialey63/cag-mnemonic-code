@@ -102,7 +102,7 @@ final class Assembler {
             TitleDirective titleDirective = new TitleDirective(line);
             directives.add(titleDirective);
 
-            PaperTape.out.println(titleDirective.getTitle());
+            PaperTape.out.println(line);
 
             title = false;
         } else {

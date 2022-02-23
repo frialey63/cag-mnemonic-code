@@ -1,7 +1,7 @@
 package org.pjp.cag.exception;
 
 /**
- * This enum represents the run error numbers for the CAG computer.
+ * This enum represents the Running Error numbers for the CAG computer.
  * @author developer
  *
  */

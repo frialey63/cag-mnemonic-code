@@ -1,7 +1,7 @@
 package org.pjp.cag.exception;
 
 /**
- * This enum represents the translation error numbers for the CAG computer.
+ * This enum represents the Translation Error numbers for the CAG computer.
  * @author developer
  *
  */

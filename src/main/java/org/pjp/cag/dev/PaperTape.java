@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This device is the paper tape reader & writer.
+ * This device is the Paper Tape reader & writer.
  * @author developer
  *
  */

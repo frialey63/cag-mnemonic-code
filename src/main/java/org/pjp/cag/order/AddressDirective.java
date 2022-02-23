@@ -7,7 +7,7 @@ import org.pjp.cag.exception.TranslationError;
 import org.pjp.cag.exception.TranslationException;
 
 /**
- * This class represents a directive with an associated address.
+ * This class represents a Directive with an associated address.
  * @author developer
  *
  */

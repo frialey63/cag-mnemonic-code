@@ -3,7 +3,7 @@ package org.pjp.cag.order;
 import org.pjp.cag.instruction.Instruction;
 
 /**
- * This enum represents the function (mnemonic) constituent part of an Order.
+ * This enum represents the Function (mnemonic) constituent part of an Order.
  * @author developer
  *
  */
