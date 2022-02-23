@@ -4,6 +4,7 @@ import static org.pjp.cag.cpu.Store.ZERO;
 
 import java.lang.reflect.Constructor;
 
+import org.pjp.cag.cpu.ControlRegister;
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
@@ -51,11 +52,13 @@ final class Interpreter {
 
         try {
             while (true) {
-                address = store.controlRegister().getAddress();
+                ControlRegister controlRegister = store.controlRegister();
 
-                if (address == ZERO) {
+                if (controlRegister.isWait()) {
                     break;
                 }
+
+                address = controlRegister.getAddress();
 
                 Order order = getOrder(store, address);
 
@@ -96,13 +99,12 @@ final class Interpreter {
                 int savedAddress = address;
 
                 if (executeInstruction(store, instruction)) {
-                    store.controlRegister().incAddress();
+                    controlRegister.incAddress();
                 }
 
                 if (trace && instruction.isQuery()) {
                     System.out.printf("Q %4d %.6e\n", savedAddress, store.accumulator().get());
                 }
-
             }
         } catch (RunningException e) {
             System.out.printf("ERR %s %4d\n", e.getMessage(), address);

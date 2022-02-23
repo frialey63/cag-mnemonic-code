@@ -13,6 +13,8 @@ public final class ControlRegister {
 
     private int address;
 
+    private boolean wait;
+
     public int getAddress() {
         return address;
     }
@@ -20,7 +22,7 @@ public final class ControlRegister {
     public void setAddress(int address) {
         checkArgument(address >= 0);
 
-        if ((address > Store.ZERO && address < Store.REGISTERS) || (address >= Store.SIZE)) {
+        if (address >= Store.SIZE) {
             throw new IllegalLocationException("control address out of range: " + address);
         }
 
@@ -32,6 +34,14 @@ public final class ControlRegister {
      */
     public void incAddress() {
         setAddress(getAddress() + 1);
+    }
+
+    public boolean isWait() {
+        return wait;
+    }
+
+    public void setWait(boolean wait) {
+        this.wait = wait;
     }
 
 }
