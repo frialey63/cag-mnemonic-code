@@ -83,7 +83,6 @@ public class InstructionTest {
     @Test
     public void testGetEffectiveAddressZeroModifier() {
         Store store = new Store();
-        store.clearRegister(3);
 
         LDA lda = new LDA(false, 100, 3);
 
