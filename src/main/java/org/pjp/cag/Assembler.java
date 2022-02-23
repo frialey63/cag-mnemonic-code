@@ -118,8 +118,7 @@ final class Assembler {
                     title = true;
 
                 } else if (WAIT.equals(type)) {
-                    // TODO interrupts - end of assembly process for now
-                    return;
+                    throw new UnsupportedOperationException("unsupported WAIT directive, legacy multi-part programs must be presented in a single text file");
                 } else {
                     int directiveAddress;
 
