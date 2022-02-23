@@ -4,10 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.pjp.cag.Order;
 import org.pjp.cag.exception.TranslationException;
 import org.pjp.cag.exception.internal.IllegalLocationException;
 import org.pjp.cag.exception.internal.IllegalRegisterException;
+import org.pjp.cag.order.Order;
 import org.pjp.cag.test.TestConstants;
 
 public class StoreTest {

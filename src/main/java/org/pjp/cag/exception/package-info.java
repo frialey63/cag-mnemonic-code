@@ -1,4 +1,4 @@
 /**
- * This package contains errors and exceptions for the CAG Mnemonic Code.
+ * This package contains Errors for the CAG Mnemonic Code.
  */
 package org.pjp.cag.exception;

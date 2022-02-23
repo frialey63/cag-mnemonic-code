@@ -1,4 +1,4 @@
-package org.pjp.cag.directive;
+package org.pjp.cag.order;
 
 /**
  * This abstract class represents the type for any directive.

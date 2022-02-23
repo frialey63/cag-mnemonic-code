@@ -1,4 +1,4 @@
-package org.pjp.cag;
+package org.pjp.cag.order;
 
 import static org.junit.Assert.assertEquals;
 

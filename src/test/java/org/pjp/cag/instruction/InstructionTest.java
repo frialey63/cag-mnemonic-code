@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 import static org.pjp.cag.cpu.Store.ZERO;
 
 import org.junit.Test;
-import org.pjp.cag.Order;
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.cpu.Word;
 import org.pjp.cag.exception.RunningError;
@@ -14,6 +13,7 @@ import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.instruction.group0.LDA;
 import org.pjp.cag.instruction.group1.LDAN;
 import org.pjp.cag.instruction.group4.SQT;
+import org.pjp.cag.order.Order;
 
 public class InstructionTest {
 

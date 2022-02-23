@@ -1,4 +1,4 @@
-package org.pjp.cag;
+package org.pjp.cag.order;
 
 import org.pjp.cag.instruction.Instruction;
 
@@ -7,7 +7,9 @@ import org.pjp.cag.instruction.Instruction;
  * @author developer
  *
  */
-enum Function {
+public enum Function {
+
+    // CHECKSTYLE:OFF missing javadoc
 
     /*
      * Group 0
@@ -65,13 +67,12 @@ enum Function {
      * Group 6 (Card) Not included
      */
 
+    // CHECKSTYLE:ON
+
     private static final int BASE = 10;
 
     private final int code;
 
-    /**
-     * @param code The instruction opcode
-     */
     Function(int code) {
         this.code = code;
     }
@@ -79,14 +80,14 @@ enum Function {
     /**
      * @return The group
      */
-    int group() {
+    public int group() {
         return code / BASE;
     }
 
     /**
      * @return The class through which the instruction is instantiated at interpretation time
      */
-    String instructionClass() {
+    public String instructionClass() {
         return String.format("%s.group%1d.%s", Instruction.class.getPackage().getName(), group(), name());
     }
 

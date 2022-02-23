@@ -1,5 +1,4 @@
 /**
- * This is the top-level package for the CAG Mnemonic Code.
- * TODO the Order may have better been named Instruction according to A.T.Gough paper
+ * This is the top-level package for the CAG Mnemonic Code comprising the Assembler, Interpreter and driver.
  */
 package org.pjp.cag;

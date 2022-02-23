@@ -1,4 +1,4 @@
-package org.pjp.cag;
+package org.pjp.cag.order;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -55,17 +55,13 @@ public final class Order {
         }
     }
 
-    // CHECKSTYLE:OFF encapsulation
+    private final boolean query;
 
-    final boolean query;
+    private final Function function;
 
-    final Function function;
+    private final int address;  // 10 - 999
 
-    final int address;  // 10 - 999
-
-    final int modifier; // 0 - 9
-
-    // CHECKSTYLE:ON
+    private final int modifier; // 0 - 9
 
     private Order(boolean query, Function function, int address, int modifier) {
         super();
@@ -83,17 +79,33 @@ public final class Order {
         this(false, function, NULL, NULL);
     }
 
+    public boolean query() {
+        return query;
+    }
+
+    public Function function() {
+        return function;
+    }
+
+    public int address() {
+        return address;
+    }
+
+    public int modifier() {
+        return modifier;
+    }
+
     /**
      * @return True if the modifier is present
      */
-    boolean hasModifier() {
+    public boolean hasModifier() {
         return modifier != NULL;
     }
 
     /**
      * @return True if the address is present
      */
-    boolean hasAddress() {
+    public boolean hasAddress() {
         return address != NULL;
     }
 

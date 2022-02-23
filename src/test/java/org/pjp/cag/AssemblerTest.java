@@ -48,11 +48,11 @@ public class AssemblerTest {
         boolean result = new Assembler().assemble(path, store);
 
         assertTrue(result);
-        assertTrue(store.getLocation(12).order().query);
-        assertFalse(store.getLocation(13).order().query);
-        assertFalse(store.getLocation(14).order().query);
-        assertTrue(store.getLocation(15).order().query);
-        assertFalse(store.getLocation(16).order().query);
+        assertTrue(store.getLocation(12).order().query());
+        assertFalse(store.getLocation(13).order().query());
+        assertFalse(store.getLocation(14).order().query());
+        assertTrue(store.getLocation(15).order().query());
+        assertFalse(store.getLocation(16).order().query());
     }
 
     @Test

@@ -1,4 +1,4 @@
-package org.pjp.cag;
+package org.pjp.cag.order;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -50,8 +50,8 @@ public class OrderTest {
     public void testCreatePNL() throws TranslationException {
         Order order = Order.create(false, "PNL", null, null);
 
-        assertFalse(order.query);
-        assertEquals(Function.PNL, order.function);
+        assertFalse(order.query());
+        assertEquals(Function.PNL, order.function());
         assertFalse(order.hasAddress());
         assertFalse(order.hasModifier());
     }
@@ -64,46 +64,46 @@ public class OrderTest {
     public void testCreateLDA() throws TranslationException {
         Order order = Order.create(false, "LDA", "123", null);
 
-        assertFalse(order.query);
-        assertEquals(Function.LDA, order.function);
+        assertFalse(order.query());
+        assertEquals(Function.LDA, order.function());
         assertTrue(order.hasAddress());
         assertFalse(order.hasModifier());
-        assertEquals(123, order.address);
+        assertEquals(123, order.address());
     }
 
     @Test
     public void testCreateLDAModified() throws TranslationException {
         Order order = Order.create(false, "LDA", "123", "3");
 
-        assertFalse(order.query);
-        assertEquals(Function.LDA, order.function);
+        assertFalse(order.query());
+        assertEquals(Function.LDA, order.function());
         assertTrue(order.hasAddress());
         assertTrue(order.hasModifier());
-        assertEquals(123, order.address);
-        assertEquals(3, order.modifier);
+        assertEquals(123, order.address());
+        assertEquals(3, order.modifier());
     }
 
     @Test
     public void testCreateQLDA() throws TranslationException {
         Order order = Order.create(true, "LDA", "123", null);
 
-        assertTrue(order.query);
-        assertEquals(Function.LDA, order.function);
+        assertTrue(order.query());
+        assertEquals(Function.LDA, order.function());
         assertTrue(order.hasAddress());
         assertFalse(order.hasModifier());
-        assertEquals(123, order.address);
+        assertEquals(123, order.address());
     }
 
     @Test
     public void testCreateQLDAModified() throws TranslationException {
         Order order = Order.create(true, "LDA", "123", "3");
 
-        assertTrue(order.query);
-        assertEquals(Function.LDA, order.function);
+        assertTrue(order.query());
+        assertEquals(Function.LDA, order.function());
         assertTrue(order.hasAddress());
         assertTrue(order.hasModifier());
-        assertEquals(123, order.address);
-        assertEquals(3, order.modifier);
+        assertEquals(123, order.address());
+        assertEquals(3, order.modifier());
     }
 
 }

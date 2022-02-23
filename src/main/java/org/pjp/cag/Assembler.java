@@ -1,10 +1,10 @@
 package org.pjp.cag;
 
 import static org.pjp.cag.cpu.Store.ZERO;
-import static org.pjp.cag.directive.AddressDirective.EXECUTE;
-import static org.pjp.cag.directive.AddressDirective.STORE;
-import static org.pjp.cag.directive.TitleDirective.TITLE;
-import static org.pjp.cag.directive.WaitDirective.WAIT;
+import static org.pjp.cag.order.AddressDirective.EXECUTE;
+import static org.pjp.cag.order.AddressDirective.STORE;
+import static org.pjp.cag.order.TitleDirective.TITLE;
+import static org.pjp.cag.order.WaitDirective.WAIT;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,11 +17,12 @@ import java.util.regex.Pattern;
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.cpu.Word;
 import org.pjp.cag.dev.PaperTape;
-import org.pjp.cag.directive.AddressDirective;
-import org.pjp.cag.directive.Directive;
-import org.pjp.cag.directive.TitleDirective;
 import org.pjp.cag.exception.TranslationError;
 import org.pjp.cag.exception.TranslationException;
+import org.pjp.cag.order.AddressDirective;
+import org.pjp.cag.order.Directive;
+import org.pjp.cag.order.Order;
+import org.pjp.cag.order.TitleDirective;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

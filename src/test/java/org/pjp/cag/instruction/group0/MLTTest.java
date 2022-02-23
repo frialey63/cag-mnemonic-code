@@ -5,11 +5,11 @@ import static org.junit.Assert.assertThrows;
 import static org.pjp.cag.cpu.Store.ZERO;
 
 import org.junit.Test;
-import org.pjp.cag.Order;
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.cpu.Word;
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
+import org.pjp.cag.order.Order;
 import org.pjp.cag.test.TestConstants;
 
 public class MLTTest {
