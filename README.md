@@ -22,7 +22,7 @@ A bit later in 1968 the specification was revised by ICL also for the City & Gui
 So by the time I encountered the Mnemonic Code in 1981 it was already a fairly old language.
 At some time in the lead-up to 1981 the AEB examination board in England decided to adopt the City & Guilds Mnemonic Code language to support the teaching of their syllabus.
 
-Dedicated to my computer science (and maths) teacher at Ashmole School, Mr Cook.
+*Dedicated to Mr Cook my computer science (and maths) teacher at Ashmole School.*
 
 ## Andrew Herbert's Documentation Archive
 
