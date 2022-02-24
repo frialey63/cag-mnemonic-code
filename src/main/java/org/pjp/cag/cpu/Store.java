@@ -5,8 +5,6 @@ import static com.google.common.base.Preconditions.checkArgument;
 import org.pjp.cag.exception.internal.IllegalLocationException;
 import org.pjp.cag.exception.internal.IllegalRegisterException;
 
-import com.google.common.annotations.VisibleForTesting;
-
 /**
  * The storage of the computer comprising 10 registers and 1000 words, each word can be populated by an Order, number or character.
  * @author developer
@@ -124,7 +122,6 @@ public final class Store {
      * @param register The register to set
      * @param number The number
      */
-    @VisibleForTesting
     public void setRegister(int register, float number) {
         checkArgument(register >= 0);
 
@@ -138,7 +135,6 @@ public final class Store {
     /**
      * @param register The register to clear
      */
-    @VisibleForTesting
     public void clearRegister(int register) {
         setRegister(register, 0);
     }
@@ -147,7 +143,6 @@ public final class Store {
      * @param register The register to get
      * @return The value of the register
      */
-    @VisibleForTesting
     public float getRegister(int register) {
         checkArgument(register >= 0);
 
