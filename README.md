@@ -3,17 +3,7 @@ Simulator for the City &amp; Guilds Mnemonic Code
 
 TODO Reasoning, Overview of specs and impls, Roadmap, Dedication
 
-## Computer Conservation Society
-
-[Resurrection - The CCS Journal](https://www.computerconservationsociety.org/resurrection.htm)
-
-[Computer Resurrection Issue 71](https://www.computerconservationsociety.org/resurrection/res71.htm)
-
-[City & Guilds Mnemonic Code](https://www.computerconservationsociety.org/resurrection/res71.htm#f)
-
 ## Andrew Herbert's Documentation Archive
-
-[Elliott 900 Series Computers](https://andrewjherbert.github.io/Elliott-900-documentation/)
 
 [The City and Guilds Computer](https://andrewjherbert.github.io/Elliott-900-documentation/The%20City%20and%20Guilds%20Computer.pdf)
 
@@ -21,9 +11,19 @@ TODO Reasoning, Overview of specs and impls, Roadmap, Dedication
 
 [City & Guilds 319 Mnemonic Code (1968)](https://andrewjherbert.github.io/Elliott-900-documentation/City%20and%20Guilds%20319%20Mnemonic%20Code%20%281968%29.pdf)
 
+[Elliott 900 Series Computers](https://andrewjherbert.github.io/Elliott-900-documentation/)
+
 ## Terry Froggatt's Home Page
 
 [Elliott Computers](http://www.tjfroggatt.plus.com/)
+
+## Computer Conservation Society
+
+[Resurrection - The CCS Journal](https://www.computerconservationsociety.org/resurrection.htm)
+
+[Computer Resurrection Issue 71](https://www.computerconservationsociety.org/resurrection/res71.htm)
+
+[City & Guilds Mnemonic Code](https://www.computerconservationsociety.org/resurrection/res71.htm#f)
 
 ## Centre for Computing History
 
