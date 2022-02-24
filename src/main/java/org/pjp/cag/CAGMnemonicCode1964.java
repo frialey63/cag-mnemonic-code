@@ -39,7 +39,7 @@ public final class CAGMnemonicCode1964 {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CAGMnemonicCode1964.class);
 
-    private static final String USAGE = "usage: org.pjp.cag.Computer <filename> [trace]";
+    private static final String USAGE = "usage: org.pjp.cag.CAGMnemonicCode1964 <program-file> [data-file] [trace]";
 
     static InputStream getInputStream(File file) throws FileNotFoundException {
         if (file == null) {

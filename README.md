@@ -1,5 +1,6 @@
-# cag-mnemonic-code
-Java implementation of the City &amp; Guilds Mnemonic Code
+# Java implementation of the City &amp; Guilds Mnemonic Code
+
+## Background
 
 This project is a Java implementation of the City & Guilds Mnemonic Code language which originates from 1964.
 The language was the first that I ever encountered as part of my Computer Science A-Level in 1981 at Ashmole School.
@@ -22,9 +23,35 @@ A bit later in 1968 the specification was revised by ICL also for the City & Gui
 So by the time I encountered the Mnemonic Code in 1981 it was already a fairly old language.
 At some time in the lead-up to 1981 the AEB examination board in England decided to adopt the City & Guilds Mnemonic Code language to support the teaching of their syllabus.
 
-*Dedicated to Mr Cook my computer science (and maths) teacher at Ashmole School.*
+*Dedicated to Mr Cook and Mr Cooke my computer science and mathematics teachers at Ashmole School.*
 
-## Andrew Herbert's Documentation Archive
+## Design Notes
+
+The scope of this Java implementation is strictly that of the machine independent aspects of the Mnemonic Code language.
+No attempt has been made to simulate the behaviour of the Elliott 903 host involving its numeric representation, math libraries and character set.
+(The details of these are available in the references and more knowledgeable programmers have undertaken this development for other projects.)
+Similarly the operational procedures involved in controlling the translator and interpreter on the Elliott 903 are outside the scope of this Java implementation.
+
+The Mnemonic Code is a simple language and consequently the Java software necessary for its implementation is relatively simple.
+For the technically inclined there are a couple of interesting features of the software design which are worth noting.
+The assembly process performed by the Assembler class makes use of pattern matching with regular expressions to parse the input text and extract language symbols, i.e. orders (aka instructions) and directives.
+The interpretation process performed by the Interpreter class utilises reflection to lookup the instruction corresponding to a stored order.
+Instructions are mechanised through a common Executable interface which defines an "execute" operation.
+A significant focus of the development effort was to accurately reproduce the I/O instructions in group 5 albeit with Java devices and files.
+Also, the error checking as described for the original Elliot implementation has been reproduced just with the inclusion of a full description in the error report.
+
+A Java 8 JDK was used to implement the software and it was developed using the Eclipse 2020 IDE in conjunction with the Maven 3.6.3 build system.
+JUnit test coverage is ~90%, a custom Checkstyle ruleset (derived from Sun) has been imposed and static code analysis has been applied with FindBugs (default settings).
+The repo includes the Eclipse project files and when imported as a Maven project it will build automatically and launchers are provided to run the JUnit tests and one example program.
+Of course it is also possible to build the software without Eclipse by means of the usual Maven incantations.
+
+## Usage
+
+usage: org.pjp.cag.CAGMnemonicCode1964 <program-file> \[data-file\] \[trace\]
+
+## References
+
+### Andrew Herbert's Documentation Archive
 
 [The City and Guilds Computer](https://andrewjherbert.github.io/Elliott-900-documentation/The%20City%20and%20Guilds%20Computer.pdf)
 
@@ -34,13 +61,15 @@ At some time in the lead-up to 1981 the AEB examination board in England decided
 
 [Elliott 900 Series Computers](https://andrewjherbert.github.io/Elliott-900-documentation/)
 
-## Elliott Computers
+### Elliott Computers
 
 [Terry Froggatt's Home Page](http://www.tjfroggatt.plus.com/)
 
 [Elliott Brothers](https://dogedaos.com/wiki/Elliott_Automation.html)
 
-## Computer Conservation Society
+[Elliott 803 Simulation](http://elliott803.sourceforge.net/)
+
+### Computer Conservation Society
 
 [Resurrection - The CCS Journal](https://www.computerconservationsociety.org/resurrection.htm)
 
@@ -48,7 +77,7 @@ At some time in the lead-up to 1981 the AEB examination board in England decided
 
 [City & Guilds Mnemonic Code](https://www.computerconservationsociety.org/resurrection/res71.htm#f)
 
-## Centre for Computing History
+### Centre for Computing History
 
 [Centre for Computing History](http://www.computinghistory.org.uk)
 
@@ -56,7 +85,7 @@ At some time in the lead-up to 1981 the AEB examination board in England decided
 
 [Computing in Schools - The Early Years (by Tony Goodhew)](http://www.computinghistory.org.uk/userdata/files/computing_in_schools_-_the_early_years.pdf)
 
-## ICL Computer Education in Schools
+### ICL Computer Education in Schools
 
 [ICL Computer Education in Schools](https://iclces.uk/index.html#)
 
