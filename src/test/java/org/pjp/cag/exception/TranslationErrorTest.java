@@ -1,9 +1,8 @@
-package org.pjp.cag.error;
+package org.pjp.cag.exception;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import org.pjp.cag.exception.TranslationError;
 
 public class TranslationErrorTest {
 
@@ -12,6 +11,13 @@ public class TranslationErrorTest {
         TranslationError err = TranslationError.ERR_1;
 
         assertEquals(1, err.number());
+    }
+
+    @Test
+    public void testDescription() {
+        TranslationError err = TranslationError.ERR_1;
+
+        assertEquals("Inadmissable character - no decode.", err.description());
     }
 
 }

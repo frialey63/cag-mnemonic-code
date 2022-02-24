@@ -9,9 +9,20 @@ public class RunningException extends RuntimeException {
 
     private static final long serialVersionUID = 2344136039363995508L;
 
+    private final RunningError error;
+
     public RunningException(RunningError error) {
-        super(String.format("%2d", error.number()));
+        super();
+        this.error = error;
     }
 
+    public RunningError getError() {
+        return error;
+    }
+
+    @Override
+    public String getMessage() {
+        return String.format("ERR %2d %%4d %s", error.number(), error.description());
+    }
 
 }

@@ -86,7 +86,7 @@ public class AccumulatorTest {
             store.accumulator().div(0);
         });
 
-        assertEquals(RunningError.ERR_18.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(RunningError.ERR_18, exception.getError());
     }
 
 }

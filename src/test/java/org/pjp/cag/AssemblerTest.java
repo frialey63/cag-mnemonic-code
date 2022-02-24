@@ -80,7 +80,7 @@ public class AssemblerTest {
             new Assembler().assemble("0", store);
         });
 
-        assertEquals(TranslationError.ERR_2.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(TranslationError.ERR_2, exception.getError());
     }
 
     @Test
@@ -91,7 +91,7 @@ public class AssemblerTest {
             new Assembler().assemble("ABC$123", store);
         });
 
-        assertEquals(TranslationError.ERR_2.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(TranslationError.ERR_2, exception.getError());
     }
 
     @Test
@@ -102,7 +102,7 @@ public class AssemblerTest {
             new Assembler().assemble("+131072", store);
         });
 
-        assertEquals(TranslationError.ERR_3.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(TranslationError.ERR_3, exception.getError());
     }
 
     @Test
@@ -115,7 +115,7 @@ public class AssemblerTest {
             new Assembler().innerAssemble(path, store);
         });
 
-        assertEquals(TranslationError.ERR_4.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(TranslationError.ERR_4, exception.getError());
     }
 
     @Test
@@ -126,7 +126,7 @@ public class AssemblerTest {
             new Assembler().assemble("(FRED)", store);
         });
 
-        assertEquals(TranslationError.ERR_5.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(TranslationError.ERR_5, exception.getError());
     }
 
     @Test
@@ -137,7 +137,7 @@ public class AssemblerTest {
             new Assembler().assemble("(TITLE 999)", store);
         });
 
-        assertEquals(TranslationError.ERR_6.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(TranslationError.ERR_6, exception.getError());
     }
 
     @Test
@@ -148,7 +148,7 @@ public class AssemblerTest {
             new Assembler().assemble("LDA 100,10", store);
         });
 
-        assertEquals(TranslationError.ERR_7.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(TranslationError.ERR_7, exception.getError());
     }
 
     @Test
@@ -159,7 +159,7 @@ public class AssemblerTest {
             new Assembler().assemble("ZAP", store);
         });
 
-        assertEquals(TranslationError.ERR_8.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(TranslationError.ERR_8, exception.getError());
     }
 
     @Test
@@ -170,7 +170,7 @@ public class AssemblerTest {
             new Assembler().assemble("LDA 1001", store);
         });
 
-        assertEquals(TranslationError.ERR_9.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(TranslationError.ERR_9, exception.getError());
     }
 
     @Test
@@ -181,7 +181,7 @@ public class AssemblerTest {
             new Assembler().assemble("(STORE 1000)", store);
         });
 
-        assertEquals(TranslationError.ERR_9.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(TranslationError.ERR_9, exception.getError());
     }
 
 }

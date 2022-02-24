@@ -108,8 +108,7 @@ final class Interpreter {
                 }
             }
         } catch (RunningException e) {
-            System.out.printf("ERR %s %4d\n", e.getMessage(), address);
-            LOGGER.debug(e.getMessage(), e);
+            System.out.printf(e.getMessage(), address);
         } catch (Exception e) {
             LOGGER.error("caught unexpected Exception while interpreting the program", e);
         }

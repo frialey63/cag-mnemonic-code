@@ -39,4 +39,4 @@ TODO Reasoning, Overview of specs and impls, Roadmap, Dedication
 
 [City & Guilds Mnemonic Code](https://iclces.uk/articles/city_and_guilds_mnemonic_code.html)
 
-
+[Originals](https://iclces.uk/articles/city_and_guilds_mnemonic_code_originals.html)

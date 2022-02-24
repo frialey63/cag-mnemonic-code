@@ -38,7 +38,7 @@ public class DIVTest {
             instruction.execute(store);
         });
 
-        assertEquals(RunningError.ERR_15.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(RunningError.ERR_15, exception.getError());
     }
 
 }

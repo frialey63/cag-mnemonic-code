@@ -55,7 +55,7 @@ public class InstructionTest {
             lda.getModification(store);
         });
 
-        assertEquals(RunningError.ERR_12.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(RunningError.ERR_12, exception.getError());
     }
 
     @Test
@@ -68,7 +68,7 @@ public class InstructionTest {
             lda.getModification(store);
         });
 
-        assertEquals(RunningError.ERR_12.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(RunningError.ERR_12, exception.getError());
     }
 
     @Test

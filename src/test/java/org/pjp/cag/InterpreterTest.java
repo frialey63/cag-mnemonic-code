@@ -26,7 +26,7 @@ public class InterpreterTest {
             Interpreter.getOrder(store, 100);
         });
 
-        assertEquals(RunningError.ERR_11.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(RunningError.ERR_11, exception.getError());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class InterpreterTest {
             Interpreter.getOrder(store, 100);
         });
 
-        assertEquals(RunningError.ERR_11.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(RunningError.ERR_11, exception.getError());
     }
     @Test
     public void testGetOrderAddressOutOfRange() {
@@ -49,7 +49,7 @@ public class InterpreterTest {
             Interpreter.getOrder(store, 1000);
         });
 
-        assertEquals(RunningError.ERR_13.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(RunningError.ERR_13, exception.getError());
     }
 
     @Test
@@ -61,7 +61,7 @@ public class InterpreterTest {
             Interpreter.executeInstruction(store, sta);
         });
 
-        assertEquals(RunningError.ERR_13.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(RunningError.ERR_13, exception.getError());
     }
 
     @Test
@@ -75,7 +75,7 @@ public class InterpreterTest {
             Interpreter.executeInstruction(store, div);
         });
 
-        assertEquals(RunningError.ERR_18.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(RunningError.ERR_18, exception.getError());
     }
 
 }

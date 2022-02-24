@@ -110,7 +110,7 @@ public class PCTTest {
             pct.execute(store);
         });
 
-        assertEquals(RunningError.ERR_16.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(RunningError.ERR_16, exception.getError());
     }
 
 }

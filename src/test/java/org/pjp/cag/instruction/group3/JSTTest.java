@@ -46,7 +46,7 @@ public class JSTTest {
             instruction.execute(store);
         });
 
-        assertEquals(RunningError.ERR_10.number(), Integer.parseInt(exception.getMessage().trim()));
+        assertEquals(RunningError.ERR_10, exception.getError());
     }
 
 }

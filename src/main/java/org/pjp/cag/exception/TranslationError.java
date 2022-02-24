@@ -10,12 +10,12 @@ public enum TranslationError {
     /**
      * The error 1.  (May be due to a mis-punched tape.  The tape stops when this error is found.)
      */
-    ERR_1(1, "Inadmissable character - no decode"),
+    ERR_1(1, "Inadmissable character - no decode."),
 
     /**
      * The error 2.
      */
-    ERR_2(2, "Unacceptable character in this position.\nCharacter other than letter, digit + -, (or) found."),
+    ERR_2(2, "Unacceptable character in this position. Character other than letter, digit + -, (or) found."),
 
     /**
      * The error 3.  (Integer exceeding 131071)
@@ -26,7 +26,7 @@ public enum TranslationError {
      * The error 4.
      *
      */
-    ERR_4(4, "Compiling program out of store range.\nDue to omission of (STORE) directive."),
+    ERR_4(4, "Compiling program out of store range. Due to omission of (STORE) directive."),
 
     /**
      * The error 5.

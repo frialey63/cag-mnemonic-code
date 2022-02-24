@@ -73,8 +73,7 @@ final class Assembler {
         try {
             innerAssemble(program, store);
         } catch (TranslationException e) {
-            System.out.printf("ERR %s %4d\n", e.getMessage(), address);
-            LOGGER.debug(e.getMessage(), e);
+            System.out.printf(e.getMessage(), address);
 
             // halt the assembly and prevent execution
             result = false;
