@@ -67,11 +67,4 @@ public final class Accumulator {
         set(get() / value);
     }
 
-    /**
-     * @param function TODO name of the standard function
-     * @return True if the function could be performed on the current value of the accumulator
-     */
-    public boolean standard(String function) {
-        throw new UnsupportedOperationException();
-    }
 }

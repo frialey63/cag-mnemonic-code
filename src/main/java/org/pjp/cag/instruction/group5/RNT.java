@@ -76,7 +76,7 @@ public final class RNT extends Instruction {
 
                     store.accumulator().set(number);
                 } catch (NumberFormatException e1) {
-                    // TODO seems reasonable to use error handler as hinted in Resurrection #71 but not in A.T.Gough paper, also for MAX_INT checking
+                    // seems reasonable to use error handler as hinted in Resurrection #71 but not in A.T.Gough paper, also for MAX_INT checking
                     store.controlRegister().setAddress(getEffectiveAddress(store));
                     result = false;
                 }
