@@ -35,7 +35,7 @@ public final class CAGMnemonicCode {
      */
     public static final String CHARSET = "UTF-8";
 
-    private static final File DIR = new File("data");
+    private static final File DATA_DIR = new File(System.getProperty("dataDir", "data"));
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CAGMnemonicCode.class);
 
@@ -62,7 +62,7 @@ public final class CAGMnemonicCode {
 
         if (nonOptionArguments.size() == 1) {
             Path path = Paths.get((String) nonOptionArguments.get(0));
-            File data = options.has("f") ? new File(DIR, (String) options.valueOf("f")) : null;
+            File data = options.has("f") ? new File(DATA_DIR, (String) options.valueOf("f")) : null;
             boolean trace = options.has("Q");
 
             try (InputStreamReader inputStreamReader = new InputStreamReader(getInputStream(data), CAGMnemonicCode.CHARSET)) {
