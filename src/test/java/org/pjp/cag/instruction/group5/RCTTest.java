@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.junit.Test;
-import org.pjp.cag.CAGMnemonicCode1964;
+import org.pjp.cag.CAGMnemonicCode;
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.instruction.Instruction;
@@ -19,7 +19,7 @@ public class RCTTest {
     public void testExecute() throws IOException {
         InputStreamReader prevIn = PaperTape.in;
 
-        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("A".getBytes()), CAGMnemonicCode1964.CHARSET)) {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("A".getBytes()), CAGMnemonicCode.CHARSET)) {
 
             PaperTape.setIn(inputStreamReader);
 
@@ -40,7 +40,7 @@ public class RCTTest {
     public void testExecuteCharacterFollowingNumber1() throws IOException {
         InputStreamReader prevIn = PaperTape.in;
 
-        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("123.456\nA".getBytes()), CAGMnemonicCode1964.CHARSET)) {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("123.456\nA".getBytes()), CAGMnemonicCode.CHARSET)) {
 
             PaperTape.setIn(inputStreamReader);
 
@@ -65,7 +65,7 @@ public class RCTTest {
     public void testExecuteCharacterFollowingNumber2() throws IOException {
         InputStreamReader prevIn = PaperTape.in;
 
-        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("123.456  A".getBytes()), CAGMnemonicCode1964.CHARSET)) {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("123.456  A".getBytes()), CAGMnemonicCode.CHARSET)) {
 
             PaperTape.setIn(inputStreamReader);
 

@@ -9,7 +9,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 import org.junit.Test;
-import org.pjp.cag.CAGMnemonicCode1964;
+import org.pjp.cag.CAGMnemonicCode;
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
 
@@ -19,7 +19,7 @@ public class PNLTest {
     public void testExecute() throws IOException {
         PrintStream prevOut = PaperTape.out;
 
-        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, CAGMnemonicCode1964.CHARSET)) {
+        try (OutputStream outputStream = new ByteArrayOutputStream(); PrintStream printStream = new PrintStream(outputStream, true, CAGMnemonicCode.CHARSET)) {
 
             PaperTape.setOut(printStream);
 

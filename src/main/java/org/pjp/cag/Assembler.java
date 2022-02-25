@@ -46,6 +46,8 @@ final class Assembler {
 
     private static final Pattern ORDER = Pattern.compile("([A-Z]+) *(([0-9]+) *(, *[0-9]+)? *(Q)?)?");
 
+//    private static final Pattern CHARACTER = Pattern.compile("=[ \\!\"\\½\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/0-9\\:\\;\\<\\=\\>\\`A-Z\\[\\£\\]\\@a-z]");
+
     // https://www.regular-expressions.info/floatingpoint.html
     private static final Pattern NUMBER = Pattern.compile("[-+][0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?");
 
@@ -167,7 +169,7 @@ final class Assembler {
                         try {
                             long integer = Long.parseLong(line);
 
-                            if (Math.abs(integer) > CAGMnemonicCode1964.MAX_INT) {
+                            if (Math.abs(integer) > CAGMnemonicCode.MAX_INT) {
                                 throw new TranslationException(TranslationError.ERR_3);
                             }
 

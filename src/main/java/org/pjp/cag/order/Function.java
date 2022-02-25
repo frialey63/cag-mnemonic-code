@@ -69,12 +69,21 @@ public enum Function {
 
     // CHECKSTYLE:ON
 
+    private static final int ORIGINAL = 1964;
+
     private static final int BASE = 10;
 
     private final int code;
 
+    private final int revision;
+
     Function(int code) {
         this.code = code;
+        this.revision = ORIGINAL;
+    }
+
+    public int getRevision() {
+        return revision;
     }
 
     /**

@@ -7,6 +7,22 @@ import org.junit.Test;
 public class FunctionTest {
 
     @Test
+    public void testRevision() {
+
+        assertEquals(1964, Function.LDA.getRevision());
+
+        assertEquals(1964, Function.ADDN.getRevision());
+
+        assertEquals(1964, Function.STA.getRevision());
+
+        assertEquals(1964, Function.JEQ.getRevision());
+
+        assertEquals(1964, Function.SIN.getRevision());
+
+        assertEquals(1964, Function.PNL.getRevision());
+    }
+
+    @Test
     public void testGroup() {
 
         assertEquals(0, Function.LDA.group());

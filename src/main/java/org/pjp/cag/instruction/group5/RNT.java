@@ -3,7 +3,7 @@ package org.pjp.cag.instruction.group5;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import org.pjp.cag.CAGMnemonicCode1964;
+import org.pjp.cag.CAGMnemonicCode;
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.instruction.Instruction;
@@ -63,7 +63,7 @@ public final class RNT extends Instruction {
             try {
                 long integer = Long.parseLong(line);
 
-                if (Math.abs(integer) > CAGMnemonicCode1964.MAX_INT) {
+                if (Math.abs(integer) > CAGMnemonicCode.MAX_INT) {
                     store.controlRegister().setAddress(getEffectiveAddress(store));
                     result = false;
                 } else {

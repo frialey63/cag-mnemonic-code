@@ -19,12 +19,12 @@ public class CAGMnemonicCode1964Test {
 
     @Test
     public void testGetInputStream() throws IOException {
-        assertTrue(CAGMnemonicCode1964.getInputStream(Files.createTempFile("tmp-", ".tmp").toFile()) instanceof FileInputStream);
+        assertTrue(CAGMnemonicCode.getInputStream(Files.createTempFile("tmp-", ".tmp").toFile()) instanceof FileInputStream);
     }
 
     @Test
     public void testGetInputStreamNull() throws IOException {
-        assertEquals(System.in, CAGMnemonicCode1964.getInputStream(null));
+        assertEquals(System.in, CAGMnemonicCode.getInputStream(null));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class CAGMnemonicCode1964Test {
 
             Path path = Paths.get(ClassLoader.getSystemResource("simple_test.txt").toURI());
 
-            CAGMnemonicCode1964.innerMain(path, false);
+            CAGMnemonicCode.innerMain(path, false);
 
             String printText = outputStream.toString();
 
@@ -58,7 +58,7 @@ public class CAGMnemonicCode1964Test {
 
             Path path = Paths.get(ClassLoader.getSystemResource("unusual.txt").toURI());
 
-            CAGMnemonicCode1964.innerMain(path, false);
+            CAGMnemonicCode.innerMain(path, false);
 
             String printText = outputStream.toString();
 

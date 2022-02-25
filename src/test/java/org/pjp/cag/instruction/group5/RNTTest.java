@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import org.junit.Test;
-import org.pjp.cag.CAGMnemonicCode1964;
+import org.pjp.cag.CAGMnemonicCode;
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.instruction.Instruction;
@@ -21,7 +21,7 @@ public class RNTTest {
     public void testExecute() throws IOException {
         InputStreamReader prevIn = PaperTape.in;
 
-        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("123.4567".getBytes()), CAGMnemonicCode1964.CHARSET)) {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("123.4567".getBytes()), CAGMnemonicCode.CHARSET)) {
 
             PaperTape.setIn(inputStreamReader);
 
@@ -41,7 +41,7 @@ public class RNTTest {
     public void testExecuteNumberFollowingCharacter() throws IOException {
         InputStreamReader prevIn = PaperTape.in;
 
-        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("A123.456".getBytes()), CAGMnemonicCode1964.CHARSET)) {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("A123.456".getBytes()), CAGMnemonicCode.CHARSET)) {
 
             PaperTape.setIn(inputStreamReader);
 
@@ -66,7 +66,7 @@ public class RNTTest {
     public void testExecuteNumberFollowingNumber() throws IOException {
         InputStreamReader prevIn = PaperTape.in;
 
-        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("987.654  123.456".getBytes()), CAGMnemonicCode1964.CHARSET)) {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("987.654  123.456".getBytes()), CAGMnemonicCode.CHARSET)) {
 
             PaperTape.setIn(inputStreamReader);
 
@@ -93,7 +93,7 @@ public class RNTTest {
     public void testExecuteNumberOutOfRange() throws IOException {
         InputStreamReader prevIn = PaperTape.in;
 
-        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("131072".getBytes()), CAGMnemonicCode1964.CHARSET)) {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("131072".getBytes()), CAGMnemonicCode.CHARSET)) {
 
             PaperTape.setIn(inputStreamReader);
 
@@ -115,7 +115,7 @@ public class RNTTest {
     public void testExecuteNumberFormatError() throws IOException {
         InputStreamReader prevIn = PaperTape.in;
 
-        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("1A2".getBytes()), CAGMnemonicCode1964.CHARSET)) {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(new ByteArrayInputStream("1A2".getBytes()), CAGMnemonicCode.CHARSET)) {
 
             PaperTape.setIn(inputStreamReader);
 

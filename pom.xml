@@ -19,6 +19,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>net.sf.jopt-simple</groupId>
+            <artifactId>jopt-simple</artifactId>
+            <version>5.0.4</version>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.35</version>
@@ -48,7 +53,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <mainClass>org.pjp.cag.CAGMnemonicCode1964</mainClass>
+                    <mainClass>org.pjp.cag.CAGMnemonicCode</mainClass>
                     <arguments>
                         <argument>data/simple_test.txt</argument>
                     </arguments>
