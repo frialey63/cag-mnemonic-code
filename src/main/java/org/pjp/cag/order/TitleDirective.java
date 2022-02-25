@@ -27,13 +27,13 @@ public final class TitleDirective extends Directive {
     /**
      * @return The title
      */
-    public String getTitle() {
+    public String title() {
         return title;
     }
 
     @Override
     public String toString() {
-        return "TitleDirective [title=" + title + ", getType()=" + getType() + "]";
+        return "TitleDirective [title=" + title + ", type()=" + type() + "]";
     }
 
 }

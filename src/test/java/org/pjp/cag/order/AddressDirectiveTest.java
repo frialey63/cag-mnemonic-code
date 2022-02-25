@@ -10,17 +10,17 @@ public class AddressDirectiveTest {
     private static final int ADDRESS_12 = 12;
 
     @Test
-    public void testGetAddress() throws TranslationException {
+    public void testAddress() throws TranslationException {
         AddressDirective addressDirective = new AddressDirective(AddressDirective.STORE, ADDRESS_12);
 
-        assertEquals(ADDRESS_12, addressDirective.getAddress());
+        assertEquals(ADDRESS_12, addressDirective.address());
     }
 
     @Test
-    public void testGetType() throws TranslationException {
+    public void testType() throws TranslationException {
         AddressDirective addressDirective = new AddressDirective(AddressDirective.STORE, ADDRESS_12);
 
-        assertEquals(AddressDirective.STORE, addressDirective.getType());
+        assertEquals(AddressDirective.STORE, addressDirective.type());
     }
 
 }

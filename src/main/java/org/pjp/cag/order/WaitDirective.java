@@ -21,7 +21,7 @@ public final class WaitDirective extends Directive {
 
     @Override
     public String toString() {
-        return "WaitDirective [getType()=" + getType() + "]";
+        return "WaitDirective [type()=" + type() + "]";
     }
 
 }

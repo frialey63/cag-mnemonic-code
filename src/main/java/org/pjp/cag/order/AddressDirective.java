@@ -42,13 +42,13 @@ public final class AddressDirective extends Directive {
     /**
      * @return The address
      */
-    public int getAddress() {
+    public int address() {
         return address;
     }
 
     @Override
     public String toString() {
-        return "AddressDirective [address=" + address + ", getType()=" + getType() + "]";
+        return "AddressDirective [address=" + address + ", type()=" + type() + "]";
     }
 
 }
