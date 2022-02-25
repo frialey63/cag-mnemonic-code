@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
@@ -34,15 +35,13 @@ public final class CAGMnemonicCode {
      */
     public static final String CHARSET = "UTF-8";
 
-    private static final int THREE = 3;
-
-    private static final String TRACE = "trace";
-
     private static final File DIR = new File("data");
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CAGMnemonicCode.class);
 
-    private static final String USAGE = "usage: org.pjp.cag.CAGMnemonicCode <program-file> [data-file] [trace]";
+    private static final String USAGE = "usage: org.pjp.cag.CAGMnemonicCode <program-file> [-f data-file] [-Q trace] [-Y 1964 | 1968 | 2022]";
+
+    private static final OptionParser PARSER = new OptionParser("Qf:");
 
     static InputStream getInputStream(File file) throws FileNotFoundException {
         if (file == null) {
@@ -57,25 +56,14 @@ public final class CAGMnemonicCode {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        OptionParser parser = new OptionParser( "aB?*." );
+        OptionSet options = PARSER.parse(args);
 
-        OptionSet options = parser.parse( "-a", "-B", "-?" );
+        List<?> nonOptionArguments = options.nonOptionArguments();
 
-        if (args.length >= 1) {
-            Path path = Paths.get(args[0]);
-            File data = null;
-            boolean trace = false;
-
-            if (args.length >= THREE) {
-                data = new File(DIR, args[1]);
-                trace = TRACE.equalsIgnoreCase(args[2]);
-            } else if (args.length == 2) {
-                if (TRACE.equalsIgnoreCase(args[1])) {
-                    trace = true;
-                } else {
-                    data = new File(args[1]);
-                }
-            }
+        if (nonOptionArguments.size() == 1) {
+            Path path = Paths.get((String) nonOptionArguments.get(0));
+            File data = options.has("f") ? new File(DIR, (String) options.valueOf("f")) : null;
+            boolean trace = options.has("Q");
 
             try (InputStreamReader inputStreamReader = new InputStreamReader(getInputStream(data), CAGMnemonicCode.CHARSET)) {
                 PaperTape.setIn(inputStreamReader);
@@ -83,7 +71,7 @@ public final class CAGMnemonicCode {
                 innerMain(path, trace);
             }
         } else {
-            System.err.println(USAGE);
+            System.out.println(USAGE);
         }
     }
 
