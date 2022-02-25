@@ -9,17 +9,17 @@ public class TitleDirectiveTest {
     private static final String SIMPLE_TEST = "SIMPLE TEST";
 
     @Test
-    public void testGetTitle() {
+    public void testTitle() {
         TitleDirective titleDirective = new TitleDirective(SIMPLE_TEST);
 
-        assertEquals(SIMPLE_TEST, titleDirective.getTitle());
+        assertEquals(SIMPLE_TEST, titleDirective.title());
     }
 
     @Test
-    public void testGetType() {
+    public void testType() {
         TitleDirective titleDirective = new TitleDirective(SIMPLE_TEST);
 
-        assertEquals(TitleDirective.TITLE, titleDirective.getType());
+        assertEquals(TitleDirective.TITLE, titleDirective.type());
     }
 
 }

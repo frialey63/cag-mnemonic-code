@@ -20,7 +20,7 @@ public abstract class Directive {
     /**
      * @return The type of the directive
      */
-    public String getType() {
+    public String type() {
         return type;
     }
 
