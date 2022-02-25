@@ -25,6 +25,10 @@ import joptsimple.OptionSet;
  */
 public final class CAGMnemonicCode {
 
+    private static final int YEAR_1964 = 1964;
+
+    private static final int YEAR_1968 = 1968;
+
     /**
      * The maximum integer 2^17 - 1.
      */
@@ -39,9 +43,25 @@ public final class CAGMnemonicCode {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CAGMnemonicCode.class);
 
-    private static final String USAGE = "usage: org.pjp.cag.CAGMnemonicCode <program-file> [-f data-file] [-Q trace] [-Y 1964 | 1968 | 2022]";
+    private static final String USAGE = "usage: org.pjp.cag.CAGMnemonicCode <program-file> [-f data-file] [-Q trace] [-Y 1964 | 1968]";
 
-    private static final OptionParser PARSER = new OptionParser("Qf:");
+    private static final OptionParser PARSER = new OptionParser("Qf:Y:");
+
+    private static int revision = YEAR_1964;
+
+    /**
+     * @return The year of Mnemonic code revision.
+     */
+    public static int getRevision() {
+        return revision;
+    }
+
+    /**
+     * @return True if the code revision supports input of characters with the program.
+     */
+    public static boolean withCharacters() {
+        return revision > YEAR_1964;
+    }
 
     static InputStream getInputStream(File file) throws FileNotFoundException {
         if (file == null) {
@@ -64,6 +84,10 @@ public final class CAGMnemonicCode {
             Path path = Paths.get((String) nonOptionArguments.get(0));
             File data = options.has("f") ? new File(DATA_DIR, (String) options.valueOf("f")) : null;
             boolean trace = options.has("Q");
+
+            if (options.has("Y")) {
+                revision = "1968".equals(options.valueOf("Y")) ? YEAR_1968 : YEAR_1964;
+            }
 
             try (InputStreamReader inputStreamReader = new InputStreamReader(getInputStream(data), CAGMnemonicCode.CHARSET)) {
                 PaperTape.setIn(inputStreamReader);

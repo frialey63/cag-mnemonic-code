@@ -46,7 +46,7 @@ final class Assembler {
 
     private static final Pattern ORDER = Pattern.compile("([A-Z]+) *(([0-9]+) *(, *[0-9]+)? *(Q)?)?");
 
-//    private static final Pattern CHARACTER = Pattern.compile("=[ \\!\"\\½\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/0-9\\:\\;\\<\\=\\>\\`A-Z\\[\\£\\]\\@a-z]");
+    private static final Pattern CHARACTER = Pattern.compile("=[ \\!\"\\½\\$\\%\\&\\'\\(\\)\\*\\+\\,\\-\\.\\/0-9\\:\\;\\<\\=\\>\\`A-Z\\[\\£\\]\\@a-z]");
 
     // https://www.regular-expressions.info/floatingpoint.html
     private static final Pattern NUMBER = Pattern.compile("[-+][0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?");
@@ -181,7 +181,19 @@ final class Assembler {
                             storeWord(store, Word.create(number));
                         }
                     } else {
-                        throw new TranslationException(TranslationError.ERR_2);
+                        if (CAGMnemonicCode.withCharacters()) {
+                            matcher = CHARACTER.matcher(line);
+
+                            if (matcher.matches()) {
+                                char character = matcher.group(0).charAt(1);
+
+                                storeWord(store, Word.create(character));
+                            } else {
+                                throw new TranslationException(TranslationError.ERR_2);
+                            }
+                        } else {
+                            throw new TranslationException(TranslationError.ERR_2);
+                        }
                     }
                 }
             }
