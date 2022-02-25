@@ -35,7 +35,7 @@ public final class CAGMnemonicCode1964 {
 
     private static final String TRACE = "trace";
 
-    private static final File DIR = new File("data");
+    private static final File DATA_DIR = new File(System.getProperty("dataDir", "data"));
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CAGMnemonicCode1964.class);
 
@@ -60,7 +60,7 @@ public final class CAGMnemonicCode1964 {
             boolean trace = false;
 
             if (args.length >= THREE) {
-                data = new File(DIR, args[1]);
+                data = new File(DATA_DIR, args[1]);
                 trace = TRACE.equalsIgnoreCase(args[2]);
             } else if (args.length == 2) {
                 if (TRACE.equalsIgnoreCase(args[1])) {
