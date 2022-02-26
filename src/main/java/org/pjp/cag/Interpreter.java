@@ -63,7 +63,7 @@ final class Interpreter {
 
                 Order order = getOrder(store, address);
 
-                String instructionClassName = order.function().instructionClass();
+                String instructionClassName = order.function().getInstructionClass();
 
                 Class<?> clazz = Class.forName(instructionClassName);
                 Constructor<?> declaredConstructor = null;

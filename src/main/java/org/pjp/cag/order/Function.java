@@ -1,5 +1,6 @@
 package org.pjp.cag.order;
 
+import org.pjp.cag.CAGMnemonicCode;
 import org.pjp.cag.instruction.Instruction;
 
 /**
@@ -15,6 +16,7 @@ public enum Function {
      * Group 0
      */
     LDA(0),
+
     ADD(1),
     SUB(2),
     MLT(3),
@@ -24,6 +26,7 @@ public enum Function {
      * Group 1
      */
     LDAN(10),
+
     ADDN(11),
     SUBN(12),
     MLTN(13),
@@ -38,10 +41,15 @@ public enum Function {
      * Group 3 (Jumps)
      */
     JUN(30),
-    JGR(31),
-    JEQ(32),
-    JSR(33),
-    JST(34),
+    JGR(31, 36),
+    JEQ(32, 31),
+    JNE(null, 32),
+    JLE(null, 33),
+    JGE(null, 34),
+    JLT(null, 35),
+    JSR(33, 37),
+    JST(34, 38),
+    LOP(null, 39),
 
     /*
      * Group 4 (Math)
@@ -55,54 +63,67 @@ public enum Function {
     ENT(46),
 
     /*
-     * Group 5 (Paper Tape)
+     * Group 5 (Paper Tape, revised)
      */
-    RCT(50),
-    PCT(51),
-    RNT(52),
-    PNT(53),    // both integral and fractional digits required?
-    PNL(54);
+    RCT(50, null),
+    PCT(51, null),
+    RNT(52, null),
+    PNT(53, null),    // both integral and fractional digits required?
+    PNL(54, null);
 
     /*
-     * Group 6 (Card) Not included
+     * Group 6 (Card, revised) Not included
      */
 
     // CHECKSTYLE:ON
 
-    private static final int ORIGINAL = 1964;
-
     private static final int BASE = 10;
 
-    private final int code;
+    private final Integer code;
 
-    private final int revision;
+    private final Integer revisedCode;
 
     Function(int code) {
-        this.code = code;
-        this.revision = ORIGINAL;
+        this(code, code);
     }
 
-    public int getRevision() {
-        return revision;
+    Function(Integer code, Integer revisedCode) {
+        this.code = code;
+        this.revisedCode = revisedCode;
+    }
+
+    Integer code() {
+        return code;
+    }
+
+    Integer revisedCode() {
+        return revisedCode;
+    }
+
+    /**
+     * @return The code taking into account any revision.
+     */
+    int getCode() {
+        return CAGMnemonicCode.isRevised() ? revisedCode : code;
     }
 
     /**
      * @return The group
      */
-    public int group() {
-        return code / BASE;
+    int getGroup() {
+        return getCode() / BASE;
     }
 
     /**
      * @return The class through which the instruction is instantiated at interpretation time
      */
-    public String instructionClass() {
-        return String.format("%s.group%1d.%s", Instruction.class.getPackage().getName(), group(), name());
+    public String getInstructionClass() {
+        return String.format("%s.group%1d.%s", Instruction.class.getPackage().getName(), getGroup(), name());
     }
 
     @Override
     public String toString() {
-        return String.format("%02d", code);
+        return String.format("%02d", getCode());
     }
 
 }

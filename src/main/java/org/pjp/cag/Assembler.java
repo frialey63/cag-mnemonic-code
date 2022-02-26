@@ -181,7 +181,7 @@ final class Assembler {
                             storeWord(store, Word.create(number));
                         }
                     } else {
-                        if (CAGMnemonicCode.withCharacters()) {
+                        if (CAGMnemonicCode.isRevised()) {
                             matcher = CHARACTER.matcher(line);
 
                             if (matcher.matches()) {

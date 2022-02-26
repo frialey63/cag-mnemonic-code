@@ -45,22 +45,15 @@ public final class CAGMnemonicCode {
 
     private static final String USAGE = "usage: org.pjp.cag.CAGMnemonicCode <program-file> [-f data-file] [-Q trace] [-Y 1964 | 1968]";
 
-    private static final OptionParser PARSER = new OptionParser("Qf:Y:");
+    private static final OptionParser PARSER = new OptionParser("Qf:Y:a");
 
     private static int revision = YEAR_1964;
 
     /**
-     * @return The year of Mnemonic code revision.
+     * @return True if the language is the revised version
      */
-    public static int getRevision() {
-        return revision;
-    }
-
-    /**
-     * @return True if the code revision supports input of characters with the program.
-     */
-    public static boolean withCharacters() {
-        return revision > YEAR_1964;
+    public static boolean isRevised() {
+        return revision == YEAR_1968;
     }
 
     static InputStream getInputStream(File file) throws FileNotFoundException {
@@ -83,6 +76,7 @@ public final class CAGMnemonicCode {
         if (nonOptionArguments.size() == 1) {
             Path path = Paths.get((String) nonOptionArguments.get(0));
             File data = options.has("f") ? new File(DATA_DIR, (String) options.valueOf("f")) : null;
+            boolean assemble = options.has("a");
             boolean trace = options.has("Q");
 
             if (options.has("Y")) {
@@ -92,14 +86,14 @@ public final class CAGMnemonicCode {
             try (InputStreamReader inputStreamReader = new InputStreamReader(getInputStream(data), CAGMnemonicCode.CHARSET)) {
                 PaperTape.setIn(inputStreamReader);
 
-                innerMain(path, trace);
+                innerMain(path, assemble, trace);
             }
         } else {
             System.out.println(USAGE);
         }
     }
 
-    static void innerMain(Path path, boolean trace) {
+    static void innerMain(Path path, boolean assemble, boolean trace) {
         Store store = new Store();
 
         assert store.zero();
@@ -111,7 +105,9 @@ public final class CAGMnemonicCode {
                 LOGGER.debug(store.dump());
             }
 
-            new Interpreter().interpret(store, trace);
+            if (!assemble) {
+                new Interpreter().interpret(store, trace);
+            }
 
             assert store.zero();
         }

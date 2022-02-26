@@ -1,6 +1,7 @@
 package org.pjp.cag;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayOutputStream;
@@ -15,7 +16,12 @@ import java.nio.file.Paths;
 import org.junit.Test;
 import org.pjp.cag.dev.PaperTape;
 
-public class CAGMnemonicCode1964Test {
+public class CAGMnemonicCodeTest {
+
+    @Test
+    public void testIsRevised() {
+        assertFalse(CAGMnemonicCode.isRevised());
+    }
 
     @Test
     public void testGetInputStream() throws IOException {
@@ -37,7 +43,7 @@ public class CAGMnemonicCode1964Test {
 
             Path path = Paths.get(ClassLoader.getSystemResource("simple_test.txt").toURI());
 
-            CAGMnemonicCode.innerMain(path, false);
+            CAGMnemonicCode.innerMain(path, false, false);
 
             String printText = outputStream.toString();
 
@@ -58,7 +64,7 @@ public class CAGMnemonicCode1964Test {
 
             Path path = Paths.get(ClassLoader.getSystemResource("unusual.txt").toURI());
 
-            CAGMnemonicCode.innerMain(path, false);
+            CAGMnemonicCode.innerMain(path, false, false);
 
             String printText = outputStream.toString();
 
