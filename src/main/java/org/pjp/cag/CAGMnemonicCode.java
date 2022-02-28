@@ -12,8 +12,6 @@ import java.util.List;
 
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -41,14 +39,13 @@ public final class CAGMnemonicCode {
 
     private static final File DATA_DIR = new File(System.getProperty("dataDir", "data"));
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CAGMnemonicCode.class);
-
     private static final OptionParser PARSER = new OptionParser();
 
     static {
         PARSER.accepts("a", "assemble only");
+        PARSER.accepts("d", "dump contents of store");
         PARSER.accepts("f", "file for data").withRequiredArg().ofType(String.class);
-        PARSER.accepts("t", "trace");
+        PARSER.accepts("t", "trace enable");
         PARSER.accepts("Y", "year of revision").withRequiredArg().ofType(String.class);
     }
 
@@ -82,6 +79,7 @@ public final class CAGMnemonicCode {
             Path path = Paths.get((String) nonOptionArguments.get(0));
             File data = options.has("f") ? new File(DATA_DIR, (String) options.valueOf("f")) : null;
             boolean assemble = options.has("a");
+            boolean dump = options.has("d");
             boolean trace = options.has("t");
 
             if (options.has("Y")) {
@@ -91,14 +89,14 @@ public final class CAGMnemonicCode {
             try (InputStreamReader inputStreamReader = new InputStreamReader(getInputStream(data), CAGMnemonicCode.CHARSET)) {
                 PaperTape.setIn(inputStreamReader);
 
-                innerMain(path, assemble, trace);
+                innerMain(path, assemble, dump, trace);
             }
         } else {
             PARSER.printHelpOn(System.out);
         }
     }
 
-    static void innerMain(Path path, boolean assemble, boolean trace) {
+    static void innerMain(Path path, boolean assemble, boolean dump, boolean trace) {
         Store store = new Store();
 
         assert store.zero();
@@ -106,8 +104,8 @@ public final class CAGMnemonicCode {
         if (new Assembler().assemble(path, store)) {
             assert store.zero();
 
-            if (LOGGER.isDebugEnabled()) {
-                LOGGER.debug(store.dump());
+            if (dump) {
+                System.out.println(store.dump());
             }
 
             if (!assemble) {

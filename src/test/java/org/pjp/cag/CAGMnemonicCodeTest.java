@@ -43,7 +43,7 @@ public class CAGMnemonicCodeTest {
 
             Path path = Paths.get(ClassLoader.getSystemResource("simple_test.txt").toURI());
 
-            CAGMnemonicCode.innerMain(path, false, false);
+            CAGMnemonicCode.innerMain(path, false, false, false);
 
             String printText = outputStream.toString();
 
@@ -64,7 +64,7 @@ public class CAGMnemonicCodeTest {
 
             Path path = Paths.get(ClassLoader.getSystemResource("unusual.txt").toURI());
 
-            CAGMnemonicCode.innerMain(path, false, false);
+            CAGMnemonicCode.innerMain(path, false, false, false);
 
             String printText = outputStream.toString();
 
