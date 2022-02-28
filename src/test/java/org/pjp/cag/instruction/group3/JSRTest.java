@@ -26,14 +26,17 @@ public class JSRTest {
 
     @Test
     public void testJumpOutOfRange() {
+        Store store = new Store();
+
         RunningException exception = assertThrows(RunningException.class, () -> {
-            Store store = new Store();
+            store.controlRegister().setAddress(12);
 
             JSR instruction = new JSR(false, 1000, ZERO);
             instruction.execute(store);
         });
 
         assertEquals(RunningError.ERR_10, exception.getError());
+        assertEquals(12, store.controlRegister().getAddress());
     }
 
 }

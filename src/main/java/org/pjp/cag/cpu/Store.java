@@ -53,6 +53,11 @@ public final class Store {
     public static final int INDEX_5 = 5;
 
     /**
+     * The loop counter under the language revision.
+     */
+    public static final int LOOP = 5;
+
+    /**
      * Index register 6.
      */
     public static final int INDEX_6 = 6;
@@ -116,6 +121,15 @@ public final class Store {
         int address = controlRegister().getAddress();
 
         setRegister(LINK, address + 1);
+    }
+
+    /**
+     * @return The value of the loop counter after it has been decremented
+     */
+    public int decrementLoopCounter() {
+        setRegister(LOOP, getRegister(LOOP) - 1);
+
+        return (int) Math.floor(getRegister(LOOP));
     }
 
     /**

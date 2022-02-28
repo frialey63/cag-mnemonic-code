@@ -1,4 +1,4 @@
-package org.pjp.cag.instruction.group3;
+package org.pjp.cag.instruction.group3.rev;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
@@ -9,7 +9,7 @@ import org.pjp.cag.cpu.Store;
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
 
-public class JGRTest {
+public class JLTTest {
 
     @Test
     public void testExecuteGreater() {
@@ -18,10 +18,10 @@ public class JGRTest {
         store.controlRegister().setAddress(12);
         store.setRegister(3, 10);
 
-        JGR instruction = new JGR(false, 100, 3);
+        JLT instruction = new JLT(false, 100, 3);
         instruction.execute(store);
 
-        assertEquals(110, store.controlRegister().getAddress());
+        assertEquals(12, store.controlRegister().getAddress());
     }
 
     @Test
@@ -31,7 +31,7 @@ public class JGRTest {
         store.controlRegister().setAddress(12);
         store.setRegister(3, 10);
 
-        JGR instruction = new JGR(false, 100, 3);
+        JLT instruction = new JLT(false, 100, 3);
         instruction.execute(store);
 
         assertEquals(12, store.controlRegister().getAddress());
@@ -44,10 +44,10 @@ public class JGRTest {
         store.controlRegister().setAddress(12);
         store.setRegister(3, 10);
 
-        JGR instruction = new JGR(false, 100, 3);
+        JLT instruction = new JLT(false, 100, 3);
         instruction.execute(store);
 
-        assertEquals(12, store.controlRegister().getAddress());
+        assertEquals(110, store.controlRegister().getAddress());
     }
 
     @Test
@@ -55,10 +55,10 @@ public class JGRTest {
         Store store = new Store();
 
         RunningException exception = assertThrows(RunningException.class, () -> {
-            store.accumulator().set(1);
+            store.accumulator().set(-1);
             store.controlRegister().setAddress(12);
 
-            JGR instruction = new JGR(false, 1000, ZERO);
+            JLT instruction = new JLT(false, 1000, ZERO);
             instruction.execute(store);
         });
 

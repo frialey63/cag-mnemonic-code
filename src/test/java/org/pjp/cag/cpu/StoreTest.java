@@ -41,6 +41,14 @@ public class StoreTest {
     }
 
     @Test
+    public void testDecrementLoopCounter() {
+        Store store = new Store();
+        store.setRegister(Store.LOOP, 10);
+
+        assertEquals(9, store.decrementLoopCounter());
+    }
+
+    @Test
     public void testSetRegister() {
         Store store = new Store();
 
