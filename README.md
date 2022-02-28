@@ -37,8 +37,10 @@ For the technically inclined there are a couple of interesting features of the s
 The assembly process performed by the Assembler class makes use of pattern matching with regular expressions to parse the input text and extract language symbols, i.e. orders (aka instructions) and directives.
 The interpretation process performed by the Interpreter class utilises reflection to lookup the instruction corresponding to a stored order.
 Instructions are mechanised through a common Executable interface which defines an "execute" operation.
+
 A significant focus of the development effort was to accurately reproduce the I/O instructions in group 5 albeit with Java devices and files.
-Also, the error checking as described for the original Elliot implementation has been faithfully reproduced just with the addition of a full description in the error report.
+Also, the error checking has been faithfully reproduced just with the addition of a full description in the error report.
+For these two aspects the original Elliott implementation have been used as guidance although they may be considered as "open to the implementor" within the later language specification.
 
 A Java 8 JDK was used to implement the software and it was developed using the Eclipse 2020 IDE in conjunction with the Maven 3.6.3 build system.
 JUnit test coverage is 90%, a custom Checkstyle ruleset (derived from Sun) has been imposed and static code analysis has been applied with FindBugs (default settings).
