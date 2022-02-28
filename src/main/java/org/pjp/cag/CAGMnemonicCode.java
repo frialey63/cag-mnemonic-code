@@ -43,9 +43,14 @@ public final class CAGMnemonicCode {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CAGMnemonicCode.class);
 
-    private static final String USAGE = "usage: org.pjp.cag.CAGMnemonicCode <program-file> [-f data-file] [-Q trace] [-Y 1964 | 1968]";
+    private static final OptionParser PARSER = new OptionParser();
 
-    private static final OptionParser PARSER = new OptionParser("Qf:Y:a");
+    static {
+        PARSER.accepts("a", "assemble only");
+        PARSER.accepts("f", "file for data").withRequiredArg().ofType(String.class);
+        PARSER.accepts("t", "trace");
+        PARSER.accepts("Y", "year of revision").withRequiredArg().ofType(String.class);
+    }
 
     private static int revision = YEAR_1964;
 
@@ -77,7 +82,7 @@ public final class CAGMnemonicCode {
             Path path = Paths.get((String) nonOptionArguments.get(0));
             File data = options.has("f") ? new File(DATA_DIR, (String) options.valueOf("f")) : null;
             boolean assemble = options.has("a");
-            boolean trace = options.has("Q");
+            boolean trace = options.has("t");
 
             if (options.has("Y")) {
                 revision = "1968".equals(options.valueOf("Y")) ? YEAR_1968 : YEAR_1964;
@@ -89,7 +94,7 @@ public final class CAGMnemonicCode {
                 innerMain(path, assemble, trace);
             }
         } else {
-            System.out.println(USAGE);
+            PARSER.printHelpOn(System.out);
         }
     }
 
