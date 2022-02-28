@@ -69,11 +69,44 @@ public enum Function {
     PCT(51, null),
     RNT(52, null),
     PNT(53, null),    // both integral and fractional digits required?
-    PNL(54, null);
+    PNL(54, null),
+
+    ARD(null, 50),
+    AWD(null, 51),
+    RNA(null, 52),
+    WNA(null, 53),
 
     /*
      * Group 6 (Card, revised) Not included
      */
+
+    RCC(60, null),
+    PCC(61, null),
+    RNC(62, null),
+    PNC(63, null),
+
+    RCH(null, 60),
+    WCH(null, 61),
+    RNB(null, 62),
+    WNB(null, 63),
+    WNL(null, 64),
+    WSS(null, 65),
+    CNN(null, 66),
+    CNC(null, 67),
+
+    /*
+     * Group 7
+     */
+
+    ACB(null, 70),
+    BSP(null, 71),
+    RWD(null, 72),
+
+    /*
+     * Group 9
+     */
+
+    STOP(null, 99);
 
     // CHECKSTYLE:ON
 
