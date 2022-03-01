@@ -25,12 +25,12 @@ public enum Function {
     /*
      * Group 1
      */
-    LDAN(10),
+    LDAN(10, 10),
 
-    ADDN(11),
-    SUBN(12),
-    MLTN(13),
-    DIVN(14),
+    ADDN(11, 11),
+    SUBN(12, 12),
+    MLTN(13, 13),
+    DIVN(14, 14),
 
     /*
      * Group 2 (Store)
@@ -136,24 +136,37 @@ public enum Function {
     /**
      * @return The code taking into account any revision.
      */
-    int getCode() {
+    Integer getCode() {
         return (CAGMnemonicCode.isRevised() && (revisedCode != null)) ? revisedCode : code;
     }
 
     /**
      * @return The group
      */
-    int getGroup() {
-        return getCode() / BASE;
+    Integer getGroup() {
+        Integer code = getCode();
+
+        return (code != null) ? (code / BASE) : null;
     }
 
     /**
+     * FIXME the jumps are renumbered in the revised language but their executions are unchanged
      * @return The class through which the instruction is instantiated at interpretation time
      */
     public String getInstructionClass() {
-        String format = "%s.group%1d" + (CAGMnemonicCode.isRevised() && (revisedCode != null) ? ".rev" : "") + ".%s";
+        if (CAGMnemonicCode.isRevised()) {
+            if (revisedCode != null) {
+                return String.format("%s.group%1d.rev.%s", Instruction.class.getPackage().getName(), getGroup(), name());
+            } else if (code != null) {
+                return String.format("%s.group%1d.%s", Instruction.class.getPackage().getName(), getGroup(), name());
+            }
+        } else {
+            if (code != null) {
+                return String.format("%s.group%1d.%s", Instruction.class.getPackage().getName(), getGroup(), name());
+            }
+        }
 
-        return String.format(format, Instruction.class.getPackage().getName(), getGroup(), name());
+        return null;
     }
 
     @Override

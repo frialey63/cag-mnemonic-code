@@ -1,4 +1,4 @@
-package org.pjp.cag.instruction.group9;
+package org.pjp.cag.instruction.group9.rev;
 
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.instruction.Instruction;

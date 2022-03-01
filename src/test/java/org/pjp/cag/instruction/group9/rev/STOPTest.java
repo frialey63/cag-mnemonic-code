@@ -1,4 +1,4 @@
-package org.pjp.cag.instruction.group9;
+package org.pjp.cag.instruction.group9.rev;
 
 import static org.junit.Assert.assertTrue;
 
