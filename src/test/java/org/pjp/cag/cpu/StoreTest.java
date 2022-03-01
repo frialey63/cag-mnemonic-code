@@ -27,6 +27,14 @@ public class StoreTest {
         Store store = new Store();
 
         assertTrue(store.zero());
+
+        store.setRegister(Store.ZERO, 123);
+
+        assertTrue(store.zero());
+
+        store.setLocation(Store.ZERO, Word.create(3579));
+
+        assertTrue(store.zero());
     }
 
     @Test
@@ -74,29 +82,11 @@ public class StoreTest {
         store.getRegister(register);
     }
 
-    @Test
-    public void testSetRegisterMin() {
-        Store store = new Store();
-
-        int register = 1;
-
-        store.setRegister(register, 248);
-
-        store.getRegister(register);
-    }
-
     @Test(expected = IllegalRegisterException.class)
     public void testSetRegisterIllegalMax() {
         Store store = new Store();
 
         store.setRegister(Store.REGISTERS, 123);
-    }
-
-    @Test(expected = IllegalRegisterException.class)
-    public void testSetRegisterIllegalMin() {
-        Store store = new Store();
-
-        store.setRegister(Store.ZERO, 123);
     }
 
     @Test(expected = IllegalRegisterException.class)
@@ -121,18 +111,22 @@ public class StoreTest {
         assertTrue(store.getLocation(address).isEmpty());
     }
 
+    @Test
+    public void testSetLocationMax() {
+        Store store = new Store();
+
+        int address = Store.SIZE - 1;
+
+        store.setLocation(address, Word.create(3579));
+
+        store.getLocation(address);
+    }
+
     @Test(expected = IllegalLocationException.class)
     public void testSetLocationIllegalMax() {
         Store store = new Store();
 
         store.setLocation(Store.SIZE, Word.create(3579));
-    }
-
-    @Test(expected = IllegalLocationException.class)
-    public void testSetLocationIllegalMin() {
-        Store store = new Store();
-
-        store.setLocation(Store.ZERO, Word.create(3579));
     }
 
     @Test(expected = IllegalLocationException.class)

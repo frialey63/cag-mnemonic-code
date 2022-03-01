@@ -139,11 +139,13 @@ public final class Store {
     public void setRegister(int register, float number) {
         checkArgument(register >= 0);
 
-        if ((register == ZERO) || (register >= REGISTERS)) {
+        if (register >= REGISTERS) {
             throw new IllegalRegisterException("illegal register: " + register);
         }
 
-        this.word[register] = Word.create(number);
+        if (register != ZERO) {
+            this.word[register] = Word.create(number);
+        }
     }
 
     /**
@@ -174,11 +176,13 @@ public final class Store {
     public void setLocation(int location, Word word) {
         checkArgument(location >= 0);
 
-        if ((location == ZERO) || (location >= SIZE)) {
+        if (location >= SIZE) {
             throw new IllegalLocationException("location out of range: " + location);
         }
 
-        this.word[location] = word;
+        if (location != ZERO) {
+            this.word[location] = word;
+        }
     }
 
     /**
