@@ -30,6 +30,21 @@ public class ControlRegisterTest {
     }
 
     @Test
+    public void testIsStop() {
+        ControlRegister register = new ControlRegister();
+
+        assertFalse(register.isStop());
+
+        register.setStop(true);
+
+        assertTrue(register.isStop());
+
+        register.setStop(false);
+
+        assertFalse(register.isStop());
+    }
+
+    @Test
     public void testGetAddress() {
         ControlRegister register = new ControlRegister();
 

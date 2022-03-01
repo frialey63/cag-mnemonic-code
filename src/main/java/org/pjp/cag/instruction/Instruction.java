@@ -48,6 +48,13 @@ public abstract class Instruction implements Executable {
     }
 
     /**
+     * Default constructor.
+     */
+    public Instruction() {
+        this(false, 0, 0);
+    }
+
+    /**
      * @return True if query
      */
     public boolean isQuery() {

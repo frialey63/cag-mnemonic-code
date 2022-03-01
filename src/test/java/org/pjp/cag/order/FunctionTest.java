@@ -3,6 +3,7 @@ package org.pjp.cag.order;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.pjp.cag.CAGMnemonicCode;
@@ -11,7 +12,6 @@ public class FunctionTest {
 
     @Test
     public void testCode() {
-
         assertEquals(0, (int) Function.LDA.code());
 
         assertEquals(11, (int) Function.ADDN.code());
@@ -27,23 +27,21 @@ public class FunctionTest {
 
     @Test
     public void testRevisedCode() {
+        assertNull(Function.LDA.revisedCode());
 
-        assertEquals(0, (int) Function.LDA.revisedCode());
+        assertNull(Function.ADDN.revisedCode());
 
-        assertEquals(11, (int) Function.ADDN.revisedCode());
-
-        assertEquals(20, (int) Function.STA.revisedCode());
+        assertNull(Function.STA.revisedCode());
 
         assertEquals(31, (int) Function.JEQ.revisedCode());
 
-        assertEquals(43, (int) Function.SIN.revisedCode());
+        assertNull(Function.SIN.revisedCode());
 
         assertNull(Function.PNL.revisedCode());
     }
 
     @Test
     public void testGetCode() {
-
         assertFalse(CAGMnemonicCode.isRevised());
 
         assertEquals(0, Function.LDA.getCode());
@@ -60,8 +58,30 @@ public class FunctionTest {
     }
 
     @Test
-    public void testGetGroup() {
+    public void testGetCodeRevised() {
+        try {
+            CAGMnemonicCode.setYear(CAGMnemonicCode.YEAR_1968);
 
+            assertTrue(CAGMnemonicCode.isRevised());
+
+            assertEquals(0, Function.LDA.getCode());
+
+            assertEquals(11, Function.ADDN.getCode());
+
+            assertEquals(20, Function.STA.getCode());
+
+            assertEquals(31, Function.JEQ.getCode());
+
+            assertEquals(43, Function.SIN.getCode());
+
+            assertEquals(54, Function.PNL.getCode());
+        } finally {
+            CAGMnemonicCode.setYear(CAGMnemonicCode.YEAR_1964);
+        }
+    }
+
+    @Test
+    public void testGetGroup() {
         assertEquals(0, Function.LDA.getGroup());
 
         assertEquals(1, Function.ADDN.getGroup());
@@ -88,7 +108,31 @@ public class FunctionTest {
         assertEquals("org.pjp.cag.instruction.group4.SIN", Function.SIN.getInstructionClass());
 
         assertEquals("org.pjp.cag.instruction.group5.PNL", Function.PNL.getInstructionClass());
-   }
+    }
+
+
+    @Test
+    public void testGetInstructionClassRevised() {
+        try {
+            CAGMnemonicCode.setYear(CAGMnemonicCode.YEAR_1968);
+
+            assertTrue(CAGMnemonicCode.isRevised());
+
+            assertEquals("org.pjp.cag.instruction.group0.LDA", Function.LDA.getInstructionClass());
+
+            assertEquals("org.pjp.cag.instruction.group1.ADDN", Function.ADDN.getInstructionClass());
+
+            assertEquals("org.pjp.cag.instruction.group2.STA", Function.STA.getInstructionClass());
+
+            assertEquals("org.pjp.cag.instruction.group3.rev.JEQ", Function.JEQ.getInstructionClass());
+
+            assertEquals("org.pjp.cag.instruction.group4.SIN", Function.SIN.getInstructionClass());
+
+            assertEquals("org.pjp.cag.instruction.group5.PNL", Function.PNL.getInstructionClass());
+        } finally {
+            CAGMnemonicCode.setYear(CAGMnemonicCode.YEAR_1964);
+        }
+    }
 
     @Test
     public void testToString() {

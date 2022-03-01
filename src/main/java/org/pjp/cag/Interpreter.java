@@ -55,7 +55,7 @@ final class Interpreter {
             while (true) {
                 ControlRegister controlRegister = store.controlRegister();
 
-                if (controlRegister.isWait()) {
+                if (controlRegister.isWait() || controlRegister.isStop()) {
                     break;
                 }
 

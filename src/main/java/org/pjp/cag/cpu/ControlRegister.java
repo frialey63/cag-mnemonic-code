@@ -15,6 +15,8 @@ public final class ControlRegister {
 
     private boolean wait;
 
+    private boolean stop;
+
     public int getAddress() {
         return address;
     }
@@ -42,6 +44,14 @@ public final class ControlRegister {
 
     public void setWait(boolean wait) {
         this.wait = wait;
+    }
+
+    public boolean isStop() {
+        return stop;
+    }
+
+    public void setStop(boolean stop) {
+        this.stop = stop;
     }
 
 }

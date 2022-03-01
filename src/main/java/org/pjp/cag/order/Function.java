@@ -117,7 +117,7 @@ public enum Function {
     private final Integer revisedCode;
 
     Function(int code) {
-        this(code, code);
+        this(code, null);
     }
 
     Function(Integer code, Integer revisedCode) {
@@ -137,7 +137,7 @@ public enum Function {
      * @return The code taking into account any revision.
      */
     int getCode() {
-        return CAGMnemonicCode.isRevised() ? revisedCode : code;
+        return (CAGMnemonicCode.isRevised() && (revisedCode != null)) ? revisedCode : code;
     }
 
     /**
@@ -151,7 +151,9 @@ public enum Function {
      * @return The class through which the instruction is instantiated at interpretation time
      */
     public String getInstructionClass() {
-        return String.format("%s.group%1d.%s", Instruction.class.getPackage().getName(), getGroup(), name());
+        String format = "%s.group%1d" + (CAGMnemonicCode.isRevised() && (revisedCode != null) ? ".rev" : "") + ".%s";
+
+        return String.format(format, Instruction.class.getPackage().getName(), getGroup(), name());
     }
 
     @Override

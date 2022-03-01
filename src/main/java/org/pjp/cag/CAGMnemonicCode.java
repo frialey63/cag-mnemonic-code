@@ -13,6 +13,8 @@ import java.util.List;
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
 
+import com.google.common.annotations.VisibleForTesting;
+
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 
@@ -23,9 +25,15 @@ import joptsimple.OptionSet;
  */
 public final class CAGMnemonicCode {
 
-    private static final int YEAR_1964 = 1964;
+    /**
+     * The original language release year of 1964.
+     */
+    public static final int YEAR_1964 = 1964;
 
-    private static final int YEAR_1968 = 1968;
+    /**
+     * The revised language release year of 1968.
+     */
+    public static final int YEAR_1968 = 1968;
 
     /**
      * The maximum integer 2^17 - 1.
@@ -49,13 +57,18 @@ public final class CAGMnemonicCode {
         PARSER.accepts("Y", "year of revision").withRequiredArg().ofType(String.class);
     }
 
-    private static int revision = YEAR_1964;
+    private static int year = YEAR_1964;
 
     /**
      * @return True if the language is the revised version
      */
     public static boolean isRevised() {
-        return revision == YEAR_1968;
+        return year == YEAR_1968;
+    }
+
+    @VisibleForTesting
+    public static void setYear(int year) {
+        CAGMnemonicCode.year = year;
     }
 
     static InputStream getInputStream(File file) throws FileNotFoundException {
@@ -83,7 +96,7 @@ public final class CAGMnemonicCode {
             boolean trace = options.has("t");
 
             if (options.has("Y")) {
-                revision = "1968".equals(options.valueOf("Y")) ? YEAR_1968 : YEAR_1964;
+                year = "1968".equals(options.valueOf("Y")) ? YEAR_1968 : YEAR_1964;
             }
 
             try (InputStreamReader inputStreamReader = new InputStreamReader(getInputStream(data), CAGMnemonicCode.CHARSET)) {

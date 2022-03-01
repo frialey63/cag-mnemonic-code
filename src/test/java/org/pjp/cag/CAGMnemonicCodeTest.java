@@ -24,6 +24,17 @@ public class CAGMnemonicCodeTest {
     }
 
     @Test
+    public void testIsRevisedRevised() {
+        try {
+            CAGMnemonicCode.setYear(CAGMnemonicCode.YEAR_1968);
+
+            assertTrue(CAGMnemonicCode.isRevised());
+        } finally {
+            CAGMnemonicCode.setYear(CAGMnemonicCode.YEAR_1964);
+        }
+    }
+
+    @Test
     public void testGetInputStream() throws IOException {
         assertTrue(CAGMnemonicCode.getInputStream(Files.createTempFile("tmp-", ".tmp").toFile()) instanceof FileInputStream);
     }
