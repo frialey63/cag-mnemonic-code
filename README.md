@@ -47,7 +47,7 @@ Of course it is also possible to build the software without Eclipse by means of 
 
 ## Usage
 
-usage: org.pjp.cag.CAGMnemonicCode1964 <program-file> \[data-file\] \[trace\]
+    usage: org.pjp.cag.CAGMnemonicCode1964 <program-file> [data-file] [trace]
 
 ## References
 
