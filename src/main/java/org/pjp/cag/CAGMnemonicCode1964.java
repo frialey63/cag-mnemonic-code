@@ -8,11 +8,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import com.google.common.annotations.VisibleForTesting;
+
+import joptsimple.OptionParser;
+import joptsimple.OptionSet;
 
 /**
  * The CAG Mnemonic Code 1964 coordinates the assembly of the program by the Assembler and the execution of the program by the Interpreter.
@@ -31,15 +35,16 @@ public final class CAGMnemonicCode1964 {
      */
     public static final String CHARSET = "UTF-8";
 
-    private static final int THREE = 3;
-
-    private static final String TRACE = "trace";
-
     private static final File DATA_DIR = new File(System.getProperty("dataDir", "data"));
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CAGMnemonicCode1964.class);
+    private static final OptionParser PARSER = new OptionParser();
 
-    private static final String USAGE = "usage: org.pjp.cag.CAGMnemonicCode1964 <program-file> [data-file] [trace]";
+    static {
+        PARSER.accepts("a", "assemble only");
+        PARSER.accepts("d", "dump contents of store");
+        PARSER.accepts("f", "file for data").withRequiredArg().ofType(String.class);
+        PARSER.accepts("t", "trace enable");
+    }
 
     static InputStream getInputStream(File file) throws FileNotFoundException {
         if (file == null) {
@@ -54,33 +59,28 @@ public final class CAGMnemonicCode1964 {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        if (args.length >= 1) {
-            Path path = Paths.get(args[0]);
-            File data = null;
-            boolean trace = false;
+        OptionSet options = PARSER.parse(args);
 
-            if (args.length >= THREE) {
-                data = new File(DATA_DIR, args[1]);
-                trace = TRACE.equalsIgnoreCase(args[2]);
-            } else if (args.length == 2) {
-                if (TRACE.equalsIgnoreCase(args[1])) {
-                    trace = true;
-                } else {
-                    data = new File(args[1]);
-                }
-            }
+        List<?> nonOptionArguments = options.nonOptionArguments();
+
+        if (nonOptionArguments.size() == 1) {
+            Path path = Paths.get((String) nonOptionArguments.get(0));
+            File data = options.has("f") ? new File(DATA_DIR, (String) options.valueOf("f")) : null;
+            boolean assemble = options.has("a");
+            boolean dump = options.has("d");
+            boolean trace = options.has("t");
 
             try (InputStreamReader inputStreamReader = new InputStreamReader(getInputStream(data), CAGMnemonicCode1964.CHARSET)) {
                 PaperTape.setIn(inputStreamReader);
 
-                innerMain(path, trace);
+                innerMain(path, assemble, dump, trace);
             }
         } else {
-            System.err.println(USAGE);
+            PARSER.printHelpOn(System.out);
         }
     }
 
-    static void innerMain(Path path, boolean trace) {
+    private static void innerMain(Path path, boolean assemble, boolean dump, boolean trace) {
         Store store = new Store();
 
         assert store.zero();
@@ -88,14 +88,21 @@ public final class CAGMnemonicCode1964 {
         if (new Assembler().assemble(path, store)) {
             assert store.zero();
 
-            if (LOGGER.isDebugEnabled()) {
-                LOGGER.debug(store.dump());
+            if (dump) {
+                System.out.println(store.dump());
             }
 
-            new Interpreter().interpret(store, trace);
+            if (!assemble) {
+                new Interpreter().interpret(store, trace);
+            }
 
             assert store.zero();
         }
+    }
+
+    @VisibleForTesting
+    static void innerMain(Path path) {
+        innerMain(path, false, false, false);
     }
 
     private CAGMnemonicCode1964() {

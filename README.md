@@ -47,7 +47,12 @@ Of course it is also possible to build the software without Eclipse by means of 
 
 ## Usage
 
-    usage: org.pjp.cag.CAGMnemonicCode1964 <program-file> [data-file] [trace]
+    Option       Description
+    ------       -----------
+    -a           assemble only
+    -d           dump contents of store
+    -f <String>  file for data
+    -t           trace enable
 
 ## References
 
