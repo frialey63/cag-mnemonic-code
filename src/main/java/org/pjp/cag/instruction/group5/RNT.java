@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import org.pjp.cag.CAGMnemonicCode1964;
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
-import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.instruction.MachineInstruction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
  * @author developer
  *
  */
-public final class RNT extends Instruction {
+public final class RNT extends MachineInstruction {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RNT.class);
 

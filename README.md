@@ -35,7 +35,7 @@ Similarly the operational procedures involved in controlling the translator and 
 The Mnemonic Code is a simple language and consequently the Java software necessary for its implementation is relatively simple.
 For the technically inclined there are a couple of interesting features of the software design which are worth noting.
 The assembly process performed by the Assembler class makes use of pattern matching with regular expressions to parse the input text and extract language symbols, i.e. orders (aka instructions) and directives.
-The interpretation process performed by the Interpreter class utilises reflection to lookup the instruction corresponding to a stored order.
+The interpretation process performed by the Interpreter class utilises reflection to lookup the machine instruction corresponding to a stored order.
 Instructions are mechanised through a common Executable interface which defines an "execute" operation.
 A significant focus of the development effort was to accurately reproduce the I/O instructions in group 5 albeit with Java devices and files.
 Also, the error checking as described for the original Elliot implementation has been faithfully reproduced just with the addition of a full description in the error report.

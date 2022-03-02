@@ -5,14 +5,14 @@ import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.exception.internal.FaultyWordException;
-import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.instruction.MachineInstruction;
 
 /**
  * Print the character at the address which may be modified.
  * @author developer
  *
  */
-public final class PCT extends Instruction {
+public final class PCT extends MachineInstruction {
 
     /**
      * @param query The query flag

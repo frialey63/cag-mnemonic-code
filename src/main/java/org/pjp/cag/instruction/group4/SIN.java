@@ -1,14 +1,14 @@
 package org.pjp.cag.instruction.group4;
 
 import org.pjp.cag.cpu.Store;
-import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.instruction.MachineInstruction;
 
 /**
  * Calculate the sine of the accumulator and restore into the accumulator.
  * @author developer
  *
  */
-public final class SIN extends Instruction {
+public final class SIN extends MachineInstruction {
 
     /**
      * @param query The query flag

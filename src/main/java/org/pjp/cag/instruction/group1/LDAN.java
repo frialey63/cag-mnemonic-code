@@ -1,14 +1,14 @@
 package org.pjp.cag.instruction.group1;
 
 import org.pjp.cag.cpu.Store;
-import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.instruction.MachineInstruction;
 
 /**
  * Load the accumulator with the constant number.
  * @author developer
  *
  */
-public final class LDAN extends Instruction {
+public final class LDAN extends MachineInstruction {
 
     /**
      * @param query The query flag

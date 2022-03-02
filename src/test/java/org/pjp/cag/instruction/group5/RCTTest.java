@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.pjp.cag.CAGMnemonicCode1964;
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
-import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.instruction.MachineInstruction;
 
 public class RCTTest {
 
@@ -47,7 +47,7 @@ public class RCTTest {
             Store store = new Store();
             store.setRegister(3, 10);
 
-            Instruction instruction = new RNT(false, ZERO, ZERO);
+            MachineInstruction instruction = new RNT(false, ZERO, ZERO);
             instruction.execute(store);
 
             instruction = new RCT(false, 110, 3);
@@ -72,7 +72,7 @@ public class RCTTest {
             Store store = new Store();
             store.setRegister(3, 10);
 
-            Instruction instruction = new RNT(false, ZERO, ZERO);
+            MachineInstruction instruction = new RNT(false, ZERO, ZERO);
             instruction.execute(store);
 
             instruction = new RCT(false, 110, 3);

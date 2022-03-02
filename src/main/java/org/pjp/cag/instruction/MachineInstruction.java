@@ -8,11 +8,11 @@ import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.exception.internal.FaultyWordException;
 
 /**
- * This abstract class represents the common elements for all Instructions.
+ * This abstract class represents the common elements for all Machine Instructions.
  * @author developer
  *
  */
-public abstract class Instruction implements Executable {
+public abstract class MachineInstruction implements Executable {
 
     private final boolean query;
 
@@ -25,7 +25,7 @@ public abstract class Instruction implements Executable {
      * @param address The address
      * @param modifier The modifier
      */
-    public Instruction(boolean query, int address, int modifier) {
+    public MachineInstruction(boolean query, int address, int modifier) {
         super();
         this.query = query;
         this.addressLiteral = address;
@@ -36,14 +36,14 @@ public abstract class Instruction implements Executable {
      * @param query The query flag
      * @param number The address or could be a constant
      */
-    public Instruction(boolean query, int number) {
+    public MachineInstruction(boolean query, int number) {
         this(query, number, 0);
     }
 
     /**
      * @param query The query flag
      */
-    public Instruction(boolean query) {
+    public MachineInstruction(boolean query) {
         this(query, 0, 0);
     }
 
@@ -124,7 +124,7 @@ public abstract class Instruction implements Executable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Instruction other = (Instruction) obj;
+        MachineInstruction other = (MachineInstruction) obj;
         if (addressLiteral != other.addressLiteral)
             return false;
         if (modifier != other.modifier)

@@ -16,7 +16,7 @@ import org.pjp.cag.cpu.Word;
 import org.pjp.cag.dev.PaperTape;
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
-import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.instruction.MachineInstruction;
 
 public class PCTTest {
 
@@ -57,7 +57,7 @@ public class PCTTest {
             store.setLocation(110, Word.create('A'));
             store.setRegister(3, 10);
 
-            Instruction instruction = new PNT(false, 1, 6);
+            MachineInstruction instruction = new PNT(false, 1, 6);
             instruction.execute(store);
 
             instruction = new PCT(false, 100, 3);
@@ -85,7 +85,7 @@ public class PCTTest {
             store.setLocation(110, Word.create('A'));
             store.setRegister(3, 10);
 
-            Instruction instruction = new PCT(false, 100, 3);
+            MachineInstruction instruction = new PCT(false, 100, 3);
             instruction.execute(store);
 
             instruction = new PNT(false, 1, 6);

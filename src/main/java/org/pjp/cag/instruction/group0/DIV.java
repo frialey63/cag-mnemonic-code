@@ -5,14 +5,14 @@ import org.pjp.cag.cpu.Word;
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.exception.internal.FaultyWordException;
-import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.instruction.MachineInstruction;
 
 /**
  * Divide the accumulator by the number read from the specified location of store.
  * @author developer
  *
  */
-public final class DIV extends Instruction {
+public final class DIV extends MachineInstruction {
 
     /**
      * @param query The query flag

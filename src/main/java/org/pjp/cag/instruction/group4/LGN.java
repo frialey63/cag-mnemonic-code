@@ -1,14 +1,14 @@
 package org.pjp.cag.instruction.group4;
 
 import org.pjp.cag.cpu.Store;
-import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.instruction.MachineInstruction;
 
 /**
  * Calculate the natural log of the accumulator and restore into the accumulator.
  * @author developer
  *
  */
-public final class LGN extends Instruction {
+public final class LGN extends MachineInstruction {
 
     /**
      * @param query The query flag

@@ -1,6 +1,6 @@
 package org.pjp.cag.order;
 
-import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.instruction.MachineInstruction;
 
 /**
  * This enum represents the Function (mnemonic) constituent part of an Order.
@@ -85,10 +85,10 @@ public enum Function {
     }
 
     /**
-     * @return The class through which the instruction is instantiated at interpretation time
+     * @return The class through which the machine instruction is instantiated at interpretation time
      */
-    public String instructionClass() {
-        return String.format("%s.group%1d.%s", Instruction.class.getPackage().getName(), group(), name());
+    public String machineInstructionClassName() {
+        return String.format("%s.group%1d.%s", MachineInstruction.class.getPackage().getName(), group(), name());
     }
 
     @Override

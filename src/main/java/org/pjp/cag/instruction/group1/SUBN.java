@@ -1,14 +1,14 @@
 package org.pjp.cag.instruction.group1;
 
 import org.pjp.cag.cpu.Store;
-import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.instruction.MachineInstruction;
 
 /**
  * Subtract from the accumulator the constant number.
  * @author developer
  *
  */
-public final class SUBN extends Instruction {
+public final class SUBN extends MachineInstruction {
 
     /**
      * @param query The query flag

@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.cpu.Word;
 import org.pjp.cag.dev.PaperTape;
-import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.instruction.MachineInstruction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
  * @author developer
  *
  */
-public final class RCT extends Instruction {
+public final class RCT extends MachineInstruction {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RCT.class);
 

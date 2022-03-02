@@ -9,7 +9,7 @@ import org.pjp.cag.cpu.Store;
 import org.pjp.cag.cpu.Word;
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
-import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.instruction.MachineInstruction;
 import org.pjp.cag.instruction.group0.DIV;
 import org.pjp.cag.instruction.group2.STA;
 
@@ -53,26 +53,26 @@ public class InterpreterTest {
     }
 
     @Test
-    public void testExecuteInstructionAddressOutOfRange() {
+    public void testExecuteMachineInstructionAddressOutOfRange() {
         RunningException exception = assertThrows(RunningException.class, () -> {
             Store store = new Store();
 
-            Instruction sta = new STA(false, 1001, ZERO);
-            Interpreter.executeInstruction(store, sta);
+            MachineInstruction sta = new STA(false, 1001, ZERO);
+            Interpreter.executeMachineInstruction(store, sta);
         });
 
         assertEquals(RunningError.ERR_13, exception.getError());
     }
 
     @Test
-    public void testExecuteInstructionFloatingPointOverflow() {
+    public void testExecuteMachineInstructionFloatingPointOverflow() {
         RunningException exception = assertThrows(RunningException.class, () -> {
             Store store = new Store();
             store.accumulator().set(1);
             store.setLocation(100, Word.create(0));
 
-            Instruction div = new DIV(false, 100, ZERO);
-            Interpreter.executeInstruction(store, div);
+            MachineInstruction div = new DIV(false, 100, ZERO);
+            Interpreter.executeMachineInstruction(store, div);
         });
 
         assertEquals(RunningError.ERR_18, exception.getError());

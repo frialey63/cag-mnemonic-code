@@ -4,14 +4,14 @@ import java.text.DecimalFormatSymbols;
 
 import org.pjp.cag.cpu.Store;
 import org.pjp.cag.dev.PaperTape;
-import org.pjp.cag.instruction.Instruction;
+import org.pjp.cag.instruction.MachineInstruction;
 
 /**
  * Print the accumulator using the specified numeric format.
  * @author developer
  *
  */
-public final class PNT extends Instruction {
+public final class PNT extends MachineInstruction {
 
     private static final int FIFTEEN = 15;
 
