@@ -3,21 +3,21 @@ package org.pjp.cag.cpu;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.pjp.cag.exception.internal.FaultyWordException;
-import org.pjp.cag.order.Order;
+import org.pjp.cag.order.Instruction;
 
 /**
- * The Word represents the contents of a storage location as either an Order, number or character.
+ * The Word represents the contents of a storage location as either an Instruction, number or character.
  * @author developer
  *
  */
 public final class Word {
 
     /**
-     * @param order The order from which the word is created
+     * @param instruction The Instruction from which the word is created
      * @return The word
      */
-    public static Word create(Order order) {
-        return new Word(order);
+    public static Word create(Instruction instruction) {
+        return new Word(instruction);
     }
 
     /**
@@ -45,7 +45,7 @@ public final class Word {
 
     private static final Word EMPTY = new Word();
 
-    private final Order order;
+    private final Instruction instruction;
 
     private final Float number;
 
@@ -53,14 +53,14 @@ public final class Word {
 
     private Word() {
         super();
-        order = null;
+        instruction = null;
         number = null;
         character = null;
     }
 
-    private Word(Order order) {
+    private Word(Instruction instruction) {
         super();
-        this.order = checkNotNull(order, "order cannot be null");
+        this.instruction = checkNotNull(instruction, "instruction cannot be null");
         number = null;
         character = null;
     }
@@ -68,14 +68,14 @@ public final class Word {
     private Word(float number) {
         super();
         this.number = number;
-        order = null;
+        instruction = null;
         character = null;
     }
 
     private Word(char character) {
         super();
         this.character = checkNotNull(character, "character cannot be null");
-        order = null;
+        instruction = null;
         number = null;
     }
 
@@ -83,18 +83,18 @@ public final class Word {
      * @return True if the word is empty
      */
     public boolean isEmpty() {
-        return (order == null) && (number == null) && (character == null);
+        return (instruction == null) && (number == null) && (character == null);
     }
 
     /**
-     * @return The order contained in the word
+     * @return The Instruction contained in the word
      */
-    public Order order() {
-        if (order == null) {
-            throw new FaultyWordException("not an order");
+    public Instruction instruction() {
+        if (instruction == null) {
+            throw new FaultyWordException("not an instruction");
         }
 
-        return order;
+        return instruction;
     }
 
     /**
@@ -121,8 +121,8 @@ public final class Word {
 
     @Override
     public String toString() {
-        if (order != null) {
-            return order.toString();
+        if (instruction != null) {
+            return instruction.toString();
         } else if (number != null) {
             return number.toString();
         } else if (character != null) {
@@ -140,7 +140,7 @@ public final class Word {
         int result = 1;
         result = prime * result + ((character == null) ? 0 : character.hashCode());
         result = prime * result + ((number == null) ? 0 : number.hashCode());
-        result = prime * result + ((order == null) ? 0 : order.hashCode());
+        result = prime * result + ((instruction == null) ? 0 : instruction.hashCode());
         return result;
     }
 
@@ -163,10 +163,10 @@ public final class Word {
                 return false;
         } else if (!number.equals(other.number))
             return false;
-        if (order == null) {
-            if (other.order != null)
+        if (instruction == null) {
+            if (other.instruction != null)
                 return false;
-        } else if (!order.equals(other.order))
+        } else if (!instruction.equals(other.instruction))
             return false;
         return true;
     }

@@ -21,13 +21,13 @@ import org.pjp.cag.exception.TranslationError;
 import org.pjp.cag.exception.TranslationException;
 import org.pjp.cag.order.AddressDirective;
 import org.pjp.cag.order.Directive;
-import org.pjp.cag.order.Order;
+import org.pjp.cag.order.Instruction;
 import org.pjp.cag.order.TitleDirective;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The Assembler parses the program text and enters the Order, number or character into the computer store.
+ * The Assembler parses the program text and enters the Instruction, number or character into the computer store.
  * @author developer
  */
 final class Assembler {
@@ -44,7 +44,7 @@ final class Assembler {
 
     private static final Pattern DIRECTIVE = Pattern.compile("\\( *([A-Z]+) *([0-9]+)? *\\)");
 
-    private static final Pattern ORDER = Pattern.compile("([A-Z]+) *(([0-9]+) *(, *[0-9]+)? *(Q)?)?");
+    private static final Pattern INSTRUCTION = Pattern.compile("([A-Z]+) *(([0-9]+) *(, *[0-9]+)? *(Q)?)?");
 
     // https://www.regular-expressions.info/floatingpoint.html
     private static final Pattern NUMBER = Pattern.compile("[-+][0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?");
@@ -142,7 +142,7 @@ final class Assembler {
 
                 }
             } else {
-                matcher = ORDER.matcher(line);
+                matcher = INSTRUCTION.matcher(line);
 
                 if (matcher.matches()) {
                     String functionStr = matcher.group(FUNCTION);
@@ -154,11 +154,11 @@ final class Assembler {
                         modifierStr = modifierStr.replaceFirst("\\,", "").trim();
                     }
 
-                    Order order = Order.create(query, functionStr, addressStr, modifierStr);
+                    Instruction instruction = Instruction.create(query, functionStr, addressStr, modifierStr);
 
-                    LOGGER.debug("    " + order);
+                    LOGGER.debug("    " + instruction);
 
-                    storeWord(store, Word.create(order));
+                    storeWord(store, Word.create(instruction));
 
                 } else {
                     matcher = NUMBER.matcher(line);

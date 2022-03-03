@@ -17,36 +17,36 @@ public class InterpreterTest {
 
 
     @Test
-    public void testGetOrderWasNumber() {
+    public void testGetInstructionWasNumber() {
         RunningException exception = assertThrows(RunningException.class, () -> {
             Store store = new Store();
 
             store.setLocation(100, Word.create(666));
 
-            Interpreter.getOrder(store, 100);
+            Interpreter.getInstruction(store, 100);
         });
 
         assertEquals(RunningError.ERR_11, exception.getError());
     }
 
     @Test
-    public void testGetOrderWasCharacter() {
+    public void testGetInstructionWasCharacter() {
         RunningException exception = assertThrows(RunningException.class, () -> {
             Store store = new Store();
 
             store.setLocation(100, Word.create('A'));
 
-            Interpreter.getOrder(store, 100);
+            Interpreter.getInstruction(store, 100);
         });
 
         assertEquals(RunningError.ERR_11, exception.getError());
     }
     @Test
-    public void testGetOrderAddressOutOfRange() {
+    public void testGetInstructionAddressOutOfRange() {
         RunningException exception = assertThrows(RunningException.class, () -> {
             Store store = new Store();
 
-            Interpreter.getOrder(store, 1000);
+            Interpreter.getInstruction(store, 1000);
         });
 
         assertEquals(RunningError.ERR_13, exception.getError());

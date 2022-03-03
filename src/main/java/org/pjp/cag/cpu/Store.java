@@ -6,7 +6,7 @@ import org.pjp.cag.exception.internal.IllegalLocationException;
 import org.pjp.cag.exception.internal.IllegalRegisterException;
 
 /**
- * The storage of the computer comprising 10 registers and 1000 words, each word can be populated by an Order, number or character.
+ * The storage of the computer comprising 10 registers and 1000 words, each word can be populated by an Instruction, number or character.
  * @author developer
  *
  */

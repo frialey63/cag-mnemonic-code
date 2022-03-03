@@ -13,7 +13,7 @@ import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.instruction.group0.LDA;
 import org.pjp.cag.instruction.group1.LDAN;
 import org.pjp.cag.instruction.group4.SQT;
-import org.pjp.cag.order.Order;
+import org.pjp.cag.order.Instruction;
 
 public class MachineInstructionTest {
 
@@ -46,10 +46,10 @@ public class MachineInstructionTest {
     }
 
     @Test
-    public void testGetModificationWasOrder() {
+    public void testGetModificationWasInstruction() {
         RunningException exception = assertThrows(RunningException.class, () -> {
             Store store = new Store();
-            store.setLocation(3, Word.create(Order.create(false, "LDA", "123", "3")));
+            store.setLocation(3, Word.create(Instruction.create(false, "LDA", "123", "3")));
 
             LDA lda = new LDA(false, 100, 3);
             lda.getModification(store);

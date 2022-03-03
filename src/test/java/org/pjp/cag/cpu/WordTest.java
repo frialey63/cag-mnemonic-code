@@ -6,34 +6,34 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.pjp.cag.exception.TranslationException;
 import org.pjp.cag.exception.internal.FaultyWordException;
-import org.pjp.cag.order.Order;
+import org.pjp.cag.order.Instruction;
 import org.pjp.cag.test.TestConstants;
 
 public class WordTest {
 
     @Test
-    public void testCreateOrder() throws TranslationException {
-        Order order = Order.create(false, "LDA", "123", "3");
+    public void testCreateInstruction() throws TranslationException {
+        Instruction instruction = Instruction.create(false, "LDA", "123", "3");
 
-        Word word = Word.create(order);
+        Word word = Word.create(instruction);
 
-        assertEquals(order, word.order());
+        assertEquals(instruction, word.instruction());
     }
 
     @Test(expected = FaultyWordException.class)
-    public void testCreateOrderNotNumber() throws TranslationException {
-        Order order = Order.create(false, "LDA", "123", "3");
+    public void testCreateInstructionNotNumber() throws TranslationException {
+        Instruction instruction = Instruction.create(false, "LDA", "123", "3");
 
-        Word word = Word.create(order);
+        Word word = Word.create(instruction);
 
         word.number();
     }
 
     @Test(expected = FaultyWordException.class)
-    public void testCreateOrderNotCharacter() throws TranslationException {
-        Order order = Order.create(false, "LDA", "123", "3");
+    public void testCreateInstructionNotCharacter() throws TranslationException {
+        Instruction instruction = Instruction.create(false, "LDA", "123", "3");
 
-        Word word = Word.create(order);
+        Word word = Word.create(instruction);
 
         word.character();
     }
@@ -46,10 +46,10 @@ public class WordTest {
     }
 
     @Test(expected = FaultyWordException.class)
-    public void testCreateNumberNotOrder() {
+    public void testCreateNumberNotInstruction() {
         Word word = Word.create(123);
 
-        word.order();
+        word.instruction();
     }
 
     @Test(expected = FaultyWordException.class)
@@ -67,10 +67,10 @@ public class WordTest {
     }
 
     @Test(expected = FaultyWordException.class)
-    public void testCreateCharacterNotOrder() {
+    public void testCreateCharacterNotInstruction() {
         Word word = Word.create('A');
 
-        word.order();
+        word.instruction();
     }
 
     @Test(expected = FaultyWordException.class)

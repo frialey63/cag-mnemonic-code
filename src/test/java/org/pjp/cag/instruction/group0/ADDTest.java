@@ -9,7 +9,7 @@ import org.pjp.cag.cpu.Store;
 import org.pjp.cag.cpu.Word;
 import org.pjp.cag.exception.RunningError;
 import org.pjp.cag.exception.RunningException;
-import org.pjp.cag.order.Order;
+import org.pjp.cag.order.Instruction;
 import org.pjp.cag.test.TestConstants;
 
 public class ADDTest {
@@ -32,7 +32,7 @@ public class ADDTest {
     public void testExecuteNotNumber() {
         RunningException exception = assertThrows(RunningException.class, () -> {
             Store store = new Store();
-            store.setLocation(100, Word.create(Order.create(false, "LDA", "123", "3")));
+            store.setLocation(100, Word.create(Instruction.create(false, "LDA", "123", "3")));
 
             ADD instruction = new ADD(false, 100, ZERO);
             instruction.execute(store);

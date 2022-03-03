@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.pjp.cag.exception.TranslationException;
 import org.pjp.cag.exception.internal.IllegalLocationException;
 import org.pjp.cag.exception.internal.IllegalRegisterException;
-import org.pjp.cag.order.Order;
+import org.pjp.cag.order.Instruction;
 import org.pjp.cag.test.TestConstants;
 
 public class StoreTest {
@@ -15,7 +15,7 @@ public class StoreTest {
     @Test
     public void testDump() throws TranslationException {
         Store store = new Store();
-        store.setLocation(12, Word.create(Order.create(false, "LDA", "123", "3")));
+        store.setLocation(12, Word.create(Instruction.create(false, "LDA", "123", "3")));
         store.setLocation(100, Word.create(123));
         store.setLocation(200, Word.create('A'));
 

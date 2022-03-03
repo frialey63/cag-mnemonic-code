@@ -7,12 +7,11 @@ import org.pjp.cag.exception.TranslationError;
 import org.pjp.cag.exception.TranslationException;
 
 /**
- * TODO rename Order to Instruction
- * The Order comprises the mnemonic for an instruction together with its associated arguments.
+ * The Instruction comprises the mnemonic for a function together with its associated arguments, i.e address and modifier.
  * @author developer
  *
  */
-public final class Order {
+public final class Instruction {
 
     static final int NULL = -1;
 
@@ -23,15 +22,15 @@ public final class Order {
      * @param functionStr The mnemonic for the instruction
      * @param addressStr The address
      * @param modifierStr The modifier
-     * @return The order
+     * @return The instruction
      * @throws TranslationException
      */
-    public static Order create(boolean query, String functionStr, String addressStr, String modifierStr) throws TranslationException {
+    public static Instruction create(boolean query, String functionStr, String addressStr, String modifierStr) throws TranslationException {
         try {
             Function function = Function.valueOf(functionStr);
 
             if (addressStr == null) {
-                return new Order(function);
+                return new Instruction(function);
             } else {
                 int address = Integer.parseInt(addressStr);          // will parse because matched to number in the regex
 
@@ -40,7 +39,7 @@ public final class Order {
                 }
 
                if (modifierStr == null) {
-                    return new Order(query, function, address);
+                    return new Instruction(query, function, address);
                 } else {
                     int modifier = Integer.parseInt(modifierStr);   // will parse because matched to number in the regex
 
@@ -48,7 +47,7 @@ public final class Order {
                         throw new TranslationException(TranslationError.ERR_7);
                     }
 
-                    return new Order(query, function, address, modifier);
+                    return new Instruction(query, function, address, modifier);
                 }
             }
         } catch (IllegalArgumentException e) {
@@ -64,7 +63,7 @@ public final class Order {
 
     private final int modifier; // 0 - 9
 
-    private Order(boolean query, Function function, int address, int modifier) {
+    private Instruction(boolean query, Function function, int address, int modifier) {
         super();
         this.query = query;
         this.function = checkNotNull(function, "function cannot be null");
@@ -72,11 +71,11 @@ public final class Order {
         this.modifier = modifier;
     }
 
-    private Order(boolean query, Function function, int address) {
+    private Instruction(boolean query, Function function, int address) {
         this(query, function, address, NULL);
     }
 
-    private Order(Function function) {
+    private Instruction(Function function) {
         this(false, function, NULL, NULL);
     }
 
@@ -144,7 +143,7 @@ public final class Order {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Order other = (Order) obj;
+        Instruction other = (Instruction) obj;
         if (address != other.address)
             return false;
         if (modifier != other.modifier)

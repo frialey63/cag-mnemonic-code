@@ -11,12 +11,12 @@ import org.pjp.cag.exception.RunningException;
 import org.pjp.cag.exception.internal.FaultyWordException;
 import org.pjp.cag.exception.internal.IllegalLocationException;
 import org.pjp.cag.instruction.MachineInstruction;
-import org.pjp.cag.order.Order;
+import org.pjp.cag.order.Instruction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The Interpreter reads the Orders from the store according to the control register and instantiates and executes the corresponding instruction.
+ * The Interpreter reads the Instructions from the store according to the control register and instantiates and executes the corresponding instruction.
  * @author developer
  *
  */
@@ -24,9 +24,9 @@ final class Interpreter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Interpreter.class);
 
-    static Order getOrder(Store store, int address) {
+    static Instruction getInstruction(Store store, int address) {
         try {
-            return store.getLocation(address).order();
+            return store.getLocation(address).instruction();
         } catch (IllegalLocationException e) {
             throw new RunningException(RunningError.ERR_13);
         } catch (FaultyWordException e) {
@@ -61,38 +61,38 @@ final class Interpreter {
 
                 address = controlRegister.getAddress();
 
-                Order order = getOrder(store, address);
+                Instruction instruction = getInstruction(store, address);
 
-                String machineInstructionClassName = order.function().machineInstructionClassName();
+                String machineInstructionClassName = instruction.function().machineInstructionClassName();
 
                 Class<?> clazz = Class.forName(machineInstructionClassName);
                 Constructor<?> declaredConstructor = null;
 
                 MachineInstruction machineInstruction;
 
-                if (order.hasModifier()) {
+                if (instruction.hasModifier()) {
                     declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class, int.class);
-                    machineInstruction = (MachineInstruction) declaredConstructor.newInstance(order.query(), order.address(), order.modifier());
-                } else if (order.hasAddress()) {
+                    machineInstruction = (MachineInstruction) declaredConstructor.newInstance(instruction.query(), instruction.address(), instruction.modifier());
+                } else if (instruction.hasAddress()) {
                     try {
                         declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class);
-                        machineInstruction = (MachineInstruction) declaredConstructor.newInstance(order.query(), order.address());
+                        machineInstruction = (MachineInstruction) declaredConstructor.newInstance(instruction.query(), instruction.address());
                     } catch (NoSuchMethodException e) {
                         declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class, int.class);
-                        machineInstruction = (MachineInstruction) declaredConstructor.newInstance(order.query(), order.address(), ZERO);
+                        machineInstruction = (MachineInstruction) declaredConstructor.newInstance(instruction.query(), instruction.address(), ZERO);
                     }
                 } else {
                     try {
                         // for completeness, there are no instructions with this constructor
                         declaredConstructor = clazz.getDeclaredConstructor(boolean.class);
-                        machineInstruction = (MachineInstruction) declaredConstructor.newInstance(order.query());
+                        machineInstruction = (MachineInstruction) declaredConstructor.newInstance(instruction.query());
                     } catch (NoSuchMethodException e) {
                         try {
                             declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class);
-                            machineInstruction = (MachineInstruction) declaredConstructor.newInstance(order.query(), ZERO);
+                            machineInstruction = (MachineInstruction) declaredConstructor.newInstance(instruction.query(), ZERO);
                         } catch (NoSuchMethodException e1) {
                             declaredConstructor = clazz.getDeclaredConstructor(boolean.class, int.class, int.class);
-                            machineInstruction = (MachineInstruction) declaredConstructor.newInstance(order.query(), ZERO, ZERO);
+                            machineInstruction = (MachineInstruction) declaredConstructor.newInstance(instruction.query(), ZERO, ZERO);
                         }
                     }
                 }
