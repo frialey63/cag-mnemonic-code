@@ -15,7 +15,7 @@ import org.pjp.cag.instruction.group1.LDAN;
 import org.pjp.cag.instruction.group4.SQT;
 import org.pjp.cag.order.Order;
 
-public class InstructionTest {
+public class MachineInstructionTest {
 
     @Test
     public void testGetLiteral() {
