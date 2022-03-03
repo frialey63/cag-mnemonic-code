@@ -7,6 +7,7 @@ import org.pjp.cag.exception.TranslationError;
 import org.pjp.cag.exception.TranslationException;
 
 /**
+ * TODO rename Order to Instruction
  * The Order comprises the mnemonic for an instruction together with its associated arguments.
  * @author developer
  *

@@ -31,8 +31,21 @@ public final class CAGMnemonicCode1964 {
     public static final int MAX_INT = 131071;
 
     /**
-     * The name of the character set.
-     */
+       The character set for 903 TELECODE is a fore-runner of, and bears a close resemblance to ASCII.
+
+           00   10    20    30    40    50    60    70    80    90   100   110   120
+
+        0 nul   lf                 (     2     <     F     P     Z     d     n     x
+        1                          )     3     =     G     Q     [     e     o     y
+        2                   sp     *     4     >     H     R     £     f     p     z
+        3                    !     +     5     ❿        I     S     ]     g     q
+        4                    "     ,     6     ’     J     T     ↑     h     r
+        5                    ½     -     7     A     K     U     ←     I     s
+        6                    $     .     8     B     L     V     @     j     t
+        7 bel                %     /     9     C     M     W     a     k     u   del
+        8                    &     0     :     D     N     X     b     l     v
+        9 tab                ‘     1     ;     E     O     Y     c     m     w
+    */
     public static final String CHARSET = "UTF-8";
 
     private static final File DATA_DIR = new File(System.getProperty("dataDir", "data"));
